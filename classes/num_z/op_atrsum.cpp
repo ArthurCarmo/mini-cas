@@ -10,7 +10,6 @@ num_z & num_z::operator+=(const num_z &a){
 	}
 	unsigned int i = 0;
 	bool vai_um = 0;
-	bool adjust = 0;
 	bool adj_a = 0;
 	if(this->_blocks < a._blocks){
 		for(; i < this->_blocks; i++){

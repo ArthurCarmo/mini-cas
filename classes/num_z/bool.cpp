@@ -11,7 +11,7 @@ bool num_z::operator==(const num_z &a) const {
 bool num_z::operator==(const int &a) const {
 	if(this->_blocks ^ 1) return false;
 	if(this->_sign ^ (a < 0) && this->_num[0] != 0) return false;
-	return (a < 0)?this->_num[0] == -a:this->_num[0] == a;
+	return (a < 0)?this->_num[0] == (unsigned long long)-a:this->_num[0] == (unsigned long long)a;
 }
 
 bool num_z::operator==(const unsigned int &a) const {
@@ -22,7 +22,7 @@ bool num_z::operator==(const unsigned int &a) const {
 bool num_z::operator==(const long long &a) const {
 	if(this->_blocks ^ 1) return false;
 	if(this->_sign ^ (a < 0) && this->_num[0] != 0) return false;
-	return (a < 0)?this->_num[0] == -a:this->_num[0] == a;
+	return (a < 0)?this->_num[0] == (unsigned long long)-a:this->_num[0] == (unsigned long long)a;
 }
 
 bool num_z::operator==(const unsigned long long &a) const {
@@ -58,9 +58,9 @@ bool num_z::operator>(const num_z &a) const {
 bool num_z::operator>(const int &a) const {
 	if(this->_sign == 0)
 		if(a < 0 || this->_blocks ^ 1) return true;
-		else return this->_num[0] > a;
+		else return this->_num[0] > (unsigned long long)a;
 	else if(a >= 0 || this->_blocks ^ 1) return false;
-		else return this->_num[0] < -a;
+		else return this->_num[0] < (unsigned long long)-a;
 }
 
 bool num_z::operator>(const unsigned int &a) const {
@@ -71,9 +71,9 @@ bool num_z::operator>(const unsigned int &a) const {
 bool num_z::operator>(const long long &a) const{
 	if(this->_sign == 0)
 		if(a < 0 || this->_blocks ^ 1) return true;
-		else return this->_num[0] > a;
+		else return this->_num[0] > (unsigned long long)a;
 	else if(a >= 0 || this->_blocks ^ 1) return false;
-		else return this->_num[0] < -a;
+		else return this->_num[0] < (unsigned long long)-a;
 }
 
 bool num_z::operator>(const unsigned long long &a) const {
@@ -106,8 +106,8 @@ bool num_z::operator!=(const num_z &) const;
 
 bool num_z::operator!=(const int &a) const {
 	if(this->_blocks > 1) return true;
-	if(a < 0 ^ this->_sign) return true;
-	return a != this->_num[0];
+	if((a < 0) ^ this->_sign) return true;
+	return (unsigned long long)a ^ this->_num[0];
 }
 /*	
 bool num_z::operator!=(const unsigned int &) const;

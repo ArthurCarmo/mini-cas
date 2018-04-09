@@ -66,7 +66,7 @@ num_z::num_z(const unsigned int &a){
 }
 
 num_z::num_z(const char a[]){
-	int i = 0, j = 0, k = 0;
+	unsigned int i = 0, j = 0, k = 0;
 	unsigned int n_blocks = 0;
 	unsigned int size_last_block = 0;
 	unsigned long long block = 0;

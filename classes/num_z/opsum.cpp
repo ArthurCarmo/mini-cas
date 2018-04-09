@@ -3,10 +3,9 @@
 num_z num_z::operator+(const num_z &a){
 	num_z res;
 	if(this->_sign ^ a._sign){
-		bool st, sa;
+		bool st;
 		
 		st = this->_sign;
-		sa = a._sign;
 		
 		this->_sign = a._sign; 
 		
