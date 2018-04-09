@@ -1,13 +1,13 @@
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
 #define _INIT_SIZE_ 10
-#define _MAX_CONST_64_    (unsigned long long)(  10000000000000000000)
-#define _MAX_18_DIGIT_    (unsigned long long)(    999999999999999999)
-#define _MAX_9_DIGIT_     (unsigned long long)(             999999999)
-#define _BLOCK_HALF_LAST_ (unsigned long long)(            1000000000)
-#define _BLOCK_SIZE_64_   (unsigned long long)(   9999999999999999999)
-#define _BLOCK_HALF_64_   (unsigned long long)(   5000000000000000000)
-#define _BLOCK_LAST_64_   (unsigned long long)(   1000000000000000000)
+#define _MAX_CONST_64_      10000000000000000000ull
+#define _MAX_18_DIGIT_        999999999999999999ull
+#define _MAX_9_DIGIT_                  999999999ull
+#define _BLOCK_HALF_LAST_             1000000000ull
+#define _BLOCK_SIZE_64_      9999999999999999999ull
+#define _BLOCK_HALF_64_      5000000000000000000ull
+#define _BLOCK_LAST_64_      1000000000000000000ull
 
 #include <iostream>
 #include <iomanip>
@@ -42,6 +42,7 @@
 			num_z & operator=(const unsigned long long &);
 			num_z & operator=(const int &);
 			num_z & operator=(const unsigned int &);
+			num_z & operator=(const char []);
 			num_z & operator+=(const num_z &);
 			num_z & operator+=(const long long &);
 			num_z & operator+=(const unsigned long long &);
