@@ -1,4 +1,4 @@
-#include "num_z.h"
+#include "../headers/num_z.h"
 
 
 std::ostream& operator << (std::ostream &o, const num_z &a){
@@ -18,7 +18,7 @@ std::istream& operator >> (std::istream &in, num_z &a){
 		sign = 1;
 		c = in.get();
 	}
-	while(c != '\n' && c != ' ' && c != -1 && (c == '.' || c == ',' ||( c >= '0' && c <='9'))){
+	while(c == '.' || c == ',' ||( c >= '0' && c <='9')){
 		if(c == '.' || c == ',');
 		else{ 
 			a.__left_shift();
