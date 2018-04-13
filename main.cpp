@@ -1,5 +1,5 @@
-#include "./classes/num_z/num_z.h"
-
+#include "./classes/headers/num_z.h"
+#include "./classes/headers/polynomial.h"
 
 int main(){
 	Int a, b;
@@ -15,9 +15,14 @@ int main(){
 	std::cout << "SUB:\n" << a - b << "\n\n";
 	std::cout << "MUL:\n" << a * b << "\n\n";
 	
-	Int d("-1234567890123456789012345");
-	Int e("12345678901234567890123456");
-	std::cout << "D+E:\n" << d+e << "\n\n";
+//	Int d("-1234567890123456789012345");
+//	Int e("12345678901234567890123456");
+	
+//	std::cout << "D+E:\n" << d+e << "\n\n";
+	
+//	polynomial p("x^3-2xy +y^2-2+3y");
+	
+//	std::cout << (18446744073709551615 == -1) << std::endl;
 	
 	return 0;
 }
