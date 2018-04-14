@@ -18,7 +18,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) -o $(EXECUTABLE) $(OBJECTS) $(CFLAGS) $(INCLUDE) $(LDFLAGS) $(LIBS)
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 
 clean :
 	rm -r $(OBJDIR)
