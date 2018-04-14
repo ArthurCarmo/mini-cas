@@ -66,9 +66,26 @@ num_z & num_z::operator+=(const unsigned long long &a){ //EXPANDIR
 	return *this += res;
 }
 
-/*
-num_z & num_z::operator+=(const long long &a);
-num_z & num_z::operator+=(const unsigned long long &a);
-num_z & num_z::operator+=(const int &a);
-num_z & num_z::operator+=(const unsigned int &a);
-*/
+num_z & num_z::operator+=(const long long &a){
+	num_z res;
+	res = a;
+	return *this += res;
+}
+
+num_z & num_z::operator+=(const int &a){
+	num_z res;
+	res = a;
+	return *this += res;
+}
+
+num_z & num_z::operator+=(const unsigned int &a){
+	num_z res;
+	res = a;
+	return *this += res;
+}
+
+num_z & num_z::operator+=(const char a[]){
+	num_z res;
+	res = a;
+	return *this += res;
+}

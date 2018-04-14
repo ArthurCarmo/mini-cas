@@ -7,6 +7,8 @@ num_z num_z::operator*(const num_z &a){ //IMPLEMENTAR KARATSUBA
 		res = 0;
 		return res;
 	}
+	if(a == 1) return *this;
+	if(*this == 1) return a;
 	
 	num_z m(*this), n(a);
 	unsigned long long parcelas_t[3*this->_blocks];

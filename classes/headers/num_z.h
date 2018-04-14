@@ -36,7 +36,13 @@
 			num_z(const unsigned int &);
 			num_z(const char []);
 			~num_z();
-			num_z abs() const;
+			num_z abs();
+			num_z operator-();
+			num_z & operator+();
+			num_z & operator++();
+			num_z & operator--();
+			num_z operator++(int);
+			num_z operator--(int);
 			num_z & operator=(const num_z &);
 			num_z & operator=(const long long &);
 			num_z & operator=(const unsigned long long &);
@@ -48,6 +54,7 @@
 			num_z & operator+=(const unsigned long long &);
 			num_z & operator+=(const int &);
 			num_z & operator+=(const unsigned int &);
+			num_z & operator+=(const char []);
 			num_z & operator-=(const num_z &);
 			num_z & operator-=(const long long &);
 			num_z & operator-=(const unsigned long long &);

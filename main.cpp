@@ -14,6 +14,10 @@ int main(){
 	std::cout << "SUM:\n" << a + b << "\n\n";
 	std::cout << "SUB:\n" << a - b << "\n\n";
 	std::cout << "MUL:\n" << a * b << "\n\n";
+
+	std::cout << "a++: " << a++ << "\n\n";
+	std::cout << "++a: " << ++a << "\n\n";
+	std::cout << " -a: " << -a << "\n\n";
 	
 //	Int d("-1234567890123456789012345");
 //	Int e("12345678901234567890123456");
