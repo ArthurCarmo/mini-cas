@@ -7,6 +7,7 @@ num_z & num_z::operator+=(const num_z &a){
 //		*this-=a; 
 		
 		this->_sign = *this==0?0:!this->_sign;
+		return *this;	
 	}
 	unsigned int i = 0;
 	bool vai_um = 0;
