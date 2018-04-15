@@ -1,5 +1,4 @@
-#include "./classes/headers/num_z.h"
-#include "./classes/headers/polynomial.h"
+#include <symbolib.h>
 
 int main(){
 	Int a, b;
@@ -19,10 +18,10 @@ int main(){
 	std::cout << "++a: " << ++a << "\n\n";
 	std::cout << " -a: " << -a << "\n\n";
 	
-//	Int d("-1234567890123456789012345");
-//	Int e("12345678901234567890123456");
+	Int d("-1234567890123456789012345");
+	Int e("12345678901234567890123456");
 	
-//	std::cout << "D+E:\n" << d+e << "\n\n";
+	std::cout << "D+E:\n" << d+e << "\n\n";
 	
 //	polynomial p("x^3-2xy +y^2-2+3y");
 	

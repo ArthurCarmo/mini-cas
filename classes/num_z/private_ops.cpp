@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 void num_z::__left_shift(){
 	if(this->_num[this->_blocks - 1] > _MAX_18_DIGIT_ ){ 

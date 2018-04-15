@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 num_z num_z::abs(){
 	num_z res(*this);

@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 
 std::ostream& operator << (std::ostream &o, const num_z &a){

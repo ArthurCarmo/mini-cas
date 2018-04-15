@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 bool num_z::operator==(const num_z &a) const {
 	if(this->_blocks ^ a._blocks || this->_sign ^ a._sign) return false;

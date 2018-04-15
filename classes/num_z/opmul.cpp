@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 num_z num_z::operator*(const num_z &a){ //IMPLEMENTAR KARATSUBA
 	num_z res;

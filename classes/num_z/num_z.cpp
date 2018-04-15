@@ -1,4 +1,4 @@
-#include "../headers/num_z.h"
+#include "../include/num_z.h"
 
 num_z::num_z(){
 	this->_n_blocks = _INIT_SIZE_;
