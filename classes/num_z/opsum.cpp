@@ -35,7 +35,7 @@ num_z num_z::operator+(const num_z &a){
 			l_blocks= a._blocks;
 		}
 		
-		if(res._n_blocks < m_blocks) res.__resize(m_blocks+5);
+		if(res._n_blocks < m_blocks) res.__resize(m_blocks+1);
 		res._blocks = m_blocks;
 		res._sign = this->_sign;
 		
