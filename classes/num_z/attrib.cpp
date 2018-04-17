@@ -4,7 +4,7 @@ num_z & num_z::operator=(const num_z &a){
 	if(this->_n_blocks < a._blocks)
 		this->__resize(a._blocks + 1);
 	this->_blocks = a._blocks;
-	for(unsigned int i = this->_blocks; --i;)
+	for(uint32_t i = this->_blocks; --i;)
 		this->_num[i] = a._num[i];
 	this->_num[0] = a._num[0];
 	this->_sign = a._sign;
@@ -24,21 +24,21 @@ num_z & num_z::operator=(const int &a){
 	return *this;
 }
 
-num_z & num_z::operator=(const unsigned int &a){
+num_z & num_z::operator=(const uint32_t &a){
 	this->_sign = 0;
 	this->_blocks = 1;
 	this->_num[0] = a;
 	return *this;
 }
 
-num_z & num_z::operator=(const long long &b){
-	long long a = b;
+num_z & num_z::operator=(const int64_t &b){
+	int64_t a = b;
 	this->_sign = 0;
 	if(a < 0){
 		this->_sign = 1;
 		a = -a;
 	}
-	if((unsigned long long)a <= _BLOCK_SIZE_64_){
+	if((uint64_t)a <= _BLOCK_SIZE_64_){
 		this->_blocks = 1;
 		this->_num[0] = a;
 	}else{
@@ -49,7 +49,7 @@ num_z & num_z::operator=(const long long &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const unsigned long long &a){
+num_z & num_z::operator=(const uint64_t &a){
 	this->_sign = 0;
 
 	if(a <= _BLOCK_SIZE_64_){
@@ -67,10 +67,10 @@ num_z & num_z::operator=(const char *a){
 	
 	delete []this->_num;	
 	
-	unsigned int i = 0, j = 0, k = 0;
-	unsigned int n_blocks = 0;
-	unsigned int size_last_block = 0;
-	unsigned long long block = 0;
+	uint32_t i = 0, j = 0, k = 0;
+	uint32_t n_blocks = 0;
+	uint32_t size_last_block = 0;
+	uint64_t block = 0;
 	
 	while(a[++i] ^ '\0');
 	
@@ -79,7 +79,7 @@ num_z & num_z::operator=(const char *a){
 	size_last_block = i%19;
 	
 	this->_n_blocks = ((n_blocks+2)>_INIT_SIZE_)?(n_blocks+2):_INIT_SIZE_;
-	this->_num = (unsigned long long *)malloc(sizeof(unsigned long long) * this->_n_blocks);
+	this->_num = (uint64_t *)malloc(sizeof(uint64_t) * this->_n_blocks);
 	this->_blocks = n_blocks + 1;
 	
 	while(n_blocks--){

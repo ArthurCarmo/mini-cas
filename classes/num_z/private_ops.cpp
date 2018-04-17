@@ -6,7 +6,7 @@ void num_z::__left_shift(){
 			this->__resize(this->_n_blocks+1); 
 		this->_num[this->_blocks++] = 0;
 	}
-	unsigned int i = this->_blocks;
+	uint32_t i = this->_blocks;
 	while(i--){
 		this->_num[i] %= _BLOCK_LAST_64_;
 		this->_num[i] *= 10;
@@ -14,16 +14,15 @@ void num_z::__left_shift(){
 	}
 }
 
-void num_z::__left_shift(unsigned int n){
-	unsigned int i = this->_blocks;
-	unsigned int j = 0;
-	unsigned long long powten = 1;
-	unsigned long long prune_digits;
-	unsigned int mv = n/19;
+void num_z::__left_shift(uint32_t n){
+	uint32_t i = this->_blocks;
+	uint64_t powten = 1;
+	uint64_t prune_digits;
+	uint32_t mv = n/19;
 	n %= 19;
 
 	if(n){
-		while(++j < n) powten *= 10;
+		while(--n) powten *= 10;
 		prune_digits = _BLOCK_LAST_64_ / powten;
 		
 		if(this->_num[this->_blocks - 1] > (_MAX_18_DIGIT_ /powten)){ 	
@@ -57,9 +56,12 @@ void num_z::__left_shift(unsigned int n){
 	
 }
 
+
+//------------- RIGHT SHIFT -------------
+
 void num_z::__right_shift(){
-	unsigned int i = 0;
-	unsigned int j = this->_blocks - 1;
+	uint32_t i = 0;
+	uint32_t j = this->_blocks - 1;
 	for(; i < j; i++){
 		this->_num[i] /= 10;
 		this->_num[i] += (this->_num[i+1] % 10) * _BLOCK_LAST_64_;
@@ -69,39 +71,43 @@ void num_z::__right_shift(){
 		this->_blocks--;
 }
 
-void num_z::__right_shift(unsigned int n){
-	unsigned int i = 0;
-	unsigned int j = this->_blocks - 1;
-	unsigned int mv = n/19;
+void num_z::__right_shift(uint32_t n){
+	uint32_t i = 0;
+	uint32_t j = this->_blocks - 1;
+	uint64_t powten = 1;
+	uint64_t prune_digits;
+	uint32_t mv = n/19;
 	n %= 19;
+	
 	if(mv >= this->_blocks){
 		*this = 0;
 		return;
 	}
 	
-	while(n--){
+	if(mv > 0)	
+		for(; j - mv;)
+			this->_num[j-- - mv] = this->_num[--this->_blocks];
+	
+	if(n){
+		while(--n) powten *= 10;
+		prune_digits = _BLOCK_LAST_64_ / powten;
+		powten *= 10;
 		for(i = 0; i < j; i++){
-			this->_num[i] /= 10;
-			this->_num[i] += (this->_num[i+1] % 10) * _BLOCK_LAST_64_;
+			this->_num[i] /= powten;
+			this->_num[i] += (this->_num[i+1] % powten) * prune_digits;
 		}
-		this->_num[i] /= 10;
+		this->_num[i] /= powten;
 		if((this->_num[i--] == 0) && (this->_blocks ^ 1))
 			this->_blocks--;
 		j = this->_blocks - 1;
 	}
-	
-	if(mv >= this->_blocks){
-		*this = 0;
-		return;
-	}
-	if(mv > 0)	
-		for(; j - mv;)
-			this->_num[j-- - mv] = this->_num[--this->_blocks];
 }
 
-void num_z::__resize(unsigned int n){
-	unsigned long long *aux =  (unsigned long long *)realloc(this->_num, sizeof(unsigned long long) * n);
-	unsigned int blocks = this->_blocks;
+//------------- RESIZE ----------------------
+
+void num_z::__resize(uint32_t n){
+	uint64_t *aux =  (uint64_t *)realloc(this->_num, sizeof(uint64_t) * n);
+	uint32_t blocks = this->_blocks;
 	
 	while(blocks < n)
 		aux[blocks++] = 0;

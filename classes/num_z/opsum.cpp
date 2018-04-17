@@ -17,11 +17,11 @@ num_z num_z::operator+(const num_z &a){
 	else{
 		const num_z *maior_d;
 		const num_z *menor_d;
-		unsigned int m_blocks;
-		unsigned int l_blocks;
-		bool vai_um = 0;
-		bool a1 = 0, a2 = 0;
-		unsigned int i = 0;
+		uint32_t m_blocks;
+		uint32_t l_blocks;
+		int vai_um = 0;
+		int a1 = 0, a2 = 0;
+		uint32_t i = 0;
 		
 		if(a._blocks>this->_blocks){
 			maior_d = &a;
@@ -53,16 +53,16 @@ num_z num_z::operator+(const num_z &a){
 				
 				vai_um = 0;
 				
-				if(res._num[i] > _BLOCK_SIZE_64_) {res._num[i] -= _MAX_CONST_64_; vai_um = 1;}
+				vai_um = (res._num[i] > _BLOCK_SIZE_64_);
+				res._num[i] -= (vai_um)?_MAX_CONST_64_:0;
 				
-				if(a1){
-					res._num[i] += _BLOCK_HALF_64_;
-					if(res._num[i] > _BLOCK_SIZE_64_) {res._num[i] -= _MAX_CONST_64_; vai_um = 1;}
-				}
-				if(a2){
-					res._num[i] += _BLOCK_HALF_64_;
-					if(res._num[i] > _BLOCK_SIZE_64_) {res._num[i] -= _MAX_CONST_64_; vai_um = 1;}
-				}
+				res._num[i] += (a1 * _BLOCK_HALF_64_);
+				vai_um = (vai_um | (res._num[i] > _BLOCK_SIZE_64_));
+				res._num[i] -= (res._num[i] > _BLOCK_SIZE_64_)?_MAX_CONST_64_:0;
+				
+				res._num[i] += (a2 * _BLOCK_HALF_64_);
+				vai_um = (vai_um | (res._num[i] > _BLOCK_SIZE_64_));
+				res._num[i] -= (res._num[i] > _BLOCK_SIZE_64_)?_MAX_CONST_64_:0; 
 			}
 		}
 		
@@ -73,6 +73,8 @@ num_z num_z::operator+(const num_z &a){
 				vai_um = 1;
 				res._num[i] = 0;
 			}
+			if(!vai_um)
+				return res;
 		}
 		
 		if(vai_um){
@@ -89,18 +91,18 @@ num_z num_z::operator+(const int &a){ //EXPANDIR
 	return *this+res;
 }
 
-num_z num_z::operator+(const unsigned int &a){ //EXPANDIR
+num_z num_z::operator+(const uint32_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this+res;
 }
 
-num_z num_z::operator+(const long long &a){ //EXPANDIR
+num_z num_z::operator+(const int64_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this+res;
 }
-num_z num_z::operator+(const unsigned long long &a){ //EXPANDIR
+num_z num_z::operator+(const uint64_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this+res;

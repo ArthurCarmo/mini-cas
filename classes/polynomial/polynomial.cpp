@@ -41,12 +41,12 @@
 #endif
 
 polynomial::polynomial(const char a[]){
-	unsigned long long i = 0;
-	unsigned long long j = 255;
-	unsigned long long k = 0;
+	uint64_t i = 0;
+	uint64_t j = 255;
+	uint64_t k = 0;
 	char *b;
 	char _last_char = a[0];
-	unsigned long long _size;
+	uint64_t _size;
 	unsigned short _next = _COEF;
 	this->_n_termos = 0;
 	this->_n_vars = 0;

@@ -6,12 +6,12 @@ num_z num_z::operator-(const num_z &a){
 	if(this->_sign ^ a._sign) {this->_sign = !this->_sign; res = *this + a; res._sign = this->_sign = !this->_sign;}
 	else{
 		const num_z *maior, *menor;
-		unsigned int m_blocks;
-		unsigned int l_blocks;
+		uint32_t m_blocks;
+		uint32_t l_blocks;
 		bool vai_um = 0;
 		bool sign = 0;
 		bool rec = 0;	
-		unsigned int i = 0;
+		uint32_t i = 0;
 		
 		if(this->abs_gt(a)){
 			maior = this;
@@ -75,19 +75,19 @@ num_z num_z::operator-(const int &a){ //EXPANDIR
 	return *this-res;
 }
 
-num_z num_z::operator-(const unsigned int &a){ //EXPANDIR
+num_z num_z::operator-(const uint32_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this-res;
 }
 
-num_z num_z::operator-(const long long &a){ //EXPANDIR
+num_z num_z::operator-(const int64_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this-res;
 }
 
-num_z num_z::operator-(const unsigned long long &a){ //EXPANDIR
+num_z num_z::operator-(const uint64_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this-res;

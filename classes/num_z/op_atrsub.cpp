@@ -2,8 +2,8 @@
 
 /*
 num_z & num_z::operator-=(const num_z &a);
-num_z & num_z::operator-=(const long long &a);
-num_z & num_z::operator-=(const unsigned long long &a);
+num_z & num_z::operator-=(const int64_t &a);
+num_z & num_z::operator-=(const uint64_t &a);
 num_z & num_z::operator-=(const int &a);
-num_z & num_z::operator-=(const unsigned int &a);
+num_z & num_z::operator-=(const uint32_t &a);
 */

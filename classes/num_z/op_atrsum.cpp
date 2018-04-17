@@ -10,9 +10,9 @@ num_z & num_z::operator+=(const num_z &a){
 		return *this;	
 	}
 	
-	unsigned int i = 0;
-	bool vai_um = 0;
-	bool adj_a = 0;
+	uint32_t i = 0;
+	int vai_um = 0;
+	int adj_a = 0;
 	
 	if(this->_blocks < a._blocks){
 		for(; i < this->_blocks; i++){
@@ -21,7 +21,7 @@ num_z & num_z::operator+=(const num_z &a){
 			
 			adj_a = a._num[i] > _BLOCK_HALF_64_;
 			
-			this->_num[i] += a._num[i] - (adj_a?_BLOCK_HALF_64_:0);
+			this->_num[i] += a._num[i] - (adj_a*_BLOCK_HALF_64_);
 			if(this->_num[i] > _BLOCK_SIZE_64_) {this->_num[i] -= _MAX_CONST_64_; vai_um = 1;}
 			
 			this->_num[i] += (adj_a?_BLOCK_HALF_64_:0);
@@ -65,8 +65,8 @@ num_z & num_z::operator+=(const num_z &a){
 		for(; i < this->_blocks; i++){
 			this->_num[i] += vai_um;
 			vai_um = 0;
-			if(this->_num[i++] > _BLOCK_SIZE_64_){
-				this->_num[i-1] = 0;
+			if(this->_num[i] > _BLOCK_SIZE_64_){
+				this->_num[i] = 0;
 				vai_um = 1;
 			}
 			if(!vai_um)
@@ -80,13 +80,13 @@ num_z & num_z::operator+=(const num_z &a){
 	return *this;
 }
 
-num_z & num_z::operator+=(const unsigned long long &a){ //EXPANDIR
+num_z & num_z::operator+=(const uint64_t &a){ //EXPANDIR
 	num_z res;
 	res = a;
 	return *this += res;
 }
 
-num_z & num_z::operator+=(const long long &a){
+num_z & num_z::operator+=(const int64_t &a){
 	num_z res;
 	res = a;
 	return *this += res;
@@ -100,20 +100,20 @@ num_z & num_z::operator+=(const int &a){
 
 num_z & num_z::operator+=(const uint32_t &a){
 	int vai_um = this->_num[0] > _BLOCK_SIZE_64_;
-	unsigned int i = 1;
+	uint32_t i = 1;
 	
 	this->_num[0] += a;
 	
-	this->_num[0] -= _MAX_CONST_64_ * vai_um;
+	this->_num[0] -= (vai_um?_MAX_CONST_64_:0);
 	
 	while(vai_um){
 		vai_um = 0;
 		this->_num[i] += 1;
 		
 		vai_um = this->_num[i] > _BLOCK_SIZE_64_;
-		this->_num[i] -= _MAX_CONST_64_ * vai_um;
+		this->_num[i] -= (vai_um?_MAX_CONST_64_:0);
 		
-		if(vai_um && (++i == this->_n_blocks))
+		if(vai_um & (++i == this->_n_blocks))
 			this->__resize(++this->_blocks + 1);
 	}
 	return *this;

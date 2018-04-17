@@ -18,8 +18,8 @@ class polynomial{
 	private:
 		tripla _termo[500];
 		bool _vars[255];
-		unsigned long long _n_termos;
-		unsigned int _n_vars;
+		uint64_t _n_termos;
+		uint32_t _n_vars;
 		
 	public:
 		polynomial();
