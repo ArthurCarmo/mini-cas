@@ -10,6 +10,8 @@
 #define _BLOCK_LAST_64_      1000000000000000000ull
 
 #include <iostream>
+#include <cstdio>
+#include <cstdlib>
 #include <iomanip>
 	class num_z {
 		
@@ -34,7 +36,7 @@
 			num_z(const unsigned long long &);
 			num_z(const int &);
 			num_z(const unsigned int &);
-			num_z(const char []);
+			num_z(const char *);
 			~num_z();
 			num_z abs();
 			num_z operator-();
@@ -48,13 +50,14 @@
 			num_z & operator=(const unsigned long long &);
 			num_z & operator=(const int &);
 			num_z & operator=(const unsigned int &);
-			num_z & operator=(const char []);
+			num_z & operator=(const char *);
 			num_z & operator+=(const num_z &);
 			num_z & operator+=(const long long &);
 			num_z & operator+=(const unsigned long long &);
 			num_z & operator+=(const int &);
-			num_z & operator+=(const unsigned int &);
-			num_z & operator+=(const char []);
+//			num_z & operator+=(const unsigned int &);
+			num_z & operator+=(const uint32_t &);
+			num_z & operator+=(const char *);
 			num_z & operator-=(const num_z &);
 			num_z & operator-=(const long long &);
 			num_z & operator-=(const unsigned long long &);

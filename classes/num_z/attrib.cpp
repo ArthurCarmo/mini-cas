@@ -63,7 +63,7 @@ num_z & num_z::operator=(const unsigned long long &a){
 	return *this;
 }
 
-num_z & num_z::operator=(const char a[]){
+num_z & num_z::operator=(const char *a){
 	
 	delete []this->_num;	
 	
@@ -79,7 +79,7 @@ num_z & num_z::operator=(const char a[]){
 	size_last_block = i%19;
 	
 	this->_n_blocks = ((n_blocks+2)>_INIT_SIZE_)?(n_blocks+2):_INIT_SIZE_;
-	this->_num = new unsigned long long[this->_n_blocks];
+	this->_num = (unsigned long long *)malloc(sizeof(unsigned long long) * this->_n_blocks);
 	this->_blocks = n_blocks + 1;
 	
 	while(n_blocks--){

@@ -100,18 +100,13 @@ void num_z::__right_shift(unsigned int n){
 }
 
 void num_z::__resize(unsigned int n){
-	unsigned long long *aux = new unsigned long long[n];
+	unsigned long long *aux =  (unsigned long long *)realloc(this->_num, sizeof(unsigned long long) * n);
 	unsigned int blocks = this->_blocks;
-	
-	for(unsigned int i = blocks; --i;)
-		 aux[i] = this->_num[i];		
-	
-	aux[0] = this->_num[0];
 	
 	while(blocks < n)
 		aux[blocks++] = 0;
 	
 	this->_n_blocks = n;
-	delete[] this->_num;
+
 	this->_num = aux;
 }
