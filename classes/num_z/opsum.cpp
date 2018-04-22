@@ -19,9 +19,9 @@ num_z num_z::operator+(const num_z &a){
 		const num_z *menor_d;
 		uint32_t m_blocks;
 		uint32_t l_blocks;
+		uint32_t i = 0;
 		int vai_um = 0;
 		int a1 = 0, a2 = 0;
-		uint32_t i = 0;
 		
 		if(a._blocks>this->_blocks){
 			maior_d = &a;
