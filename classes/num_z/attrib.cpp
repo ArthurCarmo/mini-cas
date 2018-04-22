@@ -11,6 +11,16 @@ num_z & num_z::operator=(const num_z &a){
 	return *this;
 }
 
+num_z & num_z::operator=(const div_tuple &a){
+	*this = a.q;
+	return *this;
+}
+
+num_z & num_z::operator=(const mod_tuple &a){
+	*this = a.r;
+	return *this;
+}
+
 num_z & num_z::operator=(const int &a){
 	this->_sign = 0;
 	this->_blocks = 1;

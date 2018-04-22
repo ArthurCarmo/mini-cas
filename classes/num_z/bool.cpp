@@ -55,6 +55,14 @@ bool num_z::operator>(const num_z &a) const {
 		return false;
 }
 
+bool num_z::operator>(const div_tuple &a) const{
+	return *this > a.q;
+}
+
+bool num_z::operator>(const mod_tuple &a) const{
+	return *this > a.r;
+}
+
 bool num_z::operator>(const int &a) const {
 	if(this->_sign == 0)
 		if(a < 0 || this->_blocks ^ 1) return true;
@@ -86,22 +94,38 @@ bool num_z::operator>(const uint64_t &a) const {
 	else return this->_num[0] > a;
 }
 
+bool num_z::operator>(const char *a) const{
+	num_z res(a);
+	return *this > a;
+}
+
 /*bool num_z::operator<(const num_z &) const;
+bool num_z::operator<(const div_tuple &) const;
+bool num_z::operator<(const mod_tuple &) const;
 bool num_z::operator<(const int &) const;
 bool num_z::operator<(const uint32_t &) const;
 bool num_z::operator<(const int64_t &) const;
 bool num_z::operator<(const uint64_t &) const;
+bool num_z::operator<(const char *) const;
 bool num_z::operator>=(const num_z &) const;
+bool num_z::operator>=(const div_tuple &) const;
+bool num_z::operator>=(const mod_tuple &) const;
 bool num_z::operator>=(const int &) const;
 bool num_z::operator>=(const uint32_t &) const;
 bool num_z::operator>=(const int64_t &) const;
 bool num_z::operator>=(const uint64_t &) const;
+bool num_z::operator>=(const char *) const;
 bool num_z::operator<=(const num_z &) const;
+bool num_z::operator<=(const div_tuple &) const;
+bool num_z::operator<=(const mod_tuple &) const;
 bool num_z::operator<=(const int &) const;
 bool num_z::operator<=(const uint32_t &) const;
 bool num_z::operator<=(const int64_t &) const;
 bool num_z::operator<=(const uint64_t &) const;
+bool num_z::operator<=(const char *) const;
 bool num_z::operator!=(const num_z &) const;
+bool num_z::operator!=(const div_tuple &) const;
+bool num_z::operator!=(const mod_tuple &) const;
 */
 
 bool num_z::operator!=(const int &a) const {
@@ -113,5 +137,5 @@ bool num_z::operator!=(const int &a) const {
 bool num_z::operator!=(const uint32_t &) const;
 bool num_z::operator!=(const int64_t &) const;
 bool num_z::operator!=(const uint64_t &) const;
-
+bool num_z::operator!=(const char *) const;
 */

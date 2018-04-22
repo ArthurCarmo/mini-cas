@@ -1,9 +1,12 @@
 #include "../include/num_z.h"
 
 /*
-num_z num_z::operator%(const num_z &);
-num_z num_z::operator%(const int &);
-num_z num_z::operator%(const uint32_t &);
-num_z num_z::operator%(const int64_t &);
-num_z num_z::operator%(const uint64_t &);
+mod_tuple num_z::operator%(const num_z &);
+mod_tuple num_z::operator%(const div_tuple &);
+mod_tuple num_z::operator%(const mod_tuple &);
+mod_tuple num_z::operator%(const int &);
+mod_tuple num_z::operator%(const uint32_t &);
+mod_tuple num_z::operator%(const int64_t &);
+mod_tuple num_z::operator%(const uint64_t &);
+mod_tuple num_z::operator%(const char *);
 */

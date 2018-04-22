@@ -32,6 +32,26 @@ num_z::num_z(const num_z &a, const uint32_t &b){
 	this->_sign = a._sign;
 }
 
+num_z::num_z(const div_tuple &a){
+	this->_n_blocks =  a.q._n_blocks;
+	this->_blocks = a.q._blocks;
+	this->_num = (uint64_t *)malloc(sizeof(uint64_t)*this->_n_blocks);
+	for(uint32_t i = this->_blocks; --i;)
+		this->_num[i] = a.q._num[i];
+	this->_num[0] = a.q._num[0];
+	this->_sign = a.q._sign;
+}
+
+num_z::num_z(const mod_tuple &a){
+	this->_n_blocks =  a.r._n_blocks;
+	this->_blocks = a.r._blocks;
+	this->_num = (uint64_t *)malloc(sizeof(uint64_t)*this->_n_blocks);
+	for(uint32_t i = this->_blocks; --i;)
+		this->_num[i] = a.r._num[i];
+	this->_num[0] = a.r._num[0];
+	this->_sign = a.r._sign;
+}
+
 
 num_z::num_z(const int64_t &a){
 	this->_n_blocks = _INIT_SIZE_;

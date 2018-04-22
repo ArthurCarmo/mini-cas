@@ -3,7 +3,7 @@
 
 #include "num_z.h"
 
-	class num_q : public num_z{ // USAR HERANÇA?
+	class num_q {
 		private:
 			num_z _numerator;
 			num_z _denominator;

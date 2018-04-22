@@ -13,6 +13,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iomanip>
+	
+	struct div_tuple;
+	struct mod_tuple;
+
 	class num_z {
 		
 		friend std::ostream& operator << (std::ostream &, const num_z &);
@@ -33,6 +37,8 @@
 			num_z();
 			num_z(const num_z &);
 			num_z(const num_z &, const uint32_t &);
+			num_z(const div_tuple &);
+			num_z(const mod_tuple &);
 			num_z(const int64_t &);
 			num_z(const uint64_t &);
 			num_z(const int &);
@@ -47,67 +53,101 @@
 			num_z operator++(int);
 			num_z operator--(int);
 			num_z & operator=(const num_z &);
+			num_z & operator=(const div_tuple &);
+			num_z & operator=(const mod_tuple &);
 			num_z & operator=(const int64_t &);
 			num_z & operator=(const uint64_t &);
 			num_z & operator=(const int &);
 			num_z & operator=(const uint32_t &);
 			num_z & operator=(const char *);
 			num_z & operator+=(const num_z &);
+			num_z & operator+=(const div_tuple &);
+			num_z & operator+=(const mod_tuple &);
 			num_z & operator+=(const int64_t &);
 			num_z & operator+=(const uint64_t &);
 			num_z & operator+=(const int &);
 			num_z & operator+=(const uint32_t &);
 			num_z & operator+=(const char *);
 			num_z & operator-=(const num_z &);
+			num_z & operator-=(const div_tuple &);
+			num_z & operator-=(const mod_tuple &);
 			num_z & operator-=(const int64_t &);
 			num_z & operator-=(const uint64_t &);
 			num_z & operator-=(const int &);
 			num_z & operator-=(const uint32_t &);
+			num_z & operator-=(const char *);
 			num_z & operator*=(const num_z &);
+			num_z & operator*=(const div_tuple &);
+			num_z & operator*=(const mod_tuple &);
 			num_z & operator*=(const int64_t &);
 			num_z & operator*=(const uint64_t &);
 			num_z & operator*=(const int &);
 			num_z & operator*=(const uint32_t &);
+			num_z & operator*=(const char *);
 			num_z & operator/=(const num_z &);
+			num_z & operator/=(const div_tuple &);
+			num_z & operator/=(const mod_tuple &);
 			num_z & operator/=(const int64_t &);
 			num_z & operator/=(const uint64_t &);
 			num_z & operator/=(const int &);
 			num_z & operator/=(const uint32_t &);
+			num_z & operator/=(const char *);
 			num_z & operator%=(const num_z &);
+			num_z & operator%=(const div_tuple &);
+			num_z & operator%=(const mod_tuple &);
 			num_z & operator%=(const int64_t &);
 			num_z & operator%=(const uint64_t &);
 			num_z & operator%=(const int &);
 			num_z & operator%=(const uint32_t &);
+			num_z & operator%=(const char *);
 			num_z operator+(const num_z &);
+			num_z operator+(const div_tuple &);
+			num_z operator+(const mod_tuple &);
 			num_z operator+(const int &);
 			num_z operator+(const uint32_t &); 
 			num_z operator+(const int64_t &);
 			num_z operator+(const uint64_t &);
+			num_z operator+(const char *);
 			num_z operator-(const num_z &);
+			num_z operator-(const div_tuple &);
+			num_z operator-(const mod_tuple &);
 			num_z operator-(const int &);
 			num_z operator-(const uint32_t &);
 			num_z operator-(const int64_t &);
 			num_z operator-(const uint64_t &);
+			num_z operator-(const char *);
 			num_z operator*(const num_z &);
+			num_z operator*(const div_tuple &);
+			num_z operator*(const mod_tuple &);
 			num_z operator*(const int &);
 			num_z operator*(const uint32_t &);
 			num_z operator*(const int64_t &);
 			num_z operator*(const uint64_t &);
-			num_z operator/(const num_z &);
-			num_z operator/(const int &);
-			num_z operator/(const uint32_t &);
-			num_z operator/(const int64_t &);
-			num_z operator/(const uint64_t &);
-			num_z operator%(const num_z &);
-			num_z operator%(const int &);
-			num_z operator%(const uint32_t &);
-			num_z operator%(const int64_t &);
-			num_z operator%(const uint64_t &);
+			num_z operator*(const char *);
+			div_tuple operator/(const num_z &);
+			div_tuple operator/(const div_tuple &);
+			div_tuple operator/(const mod_tuple &);
+			div_tuple operator/(const int &);
+			div_tuple operator/(const uint32_t &);
+			div_tuple operator/(const int64_t &);
+			div_tuple operator/(const uint64_t &);
+			div_tuple operator/(const char *);
+			mod_tuple operator%(const num_z &);
+			mod_tuple operator%(const div_tuple &);
+			mod_tuple operator%(const mod_tuple &);
+			mod_tuple operator%(const int &);
+			mod_tuple operator%(const uint32_t &);
+			mod_tuple operator%(const int64_t &);
+			mod_tuple operator%(const uint64_t &);
+			mod_tuple operator%(const char *);
 			num_z operator^(const num_z &);
+			num_z operator^(const div_tuple &);
+			num_z operator^(const mod_tuple &);
 			num_z operator^(const int &);
 			num_z operator^(const uint32_t &);
 			num_z operator^(const int64_t &);
 			num_z operator^(const uint64_t &);
+			num_z operator^(const char *);
 			num_z pow(const num_z &);
 			num_z pow(const int &);
 			num_z pow(const uint32_t &);
@@ -115,35 +155,53 @@
 			num_z pow(const uint64_t &);
 			
 			bool operator==(const num_z &) const;
+			bool operator==(const div_tuple &) const;
+			bool operator==(const mod_tuple &) const;
 			bool operator==(const int &) const;
 			bool operator==(const uint32_t &) const;
 			bool operator==(const int64_t &) const;
 			bool operator==(const uint64_t &) const;
+			bool operator==(const char *) const;
 			bool operator>(const num_z &) const;
+			bool operator>(const div_tuple &) const;
+			bool operator>(const mod_tuple &) const;
 			bool operator>(const int &) const;
 			bool operator>(const uint32_t &) const;
 			bool operator>(const int64_t &) const;
 			bool operator>(const uint64_t &) const;
+			bool operator>(const char *) const;
 			bool operator<(const num_z &) const;
+			bool operator<(const div_tuple &) const;
+			bool operator<(const mod_tuple &) const;
 			bool operator<(const int &) const;
 			bool operator<(const uint32_t &) const;
 			bool operator<(const int64_t &) const;
 			bool operator<(const uint64_t &) const;
+			bool operator<(const char *) const;
 			bool operator>=(const num_z &) const;
+			bool operator>=(const div_tuple &) const;
+			bool operator>=(const mod_tuple &) const;
 			bool operator>=(const int &) const;
 			bool operator>=(const uint32_t &) const;
 			bool operator>=(const int64_t &) const;
 			bool operator>=(const uint64_t &) const;
+			bool operator>=(const char *) const;
 			bool operator<=(const num_z &) const;
+			bool operator<=(const div_tuple &) const;
+			bool operator<=(const mod_tuple &) const;
 			bool operator<=(const int &) const;
 			bool operator<=(const uint32_t &) const;
 			bool operator<=(const int64_t &) const;
 			bool operator<=(const uint64_t &) const;
+			bool operator<=(const char *) const;
 			bool operator!=(const num_z &) const;
+			bool operator!=(const div_tuple &) const;
+			bool operator!=(const mod_tuple &) const;
 			bool operator!=(const int &) const;
 			bool operator!=(const uint32_t &) const;
 			bool operator!=(const int64_t &) const;
 			bool operator!=(const uint64_t &) const;
+			bool operator!=(const char *) const;
 			
 			bool abs_neq(const num_z &);
 			bool abs_eq(const num_z &);
@@ -152,6 +210,15 @@
 			bool abs_gt(const num_z &);
 			bool abs_lt(const num_z &);
 			
-	}typedef Int;
-
+	};
+	
+	struct div_tuple{
+		num_z q;
+		num_z r;
+	};
+	
+	struct mod_tuple{
+		num_z q;
+		num_z r;
+	};
 #endif
