@@ -39,3 +39,13 @@ std::istream& operator >> (std::istream &in, num_z &a){
 	a._sign = sign;
 	return in;
 }
+
+std::ostream& operator << (std::ostream &o, const div_tuple &a){
+	o << a.q;
+	return o;
+}
+	
+std::ostream& operator << (std::ostream &o, const mod_tuple &a){
+	o << a.r;
+	return o;
+}	
