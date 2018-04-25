@@ -10,8 +10,8 @@
 #define _BLOCK_LAST_64_      1000000000000000000ul
 
 #include <iostream>
-#include <cstdio>
-#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iomanip>
 	
 	struct div_tuple;
