@@ -70,9 +70,9 @@ num_z::num_z(const uint64_t &a){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_sign = 0;
 	this->_num = (uint64_t *)malloc(sizeof(uint64_t)*_INIT_SIZE_);
-	this->_blocks = 1 + (a > _MAX_18_DIGIT_);
-	this->_num[0] = a % _BLOCK_LAST_64_;
-	this->_num[1] = a / _BLOCK_LAST_64_;
+	this->_blocks = 1 + (a > _BLOCK_SIZE_64_);
+	this->_num[0] = a % _MAX_CONST_64_;
+	this->_num[1] = a / _MAX_CONST_64_;
 }
 
 num_z::num_z(const int &a){

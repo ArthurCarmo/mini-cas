@@ -5,11 +5,10 @@ std::ostream& operator << (std::ostream &o, const num_z &a){
 	char *output = (char *)malloc(19*a._blocks + a._sign + 1);
 	uint64_t n_chars = a._sign;
 	uint32_t i = a._blocks-1;
-	
+
 	if(a._sign) sprintf(output, "-");
 	n_chars += sprintf(output + n_chars, "%lu", a._num[i]);
-	while(i--) n_chars += sprintf(output + n_chars, "%019lu", a._num[i]);
-	
+	while(i--) n_chars += sprintf(output + n_chars, "%019lu", a._num[i]);	
 	printf("%s", output);
 	free(output);
 	

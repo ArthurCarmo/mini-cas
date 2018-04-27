@@ -2,12 +2,12 @@
 #define __BIGINT_H__
 #define _INIT_SIZE_ 10
 #define _MAX_CONST_64_      10000000000000000000ul
-#define _MAX_18_DIGIT_        999999999999999999ul
-#define _MAX_9_DIGIT_                  999999999ul
-#define _BLOCK_HALF_LAST_             1000000000ul
 #define _BLOCK_SIZE_64_      9999999999999999999ul
 #define _BLOCK_HALF_64_      5000000000000000000ul
 #define _BLOCK_LAST_64_      1000000000000000000ul
+#define _MAX_18_DIGIT_        999999999999999999ul
+#define _MAX_9_DIGIT_                  999999999ul
+#define _BLOCK_HALF_LAST_             1000000000ul
 
 #include <iostream>
 #include <stdio.h>
@@ -215,10 +215,13 @@
 	struct div_tuple{
 		num_z q;
 		num_z r;
+		friend std::ostream& operator << (std::ostream &, const div_tuple &);
+	
 	};
 	
 	struct mod_tuple{
 		num_z q;
 		num_z r;
+		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
 	};
 #endif

@@ -14,7 +14,7 @@ num_z num_z::operator*(const num_z &a){ //IMPLEMENTAR KARATSUBA
 	uint64_t cont = 0;
 	uint64_t n_parc_t = 0;
 	uint64_t n_parc_a = 0;
-	uint32_t blocks = this->_blocks + a._blocks + 1;
+	uint32_t blocks = this->_blocks + a._blocks;
 	num_z m(*this, blocks), n(a);
 	
 	if(blocks == res._n_blocks) res.__resize(blocks + 1);
