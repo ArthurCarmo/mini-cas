@@ -6,13 +6,13 @@ num_z num_z::abs(){
 	return res;
 }
 
-num_z num_z::operator-(){
+num_z num_z::operator-() const {
 	num_z res(*this);
 	res._sign = 1-res._sign;
 	return res;
 }
 
-num_z & num_z::operator+(){
+num_z num_z::operator+() const {
 	return *this;
 }
 

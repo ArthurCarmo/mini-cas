@@ -10,7 +10,8 @@ mod_tuple num_z::operator%(const num_z &a){
 		res.r = (this->_sign)?(n-m):*this;
 		return res;
 	}
-	if(a == (unsigned int)1){
+	if(a == (uint32_t)0) return res;
+	if(a == (uint32_t)1){
 		res.q = *this;
 		return res;
 	}

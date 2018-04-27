@@ -13,10 +13,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iomanip>
-	
+
 	struct div_tuple;
 	struct mod_tuple;
-
+	
 	class num_z {
 		
 		friend std::ostream& operator << (std::ostream &, const num_z &);
@@ -33,6 +33,9 @@
 			void __left_shift(uint32_t);
 			void __right_shift();
 			void __right_shift(uint32_t);
+			num_z _long_mul(uint64_t, uint64_t);
+			uint64_t _mod_b();
+			uint64_t _div_b();
 		public:
 			num_z();
 			num_z(const num_z &);
@@ -46,8 +49,8 @@
 			num_z(const char *);
 			~num_z();
 			num_z abs();
-			num_z operator-();
-			num_z & operator+();
+			num_z operator-() const;
+			num_z operator+() const;
 			num_z & operator++();
 			num_z & operator--();
 			num_z operator++(int);
