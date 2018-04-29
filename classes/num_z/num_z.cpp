@@ -10,6 +10,11 @@ num_z::num_z(){
 	this->_sign = 0;
 }
 
+//------ CONVERTER -------------
+
+num_z::operator div_tuple(){div_tuple r; r.q = *this; return r.q;}
+num_z::operator mod_tuple(){div_tuple q; q.r = *this; return q.r;}
+
 //----COPY CONSTRUCTORS---------
 
 num_z::num_z(const num_z &a){

@@ -4,7 +4,7 @@ num_z & num_z::operator+=(const num_z &a){
 	if(this->_sign ^ a._sign){
 		this->_sign = a._sign; 
 		
-//		*this-=a; 
+		*this-=a; 
 		
 		this->_sign = *this==0?0:!this->_sign;
 		return *this;	

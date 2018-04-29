@@ -14,7 +14,11 @@ CFLAGS := -O3 -Wall
 dummy_build_folder := $(shell mkdir -p $(OBJDIR) && mkdir -p $(LIBDIR))
 
 EXECUTABLE := mini-cas
-SOURCES := num_z.cpp abs_bool.cpp attrib.cpp bool.cpp digit_ops.cpp io.cpp op_atrdiv.cpp op_atrmod.cpp op_atrmul.cpp op_atrsub.cpp op_atrsum.cpp opdiv.cpp opmod.cpp opmul.cpp oppow.cpp opsub.cpp opsum.cpp private_ops.cpp unary_ops.cpp
+
+NUMZ_SRC := num_z.cpp abs_bool.cpp attrib.cpp bool.cpp digit_ops.cpp io.cpp op_atrdiv.cpp op_atrmod.cpp op_atrmul.cpp op_atrsub.cpp op_atrsum.cpp opdiv.cpp opmod.cpp opmul.cpp oppow.cpp opsub.cpp opsum.cpp private_ops.cpp unary_ops.cpp
+
+SOURCES := $(NUMZ_SRC)
+
 S_OBJECTS := $(SOURCES:.cpp=.o) 
 D_OBJECTS := $(SOURCES:.cpp=.lo)
 
@@ -35,6 +39,7 @@ $(OBJDIR)/%.o : $(NUMZDIR)/%.cpp
 
 $(OBJDIR)/%.lo : $(NUMZDIR)/%.cpp
 	$(CC) -c $< -o $@ $(CFLAGS) -fPIC
+
 	
 clean :
 	rm -r $(OBJDIR)

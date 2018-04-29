@@ -35,8 +35,8 @@ num_z num_z::operator-(const num_z &a){
 				maior->_num[i] = _BLOCK_SIZE_64_;
 			}
 			else{
-				maior->_num[i] -= vai_um;
-				rec = vai_um;
+				maior->_num[i] -= vai_um;	
+				rec = vai_um;			//Marca se perdeu 1 para recuperar depois do loop
 				vai_um = 0;
 			}
 			if(maior->_num[i] < menor->_num[i]){

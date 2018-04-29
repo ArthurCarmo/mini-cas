@@ -6,6 +6,11 @@ div_tuple num_z::operator/(const num_z &a){
 	uint32_t size_m;
 	uint32_t digits;
 	uint64_t q1 = 10;
+	
+	m._sign = 0;
+	n._sign = 0;
+	size_m = this->_blocks - a._blocks;
+	
 	if(this->abs_lt(a)){
 		res.r = (this->_sign)?(n-m):*this;
 		return res;
@@ -15,13 +20,6 @@ div_tuple num_z::operator/(const num_z &a){
 		res.q = *this;
 		return res;
 	}
-	
-	m._sign = 0;
-	n._sign = 0;
-
-	size_m = this->_blocks - a._blocks;
-	
-	res.q._sign = this->_sign ^ a._sign;
 	
 	/* NORMALIZAR */
 	digits = 19*size_m;
@@ -43,7 +41,7 @@ div_tuple num_z::operator/(const num_z &a){
 	while(1){
 		if(m.abs_geq(n)){
 			++res.q;
-			m = m - n;
+			m -= n;
 		}else{
 			if(digits-- > 0){
 				res.q.__left_shift();
@@ -53,6 +51,7 @@ div_tuple num_z::operator/(const num_z &a){
 		}
 	}
 	
+	res.q._sign = this->_sign ^ a._sign;
 	res.r = m;
 	return res;
 }

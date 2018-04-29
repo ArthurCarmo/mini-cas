@@ -13,9 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iomanip>
-
-	struct div_tuple;
-	struct mod_tuple;
+#include "signatures.h"
 	
 	class num_z {
 		
@@ -49,6 +47,8 @@
 			num_z(const char *);
 			~num_z();
 			num_z abs();
+			operator div_tuple();
+			operator mod_tuple();
 			num_z operator-() const;
 			num_z operator+() const;
 			num_z & operator++();
@@ -219,12 +219,13 @@
 		num_z q;
 		num_z r;
 		friend std::ostream& operator << (std::ostream &, const div_tuple &);
-	
+		operator num_z(){ return this->q; }
 	};
 	
 	struct mod_tuple{
 		num_z q;
 		num_z r;
 		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
+		operator num_z(){ return this->r; }
 	};
 #endif
