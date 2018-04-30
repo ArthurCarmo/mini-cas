@@ -53,6 +53,8 @@ mod_tuple num_z::operator%(const num_z &a){
 	
 	res.q._sign = this->_sign ^ a._sign;
 	res.r = m;
+	if(this->_sign) res.r -= n;
+	res.r._sign = 0;
 	return res;
 }
 
