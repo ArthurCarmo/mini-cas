@@ -20,21 +20,21 @@ num_z & num_z::operator++(){
 	*this += 1;
 	return *this;
 }
-/*
+
 num_z & num_z::operator--(){
 	*this-=1;
 	return *this;
-} */
+}
 
 num_z num_z::operator++(int){
 	num_z res(*this);
 	*this += 1;
 	return res;
 }
-/*
+
 num_z num_z::operator--(int){
 	num_z res(*this);
 	*this -= 1;
 	return res;
 }
-*/
+
