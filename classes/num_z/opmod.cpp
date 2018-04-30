@@ -12,7 +12,8 @@ mod_tuple num_z::operator%(const num_z &a){
 	size_m = this->_blocks - a._blocks;
 	
 	if(this->abs_lt(a)){
-		res.r = (this->_sign)?(n-m):*this;
+		res.r = (this->_sign ^ a._sign)?(n-m):*this;
+		res.r._sign = a._sign;
 		return res;
 	}
 	if(a == (uint32_t)0) return res;
