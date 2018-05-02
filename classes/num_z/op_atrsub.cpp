@@ -45,7 +45,7 @@ num_z & num_z::operator-=(const num_z &a){
 			}
 		}
 	
-		while(this->_num[this->_blocks-1] == 0 && this->_blocks != 1)
+		while(this->_num[this->_blocks-1] == 0 && (this->_blocks ^ 1))
 			--this->_blocks;
 	}
 	

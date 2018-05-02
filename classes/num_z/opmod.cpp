@@ -23,7 +23,7 @@ mod_tuple num_z::operator%(const num_z &a){
 	}
 	
 	/* NORMALIZAR */
-	digits = 19*size_m;
+	digits = _DIGITS_PER_BLOCK_*size_m;
 	while(m._num[m._blocks-1]/q1){
 		q1 *= 10;
 		++digits;
@@ -78,8 +78,23 @@ mod_tuple num_z::operator%(const int &a){
 }
 
 mod_tuple num_z::operator%(const uint32_t &a){
-	num_z r(a);
-	return *this%r;
+	mod_tuple res;
+	uint32_t j;
+	uint64_t r = 0;
+	uint64_t w;
+	
+	if(this->_blocks >= _INIT_SIZE_)
+		res.q.__resize(this->_blocks);
+	
+	for(j = this->_blocks - 1; j >= 0; --j){
+		w = (r * _MAX_CONST_64_ + this->_num[j]);
+		res.q._num[j] = w / a;
+		r = w % a;
+	}
+	res.r = r;
+	while(res.q._num[res.q._blocks] == 0 && (res.q._blocks ^ 1)) --res.q._blocks;
+	
+	return res;
 }
 
 mod_tuple num_z::operator%(const int64_t &a){

@@ -2,13 +2,13 @@
 
 
 std::ostream& operator << (std::ostream &o, const num_z &a){
-	char *output = (char *)malloc(19*a._blocks + a._sign + 1);
+	char *output = (char *)malloc(_DIGITS_PER_BLOCK_*a._blocks + a._sign + 1);
 	uint64_t n_chars = a._sign;
 	uint32_t i = a._blocks-1;
 
 	if(a._sign) sprintf(output, "-");
-	n_chars += sprintf(output + n_chars, "%lu", a._num[i]);
-	while(i--) n_chars += sprintf(output + n_chars, "%019lu", a._num[i]);	
+	n_chars += sprintf(output + n_chars, "%d", a._num[i]);
+	while(i--) n_chars += sprintf(output + n_chars, "%09d", a._num[i]);	//TROCAR POR _DIGITS_PER_BLOCK_
 	printf("%s", output);
 	free(output);
 	
@@ -19,9 +19,9 @@ std::istream& operator >> (std::istream &in, num_z &a){
 	char c;
 	bool sign = 0;
 	uint32_t aux;
-	
 	c = getchar();
 	a = 0;
+	
 	if(c == '-'){ 
 		sign = 1;
 		c = getchar();
@@ -36,6 +36,7 @@ std::istream& operator >> (std::istream &in, num_z &a){
 		c = getchar();
 	}
 	a._sign = sign;
+	
 	return in;
 }
 

@@ -1,14 +1,23 @@
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
 #define _INIT_SIZE_ 10
-#define _MAX_CONST_64_      10000000000000000000ul
-#define _BLOCK_SIZE_64_      9999999999999999999ul
-#define _BLOCK_HALF_64_      5000000000000000000ul
-#define _BLOCK_LAST_64_      1000000000000000000ul
-#define _MAX_18_DIGIT_        999999999999999999ul
-#define _MAX_9_DIGIT_                  999999999ul
-#define _BLOCK_HALF_LAST_             1000000000ul
+#define _DIGITS_PER_BLOCK_              9
+#define _MAX_CONST_64_         1000000000
+#define _BLOCK_SIZE_64_         999999999
+#define _BLOCK_HALF_64_         500000000
+#define _BLOCK_LAST_64_         100000000
+#define _MAX_18_DIGIT_           99999999
 
+/*
+define _DIGITS_PER_BLOCK_                      19
+define _MAX_CONST_64_      10000000000000000000ul
+define _BLOCK_SIZE_64_      9999999999999999999ul
+define _BLOCK_HALF_64_      5000000000000000000ul
+define _BLOCK_LAST_64_      1000000000000000000ul
+define _MAX_18_DIGIT_        999999999999999999ul
+define _MAX_9_DIGIT_                  999999999ul
+define _BLOCK_HALF_LAST_             1000000000ul
+*/
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +30,7 @@
 		friend std::istream& operator >> (std::istream &, num_z &);
 		
 		private:
-			uint64_t *_num;
+			int32_t *_num;
 			bool _sign;
 			uint32_t _n_blocks;
 			uint32_t _blocks;
@@ -31,9 +40,6 @@
 			void __left_shift(uint32_t);
 			void __right_shift();
 			void __right_shift(uint32_t);
-			num_z _long_mul(uint64_t, uint64_t);
-			uint64_t _mod_b();
-			uint64_t _div_b();
 		public:
 			num_z();
 			num_z(const num_z &);

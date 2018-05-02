@@ -2,7 +2,7 @@
 
 num_z num_z::_long_mul(uint64_t a, uint64_t b){
 	num_z res, parc1;
-	uint64_t ops[2][3] = { {a%_BLOCK_HALF_LAST_, (a%_BLOCK_LAST_64_)/_BLOCK_HALF_LAST_, a/_BLOCK_LAST_64_},
+/*	uint64_t ops[2][3] = { {a%_BLOCK_HALF_LAST_, (a%_BLOCK_LAST_64_)/_BLOCK_HALF_LAST_, a/_BLOCK_LAST_64_},
 						   {b%_BLOCK_HALF_LAST_, (b%_BLOCK_LAST_64_)/_BLOCK_HALF_LAST_, b/_BLOCK_LAST_64_}};
 	int i, j;
 	for(i = 0; i < 3; i++){
@@ -12,7 +12,7 @@ num_z num_z::_long_mul(uint64_t a, uint64_t b){
 				parc1.__left_shift((i+j) * 9);
 			res += parc1;
 		}
-	}
+	} */
 	return res;
 }
 

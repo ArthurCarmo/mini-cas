@@ -10,8 +10,8 @@ num_z & num_z::operator*=(const num_z &a){
 	int sign = this->_sign ^ a._sign;
 	uint32_t i, j, m, n;
 	uint64_t k;
+	uint64_t t;
 	num_z res(uint32_t(0));
-	num_z t;
 	
 	m = a._blocks;
 	n = this->_blocks;
@@ -22,9 +22,9 @@ num_z & num_z::operator*=(const num_z &a){
 	for(j = 0; j < m; ++j){
 		k = 0;
 		for(i = 0; i < n; ++i){
-			t = res._long_mul(this->_num[i],a._num[j]) + res._num[i+j] + k;
-			res._num[i + j] = t._mod_b();
-			k = t._div_b();
+			t = this->_num[i] * a._num[j] + res._num[i+j] + k;
+			res._num[i + j] = t % _MAX_CONST_64_;
+			k = t / _MAX_CONST_64_;
 		}
 		res._num[j+n] = k;
 	}

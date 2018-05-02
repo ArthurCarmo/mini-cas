@@ -16,10 +16,10 @@ void num_z::__left_shift(){
 
 void num_z::__left_shift(uint32_t n){
 	uint32_t i = this->_blocks;
-	uint64_t powten = 1;
+	int64_t powten = 1;
 	uint64_t prune_digits;
-	uint32_t mv = n/19;
-	n %= 19;
+	uint32_t mv = n/_DIGITS_PER_BLOCK_;
+	n %= _DIGITS_PER_BLOCK_;
 
 	if(n){
 		while(--n) powten *= 10;
@@ -74,10 +74,10 @@ void num_z::__right_shift(){
 void num_z::__right_shift(uint32_t n){
 	uint32_t i = 0;
 	uint32_t j = this->_blocks - 1;
-	uint64_t powten = 1;
+	int64_t powten = 1;
 	uint64_t prune_digits;
-	uint32_t mv = n/19;
-	n %= 19;
+	uint32_t mv = n/_DIGITS_PER_BLOCK_;
+	n %= _DIGITS_PER_BLOCK_;
 	
 	if(mv >= this->_blocks){
 		*this = 0;
@@ -106,7 +106,7 @@ void num_z::__right_shift(uint32_t n){
 //------------- RESIZE ----------------------
 
 void num_z::__resize(uint32_t n){
-	uint64_t *aux =  (uint64_t *)realloc(this->_num, sizeof(uint64_t) * n);
+	int32_t *aux = (int32_t *)realloc(this->_num, sizeof(int32_t) * n);
 	uint32_t blocks = this->_blocks;
 	
 	while(blocks < n)
