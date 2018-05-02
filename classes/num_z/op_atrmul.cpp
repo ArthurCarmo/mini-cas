@@ -22,7 +22,7 @@ num_z & num_z::operator*=(const num_z &a){
 	for(j = 0; j < m; ++j){
 		k = 0;
 		for(i = 0; i < n; ++i){
-			t = this->_num[i] * a._num[j] + res._num[i+j] + k;
+			t = (uint64_t)this->_num[i] * (uint64_t)a._num[j] + res._num[i+j] + k;
 			res._num[i + j] = t % _MAX_CONST_64_;
 			k = t / _MAX_CONST_64_;
 		}

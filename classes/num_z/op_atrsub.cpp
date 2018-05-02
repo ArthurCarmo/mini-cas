@@ -2,7 +2,8 @@
 
 
 num_z & num_z::operator-=(const num_z &a){
-	uint32_t i, j;
+	uint32_t i;
+	uint32_t vai_um;
 	if(this->_sign ^ a._sign){
 		uint32_t sign = this->_sign;
 		this->_sign = a._sign;
@@ -10,44 +11,32 @@ num_z & num_z::operator-=(const num_z &a){
 		this->_sign = sign;
 		return *this;
 	}
-	if(this->abs_geq(a)){
-		for(i = 0; i < a._blocks; i++){
-			if(this->_num[i] < a._num[i]){
-				this->_num[i] += (_MAX_CONST_64_ - a._num[i]);
-				j = i+1;
-				while(this->_num[j] == 0){
-					this->_num[j++] = _BLOCK_SIZE_64_;
-				}
-				--this->_num[j];
-			}else{
-				this->_num[i] -= a._num[i];
-			}
-		}
-		
-		while(this->_num[this->_blocks-1] == 0 && this->_blocks != 1)
-			--this->_blocks;
-
+	num_z maior, menor;
+	if(this->abs_gt(a)){
+		maior = *this;
+		menor = a;
 	}else{
-		
-		num_z aux(*this);
-		*this = a;
-		this->_sign = 1-a._sign;
-		for(i = 0; i < aux._blocks; i++){
-			if(this->_num[i] < aux._num[i]){
-				this->_num[i] += (_MAX_CONST_64_ - aux._num[i]);
-				j = i+1;
-				while(this->_num[j] == 0){
-					this->_num[j++] = _BLOCK_SIZE_64_;
-				}
-				--this->_num[j];
-			}else{
-				this->_num[i] -= aux._num[i];
-			}
-		}
-	
-		while(this->_num[this->_blocks-1] == 0 && (this->_blocks ^ 1))
-			--this->_blocks;
+		maior = a;
+		menor = *this;
+		this->_sign = !a._sign;
 	}
+	if(this->_n_blocks < maior._blocks) this->__resize(maior._blocks);
+	if(menor._n_blocks < maior._blocks) menor.__resize(maior._blocks);
+	this->_blocks = maior._blocks;
+		
+	for(i = menor._blocks; i < maior._blocks; i++)
+		menor._num[i] = 0;
+	
+	vai_um = 0;		
+	for(i = 0; i < maior._blocks; i++){
+		menor._num[i] += vai_um;
+		this->_num[i] = (maior._num[i] >= menor._num[i])?(maior._num[i] - menor._num[i]):(_MAX_CONST_64_ + maior._num[i] - menor._num[i]);
+		vai_um = (maior._num[i] < menor._num[i]);
+	}
+	
+	while(this->_num[this->_blocks-1] == 0 && (this->_blocks ^ 1))
+		--this->_blocks;
+	
 	
 	if(*this == (uint32_t)0) this->_sign = 0;
 	return *this;
