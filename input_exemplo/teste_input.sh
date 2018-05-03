@@ -28,3 +28,9 @@ diff out_exemplo/outm out_exemplo/outg5_inv
 echo Teste6
 ../mini-cas < inp6 > out_exemplo/outm
 diff out_exemplo/outm out_exemplo/outg6
+echo Teste7
+../mini-cas < inp7 > out_exemplo/outm
+diff out_exemplo/outm out_exemplo/outg7
+echo Teste8
+../mini-cas < inp8 > out_exemplo/outm
+diff out_exemplo/outm out_exemplo/outg8
