@@ -9,8 +9,8 @@ INCLUDE := ./classes/include
 STATIC_LIB := libsymbolib.a
 SHARED_LIB := libsymbolib.so
 
-CC := g++
-CFLAGS := -O3 -Wall
+CC := g++ -std=c++11
+CFLAGS := -g -O3 -Wall
 dummy_build_folder := $(shell mkdir -p $(OBJDIR) && mkdir -p $(LIBDIR))
 
 EXECUTABLE := mini-cas
@@ -26,7 +26,7 @@ S_OBJ := $(addprefix $(OBJDIR)/, $(S_OBJECTS))
 D_OBJ := $(addprefix $(OBJDIR)/, $(D_OBJECTS))
 
 main: main.cpp $(STATIC_LIB) $(SHARED_LIB)
-	$(CC) main.cpp -o $(EXECUTABLE) -I$(INCLUDE) $(LIBDIR)/$(STATIC_LIB) $(CFLAGS)
+	$(CC) main.cpp -static -o $(EXECUTABLE) -I$(INCLUDE) $(LIBDIR)/$(STATIC_LIB) $(CFLAGS)
 
 $(STATIC_LIB) : $(S_OBJ) 
 	ar rsv $(LIBDIR)/$@ $^

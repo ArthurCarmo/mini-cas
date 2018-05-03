@@ -15,7 +15,9 @@ int main(){
 	std::cout << "SUB:\n" << a - b << "\n\n";
 	std::cout << "MUL:\n" << a * b << "\n\n";
 	std::cout << "DIV:\n" << a / b << "\n\n";
+	std::cout << "DIT:\n" << (a / b).q << "*b + " << (a / b).r << "\n\n";
 	std::cout << "MOD:\n" << a % b << "\n\n";
+	std::cout << "MOT:\n" << (a % b).q << "*b + " << (a % b).r << "\n\n";
 	
 	return 0;
 }
