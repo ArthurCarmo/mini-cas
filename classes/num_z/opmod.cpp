@@ -35,10 +35,12 @@ mod_tuple num_z::operator%(const num_z &a){
 	if(n._blocks == 1){
 		res = m%(uint32_t)n._num[0];
 		res.q._sign = this->_sign ^ a._sign;
-		if(res.q._sign){
-			if(res.r != 0){
+		if(res.r != 0){	
+			if(res.q._sign){
 				res.r -= n;
 				--res.q;
+				res.r._sign = a._sign;
+			}else{
 				res.r._sign = a._sign;
 			}
 		}
@@ -50,10 +52,12 @@ mod_tuple num_z::operator%(const num_z &a){
 		res.q = 1;
 		res.q._sign = this->_sign ^ a._sign;
 		res.r = m;
-		if(res.q._sign){
-			if(res.r != 0){
+		if(res.r != 0){	
+			if(res.q._sign){
 				res.r -= n;
 				--res.q;
+				res.r._sign = a._sign;
+			}else{
 				res.r._sign = a._sign;
 			}
 		}
@@ -106,10 +110,12 @@ mod_tuple num_z::operator%(const num_z &a){
 	//Formatar resultado
 	if(res.q._num[res.q._blocks - 1] == 0 && (res.q._blocks ^ 1) ) --res.q._blocks;
 	res.r = m / (uint32_t)d;
-	if(res.q._sign){
-		if(res.r != 0){
+	if(res.r != 0){
+		if(res.q._sign){
 			res.r -= n;
 			--res.q;
+			res.r._sign = a._sign;
+		}else{
 			res.r._sign = a._sign;
 		}
 	}

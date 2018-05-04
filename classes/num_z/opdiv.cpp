@@ -35,14 +35,17 @@ div_tuple num_z::operator/(const num_z &a){
 	if(n._blocks == 1){
 		res = *this/(uint32_t)n._num[0];
 		res.q._sign = this->_sign ^ a._sign;
+		res.r._sign = this->_sign;
 		return res;
 	}
 	
+	//Divisão de números cujo quociente é 1
 	if(m._blocks == n._blocks && ((uint64_t)m._num[m._blocks-1] < (2ull * (uint64_t)n._num[m._blocks - 1]))){
 		m -= n;
 		res.q = 1;
 		res.q._sign = this->_sign ^ a._sign;
 		res.r = m;
+		res.r._sign = this->_sign;
 		return res;
 	}
 	
@@ -92,6 +95,7 @@ div_tuple num_z::operator/(const num_z &a){
 	//Formatar resultado
 	if(res.q._num[res.q._blocks - 1] == 0 && (res.q._blocks ^ 1) ) --res.q._blocks;
 	res.r = m / (uint32_t)d;
+	res.r._sign = this->_sign;
 	return res;
 }
 
