@@ -28,5 +28,13 @@ int main(){
 	gmp_printf("MUL:\n%Zd\n", c);
 	printf("\n");
 	
+	mpz_div(c, a, b);
+	gmp_printf("DIV:\n%Zd\n", c);
+	printf("\n");
+
+	mpz_mod(c, a, b);
+	gmp_printf("MOD:\n%Zd\n", c);	
+	printf("\n");
+
 	return 0;
 }

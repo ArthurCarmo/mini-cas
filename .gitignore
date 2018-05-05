@@ -30,4 +30,5 @@
 *.exe
 *.out
 *.app
-mini-cas
+*mini-cas
+*teste_gmp

@@ -1,12 +1,5 @@
 #!/bin/bash
 
-../../TCC/exemplo_gmp/teste_gmp < inp > out_exemplo/outg
-../../TCC/exemplo_gmp/teste_gmp < inp2 > out_exemplo/outg2
-../../TCC/exemplo_gmp/teste_gmp < inp3 > out_exemplo/outg3
-../../TCC/exemplo_gmp/teste_gmp < inp4 > out_exemplo/outg4
-../../TCC/exemplo_gmp/teste_gmp < inp5 > out_exemplo/outg5
-../../TCC/exemplo_gmp/teste_gmp < inp5_inv > out_exemplo/outg5_inv
-
 echo Teste1
 ../mini-cas < inp > out_exemplo/outm
 diff out_exemplo/outm out_exemplo/outg
@@ -34,3 +27,6 @@ diff out_exemplo/outm out_exemplo/outg7
 echo Teste8
 ../mini-cas < inp8 > out_exemplo/outm
 diff out_exemplo/outm out_exemplo/outg8
+echo Teste9
+../mini-cas < inp9 > out_exemplo/outm
+diff out_exemplo/outm out_exemplo/outg9
