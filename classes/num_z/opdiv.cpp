@@ -75,20 +75,23 @@ div_tuple num_z::operator/(const num_z &a){
 		//Multipĺicar e subtrair
 		parc_n = n * q_guess;
 		parc_m._blocks = 1 + n._blocks;
+		
 		for(i = 0; i <= n._blocks; i++){
 			parc_m._num[n._blocks - i] = m._num[j - i];
 		}
-		
+
+		if(parc_m._num[parc_m._blocks - 1] == 0) parc_m._num[--parc_m._blocks] = 0;
+
 		while(parc_n > parc_m){
 			parc_n = n * --q_guess;
 		}
 		
 		parc_m -= parc_n;
 		
-		for(i = 0; i < parc_n._blocks; i++)
+		for(i = 0; i <= n._blocks; i++)
 			m._num[j-i] = parc_m._num[n._blocks - i];
 		
-//		while(m._num[m._blocks - 1] == 0 && (m._blocks ^ 1)) --m._blocks;
+		while(m._num[m._blocks - 1] == 0 && (m._blocks ^ 1)) --m._blocks;
 		
 		res.q._num[j - n_size - 1] = q_guess;
 		

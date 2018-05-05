@@ -47,7 +47,7 @@ mod_tuple num_z::operator%(const num_z &a){
 		return res;
 	}
 	
-	if(m._blocks == n._blocks && ((uint64_t)m._num[m._blocks-1] < (2ull * (uint64_t)n._num[m._blocks - 1]))){
+/*	if(m._blocks == n._blocks && ((uint64_t)m._num[m._blocks-1] < (2ull * (uint64_t)n._num[m._blocks - 1]))){
 		m -= n;
 		res.q = 1;
 		res.q._sign = this->_sign ^ a._sign;
@@ -63,7 +63,7 @@ mod_tuple num_z::operator%(const num_z &a){
 		}
 		return res;
 	}
-	
+*/	
 	//Divisão de um número com n+m dígitos por um número com n dígitos;
 	if(res.q._n_blocks < size_q)
 		res.q.__resize(size_q);
@@ -77,6 +77,11 @@ mod_tuple num_z::operator%(const num_z &a){
 	m *= d;
 	n *= d;
 	
+	if(m._blocks == this->_blocks){
+		m._num[m._blocks++] = 0;
+		
+	}
+
 	n_size = n._blocks - 1;
 	for(j = m._blocks - 1; j > n_size; --j){	
 		q_guess = (m._num[j] == n._num[n._blocks-1])?((uint64_t)_BLOCK_SIZE_64_):(((uint64_t)m._num[j]*(uint64_t)_MAX_CONST_64_ + m._num[j-1])/n._num[n._blocks - 1]);
@@ -84,25 +89,24 @@ mod_tuple num_z::operator%(const num_z &a){
 
 		//Multipĺicar e subtrair
 		parc_n = n * q_guess;
-		parc_m._blocks = parc_n._blocks;
+		parc_m._blocks = 1 + n._blocks;
 		
-		for(i = 0; i < parc_n._blocks; i++){
+		for(i = 0; i <= n._blocks; i++){
 			parc_m._num[n._blocks - i] = m._num[j - i];
 		}
 		
+		if(parc_m._num[parc_m._blocks - 1] == 0) parc_m._num[--parc_m._blocks] = 0;
+		
 		while(parc_n > parc_m){
 			parc_n = n * --q_guess;
-			parc_m._blocks = parc_n._blocks;
-			for(i = 0; i < parc_n._blocks; i++)
-				parc_m._num[n._blocks - i] = m._num[j - i];
 		}
 		
 		parc_m -= parc_n;
 		
-		for(i = 0; i < parc_n._blocks; i++)
+		for(i = 0; i <= n._blocks; i++)
 			m._num[j-i] = parc_m._num[n._blocks - i];
 		
-//		while(m._num[m._blocks - 1] == 0 && (m._blocks ^ 1)) --m._blocks;
+		while(m._num[m._blocks - 1] == 0 && (m._blocks ^ 1)) --m._blocks;
 		
 		res.q._num[j - n_size - 1] = q_guess;
 		
