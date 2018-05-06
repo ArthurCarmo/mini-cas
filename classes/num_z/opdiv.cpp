@@ -15,8 +15,7 @@ div_tuple num_z::operator/(const num_z &a){
 	
 	//Dividendo > divisor
 	if(this->abs_lt(a)){
-		res.r = (this->_sign ^ a._sign)?(n-m):*this;
-		res.r._sign = 0;
+		res.r = *this;
 		return res;
 	}
 	
@@ -35,7 +34,7 @@ div_tuple num_z::operator/(const num_z &a){
 	if(n._blocks == 1){
 		res = *this/(uint32_t)n._num[0];
 		res.q._sign = this->_sign ^ a._sign;
-		res.r._sign = this->_sign;
+		res.r._sign = (res.r == 0)?0:this->_sign;
 		return res;
 	}
 	
@@ -99,7 +98,7 @@ div_tuple num_z::operator/(const num_z &a){
 	//Formatar resultado
 	if(res.q._num[res.q._blocks - 1] == 0 && (res.q._blocks ^ 1) ) --res.q._blocks;
 	res.r = m / (uint32_t)d;
-	res.r._sign = this->_sign;
+	res.r._sign = (res.r == 0)?0:this->_sign;
 	return res;
 }
 

@@ -15,8 +15,9 @@ mod_tuple num_z::operator%(const num_z &a){
 	
 	//Dividendo > divisor
 	if(this->abs_lt(a)){
+		if(this->_sign ^ a._sign) res.q = -1;
 		res.r = (this->_sign ^ a._sign)?(n-m):*this;
-		res.r._sign = 0;
+		res.r._sign = (res.r==0)?0:a._sign;
 		return res;
 	}
 	
