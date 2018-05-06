@@ -21,11 +21,17 @@ std::istream& operator >> (std::istream &in, num_z &a){
 	uint32_t aux;
 	c = getchar();
 	a = 0;
-	
+	while(c == '\n' || c == ' ') 
+		c = getchar();
+
 	if(c == '-'){ 
 		sign = 1;
 		c = getchar();
 	}
+	
+	while(c == '\n' || c == ' ') 
+		c = getchar();
+
 	while(c == '.' || c == ',' ||( c >= '0' && c <='9')){
 		if(c == '.' || c == ',');
 		else{ 
