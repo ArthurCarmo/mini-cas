@@ -170,7 +170,7 @@ mod_tuple num_z::operator%(const uint32_t &a){
 }
 
 mod_tuple num_z::operator%(const int64_t &a){
-	num_z r(*this);
+	num_z r(a);
 	return *this%r;
 }
 
