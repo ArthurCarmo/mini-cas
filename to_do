@@ -1,5 +1,11 @@
-Melhorar divisão (talvez)
-
 Melhorar Operator *= (talvez)
 
 Operator /=
+Operator %=
+
+Operator+ lado direito
+Operator- lado direito
+Operator* lado direito
+Operator/ lado direito
+
+Operadores zm

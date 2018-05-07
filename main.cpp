@@ -1,9 +1,10 @@
-#include <symbolib>
+#include <mini-cas>
 
 int main(){
 	num_z a, b;
-	num_zm<7> c;
-
+	num_zm<7> c(25);
+	num_zm<-9> d("22");
+	
 	std::cin >> a;
 	std::cin >> b;
 

@@ -13,22 +13,22 @@ mod_tuple num_z::operator%(const num_z &a){
 	n._sign = 0;
 	size_q = this->_blocks - a._blocks + 1;
 	
-	//Dividendo > divisor
-	if(this->abs_lt(a)){
-		if(this->_sign ^ a._sign) res.q = -1;
-		res.r = (this->_sign ^ a._sign)?(n-m):*this;
-		res.r._sign = (res.r==0)?0:a._sign;
-		return res;
-	}
-	
 	//Dividendo -1, 0 ou 1
-	if(a == (uint32_t)0) return res;
+	if(a == (uint32_t)0 || *this == 0) return res;
 	if(a == (uint32_t)1){
 		res.q = *this;
 		return res;
 	}
 	if(a == (int32_t)-1){
 		res.q = *this;
+		return res;
+	}
+	
+	//Dividendo > divisor
+	if(this->abs_lt(a)){
+		if(this->_sign ^ a._sign) res.q = -1;
+		res.r = (this->_sign ^ a._sign)?(n-m):*this;
+		res.r._sign = (res.r==0)?0:a._sign;
 		return res;
 	}
 	

@@ -6,8 +6,8 @@ NUMQDIR := ./classes/num_q
 POLYDIR := ./classes/polynomial
 INCLUDE := ./classes/include
 
-STATIC_LIB := libsymbolib.a
-SHARED_LIB := libsymbolib.so
+STATIC_LIB := libmini-cas.a
+SHARED_LIB := libmini-cas.so
 
 CC := g++ -std=c++11
 CFLAGS := -g -O3 -Wall

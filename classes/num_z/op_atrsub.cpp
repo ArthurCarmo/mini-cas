@@ -37,8 +37,8 @@ num_z & num_z::operator-=(const num_z &a){
 	while(this->_num[this->_blocks-1] == 0 && (this->_blocks ^ 1))
 		--this->_blocks;
 	
+	if(this->_blocks == 1 && this->_num[0] == 0) this->_sign = 0;
 	
-	if(*this == (uint32_t)0) this->_sign = 0;
 	return *this;
 }
 
