@@ -1,3 +1,6 @@
+#ifndef __ZM_ATRSUB_
+#define __ZM_ATRSUB_
+
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator-=(const num_zm<N> &a){
 	this->_num = num_z(N) - this->_num - a._num;
@@ -57,3 +60,5 @@ num_zm<N> & num_zm<N>::operator-=(const char *a){
 	this->_num = this->_num % N;
 	return *this;
 }
+
+#endif
