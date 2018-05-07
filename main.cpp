@@ -2,9 +2,8 @@
 
 int main(){
 	num_z a, b;
-	num_zm<7> c((uint32_t) 25), d((int32_t)-25);
-	num_zm<-7>e((uint64_t)25), f(-25);
-	std::cout << c << " " << d << " " << e << " " << f << "\n\n";
+	num_zm<7> c;
+
 	std::cin >> a;
 	std::cin >> b;
 
