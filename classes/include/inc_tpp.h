@@ -3,4 +3,6 @@
 #include "../num_zm/num_zm.tpp"
 #include "../num_zm/op_atrsum.tpp"
 #include "../num_zm/op_atrsub.tpp"
+#include "../num_zm/opsum.tpp"
+#include "../num_zm/opsub.tpp"
 #include "../num_zm/unary_ops.tpp"

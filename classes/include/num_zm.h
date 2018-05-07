@@ -53,6 +53,24 @@ class num_zm {
 		num_zm & operator-=(const int &);
 		num_zm & operator-=(const uint32_t &);
 		num_zm & operator-=(const char *);
+		num_zm operator+(const num_zm<N> &);
+		num_zm operator+(const num_z &);
+		num_zm operator+(const div_tuple &);
+		num_zm operator+(const mod_tuple &);
+		num_zm operator+(const int &);
+		num_zm operator+(const uint32_t &); 
+		num_zm operator+(const int64_t &);
+		num_zm operator+(const uint64_t &);
+		num_zm operator+(const char *);
+		num_zm operator-(const num_zm<N> &);
+		num_zm operator-(const num_z &);
+		num_zm operator-(const div_tuple &);
+		num_zm operator-(const mod_tuple &);
+		num_zm operator-(const int &);
+		num_zm operator-(const uint32_t &);
+		num_zm operator-(const int64_t &);
+		num_zm operator-(const uint64_t &);
+		num_zm operator-(const char *);
 };
 
 #include "inc_tpp.h"

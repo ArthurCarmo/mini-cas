@@ -5,6 +5,9 @@ int main(){
 	num_zm<7> c(25);
 	num_zm<-9> d("22");
 	
+	for(int i = 0; i < 10; i++)
+		std::cout << c - i << " " << d - i << std::endl;
+	
 	std::cin >> a;
 	std::cin >> b;
 
