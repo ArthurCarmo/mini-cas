@@ -1,26 +1,16 @@
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
-#define _INIT_SIZE_ 10
-#define _DIGITS_PER_BLOCK_              9
-#define _MAX_CONST_64_         1000000000
-#define _BLOCK_SIZE_64_         999999999
-#define _BLOCK_HALF_64_         500000000
-#define _BLOCK_LAST_64_         100000000
-#define _MAX_18_DIGIT_           99999999
 
-/*
-define _DIGITS_PER_BLOCK_                      19
-define _MAX_CONST_64_      10000000000000000000ul
-define _BLOCK_SIZE_64_      9999999999999999999ul
-define _BLOCK_HALF_64_      5000000000000000000ul
-define _BLOCK_LAST_64_      1000000000000000000ul
-define _MAX_18_DIGIT_        999999999999999999ul
-define _MAX_9_DIGIT_                  999999999ul
-define _BLOCK_HALF_LAST_             1000000000ul
-*/
-#include <iostream>
+#define _INIT_SIZE_                     10
+#define _DIGITS_PER_BLOCK_               9
+#define _BASE_                  1000000000
+#define _MAX_DIGIT_BASE_         999999999
+#define _MIN_ALL_DIGITS_         100000000
+#define _MAX_NO_CARRY_ON_SHIFT_   99999999
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <iomanip>
 #include "signatures.h"
 	

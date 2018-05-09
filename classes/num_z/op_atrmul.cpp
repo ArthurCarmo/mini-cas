@@ -23,8 +23,8 @@ num_z & num_z::operator*=(const num_z &a){
 		k = 0;
 		for(i = 0; i < n; ++i){
 			t = (uint64_t)this->_num[i] * (uint64_t)a._num[j] + res._num[i+j] + k;
-			res._num[i + j] = t % _MAX_CONST_64_;
-			k = t / _MAX_CONST_64_;
+			res._num[i + j] = t % _BASE_;
+			k = t / _BASE_;
 		}
 		res._num[j+n] = k;
 	}

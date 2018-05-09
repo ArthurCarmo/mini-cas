@@ -30,7 +30,7 @@ num_z & num_z::operator-=(const num_z &a){
 	vai_um = 0;		
 	for(i = 0; i < maior._blocks; i++){
 		menor._num[i] += vai_um;
-		this->_num[i] = (maior._num[i] >= menor._num[i])?(maior._num[i] - menor._num[i]):(_MAX_CONST_64_ + maior._num[i] - menor._num[i]);
+		this->_num[i] = (maior._num[i] >= menor._num[i])?(maior._num[i] - menor._num[i]):(_BASE_ + maior._num[i] - menor._num[i]);
 		vai_um = (maior._num[i] < menor._num[i]);
 	}
 	

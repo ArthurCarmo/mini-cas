@@ -24,8 +24,8 @@ num_z & num_z::operator+=(const num_z &a){
 	
 	for(i = 0; i < this->_blocks; i++){
 		w = (this->_num[i] + n._num[i] + vai_um);
-		this->_num[i] = w % _MAX_CONST_64_;
-		vai_um = (w >= _MAX_CONST_64_);
+		this->_num[i] = w % _BASE_;
+		vai_um = (w >= _BASE_);
 	}
 	
 	if(vai_um)

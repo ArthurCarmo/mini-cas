@@ -1,16 +1,16 @@
 #include "../include/num_z.h"
 
 void num_z::__left_shift(){
-	if(this->_num[this->_blocks - 1] > _MAX_18_DIGIT_ ){ 
+	if(this->_num[this->_blocks - 1] > _MAX_NO_CARRY_ON_SHIFT_ ){ 
 		if(this->_blocks == this->_n_blocks) 
 			this->__resize(this->_n_blocks+1); 
 		this->_num[this->_blocks++] = 0;
 	}
 	uint32_t i = this->_blocks;
 	while(i--){
-		this->_num[i] %= _BLOCK_LAST_64_;
+		this->_num[i] %= _MIN_ALL_DIGITS_;
 		this->_num[i] *= 10;
-		this->_num[i] += i==0?0:(_num[i-1] / _BLOCK_LAST_64_);
+		this->_num[i] += i==0?0:(_num[i-1] / _MIN_ALL_DIGITS_);
 	}
 }
 
@@ -23,9 +23,9 @@ void num_z::__left_shift(uint32_t n){
 
 	if(n){
 		while(--n) powten *= 10;
-		prune_digits = _BLOCK_LAST_64_ / powten;
+		prune_digits = _MIN_ALL_DIGITS_ / powten;
 		
-		if(this->_num[this->_blocks - 1] > (_MAX_18_DIGIT_ /powten)){ 	
+		if(this->_num[this->_blocks - 1] > (_MAX_NO_CARRY_ON_SHIFT_ /powten)){ 	
 			if(this->_blocks == this->_n_blocks) 
 				this->__resize(this->_n_blocks + mv + 1); 
 			this->_num[this->_blocks++] = 0;
@@ -64,7 +64,7 @@ void num_z::__right_shift(){
 	uint32_t j = this->_blocks - 1;
 	for(; i < j; i++){
 		this->_num[i] /= 10;
-		this->_num[i] += (this->_num[i+1] % 10) * _BLOCK_LAST_64_;
+		this->_num[i] += (this->_num[i+1] % 10) * _MIN_ALL_DIGITS_;
 	}
 	this->_num[i] /= 10;
 	if((this->_num[i] == 0) && (this->_blocks ^ 1))
@@ -90,7 +90,7 @@ void num_z::__right_shift(uint32_t n){
 	
 	if(n){
 		while(--n) powten *= 10;
-		prune_digits = _BLOCK_LAST_64_ / powten;
+		prune_digits = _MIN_ALL_DIGITS_ / powten;
 		powten *= 10;
 		for(i = 0; i < j; i++){
 			this->_num[i] /= powten;

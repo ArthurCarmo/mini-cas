@@ -74,8 +74,8 @@ num_z::num_z(const int64_t &a){
 	}
 	this->_blocks = 0;	
 	do{
-		this->_num[this->_blocks++] = b%_MAX_CONST_64_;
-		b /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = b%_BASE_;
+		b /= _BASE_; 
 	}while(b);	
 	
 	for(b = this->_blocks; b < _INIT_SIZE_; b++)
@@ -89,8 +89,8 @@ num_z::num_z(const uint64_t &a){
 	this->_num = (int32_t *)malloc(sizeof(int32_t)*_INIT_SIZE_);
 	this->_blocks = 0;
 	do{
-		this->_num[this->_blocks++] = b%_MAX_CONST_64_;
-		b /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = b%_BASE_;
+		b /= _BASE_; 
 	}while(b);
 	
 	for(b = this->_blocks; b < _INIT_SIZE_; b++)
@@ -108,8 +108,8 @@ num_z::num_z(const int &a){
 	}
 	this->_blocks = 0;
 	do{
-		this->_num[this->_blocks++] = b%_MAX_CONST_64_;
-		b /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = b%_BASE_;
+		b /= _BASE_; 
 	}while(b);
 	
 	for(b = this->_blocks; b < _INIT_SIZE_; b++)
@@ -122,8 +122,8 @@ num_z::num_z(const uint32_t &a){
 	this->_sign = 0;
 	this->_blocks = 0;
 	do{
-		this->_num[this->_blocks++] = b%_MAX_CONST_64_;
-		b /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = b%_BASE_;
+		b /= _BASE_; 
 	}while(b);
 	
 	for(b = this->_blocks; b < _INIT_SIZE_; b++)

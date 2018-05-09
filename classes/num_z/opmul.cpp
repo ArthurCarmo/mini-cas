@@ -1,12 +1,13 @@
 #include "../include/num_z.h"
 
-num_z num_z::operator*(const num_z &a){ //IMPLEMENTAR KARATSUBA
-	
+num_z num_z::operator*(const num_z &a){ 
+	//Produtos triviais
 	if((a == 0) | (*this == 0))return num_z(0);
 	if(a == 1) return *this;
 	if(*this == 1) return a;
 	if(a == -1) return -*this;
 	if(*this == -1) { num_z res(-a); return res;}
+	
 	int sign = this->_sign ^ a._sign;
 	uint32_t i, j, m, n;
 	uint64_t k;
@@ -25,8 +26,8 @@ num_z num_z::operator*(const num_z &a){ //IMPLEMENTAR KARATSUBA
 		k = 0;
 		for(i = 0; i < n; ++i){
 			t = ((uint64_t)this->_num[i] * (uint64_t)a._num[j]) + res._num[i+j] + k;
-			res._num[i + j] = t % _MAX_CONST_64_;
-			k = t / _MAX_CONST_64_;
+			res._num[i + j] = t % _BASE_;
+			k = t / _BASE_;
 		}
 		res._num[j+n] = k;
 	}

@@ -56,7 +56,7 @@ div_tuple num_z::operator/(const num_z &a){
 	if(res.r._n_blocks < n._blocks)
 		res.r.__resize(n._blocks);
 	
-	d = _MAX_CONST_64_/(n._num[n._blocks - 1 ] + 1);
+	d = _BASE_/(n._num[n._blocks - 1 ] + 1);
 	
 	m *= d;
 	n *= d;
@@ -68,8 +68,8 @@ div_tuple num_z::operator/(const num_z &a){
 
 	n_size = n._blocks - 1;
 	for(j = m._blocks - 1; j > n_size; --j){	
-		q_guess = (m._num[j] == n._num[n._blocks-1])?((uint64_t)_BLOCK_SIZE_64_):(((uint64_t)m._num[j]*(uint64_t)_MAX_CONST_64_ + m._num[j-1])/n._num[n._blocks - 1]);
-		while(((uint64_t)n._num[n._blocks - 2]*(uint64_t)q_guess) > ((uint64_t)((uint64_t)m._num[j] * (uint64_t)_MAX_CONST_64_ - (uint64_t)n._num[n._blocks - 1]*(uint64_t)q_guess + m._num[j-1])* (uint64_t)_MAX_CONST_64_ + m._num[j-2])) --q_guess;
+		q_guess = (m._num[j] == n._num[n._blocks-1])?((uint64_t)_MAX_DIGIT_BASE_):(((uint64_t)m._num[j]*(uint64_t)_BASE_ + m._num[j-1])/n._num[n._blocks - 1]);
+		while(((uint64_t)n._num[n._blocks - 2]*(uint64_t)q_guess) > ((uint64_t)((uint64_t)m._num[j] * (uint64_t)_BASE_ - (uint64_t)n._num[n._blocks - 1]*(uint64_t)q_guess + m._num[j-1])* (uint64_t)_BASE_ + m._num[j-2])) --q_guess;
 
 		//Multipĺicar e subtrair
 		parc_n = n * q_guess;
@@ -130,7 +130,7 @@ div_tuple num_z::operator/(const uint32_t &a){
 	
 	for(j = res.q._blocks - 1; j >= 0; --j){
 		
-		w = ((uint64_t)r * (uint64_t)_MAX_CONST_64_ + this->_num[j]);
+		w = ((uint64_t)r * (uint64_t)_BASE_ + this->_num[j]);
 		res.q._num[j] = w / a;
 		r = w % a;
 	}

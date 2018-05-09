@@ -37,8 +37,8 @@ num_z & num_z::operator=(const int &b){
 	this->_blocks = 0;
 	
 	do{
-		this->_num[this->_blocks++] = a%_MAX_CONST_64_;
-		a /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = a%_BASE_;
+		a /= _BASE_; 
 	}while(a);
 	
 	for(i = this->_blocks; i < this->_n_blocks; i++)
@@ -53,8 +53,8 @@ num_z & num_z::operator=(const uint32_t &b){
 	this->_blocks = 0;
 	
 	do{
-		this->_num[this->_blocks++] = a%_MAX_CONST_64_;
-		a /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = a%_BASE_;
+		a /= _BASE_; 
 	}while(a);
 	
 	for(a = this->_blocks; a < this->_n_blocks; a++)
@@ -74,8 +74,8 @@ num_z & num_z::operator=(const int64_t &b){
 	this->_blocks = 0;
 	
 	do{
-		this->_num[this->_blocks++] = a%_MAX_CONST_64_;
-		a /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = a%_BASE_;
+		a /= _BASE_; 
 	}while(a);
 	
 	for(i = this->_blocks; i < this->_n_blocks; i++)
@@ -90,8 +90,8 @@ num_z & num_z::operator=(const uint64_t &b){
 	this->_blocks = 0;
 	
 	do{
-		this->_num[this->_blocks++] = a%_MAX_CONST_64_;
-		a /= _MAX_CONST_64_; 
+		this->_num[this->_blocks++] = a%_BASE_;
+		a /= _BASE_; 
 	}while(a);
 	
 	for(a = this->_blocks; a < this->_n_blocks; a++)
