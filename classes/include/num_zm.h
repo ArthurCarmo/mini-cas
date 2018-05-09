@@ -19,8 +19,9 @@ class num_zm {
 		num_zm(const int &);
 		num_zm(const uint32_t &);
 		num_zm(const char *);	
+		num_z raw_value() const;
 		operator num_z(){ return this->_num; };
-		num_z operator-() const;
+		num_zm operator-() const;
 		num_zm operator+() const;
 		num_zm & operator++();
 		num_zm & operator--();

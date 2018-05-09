@@ -2,8 +2,13 @@
 #define __ZM_UNARY_
 
 template <int64_t N>
-num_z num_zm<N>::operator-() const{
-	return -this->_num;
+num_z num_zm<N>::raw_value() const {
+	return this->_num;
+}
+
+template <int64_t N>
+num_zm<N> num_zm<N>::operator-() const{
+	return num_z(N)-this->_num;
 }
 
 template <int64_t N>
