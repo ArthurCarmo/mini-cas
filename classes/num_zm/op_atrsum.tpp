@@ -3,7 +3,14 @@
 
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator+=(const num_zm<N> &a){
-	this->_num = num_z(N) - this->_num + a._num;
+	this->_num = this->_num + a._num;
+	if(N < 0){
+		if(this->_num <= N){
+			this->_num -= num_z(N);
+		}
+	}else if(this->_num >= N){
+		this->_num -= num_z(N);
+	}
 	return *this;
 }
 
