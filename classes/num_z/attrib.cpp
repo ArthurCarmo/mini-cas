@@ -116,7 +116,7 @@ num_z & num_z::operator=(const char *a){
 	size_last_block = i%_DIGITS_PER_BLOCK_;
 	
 	this->_n_blocks = ((n_blocks+2)>_INIT_SIZE_)?(n_blocks+2):_INIT_SIZE_;
-	this->_num = (int32_t *)malloc(sizeof(int32_t) * this->_n_blocks);
+	this->_num = (uint32_t *)malloc(sizeof(uint32_t) * this->_n_blocks);
 	this->_blocks = n_blocks + 1;
 	
 	while(n_blocks--){

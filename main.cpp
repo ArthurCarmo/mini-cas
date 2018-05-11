@@ -13,6 +13,8 @@ int main(){
 	a * b;
 	a / b;
 	
+//	std::cout << "BIN:\n" << bin(a) << "\n\n";
+//	std::cout << "HEX:\n" << hex(a) << "\n\n";
 	std::cout << "SUM:\n" << a + b << "\n\n";
 	std::cout << "SUB:\n" << a - b << "\n\n";
 	std::cout << "MUL:\n" << a * b << "\n\n";

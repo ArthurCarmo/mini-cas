@@ -20,7 +20,7 @@ mod_tuple num_z::operator%(const num_z &a){
 		return res;
 	}
 	if(a == (int32_t)-1){
-		res.q = *this;
+		res.q = -*this;
 		return res;
 	}
 	

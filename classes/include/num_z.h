@@ -7,7 +7,9 @@
 #define _MAX_DIGIT_BASE_         999999999
 #define _MIN_ALL_DIGITS_         100000000
 #define _MAX_NO_CARRY_ON_SHIFT_   99999999
-
+#define DECIMAL 0
+#define HEX 1
+#define BIN 2
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -18,12 +20,17 @@
 		
 		friend std::ostream& operator << (std::ostream &, const num_z &);
 		friend std::istream& operator >> (std::istream &, num_z &);
+		friend void hex_f(const num_z &);
+		friend void bin_f(const num_z &);
+		friend num_z hex(const num_z &);
+		friend num_z bin(const num_z &);
 		
 		private:
-			int32_t *_num;
+			uint32_t *_num;
 			bool _sign;
 			uint32_t _n_blocks;
 			uint32_t _blocks;
+			int _base_repr;
 			
 			void __resize(uint32_t);
 			void __left_shift();

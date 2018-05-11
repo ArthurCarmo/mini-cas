@@ -106,7 +106,7 @@ void num_z::__right_shift(uint32_t n){
 //------------- RESIZE ----------------------
 
 void num_z::__resize(uint32_t n){
-	int32_t *aux = (int32_t *)realloc(this->_num, sizeof(int32_t) * n);
+	uint32_t *aux = (uint32_t *)realloc(this->_num, sizeof(uint32_t) * n);
 	uint32_t blocks = this->_blocks;
 	
 	while(blocks < n)
