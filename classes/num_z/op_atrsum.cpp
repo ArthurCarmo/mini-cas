@@ -22,6 +22,8 @@ num_z & num_z::operator+=(const num_z &a){
 		for(i = this->_blocks; i < maior; i++)
 			this->_num[i] = 0;
 	
+	this->_blocks = maior - 1;
+	
 	for(i = 0; i < this->_blocks; i++){
 		w = (this->_num[i] + n._num[i] + vai_um);
 		this->_num[i] = w % _BASE_;
