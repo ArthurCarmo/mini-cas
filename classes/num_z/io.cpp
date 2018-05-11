@@ -17,6 +17,7 @@ std::ostream& operator << (std::ostream &o, const num_z &a){
 	}else{
 		bin_f(a);
 	}
+	
 	return o;
 }
 
@@ -67,6 +68,8 @@ std::istream& operator >> (std::istream &in, num_z &a){
 		c = getchar();
 	}
 	a._sign = sign;
+	
+	a._base_repr = DECIMAL;
 	
 	return in;
 }
