@@ -17,7 +17,7 @@ num_z num_z::operator*(const num_z &a){
 	m = a._blocks;
 	n = this->_blocks;
 	res._sign = sign;
-	res.__resize(m + n);
+	if(res._n_blocks < (m+n)) res.__resize(m + n);
 	res._blocks = m + n;
 	
 	k = 0;
@@ -44,22 +44,22 @@ num_z num_z::operator*(const mod_tuple &a){
 	return *this * a.r;
 }
 
-num_z num_z::operator*(const int &a){
+num_z num_z::operator*(const int a){
 	num_z res(a);
 	return *this*res;
 }
 
-num_z num_z::operator*(const uint32_t &a){
+num_z num_z::operator*(const uint32_t a){
 	num_z res(a);
 	return *this*res;
 }
 
-num_z num_z::operator*(const int64_t &a){
+num_z num_z::operator*(const int64_t a){
 	num_z res(a);
 	return *this*res;
 }
 
-num_z num_z::operator*(const uint64_t &a){
+num_z num_z::operator*(const uint64_t a){
 	num_z res(a);
 	return *this*res;
 }
