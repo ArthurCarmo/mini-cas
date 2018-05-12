@@ -17,7 +17,8 @@ num_z & num_z::operator*=(const num_z &a){
 	n = this->_blocks;
 	k = 0;
 	
-	res.__resize(m + n + 1);
+	if(res._n_blocks < (m + n + 1))
+		res.__resize(m + n + 1);
 	
 	for(j = 0; j < m; ++j){
 		k = 0;
