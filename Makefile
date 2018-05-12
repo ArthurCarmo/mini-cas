@@ -9,8 +9,8 @@ INCLUDE := ./classes/include
 STATIC_LIB := libmini-cas.a
 SHARED_LIB := libmini-cas.so
 
-CC := g++ -std=c++11
-CFLAGS := -g -O3 -Wall
+CXX := g++
+CXXFLAGS := -g -O3 -Wall -std=c++11
 dummy_build_folder := $(shell mkdir -p $(OBJDIR) && mkdir -p $(LIBDIR))
 
 EXECUTABLE := mini-cas
@@ -26,19 +26,19 @@ S_OBJ := $(addprefix $(OBJDIR)/, $(S_OBJECTS))
 D_OBJ := $(addprefix $(OBJDIR)/, $(D_OBJECTS))
 
 main: main.cpp $(STATIC_LIB) $(SHARED_LIB)
-	$(CC) main.cpp -static -o $(EXECUTABLE) -I$(INCLUDE) -L$(LIBDIR) -lmini-cas $(CFLAGS)
+	$(CXX) main.cpp -static -o $(EXECUTABLE) -I$(INCLUDE) -L$(LIBDIR) -lmini-cas $(CXXFLAGS)
 
 $(STATIC_LIB) : $(S_OBJ) 
 	ar rsv $(LIBDIR)/$@ $^
 
 $(SHARED_LIB) : $(D_OBJ)
-	$(CC) -shared -O3 -o $(LIBDIR)/$@ $^
+	$(CXX) -shared -O3 $^ -o $(LIBDIR)/$@
 
 $(OBJDIR)/%.o : $(NUMZDIR)/%.cpp
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 $(OBJDIR)/%.lo : $(NUMZDIR)/%.cpp
-	$(CC) -c $< -o $@ $(CFLAGS) -fPIC
+	$(CXX) -c -fPIC $(CXXFLAGS) $< -o $@
 
 	
 clean :
