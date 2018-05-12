@@ -101,43 +101,43 @@ num_z & num_z::operator=(const uint64_t &b){
 }
 
 num_z & num_z::operator=(const char *a){
+	uint32_t i = 0;
+	uint32_t aux;
+	this->_blocks = 0;
+	this->_n_blocks = 0;	
+	*this = 0;
+
+	if(a[0] == '-'){
+		this->_sign = 1;
+		++i;
+	}	
 	
-	delete []this->_num;	
-	
-	uint32_t i = 0, j = 0, k = 0;
-	uint32_t n_blocks = 0;
-	uint32_t size_last_block = 0;
-	uint64_t block = 0;
-	
-	while(a[++i] ^ '\0');
-	
-	this->_sign = a[0] == '-';
-	n_blocks = i/_DIGITS_PER_BLOCK_;
-	size_last_block = i%_DIGITS_PER_BLOCK_;
-	
-	this->_n_blocks = ((n_blocks+2)>_INIT_SIZE_)?(n_blocks+2):_INIT_SIZE_;
-	this->_num = (uint32_t *)malloc(sizeof(uint32_t) * this->_n_blocks);
-	this->_blocks = n_blocks + 1;
-	
-	while(n_blocks--){
-		block = 0;
-		for(j = i - _DIGITS_PER_BLOCK_; j < i; j++){
-			block *= 10;
-			block += a[j] - '0';
+	if(a[i] == '0'){
+		if(a[++i] == 'x')
+			this->_base_repr = HEX;
+		else if(a[i] == 'b')
+			this->_base_repr = BIN;
+		else --i;
+	}
+
+	while(a[++i] ^ '\0'){
+		if(this->_base_repr == HEX){
+			*this *= 16;
+			if(a[i] >= 'a' && a[i] <= 'f')
+				aux = 10 + a[i] - 'a';
+			else
+				aux = a[i] - '0';
+		}else if(this->_base_repr == BIN){
+			*this *= 2;			
+			aux = a[i] - '0';
+		}else{
+			this->__left_shift();
+			aux = a[i] - '0';
 		}
-		i -= _DIGITS_PER_BLOCK_;
-		this->_num[k++] = block;
+		*this += aux;
 	}
-		
-	block = 0;
-	for(j = this->_sign; j < size_last_block; j++){
-		block *= 10;
-		block += a[j] - '0';
-	}
-	this->_num[k++] = block;
-	
-	for(i = this->_blocks; i < this->_n_blocks; i++)
-		this->_num[i] = 0;
+
+	this->_base_repr = DECIMAL;
 	
 	return *this;
 }
