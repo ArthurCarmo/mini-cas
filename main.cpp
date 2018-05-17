@@ -4,10 +4,18 @@ int main(){
 	num_z a, b;
 	num_zm<7> c(25);
 	num_zm<-9> d("22");
+	
 	num_z e("0xff");
 	num_z f("0b1110");
+
+	num_zm<-11> g(-23);
+	num_zm<23> h("99");
 	
 //	std::cout << e << " " << f << " " << (num_z(255) == num_z("0b11111111")) << "\n\n";
+
+//	for(int i = 0; i < 10; ++i)
+//		std::cout << (c += 1) << " " << (d += 1) << " " << (h *= 2) << " " << (g *= 2) << std::endl;
+
 
 	std::cin >> a;
 	std::cin >> b;
