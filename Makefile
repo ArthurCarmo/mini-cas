@@ -15,7 +15,7 @@ dummy_build_folder := $(shell mkdir -p $(OBJDIR) && mkdir -p $(LIBDIR))
 
 EXECUTABLE := mini-cas
 
-NUMZ_SRC := num_z.cpp abs_bool.cpp attrib.cpp base.cpp bool.cpp io.cpp op_atrdiv.cpp op_atrmod.cpp op_atrmul.cpp op_atrsub.cpp op_atrsum.cpp opdiv.cpp opmod.cpp opmul.cpp opsub.cpp opsum.cpp private_ops.cpp unary_ops.cpp
+NUMZ_SRC := num_z.cpp abs_bool.cpp attrib.cpp base.cpp bool.cpp io.cpp num_ops.cpp op_atrdiv.cpp op_atrmod.cpp op_atrmul.cpp op_atrsub.cpp op_atrsum.cpp opdiv.cpp opmod.cpp opmul.cpp opsub.cpp opsum.cpp private_ops.cpp unary_ops.cpp
 
 SOURCES := $(NUMZ_SRC)
 

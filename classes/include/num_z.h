@@ -24,6 +24,9 @@
 		friend void bin_f(const num_z &);
 		friend num_z hex(const num_z &);
 		friend num_z bin(const num_z &);
+		friend num_z z_gcd(const num_z &, const num_z &);
+		friend num_z __num_z_gcd(num_z &, num_z &);
+		friend num_z __num_z_gcd_single(num_z &, uint32_t);
 		
 		private:
 			uint32_t *_num;
