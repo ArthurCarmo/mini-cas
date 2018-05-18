@@ -83,10 +83,15 @@ void num_z::__right_shift(uint32_t n){
 		*this = 0;
 		return;
 	}
+	this->_blocks -= mv;
 	
-	if(mv > 0)	
-		for(; j - mv;)
-			this->_num[j-- - mv] = this->_num[--this->_blocks];
+	while(i < this->_blocks){
+		this->_num[i] = this->_num[i+mv];
+		++i;
+	}
+	
+	for(i = 0; i < mv; ++i)
+		this->_num[this->_blocks + i] = 0;
 	
 	if(n){
 		while(--n) powten *= 10;

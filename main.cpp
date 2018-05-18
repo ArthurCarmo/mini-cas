@@ -24,7 +24,7 @@ int main(){
 	a - b;
 	a * b;
 	a / b;
-
+	
 //	std::cout << "BIN:\n" << bin(a) << "\n\n";
 //	std::cout << "HEX:\n" << hex(a) << "\n\n";
 	std::cout << "SUM:\n" << a + b << "\n\n";
@@ -35,6 +35,6 @@ int main(){
 	std::cout << "MOD:\n" << a % b << "\n\n";
 //	std::cout << "MOT:\n" << (a % b).q << "*b + " << (a % b).r << "\n\n";
 	std::cout << "GCD:\n" << z_gcd(a, b) << "\n\n";
-	
+
 	return 0;
 }
