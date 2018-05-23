@@ -101,44 +101,7 @@ num_z & num_z::operator=(const uint64_t &b){
 }
 
 num_z & num_z::operator=(const char *a){
-	uint32_t i = 0;
-	uint32_t aux;
-	this->_blocks = 0;
-	this->_n_blocks = 0;	
-	*this = 0;
-
-	if(a[0] == '-'){
-		this->_sign = 1;
-		++i;
-	}	
-	
-	if(a[i] == '0'){
-		if(a[++i] == 'x')
-			this->_base_repr = HEX;
-		else if(a[i] == 'b')
-			this->_base_repr = BIN;
-		else --i;
-	}
-
-	while(a[++i] ^ '\0'){
-		if(this->_base_repr == HEX){
-			*this *= 16;
-			if(a[i] >= 'a' && a[i] <= 'f')
-				aux = 10 + a[i] - 'a';
-			else
-				aux = a[i] - '0';
-		}else if(this->_base_repr == BIN){
-			*this *= 2;			
-			aux = a[i] - '0';
-		}else{
-			this->__left_shift();
-			aux = a[i] - '0';
-		}
-		*this += aux;
-	}
-
-	this->_base_repr = DECIMAL;
-	
+	*this = std::string(a);
 	return *this;
 }
 
@@ -175,8 +138,8 @@ num_z & num_z::operator=(const std::string &a){
 			return *this;
 		}else --i;
 	}
-	l -= i;
-	blocks = l / _DIGITS_PER_BLOCK_;
+	
+	blocks = (l - this->_sign) / _DIGITS_PER_BLOCK_;
 	
 	if(this->_n_blocks <= blocks){
 		this->_num = (uint32_t *) realloc(this->_num, (blocks+1) * sizeof(uint32_t));
@@ -194,10 +157,11 @@ num_z & num_z::operator=(const std::string &a){
 		this->_num[i] = parcial;
 		offset += _DIGITS_PER_BLOCK_;
 	}
+	l = (l - this->_sign) % _DIGITS_PER_BLOCK_;
 	
-	l %= _DIGITS_PER_BLOCK_;
 	this->_blocks = blocks;
 	if(l){
+		l += this->_sign;
 		parcial = 0;
 		for(i = this->_sign; i < l; ++i){
 			parcial *= 10;
