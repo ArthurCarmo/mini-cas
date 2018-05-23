@@ -19,7 +19,9 @@ int main(){
 
 	std::cin >> a;
 	std::cin >> b;
-
+	
+//	std::cout << "a:\n" << a << "\n\nb:\n" << b << "\n\n";
+	
 	a + b;
 	a - b;
 	a * b;
@@ -34,7 +36,7 @@ int main(){
 //	std::cout << "DIT:\n" << (a / b).q << "*b + " << (a / b).r << "\n\n";
 	std::cout << "MOD:\n" << a % b << "\n\n";
 //	std::cout << "MOT:\n" << (a % b).q << "*b + " << (a % b).r << "\n\n";
-	std::cout << "GCD:\n" << z_gcd(a, b) << "\n\n";
+//	std::cout << "GCD:\n" << z_gcd(a, b) << "\n\n";
 
 	return 0;
 }

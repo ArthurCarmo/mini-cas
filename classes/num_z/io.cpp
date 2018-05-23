@@ -22,54 +22,9 @@ std::ostream& operator << (std::ostream &o, const num_z &a){
 }
 
 std::istream& operator >> (std::istream &in, num_z &a){
-	char c;
-	bool sign = 0;
-	uint32_t aux;
-	c = getchar();
-	a = 0;
-	a._base_repr = DECIMAL;
-	while(c == '\n' || c == ' ') 
-		c = getchar();
-
-	if(c == '-'){ 
-		sign = 1;
-		c = getchar();
-	}
-	
-	while(c == '\n' || c == ' ') 
-		c = getchar();
-		
-	if(c == '0'){
-		c = getchar();
-		if(c == 'x')
-			a._base_repr = HEX;
-		else if(c == 'b')
-			a._base_repr = BIN;
-		c = getchar();
-	}
-	while(c == '.' || c == ',' ||( c >= '0' && c <='9') || (a._base_repr == HEX && (c >= 'a' && c <= 'f'))){
-		if(c == '.' || c == ',');
-		else{ 
-			if(a._base_repr == DECIMAL){
-				a.__left_shift();
-				aux = c - '0';
-			}else if(a._base_repr == HEX){
-				a *= 16;
-				if(c >= 'a' && c <= 'f')
-					aux = 10 + (c - 'a');
-				else
-					aux = c - '0';
-			}else{
-				a *= 2;
-				aux = c - '0';
-			}
-			a += aux;
-		}
-		c = getchar();
-	}
-	a._sign = sign;
-	
-	a._base_repr = DECIMAL;
+	std::string s;
+	in >> s;
+	a = s;
 	
 	return in;
 }

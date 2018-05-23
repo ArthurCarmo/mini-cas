@@ -13,7 +13,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <iomanip>
+#include <string>
+
 #include "signatures.h"
 	
 	class num_z {
@@ -69,6 +70,7 @@
 			num_z & operator=(const int &);
 			num_z & operator=(const uint32_t &);
 			num_z & operator=(const char *);
+			num_z & operator=(const std::string &);
 			num_z & operator+=(const num_z &);
 			num_z & operator+=(const div_tuple &);
 			num_z & operator+=(const mod_tuple &);
