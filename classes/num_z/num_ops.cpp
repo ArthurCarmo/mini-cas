@@ -1,5 +1,15 @@
 #include "../include/num_z.h"
 
+//WRAPPER
+num_z z_gcd(const num_z &a, const num_z &b){
+	num_z m(a), n(b);
+	m._sign = n._sign = 0;
+	if(m.abs_geq(n))
+		return (n._blocks == 1)?__num_z_gcd_single(m, n._num[0]):num_z(__num_z_gcd(m, n));
+	return (m._blocks == 1)?__num_z_gcd_single(n, m._num[0]):num_z(__num_z_gcd(n, m));
+}
+
+//GCD EUCLIDES
 num_z __num_z_gcd_single(num_z &a, uint32_t b){
 	if(b == 0) return a;
 	div_tuple res(a / b);
@@ -14,6 +24,7 @@ num_z __num_z_gcd_single(num_z &a, uint32_t b){
 	return num_z(gcd);
 }
 
+//GCD LEHMER
 num_z __num_z_gcd(num_z &a, num_z &b){
 	int64_t q, q2, u, v, A, B, C, D, T;
 	num_z w, z;
@@ -56,18 +67,14 @@ num_z __num_z_gcd(num_z &a, num_z &b){
 	return __num_z_gcd_single(a, b._num[0]); //GCD para precisão simples
 }
 
-num_z z_gcd(const num_z &a, const num_z &b){
-	num_z m(a), n(b);
-	m._sign = n._sign = 0;
-	if(m.abs_geq(n))
-		return (n._blocks == 1)?__num_z_gcd_single(m, n._num[0]):num_z(__num_z_gcd(m, n));
-	return (m._blocks == 1)?__num_z_gcd_single(n, m._num[0]):num_z(__num_z_gcd(n, m));
-}
-
 num_z z_gcd(const num_z &a, uint64_t &b){
 	return num_z(z_gcd(a, num_z(b)));
 }
 
 num_z z_gcd(const uint64_t &a, const num_z &b){
 	return num_z(z_gcd(a, num_z(b)));
+}
+
+num_z z_lcm(const num_z &a, const num_z &b){
+	return (a*b)/z_gcd(a, b);
 }
