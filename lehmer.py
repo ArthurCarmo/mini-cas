@@ -35,6 +35,8 @@ def lehmer_gcd(a, b):
         else:
             a, b = b, a % b
 
+    if(b == 0):
+	return a
     a, b = int(b), int(a%b)
     while b:
         a, b = b, a%b
@@ -42,6 +44,5 @@ def lehmer_gcd(a, b):
 
 a = input()
 b = input()
-
 print lehmer_gcd(a, b)
 
