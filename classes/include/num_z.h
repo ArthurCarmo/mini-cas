@@ -41,6 +41,7 @@
 			void __left_shift(uint32_t);
 			void __right_shift();
 			void __right_shift(uint32_t);
+			
 		public:
 			num_z();
 			num_z(const num_z &);

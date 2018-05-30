@@ -20,6 +20,11 @@ void hex_f(const num_z &a){
 	num_z aux(0);
 	mod_tuple aux2;
 	
+	if(a == 0){
+		printf("0x0");
+		return;
+	}
+	
 	aux2.q = a;
 	aux2.q._sign = 0;
 	
@@ -53,6 +58,11 @@ void bin_f(const num_z &a){
 	uint64_t base_32;
 	num_z aux(0);
 	mod_tuple aux2;
+	
+	if(a == 0){
+		printf("0b0");
+		return;
+	}
 	
 	aux2.q = a;
 	aux2.q._sign = 0;
