@@ -123,6 +123,10 @@ div_tuple num_z::operator/(const uint32_t &a){
 	uint64_t r = 0;
 	uint64_t w;
 	
+	if(a == 0){
+		return res;
+	}
+	
 	if(this->_blocks > _INIT_SIZE_)
 		res.q.__resize(this->_blocks);
 	

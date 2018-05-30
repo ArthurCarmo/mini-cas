@@ -1,6 +1,7 @@
 #include "../include/num_z.h"
 
 num_z __num_z_gcd_single(num_z &a, uint32_t b){
+	if(b == 0) return a;
 	div_tuple res(a / b);
 	uint32_t n = res.r._num[0];
 	uint32_t gcd = b;
@@ -23,7 +24,6 @@ num_z __num_z_gcd(num_z &a, num_z &b){
 		B = C = 0;
 		u = a._num[a._blocks - 1];
 		v = (b._blocks < a._blocks)?0:b._num[a._blocks - 1];
-
 		while(1){
 			if((v + C) == 0 || (v + D) == 0) break;
 			
