@@ -16,6 +16,9 @@ int main(){
 //	for(int i = 0; i < 10; ++i)
 //		std::cout << (c += 1) << " " << (d += 1) << " " << (h *= 2) << " " << (g *= 2) << std::endl;
 
+	std::cout << "Inversa de " << g << ": " << g.inverse() << " <- " << g.inverse().valid() << std::endl;
+	std::cout << "Inversa de " << c << ": " << c.inverse() << " <- " << c.inverse().valid() << std::endl;
+	std::cout << "Inversa de " << d << ": " << d.inverse() << " <- " << d.inverse().valid() << std::endl;
 
 	std::cin >> a;
 	std::cin >> b;

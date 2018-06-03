@@ -18,7 +18,10 @@
 #include "signatures.h"
 	
 	class num_z {
-		
+
+		template <int64_t N>
+		friend class num_zm;
+
 		friend std::ostream& operator << (std::ostream &, const num_z &);
 		friend std::istream& operator >> (std::istream &, num_z &);
 		friend void hex_f(const num_z &);
@@ -57,6 +60,7 @@
 			num_z abs();
 			operator div_tuple();
 			operator mod_tuple();
+			operator bool(){return *this != 0;};
 			num_z operator-() const;
 			num_z operator+() const;
 			num_z & operator++();

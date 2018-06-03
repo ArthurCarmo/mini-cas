@@ -110,7 +110,7 @@ class num_zm {
 		num_zm operator/(const int64_t &);
 		num_zm operator/(const uint64_t &);
 		num_zm operator/(const char *);
-		bool is_valid(void){ return _valid; };
+		bool valid(void){ return _valid; };
 		num_zm inverse();
 };
 

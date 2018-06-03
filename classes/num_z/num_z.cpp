@@ -162,9 +162,12 @@ num_z::num_z(const char *a){
 		else if(a[i] == 'b')
 			this->_base_repr = BIN;
 		else --i;
+		
+		++i;
 	}
+	
 
-	while(a[++i] ^ '\0'){
+	while(a[i] ^ '\0'){
 		if(this->_base_repr == HEX){
 			*this *= 16;
 			if(a[i] >= 'a' && a[i] <= 'f')
@@ -179,6 +182,7 @@ num_z::num_z(const char *a){
 			aux = a[i] - '0';
 		}
 		*this += aux;
+		++i;	
 	}
 
 	this->_base_repr = DECIMAL;

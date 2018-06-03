@@ -3,7 +3,35 @@
 
 template<int64_t N>
 num_zm<N> num_zm<N>::operator/(const num_zm<N> &a){
+	return *this * a.inverse();
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::inverse(){
+	num_zm<N> res;	
+	num_z t(0), r(N), newt(1), newr(this->_num), q, aux;
+	r._sign = 0;
+	newr._sign = 0;
 	
+	while(newr != 0){		
+		q = r / newr;
+		
+		aux = newt;
+		newt = t - (q * newt);
+		t = aux;
+
+		aux = newr;
+		newr = r - (q * newr);
+		r = aux;
+	}
+	if(t._sign)
+		t += N;
+	
+	t._sign = N < 0;
+	res._num = t;
+	if(r > 1) res._valid = 0;
+
+	return res;
 }
 
 #endif
