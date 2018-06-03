@@ -2,6 +2,7 @@ template <int64_t N>
 num_zm<N> & num_zm<N>::operator*=(const num_zm<N> &a){
 	this->_num *= a._num;
 	this->_num %= N;
+	this->_valid &= a._valid;
 	return *this;
 }
 

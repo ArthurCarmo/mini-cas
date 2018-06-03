@@ -9,8 +9,10 @@ class num_zm {
 	template <int64_t U> friend std::istream& operator >> (std::istream &, num_zm<U> &);
 	private:
 		num_z _num;
+		int _valid;
 	public:
 		num_zm();
+		num_zm(const num_zm &);
 		num_zm(const num_z &);
 		num_zm(const div_tuple &);
 		num_zm(const mod_tuple &);
@@ -63,6 +65,15 @@ class num_zm {
 		num_zm & operator*=(const int &);
 		num_zm & operator*=(const uint32_t &);
 		num_zm & operator*=(const char *);
+		num_zm & operator/=(const num_zm<N> &);
+		num_zm & operator/=(const num_z &);
+		num_zm & operator/=(const div_tuple &);
+		num_zm & operator/=(const mod_tuple &);
+		num_zm & operator/=(const int &);
+		num_zm & operator/=(const uint32_t &);
+		num_zm & operator/=(const int64_t &);
+		num_zm & operator/=(const uint64_t &);
+		num_zm & operator/=(const char *);
 		num_zm operator+(const num_zm<N> &);
 		num_zm operator+(const num_z &);
 		num_zm operator+(const div_tuple &);
@@ -90,6 +101,17 @@ class num_zm {
 		num_zm operator*(const int64_t &);
 		num_zm operator*(const uint64_t &);
 		num_zm operator*(const char *);
+		num_zm operator/(const num_zm<N> &);
+		num_zm operator/(const num_z &);
+		num_zm operator/(const div_tuple &);
+		num_zm operator/(const mod_tuple &);
+		num_zm operator/(const int &);
+		num_zm operator/(const uint32_t &);
+		num_zm operator/(const int64_t &);
+		num_zm operator/(const uint64_t &);
+		num_zm operator/(const char *);
+		bool is_valid(void){ return _valid; };
+		num_zm inverse();
 };
 
 #include "inc_tpp.h"

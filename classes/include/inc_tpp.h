@@ -4,6 +4,7 @@
 #include "../num_zm/op_atrmul.tpp"
 #include "../num_zm/op_atrsum.tpp"
 #include "../num_zm/op_atrsub.tpp"
+#include "../num_zm/opdiv.tpp"
 #include "../num_zm/opmul.tpp"
 #include "../num_zm/opsum.tpp"
 #include "../num_zm/opsub.tpp"

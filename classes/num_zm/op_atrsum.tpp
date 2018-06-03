@@ -11,6 +11,7 @@ num_zm<N> & num_zm<N>::operator+=(const num_zm<N> &a){
 	}else if(this->_num >= N){
 		this->_num -= num_z(N);
 	}
+	this->_valid &= a._valid;
 	return *this;
 }
 

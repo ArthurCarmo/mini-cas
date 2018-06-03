@@ -5,7 +5,8 @@ template <int64_t N>
 num_zm<N> & num_zm<N>::operator-=(const num_zm<N> &a){
 	this->_num -= a._num;
 	if(this->_sign ^ a._sign && this->_num != 0)
-		 this->_num = num_z(N) + this->_num;
+		 this->_num = num_z(N) + this->_num;	
+	this->_valid &= a._valid;
 	return *this;
 }
 
