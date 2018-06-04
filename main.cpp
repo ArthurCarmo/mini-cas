@@ -19,7 +19,8 @@ int main(){
 	std::cout << "Inversa de " << g << ": " << g.inverse() << " <- " << g.inverse().valid() << std::endl;
 	std::cout << "Inversa de " << c << ": " << c.inverse() << " <- " << c.inverse().valid() << std::endl;
 	std::cout << "Inversa de " << d << ": " << d.inverse() << " <- " << d.inverse().valid() << std::endl;
-
+	std::cout << "Divide aí: " << d / g << std::endl;
+	
 	std::cin >> a;
 	std::cin >> b;
 	

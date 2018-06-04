@@ -7,6 +7,54 @@ num_zm<N> num_zm<N>::operator/(const num_zm<N> &a){
 }
 
 template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const num_z &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const div_tuple &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const mod_tuple &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const int &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const uint32_t &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const int64_t &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const uint64_t &a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
+num_zm<N> num_zm<N>::operator/(const char *a){
+	num_zm<N> res(this->_num / a);
+	return res;
+}
+
+template<int64_t N>
 num_zm<N> num_zm<N>::inverse(){
 	num_zm<N> res;	
 	num_z t(0), r(N), newt(1), newr(this->_num), q, aux;
