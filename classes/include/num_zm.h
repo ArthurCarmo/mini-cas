@@ -23,6 +23,7 @@ class num_zm {
 		num_zm(const char *);	
 		num_z raw_value() const;
 		operator num_z(){ return this->_num; };
+//		operator num_q(){ return num_q(this->_num, 1); };
 		num_zm operator-() const;
 		num_zm operator+() const;
 		num_zm & operator++();

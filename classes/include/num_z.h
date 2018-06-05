@@ -10,6 +10,7 @@
 #define DECIMAL 0
 #define HEX 1
 #define BIN 2
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -21,6 +22,7 @@
 
 		template <int64_t N>
 		friend class num_zm;
+		friend class num_q;
 
 		friend std::ostream& operator << (std::ostream &, const num_z &);
 		friend std::istream& operator >> (std::istream &, num_z &);
@@ -60,6 +62,7 @@
 			num_z abs();
 			operator div_tuple();
 			operator mod_tuple();
+//			operator num_q(){ return num_q(*this, 1); };
 			operator bool(){return *this != 0;};
 			num_z operator-() const;
 			num_z operator+() const;
