@@ -37,6 +37,16 @@ num_z num_z::operator*(const num_z &a){
 	return res;
 }
 
+num_z num_z::pow(uint64_t N){
+	num_z p(*this);
+	
+	if(N == 0) return num_z(1);
+	if(N == 1) return *this;
+	p = this->pow(N / 2);
+	if(N % 2) return *this * p * p;
+	return p * p;
+}
+
 num_z num_z::operator*(const div_tuple &a){
 	return *this * a.q;
 }

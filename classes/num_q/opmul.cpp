@@ -33,3 +33,17 @@ num_q num_q::operator*(const int64_t &a){
 	res._simplify();
 	return res;
 }
+
+num_q num_q::pow(int64_t N){
+	num_q p(*this);
+	num_z aux(this->_numerator);
+	
+	p._numerator.pow(N);
+	p._denominator.pow(N);
+	
+	if(N < 0){
+		p._numerator = p._denominator;
+		p._denominator = aux;
+	}
+	return p;
+}

@@ -50,6 +50,7 @@
 			num_q operator/(const num_q &);
 			num_q operator/(const num_z &);
 			num_q operator/(const int64_t &);
+			num_q pow(int64_t);
 			bool operator==(const num_q &);
 			bool operator==(const num_z &);
 			bool operator==(const int64_t &);

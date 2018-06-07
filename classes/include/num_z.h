@@ -160,6 +160,8 @@
 			mod_tuple operator%(const uint64_t &);
 			mod_tuple operator%(const char *);
 			
+			num_z pow(uint64_t);
+			
 			bool operator==(const num_z &) const;
 			bool operator==(const div_tuple &) const;
 			bool operator==(const mod_tuple &) const;
