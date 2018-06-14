@@ -112,6 +112,7 @@ class num_zm {
 		num_zm operator/(const uint64_t &);
 		num_zm operator/(const char *);
 		bool valid(void){ return _valid; };
+		bool has_inverse();
 		num_zm inverse();
 };
 

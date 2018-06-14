@@ -14,7 +14,7 @@ mod_tuple num_z::operator%(const num_z &a){
 	size_q = this->_blocks - a._blocks + 1;
 	
 	//Dividendo -1, 0 ou 1
-	if(a == (uint32_t)0 || *this == 0) return res;
+	if(a == (uint32_t)0) { int k = 0; printf("%d", 1 / k); };
 	if(a == (uint32_t)1){
 		res.q = *this;
 		return res;
