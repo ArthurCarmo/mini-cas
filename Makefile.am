@@ -7,7 +7,8 @@ include_HEADERS = src/include/mini-cas.h \
 		src/include/num_q.h \
 		src/include/num_z.h \
 		src/include/full_zm.h \
-		src/include/polynomial.h 
+		src/include/polynomial.h \
+		src/include/signatures.h
 
 libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/abs_bool.cpp \
