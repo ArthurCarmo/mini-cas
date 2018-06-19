@@ -1,4 +1,4 @@
-#include <mini-cas.h>
+#include "../../src/include/mini-cas.h"
 
 int main(){
 	num_z a, b;

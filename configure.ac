@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(libmini-cas-dev, 0.1, dealwithit@onyour.own)
+AC_INIT(minicas, beta, dealwithit@onyour.own)
 AM_INIT_AUTOMAKE(subdir-objects)
 AC_CONFIG_MACRO_DIRS([m4])
 
