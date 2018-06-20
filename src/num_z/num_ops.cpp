@@ -72,7 +72,7 @@ num_z z_gcd(const num_z &a, uint64_t &b){
 }
 
 num_z z_gcd(const uint64_t &a, const num_z &b){
-	return z_gcd(a, num_z(b));
+	return z_gcd(b, num_z(a));
 }
 
 num_z z_lcm(const num_z &a, const num_z &b){
