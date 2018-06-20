@@ -114,6 +114,7 @@ class num_zm {
 	bool valid(void){ return _valid; };
 	bool has_inverse();
 	num_zm inverse();
+	num_zm pow(uint64_t);
 };
 
 # 1 "inc_tpp.h" 1
@@ -829,6 +830,18 @@ num_zm<N> num_zm<N>::operator--(int){
 	if(this->_num == -1) this->_num = N - 1;
  }
  return res;
+}
+
+template <int64_t N>
+num_zm<N> num_zm<N>::pow(uint64_t exp) {
+	num_zm<N> result(1);
+	
+	while (exp > 0) {
+		if (exp & 1) result *= *this;
+		*this *= *this;
+		exp >>= 1;
+	}
+	return result;
 }
 
 

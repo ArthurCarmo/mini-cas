@@ -60,6 +60,8 @@
 			num_z(const char *);
 			~num_z();
 			num_z abs();
+			num_z & make_abs(){ this->_sign = 0; return *this; };
+			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
 			operator div_tuple();
 			operator mod_tuple();
 //			operator num_q(){ return num_q(*this, 1); };
@@ -210,6 +212,7 @@
 			bool operator!=(const int64_t &) const;
 			bool operator!=(const uint64_t &) const;
 			bool operator!=(const char *) const;
+			bool sign() const { return this->_sign; };
 			
 			bool abs_neq(const num_z &);
 			bool abs_eq(const num_z &);
