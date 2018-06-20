@@ -22,7 +22,7 @@ class num_zm {
 	num_zm(const uint32_t &);
 	num_zm(const char *);
 	num_z raw_value() const;
-	int32_t lsd(){ retrurn this->_num.lsd(); };
+	int32_t lsd(){ return this->_num.lsd(); };
 	operator num_z(){ return this->_num; };
 	
 	num_zm operator-() const;
