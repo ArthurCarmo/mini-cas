@@ -59,6 +59,7 @@
 			num_z(const uint32_t &);
 			num_z(const char *);
 			~num_z();
+			int32_t lsd(){ return this->_num[0]; };
 			num_z abs();
 			num_z & make_abs(){ this->_sign = 0; return *this; };
 			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
