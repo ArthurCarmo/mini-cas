@@ -13,8 +13,8 @@ num_z::num_z(){
 
 //------ CONVERTER -------------
 
-num_z::operator div_tuple(){div_tuple r; r.q = *this; return r.q;}
-num_z::operator mod_tuple(){div_tuple q; q.r = *this; return q.r;}
+num_z::operator div_tuple(){div_tuple q; q.q = *this; return q;}
+num_z::operator mod_tuple(){mod_tuple r; r.r = *this; return r;}
 
 //----COPY CONSTRUCTORS---------
 
