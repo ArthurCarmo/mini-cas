@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
-CXXFLAGS = -std=c++11 -O3 -Wall
+CXXFLAGS = -std=c++11 -O2 -Wall
 
 lib_LTLIBRARIES = libminicas.la
 
