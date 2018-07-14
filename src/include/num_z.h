@@ -61,8 +61,10 @@
 			~num_z();
 			int32_t lsd(){ return this->_num[0]; };
 			num_z abs();
+			num_z negative(){ num_z res(*this); res._sign = 1; return res; };
 			num_z & make_abs(){ this->_sign = 0; return *this; };
 			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
+			num_z & make_negative(){ this->_sign = 1; return *this; };
 			operator div_tuple();
 			operator mod_tuple();
 //			operator num_q(){ return num_q(*this, 1); };
