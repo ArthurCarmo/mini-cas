@@ -11,14 +11,9 @@
 #define HEX 1
 #define BIN 2
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <string>
+#include "number.h"
 
-#include "signatures.h"
-	
-	class num_z {
+	class num_z : public Number{
 
 		template <int64_t N>
 		friend class num_zm;
@@ -60,6 +55,7 @@
 			num_z(const char *);
 			~num_z();
 			int32_t lsd(){ return this->_num[0]; };
+			int32_t msd(){ return this->_num[this->_blocks-1]; };
 			num_z abs();
 			num_z negative(){ num_z res(*this); res._sign = 1; return res; };
 			num_z & make_abs(){ this->_sign = 0; return *this; };

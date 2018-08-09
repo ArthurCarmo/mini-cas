@@ -1,9 +1,10 @@
 #ifndef __NUM_Q_H
 #define __NUM_Q_H
 
+#include "number.h"
 #include "num_z.h"
 
-	class num_q {
+	class num_q  : public Number{
 
 		friend std::ostream& operator << (std::ostream &, const num_q &);
 		friend std::istream& operator >> (std::istream &, num_q &);
@@ -21,6 +22,7 @@
 			num_q(const num_z &, const num_z &);
 			num_q(const num_z &, const int64_t &);
 			num_q(const int64_t &, const num_z &);
+			num_q(const int64_t &, const int64_t &);
 			
 			num_q abs(){ num_q res(*this); res._sign = 0; return res; };
 			num_q negative(){ num_q res(*this); res._sign = 1; return res; };

@@ -50,3 +50,12 @@ num_q::num_q(const int64_t &a, const num_z &b){
 	this->_denominator._sign = 0;
 	this->_simplify();
 }
+
+num_q::num_q(const int64_t &a, const int64_t &b){
+	this->_numerator = a;
+	this->_denominator = b;
+	this->_sign = (a < 0) ^ (b < 0);
+	this->_numerator._sign = 0;
+	this->_denominator._sign = 0;
+	this->_simplify();
+}

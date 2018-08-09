@@ -1,6 +1,6 @@
 #! /bin/bash
 # Generated automatically by config.status (minicas) beta
-# Libtool was configured on host arthur-System-Product-Name:
+# Libtool was configured on host arthur-pc:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.

@@ -526,7 +526,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/arthur/local/minicas
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -542,6 +542,7 @@ AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 lib_LTLIBRARIES = libminicas.la
 include_HEADERS = src/include/mini-cas.h \
+		src/include/number.h \
 		src/include/num_q.h \
 		src/include/num_z.h \
 		src/include/full_zm.h \
