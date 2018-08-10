@@ -28,10 +28,13 @@ class num_zm : public Number {
 		num_zm(const char *);
 
 		num_zm & value(){ return *this; };		
-
 		num_z raw_value() const;
+	
+		int type(){ return this->_type; };
+		int64_t base() { return N; };
 		int32_t lsd(){ return this->_num.lsd(); };
 		int32_t msd(){ return this->_num.msd(); };
+		
 		operator num_z(){ return this->_num; };
 	
 		num_zm operator-() const;
@@ -216,55 +219,64 @@ template <int64_t U> std::istream& operator >> (std::istream &i, num_zm<U> &a){
 
 template <int64_t N>
 num_zm<N>::num_zm(){
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const num_zm<N> &a){
 	this->_num = a._num;
-	this->_valid = a._valid;
+	this->_valid = a._valid;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const num_z &a){
 	this->_num = num_z(a)%N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const div_tuple &a){
 	this->_num = num_z(a.q) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const mod_tuple &a){
 	this->_num = num_z(a.r) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const uint64_t &a){
 	this->_num = num_z(a) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const int &a){
 	this->_num = num_z(a) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const uint32_t &a){
 	this->_num = num_z(a) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 
 template <int64_t N>
 num_zm<N>::num_zm(const char *a){
 	this->_num = num_z(a) % N;
-	this->_valid = 1;
+	this->_valid = 1;	
+	this->_type = _CAS_TYPE_ZM_;
 }
 # 4 "inc_tpp.h" 2
 # 1 "../num_zm/op_atrmul.tpp" 1

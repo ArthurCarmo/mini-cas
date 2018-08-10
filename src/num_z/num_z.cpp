@@ -9,6 +9,7 @@ num_z::num_z(){
 	this->_blocks = 1;
 	this->_sign = 0;
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 //------ CONVERTER -------------
@@ -27,6 +28,7 @@ num_z::num_z(const num_z &a){
 	this->_num[0] = a._num[0];
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const num_z &a, const uint32_t &b){
@@ -43,6 +45,7 @@ num_z::num_z(const num_z &a, const uint32_t &b){
 	
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const div_tuple &a){
@@ -54,6 +57,7 @@ num_z::num_z(const div_tuple &a){
 	this->_num[0] = a.q._num[0];
 	this->_sign = a.q._sign;
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const mod_tuple &a){
@@ -65,6 +69,7 @@ num_z::num_z(const mod_tuple &a){
 	this->_num[0] = a.r._num[0];
 	this->_sign = a.r._sign;
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 
@@ -87,6 +92,7 @@ num_z::num_z(const int64_t &a){
 		this->_num[b] = 0;
 	
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const uint64_t &a){
@@ -104,6 +110,7 @@ num_z::num_z(const uint64_t &a){
 		this->_num[b] = 0;
 	
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const int &a){
@@ -125,7 +132,9 @@ num_z::num_z(const int &a){
 		this->_num[b] = 0;
 		
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
+
 num_z::num_z(const uint32_t &a){
 	uint32_t b = a;
 	this->_n_blocks = _INIT_SIZE_;
@@ -141,6 +150,7 @@ num_z::num_z(const uint32_t &a){
 		this->_num[b] = 0;
 		
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 num_z::num_z(const char *a){
@@ -186,6 +196,7 @@ num_z::num_z(const char *a){
 	}
 
 	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
 }
 
 //----DESTRUCTOR----------------

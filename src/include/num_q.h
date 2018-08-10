@@ -33,7 +33,8 @@
 			num_q & make_abs(){ this->_sign = 0; return *this; };
 			num_q & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
 			num_q & make_negative(){ this->_sign = 1; return *this; };
-
+			
+			int type(){ return this->_type; };
 			num_z numerator() const { num_z res(this->_numerator); res._sign = this->_sign; return res; };
 			num_z denominator() const { return this->_denominator; };
 

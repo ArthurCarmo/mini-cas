@@ -56,6 +56,8 @@
 			num_z(const uint32_t &);
 			num_z(const char *);
 			~num_z();
+
+			int type(){ return this->_type; };
 			int32_t lsd(){ return this->_num[0]; };
 			int32_t msd(){ return this->_num[this->_blocks-1]; };
 
@@ -225,8 +227,9 @@
 			bool operator!=(const int64_t &) const;
 			bool operator!=(const uint64_t &) const;
 			bool operator!=(const char *) const;
-			bool sign() const { return this->_sign; };
-			
+
+			bool sign() const { return this->_sign; };			
+
 			bool abs_neq(const num_z &);
 			bool abs_eq(const num_z &);
 			bool abs_geq(const num_z &);
