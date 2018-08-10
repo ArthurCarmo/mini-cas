@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 div_tuple num_z::operator/(const num_z &a){ 
 	div_tuple res;	
@@ -101,6 +102,11 @@ div_tuple num_z::operator/(const num_z &a){
 	res.r = m / (uint32_t)d;
 	res.r._sign = (res.r == 0)?0:this->_sign;
 	return res;
+}
+
+num_q num_z::operator/(const num_q &a){
+	num_q res(a.inverse());
+	return res * *this;
 }
 
 div_tuple num_z::operator/(const div_tuple &a){

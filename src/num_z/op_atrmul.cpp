@@ -1,5 +1,5 @@
 #include "../include/num_z.h"
-
+#include "../include/num_q.h"
 
 num_z & num_z::operator*=(const num_z &a){
 	if((a == 0) | (*this == 0))return (*this = 0);
@@ -34,6 +34,13 @@ num_z & num_z::operator*=(const num_z &a){
 	res._blocks = m + n;
 	while(res._num[res._blocks - 1] == 0) --res._blocks;
 	*this = res;
+	return *this;
+}
+
+num_z & num_z::operator*=(const num_q &a){
+	*this *= a.numerator();
+	*this /= a.denominator();
+	this->_sign ^= a.sign();
 	return *this;
 }
 

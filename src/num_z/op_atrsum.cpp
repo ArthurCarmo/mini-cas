@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 num_z & num_z::operator+=(const num_z &a){
 	if(this->_sign ^ a._sign){
@@ -34,6 +35,11 @@ num_z & num_z::operator+=(const num_z &a){
 		this->_num[this->_blocks++] = 1;
 	
 	return *this;
+}
+
+num_z & num_z::operator+=(const num_q &a){
+	num_q res(a);
+	return *this = (res += *this);
 }
 
 num_z & num_z::operator+=(const uint64_t &a){ //EXPANDIR

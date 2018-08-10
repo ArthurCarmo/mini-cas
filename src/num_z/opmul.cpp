@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 num_z num_z::operator*(const num_z &a){ 
 	num_z res(uint32_t(0));
@@ -35,6 +36,11 @@ num_z num_z::operator*(const num_z &a){
 	while(res._num[res._blocks - 1] == 0) --res._blocks;
 
 	return res;
+}
+
+num_q num_z::operator*(const num_q &a){
+	num_q res(a);
+	return res * *this;
 }
 
 num_z num_z::pow(uint64_t N){

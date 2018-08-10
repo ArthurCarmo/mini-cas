@@ -66,7 +66,7 @@
 			num_q operator/(const num_q &);
 			num_q operator/(const num_z &);
 			num_q operator/(const int64_t &);
-			num_q inverse(){ return num_q(this->_denominator, this->_numerator); };
+			num_q inverse() const { return num_q(this->_denominator, this->_numerator); };
 			num_q pow(int64_t);
 
 			bool sign() const { return this->_sign; };

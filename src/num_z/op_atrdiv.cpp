@@ -88,8 +88,8 @@ num_z & num_z::operator/=(const num_z &a){
 }
 
 num_z & num_z::operator/=(const num_q &a){
-	*this *= a.numerator();
-	*this /= a.denominator();
+	*this *= a.denominator();
+	*this /= a.numerator();
 	this->_sign ^= a.sign();
 	return *this;
 }

@@ -85,6 +85,7 @@
 			num_z & operator=(const char *);
 			num_z & operator=(const std::string &);
 			num_z & operator+=(const num_z &);
+			num_z & operator+=(const num_q &);
 			num_z & operator+=(const div_tuple &);
 			num_z & operator+=(const mod_tuple &);
 			num_z & operator+=(const int64_t &);
@@ -93,6 +94,7 @@
 			num_z & operator+=(const uint32_t &);
 			num_z & operator+=(const char *);
 			num_z & operator-=(const num_z &);
+			num_z & operator-=(const num_q &);
 			num_z & operator-=(const div_tuple &);
 			num_z & operator-=(const mod_tuple &);
 			num_z & operator-=(const int64_t &);
@@ -101,6 +103,7 @@
 			num_z & operator-=(const uint32_t &);
 			num_z & operator-=(const char *);
 			num_z & operator*=(const num_z &);
+			num_z & operator*=(const num_q &);
 			num_z & operator*=(const div_tuple &);
 			num_z & operator*=(const mod_tuple &);
 			num_z & operator*=(const int64_t &);
@@ -135,6 +138,7 @@
 			num_z operator+(const uint64_t &);
 			num_z operator+(const char *);
 			num_z operator-(const num_z &);
+			num_q operator-(const num_q &);
 			num_z operator-(const div_tuple &);
 			num_z operator-(const mod_tuple &);
 			num_z operator-(const int &);
@@ -143,6 +147,7 @@
 			num_z operator-(const uint64_t &);
 			num_z operator-(const char *);
 			num_z operator*(const num_z &);
+			num_q operator*(const num_q &);
 			num_z operator*(const div_tuple &);
 			num_z operator*(const mod_tuple &);
 			num_z operator*(const int &);
@@ -151,6 +156,7 @@
 			num_z operator*(const uint64_t &);
 			num_z operator*(const char *);
 			div_tuple operator/(const num_z &);
+			num_q operator/(const num_q &);
 			div_tuple operator/(const div_tuple &);
 			div_tuple operator/(const mod_tuple &);
 			div_tuple operator/(const int &);

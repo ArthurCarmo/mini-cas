@@ -1,5 +1,5 @@
 #include "../include/num_z.h"
-
+#include "../include/num_q.h"
 
 num_z & num_z::operator-=(const num_z &a){
 	uint32_t i;
@@ -40,6 +40,11 @@ num_z & num_z::operator-=(const num_z &a){
 	if(this->_blocks == 1 && this->_num[0] == 0) this->_sign = 0;
 	
 	return *this;
+}
+
+num_z & num_z::operator-=(const num_q &a){
+	num_q res(-a);
+	return *this = (res += *this);
 }
 
 num_z & num_z::operator-=(const div_tuple &a){
