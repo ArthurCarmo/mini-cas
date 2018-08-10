@@ -4,7 +4,8 @@
 #include "signatures.h"
 
 class Number{
-
+	public:
+		virtual Number & value() = 0;
 };
 
 #endif

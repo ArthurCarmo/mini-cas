@@ -11,6 +11,7 @@ class num_zm : public Number {
 	private:
 		num_z _num;
 		int _valid;
+		
 	public:
 		num_zm();
 		num_zm(const num_zm &);
@@ -22,6 +23,9 @@ class num_zm : public Number {
 		num_zm(const int &);
 		num_zm(const uint32_t &);
 		num_zm(const char *);
+
+		num_zm & value(){ return *this; };		
+
 		num_z raw_value() const;
 		int32_t lsd(){ return this->_num.lsd(); };
 		int32_t msd(){ return this->_num.msd(); };

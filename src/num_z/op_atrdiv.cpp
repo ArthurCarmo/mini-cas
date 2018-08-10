@@ -1,5 +1,5 @@
 #include "../include/num_z.h"
-
+#include "../include/num_q.h"
 
 num_z & num_z::operator/=(const num_z &a){
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
@@ -55,6 +55,7 @@ num_z & num_z::operator/=(const num_z &a){
 	n_size = n._blocks - 1;
 	for(j = m._blocks - 1; j > n_size; --j){	
 		q_guess = (m._num[j] == n._num[n._blocks-1])?((uint64_t)_MAX_DIGIT_BASE_):(((uint64_t)m._num[j]*(uint64_t)_BASE_ + m._num[j-1])/n._num[n._blocks - 1]);
+
 		while(((uint64_t)n._num[n._blocks - 2]*(uint64_t)q_guess) > ((uint64_t)((uint64_t)m._num[j] * (uint64_t)_BASE_ - (uint64_t)n._num[n._blocks - 1]*(uint64_t)q_guess + m._num[j-1])* (uint64_t)_BASE_ + m._num[j-2])) --q_guess;
 
 		//Multipĺicar e subtrair
@@ -83,6 +84,13 @@ num_z & num_z::operator/=(const num_z &a){
 	}
 	//Formatar resultado
 	if(this->_num[this->_blocks - 1] == 0 && (this->_blocks ^ 1) ) --this->_blocks;
+	return *this;
+}
+
+num_z & num_z::operator/=(const num_q &a){
+	*this *= a.numerator();
+	*this /= a.denominator();
+	this->_sign ^= a.sign();
 	return *this;
 }
 

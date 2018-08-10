@@ -56,15 +56,19 @@
 			~num_z();
 			int32_t lsd(){ return this->_num[0]; };
 			int32_t msd(){ return this->_num[this->_blocks-1]; };
+
+			num_z & value(){ return *this; };
+
 			num_z abs();
 			num_z negative(){ num_z res(*this); res._sign = 1; return res; };
 			num_z & make_abs(){ this->_sign = 0; return *this; };
 			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
 			num_z & make_negative(){ this->_sign = 1; return *this; };
+
 			operator div_tuple();
 			operator mod_tuple();
-//			operator num_q(){ return num_q(*this, 1); };
 			operator bool(){return *this != 0;};
+			
 			num_z operator-() const;
 			num_z operator+() const;
 			num_z & operator++();
@@ -105,6 +109,7 @@
 			num_z & operator*=(const uint32_t &);
 			num_z & operator*=(const char *);
 			num_z & operator/=(const num_z &);
+			num_z & operator/=(const num_q &);
 			num_z & operator/=(const div_tuple &);
 			num_z & operator/=(const mod_tuple &);
 			num_z & operator/=(const int64_t &);
@@ -121,6 +126,7 @@
 			num_z & operator%=(const uint32_t &);
 			num_z & operator%=(const char *);
 			num_z operator+(const num_z &);
+			num_q operator+(const num_q &);
 			num_z operator+(const div_tuple &);
 			num_z operator+(const mod_tuple &);
 			num_z operator+(const int &);
@@ -219,7 +225,7 @@
 			bool abs_leq(const num_z &);
 			bool abs_gt(const num_z &);
 			bool abs_lt(const num_z &);
-			
+
 	};
 	
 	struct div_tuple{

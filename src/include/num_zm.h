@@ -21,6 +21,7 @@ class num_zm {
 		num_zm(const int &);
 		num_zm(const uint32_t &);
 		num_zm(const char *);	
+
 		num_z raw_value() const;
 		operator num_z(){ return this->_num; };
 //		operator num_q(){ return num_q(this->_num, 1); };
@@ -114,6 +115,7 @@ class num_zm {
 		bool valid(void){ return _valid; };
 		bool has_inverse();
 		num_zm inverse();
+		
 };
 
 #include "inc_tpp.h"

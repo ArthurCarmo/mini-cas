@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 num_z num_z::operator+(const num_z &a){
 	if(this->_sign ^ a._sign){
@@ -17,6 +18,11 @@ num_z num_z::operator+(const num_z &a){
 	num_z res(*this);
 	return res += a;	
 	
+}
+
+num_q num_z::operator+(const num_q &a){
+	num_q res(a);
+	return(res += *this);
 }
 
 num_z num_z::operator+(const div_tuple &a){
