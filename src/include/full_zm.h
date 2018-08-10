@@ -8,10 +8,13 @@ template <int64_t N>
 class num_zm : public Number {
 	template <int64_t U> friend std::ostream& operator << (std::ostream &, const num_zm<U> &);
 	template <int64_t U> friend std::istream& operator >> (std::istream &, num_zm<U> &);
+
 	private:
 		num_z _num;
 		int _valid;
 		
+		std::ostream & display() const { return std::cout << *this; };
+
 	public:
 		num_zm();
 		num_zm(const num_zm &);

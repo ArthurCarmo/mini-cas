@@ -15,6 +15,8 @@
 			bool _sign;
 			
 			void _simplify();
+			std::ostream & display() const { return std::cout << *this; };
+
 		public: 
 			num_q();
 			num_q(const num_q &);

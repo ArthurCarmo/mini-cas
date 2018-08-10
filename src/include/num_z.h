@@ -42,6 +42,8 @@
 			void __right_shift();
 			void __right_shift(uint32_t);
 			
+			std::ostream & display() const { return std::cout << *this; };
+			
 		public:
 			num_z();
 			num_z(const num_z &);
