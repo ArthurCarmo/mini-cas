@@ -1,8 +1,8 @@
 #ifndef __NUM_ZM_H__
 #define __NUM_ZM_H__
 
-#include "number.h"
 #include "num_z.h"
+#include "num_q.h"
 
 template <int64_t N>
 class num_zm : public Number {
@@ -27,9 +27,10 @@ class num_zm : public Number {
 		num_zm(const uint32_t &);
 		num_zm(const char *);
 
-		num_zm & value(){ return *this; };		
-		num_z raw_value() const;
-	
+		num_zm & value(){ return *this; };
+		num_z z_value(){ return num_z(*this); };
+		num_q q_value(){ return num_q(*this); };
+
 		int type(){ return this->_type; };
 		int64_t base() { return N; };
 		int32_t lsd(){ return this->_num.lsd(); };
@@ -45,6 +46,7 @@ class num_zm : public Number {
 		num_zm operator--(int);
 		num_zm & operator=(const num_zm<N> &);
 		num_zm & operator=(const num_z &);
+		num_zm & operator=(const num_q &);
 		num_zm & operator=(const div_tuple &);
 		num_zm & operator=(const mod_tuple &);
 		num_zm & operator=(const int64_t &);
@@ -144,6 +146,13 @@ num_zm<N> & num_zm<N>::operator=(const num_zm<N> &a){
 
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator=(const num_z &a){
+	this->_num = num_z(a) % N;
+	this->_valid = 1;
+	return *this;
+}
+
+template <int64_t N>
+num_zm<N> & num_zm<N>::operator=(const num_q &a){
 	this->_num = num_z(a) % N;
 	this->_valid = 1;
 	return *this;
@@ -790,13 +799,6 @@ num_zm<N> num_zm<N>::operator-(const char *a){
 }
 # 11 "inc_tpp.h" 2
 # 1 "../num_zm/unary_ops.tpp" 1
-
-
-
-template <int64_t N>
-num_z num_zm<N>::raw_value() const {
-	return this->_num;
-}
 
 template <int64_t N>
 num_zm<N> num_zm<N>::operator-() const{

@@ -47,6 +47,7 @@
 		public:
 			num_z();
 			num_z(const num_z &);
+			num_z(const num_q &);
 			num_z(const num_z &, const uint32_t &);
 			num_z(const div_tuple &);
 			num_z(const mod_tuple &);
@@ -62,6 +63,8 @@
 			int32_t msd(){ return this->_num[this->_blocks-1]; };
 
 			num_z & value(){ return *this; };
+			num_z z_value(){ return *this; };
+			num_q q_value();
 
 			num_z abs();
 			num_z negative(){ num_z res(*this); res._sign = 1; return res; };
@@ -80,6 +83,7 @@
 			num_z operator++(int);
 			num_z operator--(int);
 			num_z & operator=(const num_z &);
+			num_z & operator=(const num_q &);
 			num_z & operator=(const div_tuple &);
 			num_z & operator=(const mod_tuple &);
 			num_z & operator=(const int64_t &);
@@ -252,4 +256,5 @@
 		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
 		operator num_z(){ return this->r; }
 	};
+
 #endif

@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 num_z & num_z::operator=(const num_z &a){
 	uint32_t i;
@@ -13,6 +14,11 @@ num_z & num_z::operator=(const num_z &a){
 	for(i = this->_blocks; i < this->_n_blocks; i++)
 		this->_num[i] = 0;
 	
+	return *this;
+}
+
+num_z & num_z::operator=(const num_q &a){
+	*this = a.numerator() / a.denominator();
 	return *this;
 }
 

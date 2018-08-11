@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 num_z::num_z(){
 	this->_n_blocks = _INIT_SIZE_;
@@ -16,6 +17,7 @@ num_z::num_z(){
 
 num_z::operator div_tuple(){div_tuple q; q.q = *this; return q;}
 num_z::operator mod_tuple(){mod_tuple r; r.r = *this; return r;}
+num_q num_z::q_value(){ return num_q(*this); };
 
 //----COPY CONSTRUCTORS---------
 
@@ -31,11 +33,30 @@ num_z::num_z(const num_z &a){
 	this->_type = _CAS_TYPE_Z_;
 }
 
+num_z::num_z(const num_q &a){
+	num_z res(a.numerator() / a.denominator());
+	uint32_t i;	
+
+	this->_n_blocks = res._n_blocks;
+	this->_blocks = res._blocks;
+	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*res._blocks);
+
+	for(i = this->_blocks; --i; )
+		this->_num[i] = res._num[i];
+	this->_num[0] = res._num[0];
+
+	this->_sign = res._sign;
+	this->_base_repr = DECIMAL;
+	this->_type = _CAS_TYPE_Z_;
+}
+
 num_z::num_z(const num_z &a, const uint32_t &b){
 	uint32_t i;
+
 	this->_n_blocks =  b;
 	this->_blocks = a._blocks;
 	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*b);
+
 	for(i = this->_blocks; --i;)
 		this->_num[i] = a._num[i];
 	this->_num[0] = a._num[0];
@@ -52,9 +73,11 @@ num_z::num_z(const div_tuple &a){
 	this->_n_blocks =  a.q._n_blocks;
 	this->_blocks = a.q._blocks;
 	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*this->_n_blocks);
+
 	for(uint32_t i = this->_blocks; --i;)
 		this->_num[i] = a.q._num[i];
 	this->_num[0] = a.q._num[0];
+
 	this->_sign = a.q._sign;
 	this->_base_repr = DECIMAL;
 	this->_type = _CAS_TYPE_Z_;
@@ -64,9 +87,11 @@ num_z::num_z(const mod_tuple &a){
 	this->_n_blocks =  a.r._n_blocks;
 	this->_blocks = a.r._blocks;
 	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*this->_n_blocks);
+
 	for(uint32_t i = this->_blocks; --i;)
 		this->_num[i] = a.r._num[i];
 	this->_num[0] = a.r._num[0];
+
 	this->_sign = a.r._sign;
 	this->_base_repr = DECIMAL;
 	this->_type = _CAS_TYPE_Z_;
@@ -78,10 +103,12 @@ num_z::num_z(const int64_t &a){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*_INIT_SIZE_);
 	this->_sign = 0;
+
 	if(b < 0){
 		this->_sign = 1;
 		b = -b;
 	}
+
 	this->_blocks = 0;	
 	do{
 		this->_num[this->_blocks++] = b%_BASE_;
