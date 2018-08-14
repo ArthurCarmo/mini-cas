@@ -2,17 +2,14 @@
 #include "../include/num_q.h"
 
 num_z & num_z::operator=(const num_z &a){
-	uint32_t i;
 	if(this->_n_blocks < a._blocks)
 		this->__resize(a._blocks + 1);
+		
 	this->_blocks = a._blocks;
-	for(i = this->_blocks; --i;)
-		this->_num[i] = a._num[i];
-	this->_num[0] = a._num[0];
-	this->_sign = a._sign;
 	
-	for(i = this->_blocks; i < this->_n_blocks; i++)
-		this->_num[i] = 0;
+	memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	
+	this->_sign = a._sign;
 	
 	return *this;
 }

@@ -43,15 +43,19 @@ void num_z::__left_shift(uint32_t n){
 			this->__resize(this->_blocks + mv + 1);
 		}
 		i = this->_blocks;
-		while(--i)
+		
+		memmove(this->_num + mv, this->_num, mv * sizeof(uint32_t));
+		
+/*		while(--i)
 			this->_num[i+mv] = this->_num[i];
 		this->_num[mv] = this->_num[0];
 
-		this->_blocks += mv;	
-		
 		while(mv--)
 			this->_num[mv] = 0;
+*/		
 		
+		memset(this->_num, 0, this->_blocks * sizeof(uint32_t));		
+		this->_blocks += mv;	
 	}
 	
 }
@@ -85,6 +89,7 @@ void num_z::__right_shift(uint32_t n){
 	}
 	this->_blocks -= mv;
 	
+	/*
 	while(i < this->_blocks){
 		this->_num[i] = this->_num[i+mv];
 		++i;
@@ -92,6 +97,12 @@ void num_z::__right_shift(uint32_t n){
 	
 	for(i = 0; i < mv; ++i)
 		this->_num[this->_blocks + i] = 0;
+	*/
+	
+	if(mv > 0){
+		memmove(this->_num, this->_num + mv, sizeof(uint32_t) * this->_blocks);
+		memset(this->_num + this->_blocks, 0, mv);	
+	}
 	
 	if(n){
 		while(--n) powten *= 10;
@@ -114,8 +125,8 @@ void num_z::__resize(uint32_t n){
 	uint32_t *aux = (uint32_t *)realloc(this->_num, sizeof(uint32_t) * n);
 	uint32_t blocks = this->_blocks;
 	
-	while(blocks < n)
-		aux[blocks++] = 0;
+	if(blocks < n)
+		memset(aux + blocks, 0, (n - blocks) * sizeof(uint32_t));
 	
 	this->_n_blocks = n;
 
