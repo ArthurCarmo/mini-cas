@@ -184,6 +184,7 @@
 			num_z pow(uint64_t);
 			
 			bool operator==(const num_z &) const;
+			bool operator==(const num_q &) const;
 			bool operator==(const div_tuple &) const;
 			bool operator==(const mod_tuple &) const;
 			bool operator==(const int &) const;
@@ -192,6 +193,7 @@
 			bool operator==(const uint64_t &) const;
 			bool operator==(const char *) const;
 			bool operator>(const num_z &) const;
+			bool operator>(const num_q &) const;
 			bool operator>(const div_tuple &) const;
 			bool operator>(const mod_tuple &) const;
 			bool operator>(const int &) const;
@@ -200,6 +202,7 @@
 			bool operator>(const uint64_t &) const;
 			bool operator>(const char *) const;
 			bool operator<(const num_z &) const;
+			bool operator<(const num_q &) const;
 			bool operator<(const div_tuple &) const;
 			bool operator<(const mod_tuple &) const;
 			bool operator<(const int &) const;
@@ -208,6 +211,7 @@
 			bool operator<(const uint64_t &) const;
 			bool operator<(const char *) const;
 			bool operator>=(const num_z &) const;
+			bool operator>=(const num_q &) const;
 			bool operator>=(const div_tuple &) const;
 			bool operator>=(const mod_tuple &) const;
 			bool operator>=(const int &) const;
@@ -216,6 +220,7 @@
 			bool operator>=(const uint64_t &) const;
 			bool operator>=(const char *) const;
 			bool operator<=(const num_z &) const;
+			bool operator<=(const num_q &) const;
 			bool operator<=(const div_tuple &) const;
 			bool operator<=(const mod_tuple &) const;
 			bool operator<=(const int &) const;
@@ -224,6 +229,7 @@
 			bool operator<=(const uint64_t &) const;
 			bool operator<=(const char *) const;
 			bool operator!=(const num_z &) const;
+			bool operator!=(const num_q &) const;
 			bool operator!=(const div_tuple &) const;
 			bool operator!=(const mod_tuple &) const;
 			bool operator!=(const int &) const;
@@ -234,12 +240,12 @@
 
 			bool sign() const { return this->_sign; };			
 
-			bool abs_neq(const num_z &);
-			bool abs_eq(const num_z &);
-			bool abs_geq(const num_z &);
-			bool abs_leq(const num_z &);
-			bool abs_gt(const num_z &);
-			bool abs_lt(const num_z &);
+			bool abs_neq(const num_z &) const;
+			bool abs_eq(const num_z &) const;
+			bool abs_geq(const num_z &) const;
+			bool abs_leq(const num_z &) const;
+			bool abs_gt(const num_z &) const;
+			bool abs_lt(const num_z &) const;
 
 	};
 	

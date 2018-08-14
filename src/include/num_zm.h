@@ -1,6 +1,7 @@
 #ifndef __NUM_ZM_H__
 #define __NUM_ZM_H__
 
+#include "number.h"
 #include "num_z.h"
 #include "num_q.h"
 
@@ -44,6 +45,7 @@ class num_zm : public Number {
 		num_zm & operator--();
 		num_zm operator++(int);
 		num_zm operator--(int);
+		
 		num_zm & operator=(const num_zm<N> &);
 		num_zm & operator=(const num_z &);
 		num_zm & operator=(const num_q &);
@@ -94,6 +96,7 @@ class num_zm : public Number {
 		num_zm & operator/=(const int64_t &);
 		num_zm & operator/=(const uint64_t &);
 		num_zm & operator/=(const char *);
+		
 		num_zm operator+(const num_zm<N> &);
 		num_zm operator+(const num_z &);
 		num_zm operator+(const div_tuple &);
@@ -130,10 +133,32 @@ class num_zm : public Number {
 		num_zm operator/(const int64_t &);
 		num_zm operator/(const uint64_t &);
 		num_zm operator/(const char *);
+		
+		
 		bool valid(void){ return _valid; };
 		bool has_inverse();
 		num_zm inverse();
 		num_zm pow(uint64_t);
+		
+		bool operator==(const num_q &) const;
+		bool operator==(const num_z &) const;
+		bool operator==(const int64_t &) const;
+		bool operator>=(const num_q &) const;
+		bool operator>=(const num_z &) const;
+		bool operator>=(const int64_t &) const;
+		bool operator<=(const num_q &) const;
+		bool operator<=(const num_z &) const;
+		bool operator<=(const int64_t &) const;
+		bool operator!=(const num_q &) const;
+		bool operator!=(const num_z &) const;
+		bool operator!=(const int64_t &) const;
+		bool operator>(const num_q &) const;
+		bool operator>(const num_z &) const;
+		bool operator>(const int64_t &) const;
+		bool operator<(const num_q &) const;
+		bool operator<(const num_z &) const;
+		bool operator<(const int64_t &) const;
+		
 };
 
 # 1 "inc_tpp.h" 1
@@ -959,6 +984,96 @@ num_zm<N> num_zm<N>::pow(uint64_t exp) {
 		exp >>= 1;
 	}
 	return result;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator==(const num_q &a) const {
+	return this->_num == a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator==(const num_z &a) const {
+	return this->_num == a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator==(const int64_t &a) const {
+	return this->_num == a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>=(const num_q &a) const {
+	return this->_num >= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>=(const num_z &a) const {
+	return this->_num >= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>=(const int64_t &a) const {
+	return this->_num >= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<=(const num_q &a) const {
+	return this->_num <= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<=(const num_z &a) const {
+	return this->_num <= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<=(const int64_t &a) const {
+	return this->_num <= a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator!=(const num_q &a) const {
+	return this->_num != a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator!=(const num_z &a) const {
+	return this->_num != a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator!=(const int64_t &a) const {
+	return this->_num != a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>(const num_q &a) const {
+	return this->_num > a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>(const num_z &a) const {
+	return this->_num > a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator>(const int64_t &a) const {
+	return this->_num > a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<(const num_q &a) const {
+	return this->_num < a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<(const num_z &a) const {
+	return this->_num < a;
+}
+
+template <int64_t N>
+bool num_zm<N>::operator<(const int64_t &a) const {
+	return this->_num < a;
 }
 
 

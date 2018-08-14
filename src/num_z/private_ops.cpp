@@ -122,13 +122,10 @@ void num_z::__right_shift(uint32_t n){
 //------------- RESIZE ----------------------
 
 void num_z::__resize(uint32_t n){
-	uint32_t *aux = (uint32_t *)realloc(this->_num, sizeof(uint32_t) * n);
-	uint32_t blocks = this->_blocks;
+	this->_num = (uint32_t *)std::realloc(this->_num, sizeof(uint32_t) * n);
 	
-	if(blocks < n)
-		memset(aux + blocks, 0, (n - blocks) * sizeof(uint32_t));
+	if(this->_blocks < n)
+		std::memset(this->_num + this->_blocks, 0, (n - this->_blocks) * sizeof(uint32_t));
 	
 	this->_n_blocks = n;
-
-	this->_num = aux;
 }

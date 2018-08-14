@@ -77,24 +77,24 @@
 
 			bool sign() const { return this->_sign; };
 
-			bool operator==(const num_q &);
-			bool operator==(const num_z &);
-			bool operator==(const int64_t &);
-			bool operator>=(const num_q &);
-			bool operator>=(const num_z &);
-			bool operator>=(const int64_t &);
-			bool operator<=(const num_q &);
-			bool operator<=(const num_z &);
-			bool operator<=(const int64_t &);
-			bool operator!=(const num_q &);
-			bool operator!=(const num_z &);
-			bool operator!=(const int64_t &);
-			bool operator>(const num_q &);
-			bool operator>(const num_z &);
-			bool operator>(const int64_t &);
-			bool operator<(const num_q &);
-			bool operator<(const num_z &);
-			bool operator<(const int64_t &);
+			bool operator==(const num_q &) const;
+			bool operator==(const num_z &) const;
+			bool operator==(const int64_t &) const;
+			bool operator>=(const num_q &) const;
+			bool operator>=(const num_z &) const;
+			bool operator>=(const int64_t &) const;
+			bool operator<=(const num_q &) const;
+			bool operator<=(const num_z &) const;
+			bool operator<=(const int64_t &) const;
+			bool operator!=(const num_q &) const;
+			bool operator!=(const num_z &) const;
+			bool operator!=(const int64_t &) const;
+			bool operator>(const num_q &) const;
+			bool operator>(const num_z &) const;
+			bool operator>(const int64_t &) const;
+			bool operator<(const num_q &) const;
+			bool operator<(const num_z &) const;
+			bool operator<(const int64_t &) const;
 	
 	};
 

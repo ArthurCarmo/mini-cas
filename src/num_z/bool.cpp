@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include "../include/num_q.h"
 
 bool num_z::operator==(const num_z &a) const {
 	if(this->_blocks ^ a._blocks || this->_sign ^ a._sign) return false;
@@ -66,11 +67,15 @@ bool num_z::operator>(const mod_tuple &a) const{
 	return *this > a.r;
 }
 
-bool num_z::operator>(const int &a) const {
+bool num_z::operator>(const int32_t &a) const {
 	return *this > num_z(a);
 }
 
 bool num_z::operator>(const uint32_t &a) const {
+	return *this > num_z(a);
+}
+
+bool num_z::operator>(const int64_t &a) const {
 	return *this > num_z(a);
 }
 
@@ -243,4 +248,30 @@ bool num_z::operator!=(const uint64_t &a) const {
 bool num_z::operator!=(const char *a) const {
 	num_z res(a);
 	return *this != res;
+}
+
+// ------- NUM_Q ------
+
+bool num_z::operator==(const num_q &a) const {
+	return a == *this;
+}
+
+bool num_z::operator>(const num_q &a) const {
+	return a < *this; 
+}
+
+bool num_z::operator<(const num_q &a) const {
+	return a > *this;
+}
+
+bool num_z::operator>=(const num_q &a) const {
+	return a <= *this;
+}
+
+bool num_z::operator<=(const num_q &a) const {
+	return a >= *this;
+}
+
+bool num_z::operator!=(const num_q &a) const {
+	return a != *this;
 }

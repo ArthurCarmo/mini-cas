@@ -4,7 +4,7 @@
 num_z::num_z(){
 	this->_n_blocks = _INIT_SIZE_;
 	
-	this->_num = (uint32_t *) calloc(_INIT_SIZE_, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 		
 	this->_blocks = 1;
 	this->_sign = 0;
@@ -24,9 +24,9 @@ num_z::num_z(const num_z &a){
 	this->_n_blocks =  a._n_blocks;
 	this->_blocks = a._blocks;
 	
-	this->_num = (uint32_t *) calloc(this->_n_blocks, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 	
-	memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
 	
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
@@ -39,9 +39,9 @@ num_z::num_z(const num_q &a){
 	this->_n_blocks = res._n_blocks;
 	this->_blocks = res._blocks;
 	
-	this->_num = (uint32_t *)calloc(this->_n_blocks, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	memcpy(this->_num, res._num, res._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, res._num, res._blocks * sizeof(uint32_t));
 	
 	this->_sign = res._sign;
 	this->_base_repr = DECIMAL;
@@ -51,9 +51,9 @@ num_z::num_z(const num_q &a){
 num_z::num_z(const num_z &a, const uint32_t &b){
 	this->_n_blocks =  b;
 	this->_blocks = a._blocks;
-	this->_num = (uint32_t *)calloc(b, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(b, sizeof(uint32_t));
 
-	memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
 	
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
@@ -64,9 +64,9 @@ num_z::num_z(const div_tuple &a){
 	this->_n_blocks =  a.q._n_blocks;
 	this->_blocks = a.q._blocks;
 	
-	this->_num = (uint32_t *)calloc(this->_n_blocks, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	memcpy(this->_num, a.q._num, a.q._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, a.q._num, a.q._blocks * sizeof(uint32_t));
 	
 	this->_sign = a.q._sign;
 	this->_base_repr = DECIMAL;
@@ -76,9 +76,9 @@ num_z::num_z(const div_tuple &a){
 num_z::num_z(const mod_tuple &a){
 	this->_n_blocks =  a.r._n_blocks;
 	this->_blocks = a.r._blocks;
-	this->_num = (uint32_t *)calloc(this->_n_blocks, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	memcpy(this->_num, a.r._num, a.r._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, a.r._num, a.r._blocks * sizeof(uint32_t));
 
 	this->_sign = a.r._sign;
 	this->_base_repr = DECIMAL;
@@ -89,7 +89,7 @@ num_z::num_z(const mod_tuple &a){
 num_z::num_z(const int64_t &a){
 	int64_t b = a;
 	this->_n_blocks = _INIT_SIZE_;
-	this->_num = (uint32_t *)calloc(_INIT_SIZE_, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
 
 	if(b < 0){
@@ -111,7 +111,7 @@ num_z::num_z(const uint64_t &a){
 	uint64_t b = a;
 	this->_n_blocks = _INIT_SIZE_;
 	this->_sign = 0;
-	this->_num = (uint32_t *)calloc(_INIT_SIZE_, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_blocks = 0;
 	
 	do{
@@ -126,7 +126,7 @@ num_z::num_z(const uint64_t &a){
 num_z::num_z(const int &a){
 	int64_t b = a;
 	this->_n_blocks = _INIT_SIZE_;
-	this->_num = (uint32_t *)calloc(_INIT_SIZE_, sizeof(uint32_t));
+	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
 
 	if(b < 0){
@@ -148,16 +148,14 @@ num_z::num_z(const int &a){
 num_z::num_z(const uint32_t &a){
 	uint32_t b = a;
 	this->_n_blocks = _INIT_SIZE_;
-	this->_num = (uint32_t *)malloc(sizeof(uint32_t)*_INIT_SIZE_);
+	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
 	this->_blocks = 0;
+	
 	do{
 		this->_num[this->_blocks++] = b%_BASE_;
 		b /= _BASE_; 
 	}while(b);
-	
-	for(b = this->_blocks; b < _INIT_SIZE_; b++)
-		this->_num[b] = 0;
 		
 	this->_base_repr = DECIMAL;
 	this->_type = _CAS_TYPE_Z_;
@@ -165,12 +163,15 @@ num_z::num_z(const uint32_t &a){
 
 num_z::num_z(const char *a){
 	uint32_t i = 0;
-	uint32_t aux;
-	this->_blocks = 0;
-	this->_n_blocks = 0;
-	this->_num = (uint32_t *)malloc(_INIT_SIZE_ * sizeof(uint32_t));	
-	*this = 0;
-
+	uint32_t aux = 0;
+	this->_blocks = 1;
+	this->_n_blocks = std::strlen(a) / 9;
+	
+	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
+	
+	this->_sign = 0;
+	this->_base_repr = DECIMAL;
+	
 	if(a[0] == '-'){
 		this->_sign = 1;
 		++i;
@@ -212,5 +213,5 @@ num_z::num_z(const char *a){
 //----DESTRUCTOR----------------
 
 num_z::~num_z(){
-	free(this->_num);
+	std::free(this->_num);
 }

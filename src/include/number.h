@@ -18,6 +18,8 @@ class Number{
 		virtual std::ostream & display() const = 0;
 
 	public:
+		virtual ~Number() {};
+		
 		virtual Number & value() = 0;
 		virtual num_z z_value() = 0;		
 		virtual num_q q_value() = 0;
@@ -37,6 +39,25 @@ class Number{
 		virtual Number & operator/=(const num_z &) = 0;
 		virtual Number & operator/=(const num_q &) = 0;
 		virtual Number & operator/=(const int64_t &) = 0;
+		
+		virtual bool operator==(const num_q &) const = 0;
+		virtual bool operator==(const num_z &) const = 0;
+		virtual bool operator==(const int64_t &) const = 0;
+		virtual bool operator>=(const num_q &) const = 0;
+		virtual bool operator>=(const num_z &) const = 0;
+		virtual bool operator>=(const int64_t &) const = 0;
+		virtual bool operator<=(const num_q &) const = 0;
+		virtual bool operator<=(const num_z &) const = 0;
+		virtual bool operator<=(const int64_t &) const = 0;
+		virtual bool operator!=(const num_q &) const = 0;
+		virtual bool operator!=(const num_z &) const = 0;
+		virtual bool operator!=(const int64_t &) const = 0;
+		virtual bool operator>(const num_q &) const = 0;
+		virtual bool operator>(const num_z &) const = 0;
+		virtual bool operator>(const int64_t &) const = 0;
+		virtual bool operator<(const num_q &) const = 0;
+		virtual bool operator<(const num_z &) const = 0;
+		virtual bool operator<(const int64_t &) const = 0;
 		
 };
 
