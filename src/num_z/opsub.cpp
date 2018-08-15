@@ -22,16 +22,26 @@ num_z num_z::operator-(const num_z &a){
 		}
 		
 		if(res._n_blocks < maior._blocks) res.__resize(maior._blocks);
-		if(menor._n_blocks < maior._blocks) menor.__resize(maior._blocks);
+//		if(menor._n_blocks < maior._blocks) menor.__resize(maior._blocks);
 		res._blocks = maior._blocks;
 		
-		for(i = menor._blocks; i < maior._blocks; i++)
-			menor._num[i] = 0;
+//		for(i = menor._blocks; i < maior._blocks; i++)
+//			menor._num[i] = 0;
 			
-		for(i = 0; i < maior._blocks; i++){
+		for(i = 0; i < menor._blocks; i++){
 			menor._num[i] += vai_um;
 			res._num[i] = (maior._num[i] >= menor._num[i])?(maior._num[i] - menor._num[i]):(_BASE_ + maior._num[i] - menor._num[i]);
 			vai_um = (maior._num[i] < menor._num[i]);
+		}
+		
+		for( ; i < maior._blocks; i++){
+			if(!vai_um) break;
+			res._num[i] = (maior._num[i] != 0)?(maior._num[i] - 1):(_MAX_DIGIT_BASE_);
+			vai_um = maior._num[i] == 0;
+		}
+		
+		for( ; i < maior._blocks; i++){
+			res._num[i] = maior._num[i];
 		}
 		
 		while(res._num[res._blocks-1] == 0 && (res._blocks ^ 1))
