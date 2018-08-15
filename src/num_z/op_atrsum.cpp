@@ -19,9 +19,10 @@ num_z & num_z::operator+=(const num_z &a){
 	
 	if(this->_n_blocks < maior)
 		this->__resize(maior);
-	else
-		for(i = this->_blocks; i < maior; i++)
-			this->_num[i] = 0;
+	else	
+		memset(this->_num + this->_blocks, 0, (maior - this->_blocks) * sizeof(uint32_t));
+//		for(i = this->_blocks; i < maior; i++)
+//			this->_num[i] = 0;
 	
 	this->_blocks = maior - 1;
 	

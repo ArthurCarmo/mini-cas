@@ -2,7 +2,9 @@
 
 std::ostream& operator << (std::ostream &o, const num_q &a){
 	if(a._sign) printf("-");
-	o << a._numerator << "/" << a._denominator;
+	o << a._numerator;
+	if(a._denominator != 1)
+		o << "/" << a._denominator;
 	return o;
 }
 

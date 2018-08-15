@@ -4,6 +4,7 @@
 num_z & num_z::operator-=(const num_z &a){
 	uint32_t i;
 	uint32_t vai_um;
+
 	if(this->_sign ^ a._sign){
 		uint32_t sign = this->_sign;
 		this->_sign = a._sign;
@@ -11,6 +12,7 @@ num_z & num_z::operator-=(const num_z &a){
 		this->_sign = sign;
 		return *this;
 	}
+
 	num_z maior, menor;
 	if(this->abs_gt(a)){
 		maior = *this;
@@ -20,19 +22,28 @@ num_z & num_z::operator-=(const num_z &a){
 		menor = *this;
 		this->_sign = !a._sign;
 	}
+	
 	if(this->_n_blocks < maior._blocks) this->__resize(maior._blocks);
-	if(menor._n_blocks < maior._blocks) menor.__resize(maior._blocks);
 	this->_blocks = maior._blocks;
 		
-	for(i = menor._blocks; i < maior._blocks; i++)
-		menor._num[i] = 0;
+//	for(i = menor._blocks; i < maior._blocks; i++)
+//		menor._num[i] = 0;
 	
 	vai_um = 0;		
-	for(i = 0; i < maior._blocks; i++){
+	for(i = 0; i < menor._blocks; i++){
 		menor._num[i] += vai_um;
 		this->_num[i] = (maior._num[i] >= menor._num[i])?(maior._num[i] - menor._num[i]):(_BASE_ + maior._num[i] - menor._num[i]);
 		vai_um = (maior._num[i] < menor._num[i]);
 	}
+	
+	for( ; i < maior._blocks; i++){
+		if(!vai_um) break;
+		this->_num[i] = (maior._num[i] != 0)?(maior._num[i] - 1):(_MAX_DIGIT_BASE_);
+		vai_um = maior._num[i] == 0;
+	}
+	
+	for( ; i < maior._blocks; i++)
+		this->_num[i] = maior._num[i];
 	
 	while(this->_num[this->_blocks-1] == 0 && (this->_blocks ^ 1))
 		--this->_blocks;
