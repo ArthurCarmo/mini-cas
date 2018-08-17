@@ -71,6 +71,9 @@
 			num_z & make_abs(){ this->_sign = 0; return *this; };
 			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
 			num_z & make_negative(){ this->_sign = 1; return *this; };
+			num_z sqrt();
+			num_z gcd(const num_z &);
+			num_z lcm(const num_z &);
 
 			operator div_tuple();
 			operator mod_tuple();

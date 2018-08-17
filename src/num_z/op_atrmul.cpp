@@ -3,11 +3,11 @@
 
 num_z & num_z::operator*=(const num_z &a){
 	if((a == 0) | (*this == 0))return (*this = 0);
-	if(a == 1) return *this;
+/*	if(a == 1) return *this;
 	if(*this == 1) return (*this = a);
 	if(a == -1) return (*this = -*this);
 	if(*this == -1) { *this = -a; return *this;}
-	
+*/	
 	int sign = this->_sign ^ a._sign;
 	uint32_t i, j, m, n;
 	uint64_t k;

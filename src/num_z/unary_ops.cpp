@@ -37,4 +37,3 @@ num_z num_z::operator--(int){
 	*this -= 1;
 	return res;
 }
-

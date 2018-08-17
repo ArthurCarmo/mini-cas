@@ -5,11 +5,11 @@ num_z num_z::operator*(const num_z &a){
 	num_z res(uint32_t(0));
 	//Produtos triviais
 	if((a == 0) | (*this == 0))return num_z(0);
-	if(a == 1) return *this;
+/*	if(a == 1) return *this;
 	if(*this == 1) return a;
 	if(a == -1) return -*this;
 	if(*this == -1) { res = -a; return res;}
-	
+*/	
 	int sign = this->_sign ^ a._sign;
 	uint32_t i, j, m, n;
 	uint64_t k;
