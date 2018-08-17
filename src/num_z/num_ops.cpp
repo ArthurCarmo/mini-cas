@@ -1,7 +1,6 @@
 #include "../include/num_z.h"
 
 //SQRT
-
 num_z num_z::sqrt(){
 	num_z xk(*this);
 	num_z prev;
