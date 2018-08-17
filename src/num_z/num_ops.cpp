@@ -112,6 +112,17 @@ num_z z_gcd(const uint64_t &a, const num_z &b){
 	return z_gcd(b, num_z(a));
 }
 
+//BITSHIFT
+void num_z::__bit_lshift(){
+	uint32_t i, n = this->_blocks - 1;
+	for(i = 0; i < n; i++){
+		this->_num[i] >>= 1;
+		this->_num[i] |= (this->_num[i+1] & 1) << 31;
+	}
+	this->_num[n] >>= 1;
+}
+
+//LCM
 num_z num_z::lcm(const num_z &b){
 	return (*this*b)/z_gcd(*this, b);
 }

@@ -26,6 +26,8 @@
 		friend num_z hex(const num_z &);
 		friend num_z bin(const num_z &);
 		friend num_z z_gcd(const num_z &, const num_z &);
+		friend num_z z_lcm(const num_z &, const num_z &);
+		friend num_z z_sqrt(const num_z &);
 		friend num_z __num_z_gcd(num_z &, num_z &);
 		friend num_z __num_z_gcd_single(num_z &, uint32_t);
 		
@@ -41,6 +43,7 @@
 			void __left_shift(uint32_t);
 			void __right_shift();
 			void __right_shift(uint32_t);
+			void __bit_lshift();
 			
 			std::ostream & display() const { return std::cout << *this; };
 			
