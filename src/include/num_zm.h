@@ -161,11 +161,6 @@ class num_zm : public Number {
 		
 };
 
-# 1 "inc_tpp.h" 1
-# 1 "../num_zm/attrib.tpp" 1
-
-
-
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator=(const num_zm<N> &a){
 	this->_num = a._num;
@@ -235,10 +230,6 @@ num_zm<N> & num_zm<N>::operator=(const char *a){
 	this->_valid = 1;
 	return *this;
 }
-# 2 "inc_tpp.h" 2
-# 1 "../num_zm/io.tpp" 1
-
-
 
 template <int64_t U> std::ostream& operator << (std::ostream &o, const num_zm<U> &a){
 	o << a._num;
@@ -250,10 +241,6 @@ template <int64_t U> std::istream& operator >> (std::istream &i, num_zm<U> &a){
 	a._num = a._num%U;
 	return i;
 }
-# 3 "inc_tpp.h" 2
-# 1 "../num_zm/num_zm.tpp" 1
-
-
 
 template <int64_t N>
 num_zm<N>::num_zm(){
@@ -316,8 +303,7 @@ num_zm<N>::num_zm(const char *a){
 	this->_valid = 1;	
 	this->_type = _CAS_TYPE_ZM_;
 }
-# 4 "inc_tpp.h" 2
-# 1 "../num_zm/op_atrmul.tpp" 1
+
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator*=(const num_zm<N> &a){
 	this->_num *= a._num;
@@ -388,10 +374,6 @@ num_zm<N> & num_zm<N>::operator*=(const char *a){
 	this->_num %= N;
 	return *this;
 }
-# 5 "inc_tpp.h" 2
-# 1 "../num_zm/op_atrsum.tpp" 1
-
-
 
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator+=(const num_zm<N> &a){
@@ -467,10 +449,6 @@ num_zm<N> & num_zm<N>::operator+=(const char *a){
 	this->_num %= N;
 	return *this;
 }
-# 6 "inc_tpp.h" 2
-# 1 "../num_zm/op_atrsub.tpp" 1
-
-
 
 template <int64_t N>
 num_zm<N> & num_zm<N>::operator-=(const num_zm<N> &a){
@@ -541,10 +519,6 @@ num_zm<N> & num_zm<N>::operator-=(const char *a){
 	this->_num %= N;
 	return *this;
 }
-# 7 "inc_tpp.h" 2
-# 1 "../num_zm/opdiv.tpp" 1
-
-
 
 template<int64_t N>
 num_zm<N> num_zm<N>::operator/(const num_zm<N> &a){
@@ -718,8 +692,7 @@ num_zm<N> num_zm<N>::inverse(){
 
 	return res;
 }
-# 8 "inc_tpp.h" 2
-# 1 "../num_zm/opmul.tpp" 1
+
 template <int64_t N>
 num_zm<N> num_zm<N>::operator*(const num_zm<N> &a){
 	num_zm<N> res(this->_num * a._num);
@@ -782,10 +755,6 @@ num_zm<N> num_zm<N>::operator*(const char *a){
 	res._valid = this->_valid;
 	return res;
 }
-# 9 "inc_tpp.h" 2
-# 1 "../num_zm/opsum.tpp" 1
-
-
 
 template <int64_t N>
 num_zm<N> num_zm<N>::operator+(const num_zm<N> &a){
@@ -848,10 +817,6 @@ num_zm<N> num_zm<N>::operator+(const char *a){
 	res._valid = this->_valid;
 	return res;
 }
-# 10 "inc_tpp.h" 2
-# 1 "../num_zm/opsub.tpp" 1
-
-
 
 template <int64_t N>
 num_zm<N> num_zm<N>::operator-(const num_zm<N> &a){
@@ -915,8 +880,6 @@ num_zm<N> num_zm<N>::operator-(const char *a){
 	res._valid = this->_valid;
 	return res;
 }
-# 11 "inc_tpp.h" 2
-# 1 "../num_zm/unary_ops.tpp" 1
 
 template <int64_t N>
 num_zm<N> num_zm<N>::operator-() const{
