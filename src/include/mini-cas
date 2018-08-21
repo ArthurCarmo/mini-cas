@@ -1,0 +1,17 @@
+#ifndef __MINI_CAS_H__
+#define __MINI_CAS_H__
+
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
+#include <iostream>
+#include <string>
+
+#include "number.h"
+#include "num_z.h"
+#include "num_zm.h"
+#include "num_q.h"
+#include "polynomial.h"
+
+#endif
