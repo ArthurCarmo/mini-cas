@@ -541,7 +541,7 @@ top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 lib_LTLIBRARIES = libminicas.la
-include_HEADERS = src/include/mini-cas.h \
+include_HEADERS = src/include/mini-cas \
 		src/include/number.h \
 		src/include/num_q.h \
 		src/include/num_z.h \

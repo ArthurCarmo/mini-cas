@@ -1,4 +1,4 @@
-#include<mini-cas.h>
+#include<mini-cas>
 using namespace std;
 
 int main(){

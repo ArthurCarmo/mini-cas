@@ -4,7 +4,7 @@ CXXFLAGS = -std=c++11 -O2 -Wall
 
 lib_LTLIBRARIES = libminicas.la
 
-include_HEADERS = src/include/mini-cas.h \
+include_HEADERS = src/include/mini-cas \
 		src/include/number.h \
 		src/include/num_q.h \
 		src/include/num_z.h \
