@@ -11,6 +11,13 @@
 #define HEX 1
 #define BIN 2
 
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
+#include <iostream>
+#include <string>
+
 #include "number.h"
 
 	class num_z : public Number{

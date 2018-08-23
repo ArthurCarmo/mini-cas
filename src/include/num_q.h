@@ -1,6 +1,8 @@
 #ifndef __NUM_Q_H
 #define __NUM_Q_H
 
+#include <iostream>
+
 #include "number.h"
 #include "num_z.h"
 

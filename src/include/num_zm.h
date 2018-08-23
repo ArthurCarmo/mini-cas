@@ -1,6 +1,8 @@
 #ifndef __NUM_ZM_H__
 #define __NUM_ZM_H__
 
+#include <iostream>
+
 #include "number.h"
 #include "num_z.h"
 #include "num_q.h"

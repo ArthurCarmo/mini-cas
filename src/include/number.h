@@ -5,6 +5,8 @@
 #define _CAS_TYPE_Q_  1
 #define _CAS_TYPE_ZM_ 2
 
+#include <iostream>
+
 #include "signatures.h"
 
 class Number{
