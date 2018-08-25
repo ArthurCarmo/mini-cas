@@ -20,7 +20,7 @@ num_z & num_z::operator+=(const num_z &a){
 	if(this->_n_blocks < maior)
 		this->__resize(maior);
 	else	
-		memset(this->_num + this->_blocks, 0, (maior - this->_blocks) * sizeof(uint32_t));
+		std::memset(this->_num + this->_blocks, 0, (maior - this->_blocks) * sizeof(uint32_t));
 //		for(i = this->_blocks; i < maior; i++)
 //			this->_num[i] = 0;
 	

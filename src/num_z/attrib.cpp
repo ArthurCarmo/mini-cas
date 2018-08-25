@@ -7,7 +7,7 @@ num_z & num_z::operator=(const num_z &a){
 		
 	this->_blocks = a._blocks;
 	
-	memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
 	
 	this->_sign = a._sign;
 	
@@ -145,7 +145,7 @@ num_z & num_z::operator=(const std::string &a){
 	blocks = (l - this->_sign) / _DIGITS_PER_BLOCK_;
 	
 	if(this->_n_blocks <= blocks){
-		this->_num = (uint32_t *) realloc(this->_num, (blocks+1) * sizeof(uint32_t));
+		this->_num = (uint32_t *) std::realloc(this->_num, (blocks+1) * sizeof(uint32_t));
 		this->_n_blocks = blocks+1;
 	}
 	else if(blocks < this->_blocks) for(i = blocks; i < this->_blocks; ++i) this->_num[i] = 0;

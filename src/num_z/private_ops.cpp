@@ -44,7 +44,7 @@ void num_z::__left_shift(uint32_t n){
 		}
 		i = this->_blocks;
 		
-		memmove(this->_num + mv, this->_num, mv * sizeof(uint32_t));
+		std::memmove(this->_num + mv, this->_num, mv * sizeof(uint32_t));
 		
 /*		while(--i)
 			this->_num[i+mv] = this->_num[i];
@@ -54,7 +54,7 @@ void num_z::__left_shift(uint32_t n){
 			this->_num[mv] = 0;
 */		
 		
-		memset(this->_num, 0, this->_blocks * sizeof(uint32_t));		
+		std::memset(this->_num, 0, this->_blocks * sizeof(uint32_t));		
 		this->_blocks += mv;	
 	}
 	
@@ -100,8 +100,8 @@ void num_z::__right_shift(uint32_t n){
 	*/
 	
 	if(mv > 0){
-		memmove(this->_num, this->_num + mv, sizeof(uint32_t) * this->_blocks);
-		memset(this->_num + this->_blocks, 0, mv);	
+		std::memmove(this->_num, this->_num + mv, sizeof(uint32_t) * this->_blocks);
+		std::memset(this->_num + this->_blocks, 0, mv);	
 	}
 	
 	if(n){
