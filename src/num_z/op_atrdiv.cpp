@@ -44,9 +44,8 @@ num_z & num_z::operator/=(const num_z &a){
 	m *= d;
 	n *= d;
 
-	if(m._blocks == this->_blocks){
+	if(m._blocks == this->_blocks)
 		m._num[m._blocks++] = 0;
-	}
 	
 	n_size = n._blocks - 1;
 	for(j = m._blocks - 1; j > n_size; --j){
