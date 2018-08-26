@@ -26,7 +26,7 @@ num_z::num_z(const num_z &a){
 	
 	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 	
-	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::copy(a._num, a._num + a._blocks, this->_num);
 	
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
@@ -41,7 +41,7 @@ num_z::num_z(const num_q &a){
 	
 	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	std::memcpy(this->_num, res._num, res._blocks * sizeof(uint32_t));
+	std::copy(res._num, res._num + res._blocks, this->_num);
 	
 	this->_sign = res._sign;
 	this->_base_repr = DECIMAL;
@@ -53,7 +53,7 @@ num_z::num_z(const num_z &a, const uint32_t &b){
 	this->_blocks = a._blocks;
 	this->_num = (uint32_t *)std::calloc(b, sizeof(uint32_t));
 
-	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::copy(a._num, a._num + a._blocks, this->_num);
 	
 	this->_sign = a._sign;
 	this->_base_repr = DECIMAL;
@@ -66,7 +66,7 @@ num_z::num_z(const div_tuple &a){
 	
 	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	std::memcpy(this->_num, a.q._num, a.q._blocks * sizeof(uint32_t));
+	std::copy(a.q._num, a.q._num + a.q._blocks, this->_num);
 	
 	this->_sign = a.q._sign;
 	this->_base_repr = DECIMAL;
@@ -78,7 +78,7 @@ num_z::num_z(const mod_tuple &a){
 	this->_blocks = a.r._blocks;
 	this->_num = (uint32_t *)std::calloc(this->_n_blocks, sizeof(uint32_t));
 
-	std::memcpy(this->_num, a.r._num, a.r._blocks * sizeof(uint32_t));
+	std::copy(a.r._num, a.r._num + a.r._blocks, this->_num);
 
 	this->_sign = a.r._sign;
 	this->_base_repr = DECIMAL;

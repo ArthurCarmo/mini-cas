@@ -4,7 +4,7 @@
 div_tuple num_z::operator/(const num_z &a){ 
 	div_tuple res;	
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
-	int64_t i, j;
+	int64_t j;
 	uint32_t n_size;	//Offset dos dígitos para a divisão
 	uint32_t size_q;	//Número de dígitos do quociente
 	uint64_t q_guess;	//Chute do quociente
@@ -39,16 +39,6 @@ div_tuple num_z::operator/(const num_z &a){
 		return res;
 	}
 	
-	//Divisão de números cujo quociente é 1
-/*	if(m._blocks == n._blocks && ((uint64_t)m._num[m._blocks-1] < (2ull * (uint64_t)n._num[m._blocks - 1]))){
-		m -= n;
-		res.q = 1;
-		res.q._sign = this->_sign ^ a._sign;
-		res.r = m;
-		res.r._sign = this->_sign;
-		return res;
-	}
-*/	
 	//Divisão de um número com n+m dígitos por um número com n dígitos;
 	if(res.q._n_blocks < size_q)
 		res.q.__resize(size_q);
@@ -69,17 +59,17 @@ div_tuple num_z::operator/(const num_z &a){
 
 	n_size = n._blocks - 1;
 	for(j = m._blocks - 1; j > n_size; --j){	
-		q_guess = (m._num[j] == n._num[n._blocks-1])?((uint64_t)_MAX_DIGIT_BASE_):(((uint64_t)m._num[j]*(uint64_t)_BASE_ + m._num[j-1])/n._num[n._blocks - 1]);
 
-		while(((uint64_t)n._num[n._blocks - 2]*(uint64_t)q_guess) > ((uint64_t)((uint64_t)m._num[j] * (uint64_t)_BASE_ - (uint64_t)n._num[n._blocks - 1]*(uint64_t)q_guess + m._num[j-1])* (uint64_t)_BASE_ + m._num[j-2])) --q_guess;
+		q_guess = __guess_quotient(n._num[n._blocks - 1], m._num[j], m._num[j - 1]);
+
+		while(__overstep_quotient(q_guess, n._num[n._blocks - 2], n._num[n._blocks - 1], m._num[j], m._num[j-1], m._num[j-2])) 
+			--q_guess;
 
 		//Multipĺicar e subtrair
 		parc_n = n * q_guess;
 		parc_m._blocks = 1 + n._blocks;
-		
-		for(i = 0; i <= n._blocks; i++){
-			parc_m._num[n._blocks - i] = m._num[j - i];
-		}
+				
+		std::copy(m._num + j - n._blocks, m._num + j + 1, parc_m._num);
 
 		if(parc_m._num[parc_m._blocks - 1] == 0) parc_m._num[--parc_m._blocks] = 0;
 
@@ -88,9 +78,8 @@ div_tuple num_z::operator/(const num_z &a){
 		}
 		
 		parc_m -= parc_n;
-		
-		for(i = 0; i <= n._blocks; i++)
-			m._num[j-i] = parc_m._num[n._blocks - i];
+			
+		std::copy(parc_m._num, parc_m._num + n._blocks + 1, m._num + j - n._blocks);
 		
 		while(m._num[m._blocks - 1] == 0 && (m._blocks ^ 1)) --m._blocks;
 		
@@ -167,67 +156,3 @@ div_tuple num_z::operator/(const char *a){
 	num_z res(a);
 	return *this/res;
 }
-
-/*	DIV 1 FUNCIONANDO
-	div_tuple res;	
-	num_z m(*this), n(a);
-	uint32_t size_m;
-	uint32_t digits;
-	uint64_t q1 = 10;
-	
-	m._sign = 0;
-	n._sign = 0;
-	size_m = this->_blocks - a._blocks;
-	
-	if(this->abs_lt(a)){
-		res.r = (this->_sign ^ a._sign)?(n-m):*this;
-		res.r._sign = a._sign;
-		return res;
-	}
-	if(a == (uint32_t)0) return res;
-	if(a == (uint32_t)1){
-		res.q = *this;
-		return res;
-	}
-	
-//		 NORMALIZAR 
-	digits = _DIGITS_PER_BLOCK_*size_m;
-	while(m._num[m._blocks-1]/q1){
-		q1 *= 10;
-		++digits;
-	}
-	q1 = 10;
-	
-	while(n._num[n._blocks-1]/q1){
-		q1 *= 10;
-		--digits;
-	}
-	
-	if(digits ^ 0)
-		n.__left_shift(digits);
-		
-//		 SUBTRAIR
-	while(1){
-		if(m.abs_geq(n)){
-			++res.q;
-			m -= n;
-		}else{
-			if(digits-- > 0){
-				res.q.__left_shift();
-				n.__right_shift();
-			}
-			else break;
-		}
-	}
-	
-	res.q._sign = this->_sign ^ a._sign;
-	
-	if(m != 0){
-		res.r = m;
-		if(res.q._sign)
-			res.r -= n;
-		res.r._sign = a._sign;
-	}
-	
-	return res;		
-*/

@@ -131,3 +131,12 @@ num_z z_lcm(const num_z &a, const num_z &b){
 	num_z res(a);
 	return (res*b)/z_gcd(a, b);
 }
+
+//INLINE FUNCTIONS
+uint64_t __guess_quotient(const uint64_t &n, const uint64_t &m0, const uint64_t &m1){
+	return ( m0 == n )?_MAX_DIGIT_BASE_:( (m0*_BASE_ + m1) / n );
+}
+
+bool __overstep_quotient(const uint64_t &q_guess, const uint64_t &n2, const uint64_t &n1, const uint64_t &m0, const uint64_t &m1, const uint64_t &m2){
+	return n2 * q_guess > ( m0 * _BASE_ - n1 * q_guess + m1 ) * _BASE_ + m2;
+}

@@ -7,7 +7,7 @@ num_z & num_z::operator=(const num_z &a){
 		
 	this->_blocks = a._blocks;
 	
-	std::memcpy(this->_num, a._num, a._blocks * sizeof(uint32_t));
+	std::copy(a._num, a._num + a._blocks, this->_num);
 	
 	this->_sign = a._sign;
 	

@@ -17,9 +17,10 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include "number.h"
-
+	
 	class num_z : public Number{
 
 		template <int64_t N>
@@ -275,5 +276,8 @@
 		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
 		operator num_z(){ return this->r; }
 	};
+	
+uint64_t __guess_quotient(const uint64_t &, const uint64_t &, const uint64_t &);
+bool __overstep_quotient(const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &);
 
 #endif
