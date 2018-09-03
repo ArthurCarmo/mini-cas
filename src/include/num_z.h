@@ -279,7 +279,7 @@
 		operator num_z(){ return this->r; }
 	};
 	
-uint64_t __guess_quotient(const uint64_t &, const uint64_t &, const uint64_t &);
+uint32_t __guess_quotient(const uint64_t &, const uint64_t &, const uint64_t &);
 bool __overstep_quotient(const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &, const uint64_t &);
 
 #endif
