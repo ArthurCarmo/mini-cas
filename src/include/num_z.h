@@ -69,9 +69,9 @@
 			num_z(const char *);
 			~num_z();
 
-			int type(){ return this->_type; };
-			int32_t lsd(){ return this->_num[0]; };
-			int32_t msd(){ return this->_num[this->_blocks-1]; };
+			int type() const { return this->_type; } ;
+			int32_t lsd() const { return this->_num[0]; };
+			int32_t msd() const { return this->_num[this->_blocks-1]; };
 
 			num_z & value(){ return *this; };
 			num_z z_value(){ return *this; };
@@ -88,7 +88,9 @@
 
 			operator div_tuple();
 			operator mod_tuple();
-			operator bool(){return *this != 0;};
+			operator long long() const { return (long long)_BASE_ * this->_num[1] + this->_num[0]; };
+			operator int() const { return this->_num[0]; };
+			operator bool() const {return this->_blocks > 1 || this->_num[0] != 0;};
 			
 			num_z operator-() const;
 			num_z operator+() const;

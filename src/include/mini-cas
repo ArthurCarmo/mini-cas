@@ -13,6 +13,14 @@
 #include "num_z.h"
 #include "num_zm.h"
 #include "num_q.h"
+
+#include "monomial.h"
 #include "polynomial.h"
+
+#include "term.h"
+#include "symbol.h"
+
+#include "adder.h"
+#include "multiplier.h"
 
 #endif

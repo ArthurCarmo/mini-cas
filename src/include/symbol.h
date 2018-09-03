@@ -17,6 +17,6 @@ class symbol {
 			this->_sum = 0;
 			this->_product = 1;
 		};
-};	
+};
 
 #endif

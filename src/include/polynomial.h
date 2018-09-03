@@ -8,13 +8,6 @@
 
 #define _POLY_INIT_SIZE_ 1000;
 
-struct monomial{
-	std::string _var;
-	num_z _expoent;
-	num_q _coeficient;
-	monomial *_next_var;
-};
-
 class polynomial{
 	friend std::ostream & operator<<(std::ostream &, const polynomial &);
 	
@@ -25,6 +18,7 @@ class polynomial{
 		
 	public:
 		polynomial();
+		polynomial(const monomial[], uint32_t);
 		polynomial(const monomial &);
 		polynomial(const Number &);
 		polynomial(const char []);

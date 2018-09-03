@@ -546,7 +546,12 @@ include_HEADERS = src/include/mini-cas \
 		src/include/num_q.h \
 		src/include/num_z.h \
 		src/include/num_zm.h \
+		src/include/monomial.h \
 		src/include/polynomial.h \
+		src/include/term.h \
+		src/include/symbol.h \
+		src/include/adder.h \
+		src/include/multiplier.h \
 		src/include/signatures.h
 
 libminicas_la_SOURCES = src/num_z/num_z.cpp \
