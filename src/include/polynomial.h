@@ -6,7 +6,7 @@
 
 #include "num_q.h"
 
-#define _POLY_INIT_SIZE_ 1000;
+#define _POLY_INIT_SIZE_ 100;
 
 class polynomial{
 	friend std::ostream & operator<<(std::ostream &, const polynomial &);

@@ -1,7 +1,7 @@
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
 
-#define _INIT_SIZE_                     10
+#define _INIT_SIZE_                    100
 #define _DIGITS_PER_BLOCK_               9
 #define _BASE_                  1000000000
 #define _MAX_DIGIT_BASE_         999999999
