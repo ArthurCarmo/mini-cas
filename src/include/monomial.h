@@ -1,6 +1,7 @@
 #ifndef __MONONOMIAL_H
 #define __MONONOMIAL_H
 
+#include "signatures.h"
 #include "number.h"
 #include "num_z.h"
 #include "num_q.h"
@@ -10,8 +11,11 @@
 #include <cctype>
 
 class monomial{
+	
+	friend class polynomial;
+	
 	friend std::ostream & operator<<(std::ostream &, const monomial &);
-
+	
 	private:
 		num_z _exponent[26];
 		num_q _coeficient;
@@ -131,7 +135,7 @@ class monomial{
 		}
 		
 		//string contendo as variáveis com expoente não zero no polinômio
-		std::string variables(){
+		std::string variables() const {
 			std::string vars = "";
 			for(int i = 'a'; i <= 'z'; i++)
 				if(this->_variables[i])
@@ -140,17 +144,17 @@ class monomial{
 		}
 		
 		//expoente da variável var
-		num_z exponent(const char &var){
+		num_z exponent(const char &var) const {
 			return this->_exponent[tolower(var) - 'a'];
 		}
 		
 		//coeficiente do monômio
-		num_q coeficient(){
+		num_q coeficient() const {
 			return this->_coeficient;
 		}
 		
 		//monômios são similares se possuem as variáveis com os mesmo coeficientes
-		bool similar(const monomial &m){
+		bool is_similar(const monomial &m) const {
 			for(int i = 'a'; i <= 'z'; i++)
 				if(this->_exponent[i - 'a'] != m._exponent[i - 'a'])
 					return false;
@@ -159,7 +163,7 @@ class monomial{
 		} 
 		
 		//primeira derivada parcial em relação a x ou à primeira variável por ordem alfabética
-		monomial derive(){
+		monomial derive() const {
 			monomial res(*this);
 			if(this->_variables['x']){
 				return res.__derive_with_respect_to('x');
@@ -177,12 +181,13 @@ class monomial{
 		
 		//primeira derivada parcial do monômio iterativamente em relação às variáveis especificadas
 		template<class... Args>
-		monomial derive(const char &v, Args... args){
+		monomial derive(const char &v, Args... args) const {
 			monomial res(*this);
 			return res.__derive_with_respect_to(v, args...);
 		}
 		
-		monomial operator*(const monomial &m){
+		//produto de dois monômios é um monômio
+		monomial operator*(const monomial &m) const {
 			if(this->_coeficient == 0 or m._coeficient == 0) return monomial();
 			monomial res(*this);
 			for(int i = 'a'; i <= 'z'; i++){
@@ -222,9 +227,9 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 	else if(m._coeficient != 1)
 		o << m._coeficient << " * ";
 		
-	for(char i = 'a'; i <= 'z'; i++){
+	for(int i = 'a'; i <= 'z'; i++){
 		if(m._variables[i]){
-			o << i;
+			o << (char)i;
 			++used_variables;
 			if(m._exponent[i - 'a'] != 1){
 				o << "^" << m._exponent[i - 'a'];
