@@ -73,9 +73,9 @@
 			int32_t lsd() const { return this->_num[0]; };
 			int32_t msd() const { return this->_num[this->_blocks-1]; };
 
-			num_z & value(){ return *this; };
-			num_z z_value(){ return *this; };
-			num_q q_value();
+			num_z & value() { return *this; };
+			num_z z_value() const { return *this; };
+			num_q q_value() const;
 
 			num_z abs();
 			num_z negative(){ num_z res(*this); res._sign = 1; return res; };

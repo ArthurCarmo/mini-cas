@@ -30,9 +30,9 @@ class num_zm : public Number {
 		num_zm(const uint32_t &);
 		num_zm(const char *);
 
-		num_zm & value(){ return *this; };
-		num_z z_value(){ return num_z(*this); };
-		num_q q_value(){ return num_q(*this); };
+		num_zm & value() { return *this; };
+		num_z z_value() const { return this->_num; };
+		num_q q_value() const { return num_q(this->_num); };
 
 		int type(){ return this->_type; };
 		int64_t base() { return N; };

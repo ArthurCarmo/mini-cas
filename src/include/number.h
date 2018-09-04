@@ -23,8 +23,8 @@ class Number{
 		virtual ~Number() {};
 		
 		virtual Number & value() = 0;
-		virtual num_z z_value() = 0;		
-		virtual num_q q_value() = 0;
+		virtual num_z z_value() const = 0;		
+		virtual num_q q_value() const = 0;
 
 		virtual Number & operator=(const num_z &) = 0;
 		virtual Number & operator=(const num_q &) = 0;

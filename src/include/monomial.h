@@ -96,10 +96,10 @@ class monomial{
 		}
 		
 		//monômio constante
-		monomial(const num_q &coef){
+		monomial(const Number &coef){
 			for(int i = 'a'; i <= 'z'; i++)
 				_variables[i] = 0;
-			this->_coeficient = coef;
+			this->_coeficient = coef.q_value();
 			this->_var_counter = 0;
 		}
 		
@@ -120,12 +120,12 @@ class monomial{
 		Uso: (coeficiente, var1, exp1, var2, exp2, ..., varN, expN);	
 	*/
 		template<class... Args>
-		monomial(const num_q &coef, Args... args) {
-			this->_coeficient = coef;
+		monomial(const Number &coef, Args... args) {
+			this->_coeficient = coef.q_value();
 			this->_var_counter = 0;
 			for(int i = 'a'; i <= 'z'; i++)
 				_variables[i] = 0;
-			if(coef != 0)
+			if(this->_coeficient != 0)
 				this->__construct_monomial(args...);
 		}
 		

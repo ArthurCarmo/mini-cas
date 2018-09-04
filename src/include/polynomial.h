@@ -3,25 +3,23 @@
 
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 #include "num_q.h"
-
-#define _POLY_INIT_SIZE_ 100;
+#include "monomial.h"
 
 class polynomial{
 	friend std::ostream & operator<<(std::ostream &, const polynomial &);
 	
 	private:
-		monomial *_terms;
+		std::unordered_map<std::string, monomial> _terms;
 		uint32_t _n_terms;
 		uint32_t _n_vars;
 		
 	public:
 		polynomial();
-		polynomial(const monomial[], uint32_t);
 		polynomial(const monomial &);
 		polynomial(const Number &);
-		polynomial(const char []);
 };
 
 #endif

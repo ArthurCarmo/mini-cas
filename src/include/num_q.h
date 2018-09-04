@@ -28,9 +28,9 @@
 			num_q(const int64_t &, const num_z &);
 			num_q(const int64_t &, const int64_t &);
 			
-			num_q & value(){ return *this; };
-			num_z z_value(){ return num_z(*this); };
-			num_q q_value(){ return *this; };
+			num_q & value() { return *this; };
+			num_z z_value() const { return num_z(*this); };
+			num_q q_value() const { return *this; };
 
 
 			num_q abs(){ num_q res(*this); res._sign = 0; return res; };
