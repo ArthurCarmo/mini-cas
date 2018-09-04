@@ -17,5 +17,11 @@ int main(){
 	
 	cout << unity * num_q(461, 53) << endl;
 	
+	cout << mono.derive() << endl;
+	cout << mono << endl;
+	cout << mono.derive('y', 'z') << endl;
+	
+	cout << x.derive() << endl;
+	
 	return 0;
 }
