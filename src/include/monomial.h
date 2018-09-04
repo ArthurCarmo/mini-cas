@@ -1,6 +1,7 @@
 #ifndef __MONONOMIAL_H
 #define __MONONOMIAL_H
 
+#include "number.h"
 #include "num_z.h"
 #include "num_q.h"
 
