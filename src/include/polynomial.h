@@ -17,7 +17,7 @@ class polynomial{
 		uint32_t _n_terms;
 		
 		polynomial & __construct_from_monomials(const monomial &m){
-			std::string variables = m.variables();
+			std::string variables = m.__create_hash();
 			if(this->_terms.count(variables) > 0){
 				this->_terms[variables]._coeficient += m._coeficient;
 				if(this->_terms[variables]._coeficient == 0){
@@ -35,7 +35,7 @@ class polynomial{
 		
 		template<class... Args>
 		polynomial & __construct_from_monomials(const monomial &m, Args... args){
-			std::string variables = m.variables();
+			std::string variables = m.__create_hash();
 			if(this->_terms.count(variables) > 0){
 				this->_terms[variables]._coeficient += m._coeficient;
 				if(this->_terms[variables]._coeficient == 0){

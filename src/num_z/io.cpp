@@ -9,13 +9,13 @@ std::ostream& operator << (std::ostream &o, const num_z &a){
 
 		if(a._sign) sprintf(output, "-");
 		n_chars += sprintf(output + n_chars, "%d", a._num[i]);
-		while(i--) n_chars += sprintf(output + n_chars, "%09d", a._num[i]);	//TROCAR POR _DIGITS_PER_BLOCK_
-		printf("%s", output);
+		while(i--) n_chars += sprintf(output + n_chars, "%09d", a._num[i]);	//TROCAR %09 POR _DIGITS_PER_BLOCK_
+		o << output;
 		free(output);
 	}else if(a._base_repr == HEX){
-		hex_f(a);
+		o << hex_f(a);
 	}else{
-		bin_f(a);
+		o << bin_f(a);
 	}
 	
 	return o;

@@ -29,8 +29,8 @@
 
 		friend std::ostream& operator << (std::ostream &, const num_z &);
 		friend std::istream& operator >> (std::istream &, num_z &);
-		friend void hex_f(const num_z &);
-		friend void bin_f(const num_z &);
+		friend std::string hex_f(const num_z &);
+		friend std::string bin_f(const num_z &);
 		friend num_z hex(const num_z &);
 		friend num_z bin(const num_z &);
 		friend num_z z_gcd(const num_z &, const num_z &);
@@ -70,6 +70,7 @@
 			~num_z();
 
 			int type() const { return this->_type; } ;
+			std::string to_string() const;
 			int32_t lsd() const { return this->_num[0]; };
 			int32_t msd() const { return this->_num[this->_blocks-1]; };
 

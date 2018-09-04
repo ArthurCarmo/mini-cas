@@ -1,4 +1,5 @@
 #include "../include/num_z.h"
+#include <string>
 
 num_z hex(const num_z &a){
 	num_z res(a);
@@ -12,7 +13,7 @@ num_z bin(const num_z &a){
 	return res;
 }
 
-void hex_f(const num_z &a){
+std::string hex_f(const num_z &a){
 	uint32_t max32 = -1;
 	uint64_t base_32;
 	char *output;
@@ -21,8 +22,7 @@ void hex_f(const num_z &a){
 	mod_tuple aux2;
 	
 	if(a == 0){
-		printf("0x0");
-		return;
+		return std::string("0x0");
 	}
 	
 	aux2.q = a;
@@ -49,19 +49,23 @@ void hex_f(const num_z &a){
 	while(max32--) n_chars += sprintf(output + n_chars, "%08x", aux._num[max32]);	//TROCAR POR _DIGITS_PER_BLOCK_
 	
 	printf("%s", output);
-	free(output);	
+	std::string out(output);
+	free(output);
+	
+	return out;
 }
 
-void bin_f(const num_z &a){
+std::string bin_f(const num_z &a){
 	uint32_t max32 = -1;
 	int64_t blocks;
 	uint64_t base_32;
+	std::string out = "";
 	num_z aux(0);
 	mod_tuple aux2;
 	
 	if(a == 0){
-		printf("0b0");
-		return;
+		out = "0b0";
+		return out;
 	}
 	
 	aux2.q = a;
@@ -76,15 +80,15 @@ void bin_f(const num_z &a){
 	max32 = 0;
 	while(aux2.q != 0){ 
 		aux2 = aux2.q % base_32;
-		aux._num[max32++] =	(aux2.r._num[1]*_BASE_ + aux2.r._num[0]);
+		aux._num[max32++] = (aux2.r._num[1]*_BASE_ + aux2.r._num[0]);
 	}
 	
 	while(aux._num[max32 - 1] == 0 && (max32 ^ 1)) --max32;
 	
 	blocks = max32 - 1;
 	
-	if(a._sign) printf("-");
-	printf("0b");
+	if(a._sign) out += "-";
+	out += "0b";
 	
 	max32 = 1 << 31;
 	while(!(max32 & aux._num[blocks]) && max32){
@@ -92,14 +96,16 @@ void bin_f(const num_z &a){
 	}
 	
 	while(max32){
-		printf("%d", (max32 & aux._num[blocks]) > 0);
+		out += std::to_string(int((max32 & aux._num[blocks]) > 0));
 		max32 >>= 1;
 	}
 	while(blocks--){
 		max32 = 1 << 31;
 		while(max32){
-			printf("%d", (max32 & aux._num[blocks]) > 0);
+			out += std::to_string(int((max32 & aux._num[blocks]) > 0));
 			max32 >>= 1;
 		}
 	}
+	
+	return out;
 }

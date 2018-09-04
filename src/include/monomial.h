@@ -8,6 +8,7 @@
 
 #include <ostream>
 #include <string>
+#include <sstream>
 #include <cctype>
 
 class monomial{
@@ -68,6 +69,17 @@ class monomial{
 				return this->__derive_with_respect_to(args...);
 			}			
 			return (*this = monomial());
+		}
+		
+		//espécie de hash que coincide para monômios semelhantes
+		std::string __create_hash() const {
+			std::ostringstream sstr;
+			for(int i = 'a'; i <= 'z'; i++){
+				if(this->_variables[i]){
+					sstr << char(i) << this->_exponent[i - 'a'];
+				}
+			}
+			return sstr.str();
 		}
 		
 	public:
