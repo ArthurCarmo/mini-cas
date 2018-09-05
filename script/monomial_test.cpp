@@ -11,7 +11,7 @@ int main(){
 	cout << unity << endl;
 	cout << x << endl;
 	
-	cout << x * mono << endl;
+/*	cout << x * mono << endl;
 	
 	unity *= mono;
 	
@@ -21,7 +21,9 @@ int main(){
 	cout << mono << endl;
 	cout << mono.derive('y', 'z') << endl;
 	
-	cout << x.derive() << endl;
+	cout << x.derive() << endl;  */
+	
+	cout << polynomial(x, unity, mono, x, monomial('x', 2)) << endl;
 	
 	return 0;
 }
