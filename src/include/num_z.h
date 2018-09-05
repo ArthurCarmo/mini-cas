@@ -271,6 +271,11 @@
 		num_z r;
 		friend std::ostream& operator << (std::ostream &, const div_tuple &);
 		operator num_z(){ return this->q; }
+		div_tuple & operator=(const div_tuple &d){
+			this->q = d.q;
+			this->r = d.r;
+			return *this;
+		}
 	};
 	
 	struct mod_tuple{
@@ -278,6 +283,11 @@
 		num_z r;
 		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
 		operator num_z(){ return this->r; }
+		mod_tuple & operator=(const mod_tuple &m){
+			this->q = m.q;
+			this->r = m.r;
+			return *this;
+		}
 	};
 	
 uint32_t __guess_quotient(const uint64_t &, const uint64_t &, const uint64_t &);

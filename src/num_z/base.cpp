@@ -14,12 +14,13 @@ num_z bin(const num_z &a){
 }
 
 std::string hex_f(const num_z &a){
-	uint32_t max32 = -1;
+	uint32_t max32 = 0x80000000;
 	uint64_t base_32;
 	char *output;
 	int n_chars = a._sign;
 	num_z aux(0);
 	mod_tuple aux2;
+	std::string out;
 	
 	if(a == 0){
 		return std::string("0x0");
@@ -30,14 +31,14 @@ std::string hex_f(const num_z &a){
 	
 	aux.__resize(a._blocks + 1);
 	
-	max32 <<= 1;
-	max32 >>= 1;
-	max32 = ~max32;
+	
 	base_32 = uint64_t(max32) << 1;
 	max32 = 0;
+	
 	while(aux2.q != 0){ 
 		aux2 = aux2.q % base_32;
-		aux._num[max32++] =	(aux2.r._num[1]*_BASE_ + aux2.r._num[0]);
+		aux._num[max32] = (aux2.r._num[1]*_BASE_ + aux2.r._num[0]);
+		++max32;
 	}
 	
 	while(aux._num[max32 - 1] == 0 && (max32 ^ 1)) --max32;
@@ -46,26 +47,24 @@ std::string hex_f(const num_z &a){
 	
 	if(a._sign) sprintf(output, "-");
 	n_chars += sprintf(output + n_chars, "0x%x", aux._num[--max32]);
-	while(max32--) n_chars += sprintf(output + n_chars, "%08x", aux._num[max32]);	//TROCAR POR _DIGITS_PER_BLOCK_
+	while(max32--) n_chars += sprintf(output + n_chars, "%08x", aux._num[max32]);
 	
-	printf("%s", output);
-	std::string out(output);
-	free(output);
+	out = std::string(output);
+	free(output);	
 	
 	return out;
 }
 
 std::string bin_f(const num_z &a){
-	uint32_t max32 = -1;
+	uint32_t max32 = 0x80000000;
 	int64_t blocks;
 	uint64_t base_32;
-	std::string out = "";
 	num_z aux(0);
 	mod_tuple aux2;
-	
+	std::string out("");
 	if(a == 0){
-		out = "0b0";
-		return out;
+		printf("0b0");
+		return std::string("0b0");
 	}
 	
 	aux2.q = a;
@@ -73,9 +72,6 @@ std::string bin_f(const num_z &a){
 	
 	aux.__resize(a._blocks + 1);
 	
-	max32 <<= 1;
-	max32 >>= 1;
-	max32 = ~max32;
 	base_32 = uint64_t(max32) << 1;
 	max32 = 0;
 	while(aux2.q != 0){ 

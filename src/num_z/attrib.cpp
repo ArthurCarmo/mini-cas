@@ -9,6 +9,9 @@ num_z & num_z::operator=(const num_z &a){
 	
 	std::copy(a._num, a._num + a._blocks, this->_num);
 	
+	for(int64_t i = this->_blocks; i < this->_n_blocks; i++)
+		this->_num[i] = 0;
+	
 	this->_sign = a._sign;
 	
 	return *this;

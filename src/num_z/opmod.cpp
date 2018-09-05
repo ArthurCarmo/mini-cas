@@ -105,6 +105,11 @@ mod_tuple num_z::operator%(const num_z &a){
 			res.r._sign = a._sign;
 		}
 	}
+	
+	for(int64_t i = res.r._blocks; i < res.r._n_blocks ; i++){
+		res.r._num[i] = 0;
+	}
+	
 	return res;
 }
 

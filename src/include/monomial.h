@@ -71,7 +71,7 @@ class monomial{
 			return (*this = monomial());
 		}
 		
-		//espécie de hash que coincide para monômios semelhantes
+		//hash que coincide para monômios semelhantes
 		std::string __create_hash() const {
 			std::ostringstream sstr;
 			for(int i = 'a'; i <= 'z'; i++){
