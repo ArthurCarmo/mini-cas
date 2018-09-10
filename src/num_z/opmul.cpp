@@ -2,7 +2,7 @@
 #include "../include/num_q.h"
 
 num_z num_z::operator*(const num_z &a){ 
-	num_z res(uint32_t(0));
+	num_z res;
 	//Produtos triviais
 	if((a == 0) | (*this == 0))return num_z(0);
 /*	if(a == 1) return *this;

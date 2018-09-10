@@ -52,6 +52,7 @@ class polynomial{
 		}
 		
 	public:
+	
 		//polinômio nulo
 		polynomial(){
 			this->_n_terms = 0;

@@ -10,10 +10,11 @@ num_z & num_z::operator+=(const num_z &a){
 		this->_sign = *this==0?0:!this->_sign;
 		return *this;	
 	}
+	
 	uint64_t w = 0;
 	uint32_t i = 0;
-	int vai_um = 0;
 	uint32_t maior =  1 + ((this->_blocks>a._blocks)?this->_blocks:a._blocks);
+	int vai_um = 0;
 	
 	num_z n(a, maior);
 	
@@ -21,8 +22,6 @@ num_z & num_z::operator+=(const num_z &a){
 		this->__resize(maior);
 	else	
 		std::memset(this->_num + this->_blocks, 0, (maior - this->_blocks) * sizeof(uint32_t));
-//		for(i = this->_blocks; i < maior; i++)
-//			this->_num[i] = 0;
 	
 	this->_blocks = maior - 1;
 	

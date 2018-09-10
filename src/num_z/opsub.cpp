@@ -22,11 +22,7 @@ num_z num_z::operator-(const num_z &a){
 		}
 		
 		if(res._n_blocks < maior._blocks) res.__resize(maior._blocks);
-//		if(menor._n_blocks < maior._blocks) menor.__resize(maior._blocks);
 		res._blocks = maior._blocks;
-		
-//		for(i = menor._blocks; i < maior._blocks; i++)
-//			menor._num[i] = 0;
 			
 		for(i = 0; i < menor._blocks; i++){
 			menor._num[i] += vai_um;

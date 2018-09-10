@@ -675,18 +675,18 @@ num_zm<N> num_zm<N>::inverse(){
 	newr._sign = 0;
 
 	while(newr != 0){
-	q = r / newr;
+		q = r / newr;
 
-	aux = newt;
-	newt = t - (q * newt);
-	t = aux;
+		aux = newt;
+		newt = t - (q * newt);
+		t = aux;
 
-	aux = newr;
-	newr = r - (q * newr);
-	r = aux;
+		aux = newr;
+		newr = r - (q * newr);
+		r = aux;
 	}
 	if(t._sign)
-	t += N;
+		t += N;
 
 	t._sign = N < 0;
 	res._num = t;

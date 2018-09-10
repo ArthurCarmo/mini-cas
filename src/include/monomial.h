@@ -74,6 +74,7 @@ class monomial{
 		//hash que coincide para monômios semelhantes
 		std::string __create_hash() const {
 			std::ostringstream sstr;
+			sstr << "";
 			for(int i = 'a'; i <= 'z'; i++){
 				if(this->_variables[i]){
 					sstr << char(i) << this->_exponent[i - 'a'];
