@@ -1,6 +1,8 @@
 #ifndef __SIGNATURES_
 #define __SIGNATURES_
 
+#include <cstdint>
+
 class Number;
 class num_z;
 class num_q;

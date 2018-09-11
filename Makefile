@@ -148,7 +148,10 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_q/bool.lo src/num_q/io.lo src/num_q/op_atrdiv.lo \
 	src/num_q/op_atrmul.lo src/num_q/op_atrsub.lo \
 	src/num_q/op_atrsum.lo src/num_q/opdiv.lo src/num_q/opmul.lo \
-	src/num_q/opsub.lo src/num_q/opsum.lo
+	src/num_q/opsub.lo src/num_q/opsum.lo src/polynomial/attrib.lo \
+	src/polynomial/bool.lo src/polynomial/io.lo \
+	src/polynomial/opdiv.lo src/polynomial/opmul.lo \
+	src/polynomial/opsub.lo src/polynomial/opsum.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -584,7 +587,14 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/opdiv.cpp \
 			src/num_q/opmul.cpp \
 			src/num_q/opsub.cpp \
-			src/num_q/opsum.cpp
+			src/num_q/opsum.cpp \
+			src/polynomial/attrib.cpp \
+			src/polynomial/bool.cpp \
+			src/polynomial/io.cpp \
+			src/polynomial/opdiv.cpp \
+			src/polynomial/opmul.cpp \
+			src/polynomial/opsub.cpp \
+			src/polynomial/opsum.cpp 
 
 t_basic_CPPFLAGS = -I./src/include
 t_basic_SOURCES = script/basic/t_basic.cpp
@@ -766,6 +776,26 @@ src/num_q/opsub.lo: src/num_q/$(am__dirstamp) \
 	src/num_q/$(DEPDIR)/$(am__dirstamp)
 src/num_q/opsum.lo: src/num_q/$(am__dirstamp) \
 	src/num_q/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/$(am__dirstamp):
+	@$(MKDIR_P) src/polynomial
+	@: > src/polynomial/$(am__dirstamp)
+src/polynomial/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/polynomial/$(DEPDIR)
+	@: > src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/attrib.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/bool.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/io.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/opdiv.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/opmul.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/opsub.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/opsum.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 
 libminicas.la: $(libminicas_la_OBJECTS) $(libminicas_la_DEPENDENCIES) $(EXTRA_libminicas_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libminicas_la_OBJECTS) $(libminicas_la_LIBADD) $(LIBS)
@@ -798,6 +828,8 @@ mostlyclean-compile:
 	-rm -f src/num_q/*.lo
 	-rm -f src/num_z/*.$(OBJEXT)
 	-rm -f src/num_z/*.lo
+	-rm -f src/polynomial/*.$(OBJEXT)
+	-rm -f src/polynomial/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -834,6 +866,13 @@ include src/num_z/$(DEPDIR)/opsub.Plo
 include src/num_z/$(DEPDIR)/opsum.Plo
 include src/num_z/$(DEPDIR)/private_ops.Plo
 include src/num_z/$(DEPDIR)/unary_ops.Plo
+include src/polynomial/$(DEPDIR)/attrib.Plo
+include src/polynomial/$(DEPDIR)/bool.Plo
+include src/polynomial/$(DEPDIR)/io.Plo
+include src/polynomial/$(DEPDIR)/opdiv.Plo
+include src/polynomial/$(DEPDIR)/opmul.Plo
+include src/polynomial/$(DEPDIR)/opsub.Plo
+include src/polynomial/$(DEPDIR)/opsum.Plo
 
 .cpp.o:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -880,6 +919,7 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf src/num_q/.libs src/num_q/_libs
 	-rm -rf src/num_z/.libs src/num_z/_libs
+	-rm -rf src/polynomial/.libs src/polynomial/_libs
 
 distclean-libtool:
 	-rm -f libtool config.lt
@@ -1418,6 +1458,8 @@ distclean-generic:
 	-rm -f src/num_q/$(am__dirstamp)
 	-rm -f src/num_z/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/num_z/$(am__dirstamp)
+	-rm -f src/polynomial/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/polynomial/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1429,7 +1471,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libLTLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf script/basic/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/polynomial/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1477,7 +1519,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf script/basic/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/polynomial/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

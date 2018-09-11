@@ -3,10 +3,14 @@
 
 #include <iostream>
 
+#include "signatures.h"
+
 #include "number.h"
 #include "num_z.h"
 
 	class num_q  : public Number{
+		
+		friend class monomial;
 
 		friend std::ostream& operator << (std::ostream &, const num_q &);
 		friend std::istream& operator >> (std::istream &, num_q &);

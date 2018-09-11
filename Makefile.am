@@ -47,7 +47,14 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/opdiv.cpp \
 			src/num_q/opmul.cpp \
 			src/num_q/opsub.cpp \
-			src/num_q/opsum.cpp
+			src/num_q/opsum.cpp \
+			src/polynomial/attrib.cpp \
+			src/polynomial/bool.cpp \
+			src/polynomial/io.cpp \
+			src/polynomial/opdiv.cpp \
+			src/polynomial/opmul.cpp \
+			src/polynomial/opsub.cpp \
+			src/polynomial/opsum.cpp 
 
 check_PROGRAMS = t_basic
 

@@ -16,7 +16,7 @@ class polynomial{
 		std::unordered_map<std::string, monomial> _terms;
 		uint32_t _n_terms;
 		
-		polynomial & __construct_from_monomials(const monomial &m){
+		void __construct_from_monomials(const monomial &m){
 			std::string _similar_hash = m.__create_hash();
 			if(this->_terms.count(_similar_hash) > 0){
 				this->_terms[_similar_hash]._coeficient += m._coeficient;
@@ -30,11 +30,10 @@ class polynomial{
 					++this->_n_terms;
 				}
 			}
-			return *this;
 		}
 		
 		template<class... Args>
-		polynomial & __construct_from_monomials(const monomial &m, Args... args){
+		void __construct_from_monomials(const monomial &m, Args... args){
 			std::string _similar_hash = m.__create_hash();
 			if(this->_terms.count(_similar_hash) > 0){
 				this->_terms[_similar_hash]._coeficient += m._coeficient;
@@ -48,7 +47,7 @@ class polynomial{
 					++this->_n_terms;
 				}
 			}
-			return this->__construct_from_monomials(args...);
+			this->__construct_from_monomials(args...);
 		}
 		
 	public:
@@ -72,33 +71,21 @@ class polynomial{
 			this->__construct_from_monomials(m, args...);
 		}
 		
+		polynomial & operator=(const polynomial &);
+
+		polynomial & operator+=(const polynomial &);
+		polynomial & operator-=(const polynomial &);
+		polynomial & operator*=(const polynomial &);
+		polynomial & operator/=(const polynomial &);
+		
+		polynomial operator+(const polynomial &); 
+		polynomial operator-(const polynomial &);
+		polynomial operator*(const polynomial &); 
+		polynomial operator/(const polynomial &);
+		
+		bool operator==(const polynomial &);
+		bool operator!=(const polynomial &);
+				
 };
-
-std::ostream & operator<<(std::ostream &o, const polynomial &p){
-
-	std::unordered_map<std::string, monomial>::const_iterator it = p._terms.begin();
-
-	if(p._n_terms == 0){
-		o << 0;
-		return o;
-	}
-	
-	o << it->second;
-	++it;
-	
-	while(it != p._terms.end()){
-		if(it->second.coeficient().sign()){
-			o << " - ";
-			it->second.coeficient().make_abs();
-			o << it->second;
-			it->second.coeficient().make_negative();
-		}else{
-			o << " + " << it->second;
-		}
-		++it;
-	}
-	
-	return o;
-}
 
 #endif 

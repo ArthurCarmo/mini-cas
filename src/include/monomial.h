@@ -83,6 +83,19 @@ class monomial{
 			return sstr.str();
 		}
 		
+		//soma monômios semelhantes
+		monomial & _similar_atrsum(const monomial &m){
+			this->_coeficient += m._coeficient;
+			if(this->_coeficient == 0){
+				for(int i = 'a'; i <= 'z'; i++){
+					this->_variables[i] = 0;
+					this->_exponent[i - 'a'] = 0;
+				}
+				this->_var_counter = 0;
+			}
+			return *this;
+		}
+		
 	public:
 		
 		//monômio nulo
@@ -100,17 +113,6 @@ class monomial{
 				this->_variables[i] = m._variables[i];
 				this->_exponent[i - 'a'] = m._exponent[i - 'a'];	
 			}
-		}
-		
-		//atribuição
-		monomial & operator=(const monomial &m){
-			this->_coeficient = m._coeficient;
-			this->_var_counter = m._var_counter;
-			for(int i = 'a'; i <= 'z'; i++){
-				this->_variables[i] = m._variables[i];
-				this->_exponent[i - 'a'] = m._exponent[i - 'a'];	
-			}
-			return *this;
 		}
 		
 		//monômio constante
@@ -147,6 +149,17 @@ class monomial{
 				this->__construct_monomial(args...);
 		}
 		
+		//atribuição
+		monomial & operator=(const monomial &m){
+			this->_coeficient = m._coeficient;
+			this->_var_counter = m._var_counter;
+			for(int i = 'a'; i <= 'z'; i++){
+				this->_variables[i] = m._variables[i];
+				this->_exponent[i - 'a'] = m._exponent[i - 'a'];	
+			}
+			return *this;
+		}
+		
 		//string contendo as variáveis com expoente não zero no polinômio
 		std::string variables() const {
 			std::string vars = "";
@@ -165,6 +178,34 @@ class monomial{
 		num_q coeficient() const {
 			return this->_coeficient;
 		}
+		
+		//funções de manipulação de sinal
+		monomial abs() const {
+			monomial res(*this);
+			res._coeficient._sign = 0;
+			return res;
+		}
+		
+		monomial negative() const { 
+			monomial res(*this); 
+			res._coeficient._sign = 1;
+			return res;
+		};
+		
+		monomial & make_abs(){
+			this->_coeficient._sign = 0;
+			return *this;
+		};
+		
+		monomial & flip_sign(){
+			this->_coeficient._sign = 1 - this->_coeficient._sign;
+			return *this;
+		};
+		
+		monomial & make_negative(){
+			this->_coeficient._sign = 1;
+			return *this;
+		};
 		
 		//monômios são similares se possuem as variáveis com os mesmo coeficientes
 		bool is_similar(const monomial &m) const {
@@ -231,27 +272,23 @@ class monomial{
 			return *this;
 		}
 
-};
 
-std::ostream & operator<<(std::ostream &o, const monomial &m){
-	int used_variables = 0;
-	if(m._var_counter == 0)
-		o << m._coeficient;
-	else if(m._coeficient != 1)
-		o << m._coeficient << " * ";
-		
-	for(int i = 'a'; i <= 'z'; i++){
-		if(m._variables[i]){
-			o << (char)i;
-			++used_variables;
-			if(m._exponent[i - 'a'] != 1){
-				o << "^" << m._exponent[i - 'a'];
-			}
-			if(used_variables < m._var_counter)
-				o << " * ";
+		bool operator==(const monomial &m){
+			if(this->_var_counter != m._var_counter || this->_coeficient != m._coeficient)
+				return false;
+			for(int i = 0; i < 27; i++)
+				if(this->_exponent[i] != m._exponent[i])
+					return false;
+			return true;
 		}
-	}
-	return o;
-}
-
+		
+		bool operator!=(const monomial &m){
+			if(this->_var_counter != m._var_counter || this->_coeficient != m._coeficient)
+				return true;
+			for(int i = 0; i < 27; i++)
+				if(this->_exponent[i] != m._exponent[i])
+					return true;
+			return false;
+		}
+};
 #endif
