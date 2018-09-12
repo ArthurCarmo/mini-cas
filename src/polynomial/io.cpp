@@ -8,16 +8,13 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 	else if(m._coeficient != 1)
 		o << m._coeficient << " * ";
 		
-	for(int i = 'a'; i <= 'z'; i++){
-		if(m._variables[i]){
-			o << (char)i;
-			++used_variables;
-			if(m._exponent[i - 'a'] != 1){
-				o << "^" << m._exponent[i - 'a'];
-			}
-			if(used_variables < m._var_counter)
-				o << " * ";
-		}
+	for(std::map<std::string, num_z>::const_iterator it = m._literals.begin(); it != m._literals.end(); ++it){
+		o << it->first;
+		++used_variables;
+		if(it->second != 1)
+			o << "^" << it->second;
+		if(used_variables < m._var_counter)
+			o << " * ";
 	}
 	return o;
 }

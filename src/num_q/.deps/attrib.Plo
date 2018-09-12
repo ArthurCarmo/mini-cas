@@ -102,8 +102,8 @@ src/num_q/attrib.lo: src/num_q/attrib.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/5/bits/locale_facets.tcc \
  /usr/include/c++/5/bits/basic_ios.tcc \
  /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
- /usr/include/c++/5/bits/istream.tcc src/num_q/../include/number.h \
- src/num_q/../include/signatures.h src/num_q/../include/num_z.h \
+ /usr/include/c++/5/bits/istream.tcc src/num_q/../include/signatures.h \
+ src/num_q/../include/number.h src/num_q/../include/num_z.h \
  /usr/include/c++/5/cstring /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/string3.h \
  /usr/include/c++/5/algorithm /usr/include/c++/5/utility \
@@ -464,9 +464,9 @@ src/num_q/../include/num_q.h:
 
 /usr/include/c++/5/bits/istream.tcc:
 
-src/num_q/../include/number.h:
-
 src/num_q/../include/signatures.h:
+
+src/num_q/../include/number.h:
 
 src/num_q/../include/num_z.h:
 

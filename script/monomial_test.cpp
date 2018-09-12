@@ -23,7 +23,5 @@ int main(){
 	
 	cout << x.derive() << endl;  */
 	
-	cout << polynomial(x, unity, mono, x, monomial('x', 2)) << endl;
-	
 	return 0;
 }

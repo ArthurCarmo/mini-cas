@@ -17,36 +17,11 @@ class polynomial{
 		uint32_t _n_terms;
 		
 		void __construct_from_monomials(const monomial &m){
-			std::string _similar_hash = m.__create_hash();
-			if(this->_terms.count(_similar_hash) > 0){
-				this->_terms[_similar_hash]._coeficient += m._coeficient;
-				if(this->_terms[_similar_hash]._coeficient == 0){
-					this->_terms.erase(_similar_hash);
-					--this->_n_terms;
-				}
-			}else{
-				if(m._coeficient != 0){
-					this->_terms.insert(std::pair<std::string, monomial>(_similar_hash, m));
-					++this->_n_terms;
-				}
-			}
+		
 		}
 		
 		template<class... Args>
 		void __construct_from_monomials(const monomial &m, Args... args){
-			std::string _similar_hash = m.__create_hash();
-			if(this->_terms.count(_similar_hash) > 0){
-				this->_terms[_similar_hash]._coeficient += m._coeficient;
-				if(this->_terms[_similar_hash]._coeficient == 0){
-					this->_terms.erase(_similar_hash);
-					--this->_n_terms;
-				}
-			}else{
-				if(m._coeficient != 0){
-					this->_terms.insert(std::pair<std::string, monomial> (_similar_hash, m));
-					++this->_n_terms;
-				}
-			}
 			this->__construct_from_monomials(args...);
 		}
 		
