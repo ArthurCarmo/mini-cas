@@ -14,8 +14,8 @@ num_z::num_z(){
 
 //------ CONVERTER -------------
 
-num_z::operator div_tuple(){div_tuple q; q.q = *this; return q;}
-num_z::operator mod_tuple(){mod_tuple r; r.r = *this; return r;}
+//num_z::operator div_tuple(){div_tuple q; q.q = *this; return q;}
+//num_z::operator mod_tuple(){mod_tuple r; r.r = *this; return r;}
 num_q num_z::q_value() const { return num_q(*this); };
 
 //----COPY CONSTRUCTORS---------

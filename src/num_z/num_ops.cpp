@@ -112,6 +112,39 @@ num_z z_gcd(const uint64_t &a, const num_z &b){
 	return z_gcd(b, num_z(a));
 }
 
+//POW
+num_z num_z::pow(num_z &N){
+	num_z p(*this);
+	
+	if(N == 0) return num_z(1);
+	if(N == 1) return *this;
+	div_tuple q = N / 2;
+	p = this->pow(q.q);
+	if(N._num[0] & 1) return *this * p * p;
+	return p * p;
+}
+
+num_z num_z::pow(uint64_t N){
+	num_z p(*this);
+	
+	if(N == 0) return num_z(1);
+	if(N == 1) return *this;
+	p = this->pow(N / 2);
+	if(N % 2) return *this * p * p;
+	return p * p;
+}
+
+num_z z_pow(num_z &a, num_z &N){
+	num_z res;
+
+	if(N == 0) return num_z(1);
+	if(N == 1) return a;
+	div_tuple q = N / 2;
+	res = z_pow(a, q.q);
+	if(N._num[0] & 1) return a * res * res;
+	return res * res;
+}
+
 //BITSHIFT
 void num_z::__bit_lshift(){
 	uint32_t i, n = this->_blocks - 1;

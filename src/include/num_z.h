@@ -33,6 +33,7 @@
 		friend std::string bin_f(const num_z &);
 		friend num_z hex(const num_z &);
 		friend num_z bin(const num_z &);
+		friend num_z z_pow(num_z &, num_z &);
 		friend num_z z_gcd(const num_z &, const num_z &);
 		friend num_z z_lcm(const num_z &, const num_z &);
 		friend num_z z_sqrt(const num_z &);
@@ -87,10 +88,10 @@
 			num_z gcd(const num_z &);
 			num_z lcm(const num_z &);
 
-			operator div_tuple();
-			operator mod_tuple();
-			operator long long() const { return (long long)_BASE_ * this->_num[1] + this->_num[0]; };
-			operator int() const { return this->_num[0]; };
+//			operator div_tuple();
+//			operator mod_tuple();
+//			operator long long() const { return (long long)_BASE_ * this->_num[1] + this->_num[0]; };
+//			operator int() const { return this->_num[0]; };
 			operator bool() const {return this->_blocks > 1 || this->_num[0] != 0;};
 			
 			num_z operator-() const;
@@ -198,6 +199,7 @@
 			mod_tuple operator%(const uint64_t &);
 			mod_tuple operator%(const char *);
 			
+			num_z pow(num_z &);
 			num_z pow(uint64_t);
 			
 			bool operator==(const num_z &) const;

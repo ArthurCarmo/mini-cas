@@ -34,7 +34,7 @@ num_q num_q::operator*(const int64_t &a){
 	return res;
 }
 
-num_q num_q::pow(int64_t N){
+num_q num_q::pow(num_z N){
 	num_q p(*this);
 	num_z aux(this->_numerator);
 	
