@@ -88,10 +88,6 @@
 			num_z gcd(const num_z &);
 			num_z lcm(const num_z &);
 
-//			operator div_tuple();
-//			operator mod_tuple();
-//			operator long long() const { return (long long)_BASE_ * this->_num[1] + this->_num[0]; };
-//			operator int() const { return this->_num[0]; };
 			operator bool() const {return this->_blocks > 1 || this->_num[0] != 0;};
 			
 			num_z operator-() const;

@@ -1,16 +1,10 @@
 #include "../include/polynomial.h"
 
-#define __MAP_KEY_ first
-#define __MAP_VALUE_ second
-
 polynomial polynomial::operator+(const polynomial &p){
 	polynomial res;
-	const polynomial *most_terms, *least_terms;
+	const polynomial *most_terms = this, *least_terms = &p;
 	
-	if(this->_n_terms >= p._n_terms){
-		most_terms = this;
-		least_terms = &p;
-	}else{
+	if(this->_n_terms < p._n_terms){
 		most_terms = &p;
 		least_terms = this;	
 	}
