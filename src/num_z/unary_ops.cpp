@@ -1,6 +1,6 @@
 #include "../include/num_z.h"
 
-num_z num_z::abs(){
+num_z num_z::abs() const {
 	num_z res(*this);
 	res._sign = 0;
 	return res;

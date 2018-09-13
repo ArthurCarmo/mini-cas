@@ -1,7 +1,7 @@
 #include "../include/num_z.h"
 #include "../include/num_q.h"
 
-div_tuple num_z::operator/(const num_z &a){ 
+div_tuple num_z::operator/(const num_z &a) const { 
 	div_tuple res;	
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
 	int64_t j;
@@ -91,27 +91,27 @@ div_tuple num_z::operator/(const num_z &a){
 	return res;
 }
 
-num_q num_z::operator/(const num_q &a){
+num_q num_z::operator/(const num_q &a) const {
 	num_q res(a.inverse());
 	return res * *this;
 }
 
-div_tuple num_z::operator/(const div_tuple &a){
+div_tuple num_z::operator/(const div_tuple &a) const {
 	num_z res(a.q);
 	return *this/res;
 }
 
-div_tuple num_z::operator/(const mod_tuple &a){
+div_tuple num_z::operator/(const mod_tuple &a) const {
 	num_z res(a.r);
 	return *this/res;
 }
 
-div_tuple num_z::operator/(const int &a){
+div_tuple num_z::operator/(const int &a) const {
 	num_z res(a);
 	return *this/res;
 }
 
-div_tuple num_z::operator/(const uint32_t &a){
+div_tuple num_z::operator/(const uint32_t &a) const {
 	div_tuple res;
 	int64_t j;
 	uint64_t r = 0;
@@ -140,17 +140,17 @@ div_tuple num_z::operator/(const uint32_t &a){
 	return res;
 }
 
-div_tuple num_z::operator/(const int64_t &a){
+div_tuple num_z::operator/(const int64_t &a) const {
 	num_z res(a);
 	return *this/res;
 }
 
-div_tuple num_z::operator/(const uint64_t &a){
+div_tuple num_z::operator/(const uint64_t &a) const {
 	num_z res(a);
 	return *this/res;
 }
 
-div_tuple num_z::operator/(const char *a){
+div_tuple num_z::operator/(const char *a) const {
 	num_z res(a);
 	return *this/res;
 }

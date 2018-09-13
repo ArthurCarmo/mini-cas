@@ -113,7 +113,7 @@ num_z z_gcd(const uint64_t &a, const num_z &b){
 }
 
 //POW
-num_z num_z::pow(num_z &N){
+num_z num_z::pow(const num_z &N) const {
 	num_z p(*this);
 	
 	if(N == 0) return num_z(1);
@@ -124,7 +124,7 @@ num_z num_z::pow(num_z &N){
 	return p * p;
 }
 
-num_z num_z::pow(uint64_t N){
+num_z num_z::pow(uint64_t N) const {
 	num_z p(*this);
 	
 	if(N == 0) return num_z(1);
@@ -134,7 +134,7 @@ num_z num_z::pow(uint64_t N){
 	return p * p;
 }
 
-num_z z_pow(num_z &a, num_z &N){
+num_z z_pow(const num_z &a, const num_z &N){
 	num_z res;
 
 	if(N == 0) return num_z(1);

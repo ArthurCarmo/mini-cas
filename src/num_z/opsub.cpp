@@ -1,10 +1,10 @@
 #include "../include/num_z.h"
 #include "../include/num_q.h"
 
-num_z num_z::operator-(const num_z &a){
+num_z num_z::operator-(const num_z &a) const {
 	num_z res;
 	
-	if(this->_sign ^ a._sign) {this->_sign = !this->_sign; res = *this + a; res._sign = this->_sign = !this->_sign;}
+	if(this->_sign ^ a._sign) { res = *this; res.flip_sign(); res += a; res._sign = !res._sign;}
 	else{
 		num_z maior, menor;
 		bool vai_um = 0;
@@ -48,41 +48,41 @@ num_z num_z::operator-(const num_z &a){
 	return res;
 }
 
-num_q num_z::operator-(const num_q &a){
+num_q num_z::operator-(const num_q &a) const {
 	num_q res(-a);
 	return res += *this;
 }
 
-num_z num_z::operator-(const div_tuple &a){
+num_z num_z::operator-(const div_tuple &a) const {
 	return *this-a.q;
 }
 
-num_z num_z::operator-(const mod_tuple &a){
+num_z num_z::operator-(const mod_tuple &a) const {
 	return *this-a.r;
 }
 
 
-num_z num_z::operator-(const int &a){ //EXPANDIR
+num_z num_z::operator-(const int &a) const {
 	num_z res(a);
 	return *this-res;
 }
 
-num_z num_z::operator-(const uint32_t &a){ //EXPANDIR
+num_z num_z::operator-(const uint32_t &a) const {
 	num_z res(a);
 	return *this-res;
 }
 
-num_z num_z::operator-(const int64_t &a){ //EXPANDIR
+num_z num_z::operator-(const int64_t &a) const {
 	num_z res(a);
 	return *this-res;
 }
 
-num_z num_z::operator-(const uint64_t &a){ //EXPANDIR
+num_z num_z::operator-(const uint64_t &a) const {
 	num_z res(a);
 	return *this-res;
 }
 
-num_z num_z::operator-(const char *a){
+num_z num_z::operator-(const char *a) const {
 	num_z res(a);
 	return *this-res;
 }

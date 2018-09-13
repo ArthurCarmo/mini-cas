@@ -1,6 +1,6 @@
 #include "../include/num_q.h"
 
-num_q num_q::operator+(const num_q &b){
+num_q num_q::operator+(const num_q &b) const {
 	num_q res(*this), a(b);
 	
 	res._numerator._sign = res._sign;
@@ -22,7 +22,7 @@ num_q num_q::operator+(const num_q &b){
 	return res;
 }
 
-num_q num_q::operator+(const num_z &a){
+num_q num_q::operator+(const num_z &a) const {
 	num_q res(*this);
 	num_z aux;
 	aux = this->_denominator * a;
@@ -37,7 +37,7 @@ num_q num_q::operator+(const num_z &a){
 	return res;
 }
 
-num_q num_q::operator+(const int64_t &a){
+num_q num_q::operator+(const int64_t &a) const {
 	num_q res(*this);
 	num_z aux;
 	

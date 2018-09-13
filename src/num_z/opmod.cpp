@@ -1,6 +1,6 @@
 #include "../include/num_z.h"
 
-mod_tuple num_z::operator%(const num_z &a){
+mod_tuple num_z::operator%(const num_z &a) const {
 	mod_tuple res;	
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
 	int64_t j;
@@ -113,20 +113,20 @@ mod_tuple num_z::operator%(const num_z &a){
 	return res;
 }
 
-mod_tuple num_z::operator%(const div_tuple &a){
+mod_tuple num_z::operator%(const div_tuple &a) const {
 	return *this%a.q;
 }
 
-mod_tuple num_z::operator%(const mod_tuple &a){
+mod_tuple num_z::operator%(const mod_tuple &a) const {
 	return *this%a.r;
 }
 
-mod_tuple num_z::operator%(const int &a){
+mod_tuple num_z::operator%(const int &a) const {
 	num_z r(a);
 	return *this%r;
 }
 
-mod_tuple num_z::operator%(const uint32_t &a){
+mod_tuple num_z::operator%(const uint32_t &a) const {
 	mod_tuple res;
 	int64_t j;
 	uint64_t r = 0;
@@ -155,17 +155,17 @@ mod_tuple num_z::operator%(const uint32_t &a){
 	return res;
 }
 
-mod_tuple num_z::operator%(const int64_t &a){
+mod_tuple num_z::operator%(const int64_t &a) const {
 	num_z r(a);
 	return *this%r;
 }
 
-mod_tuple num_z::operator%(const uint64_t &a){
+mod_tuple num_z::operator%(const uint64_t &a) const {
 	num_z r(a);
 	return *this%r;
 }
 
-mod_tuple num_z::operator%(const char *a){
+mod_tuple num_z::operator%(const char *a) const {
 	num_z r(a);
 	return *this%r;
 }
