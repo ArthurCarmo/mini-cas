@@ -1,1 +1,4 @@
-# dummy
+src/polynomial/opdiv.lo: src/polynomial/opdiv.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

@@ -20,22 +20,22 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 }
 
 std::ostream & operator<<(std::ostream &o, const polynomial &p){
-	std::unordered_map<std::string, monomial>::const_iterator it = p._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it = p._terms.begin();
 
 	if(p._n_terms == 0){
 		o << 0;
 		return o;
 	}
 	
-	o << it->second;
+	o << *it;
 	++it;
 	
 	while(it != p._terms.end()){
-		if(it->second.coeficient().sign()){
+		if(it->coeficient().sign()){
 			o << " - ";
-			o << it->second.abs();
+			o << it->abs();
 		}else{
-			o << " + " << it->second;
+			o << " + " << *it;
 		}
 		++it;
 	}

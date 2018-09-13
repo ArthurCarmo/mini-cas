@@ -1,1 +1,4 @@
-# dummy
+src/polynomial/opsub.lo: src/polynomial/opsub.cpp \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

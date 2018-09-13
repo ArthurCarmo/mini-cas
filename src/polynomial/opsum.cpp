@@ -16,17 +16,19 @@ polynomial polynomial::operator+(const polynomial &p){
 	}
 	
 	res = *most_terms;
-	std::unordered_map<std::string, monomial>::const_iterator it = least_terms->_terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it = least_terms->_terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it_res = most_terms->_terms.begin();
 	
 	while(it != least_terms->_terms.end()){
-		if(res._terms.count(it->__MAP_KEY_) > 0){
-			res._terms[it->__MAP_KEY_]._similar_atrsum(it->__MAP_VALUE_);
-			if(res._terms[it->__MAP_KEY_]._coeficient == 0){
-				res._terms.erase(it->__MAP_KEY_);
+		it_res = res._terms.find(*it);
+		if(it_res != most_terms->_terms.end()){
+			const_cast<num_q &>(it_res->_coeficient) += it->_coeficient;
+			if(it_res->_coeficient == 0){
+				res._terms.erase(it_res);
 				--res._n_terms;
 			}
 		}else{
-			res._terms.insert(std::pair<std::string, monomial> (it->__MAP_KEY_, it->__MAP_VALUE_));
+			res._terms.insert(*it);
 			++res._n_terms;
 		}
 		
@@ -37,20 +39,21 @@ polynomial polynomial::operator+(const polynomial &p){
 }
 
 polynomial & polynomial::operator+=(const polynomial &p){
-	std::unordered_map<std::string, monomial>::const_iterator it = p._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it = p._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it_this = this->_terms.begin();
 	
 	while(it != p._terms.end()){
-		if(this->_terms.count(it->__MAP_KEY_) > 0){
-			this->_terms[it->__MAP_KEY_]._similar_atrsum(it->__MAP_VALUE_);
-			if(this->_terms[it->__MAP_KEY_]._coeficient == 0){
-				this->_terms.erase(it->__MAP_KEY_);
+		it_this = this->_terms.find(*it);
+		if(it_this != this->_terms.end()){
+			const_cast<num_q &>(it_this->_coeficient) += it->_coeficient;
+			if(it_this->_coeficient == 0){
+				this->_terms.erase(it_this);
 				--this->_n_terms;
 			}
 		}else{
-			this->_terms.insert(std::pair<std::string, monomial> (it->__MAP_KEY_, it->__MAP_VALUE_));
+			this->_terms.insert(*it);
 			++this->_n_terms;
 		}
-		
 		++it;
 	}
 	

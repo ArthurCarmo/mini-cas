@@ -550,6 +550,7 @@ include_HEADERS = src/include/mini-cas \
 		src/include/num_z.h \
 		src/include/num_zm.h \
 		src/include/monomial.h \
+		src/include/monomial_comp_class.h \
 		src/include/polynomial.h \
 		src/include/term.h \
 		src/include/symbol.h \

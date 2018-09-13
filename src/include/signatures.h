@@ -11,6 +11,8 @@ class q_vector;	   //	Vão ser implementadas ...
 class q_matrix;	   //	... mas não para o TCC :P
 
 class monomial;
+class monomial_comp_class;
+
 class polynomial;
 class term;  
 class symbol;

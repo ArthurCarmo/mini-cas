@@ -13,6 +13,7 @@
 
 class monomial{
 	
+	friend class monomial_comp_class;
 	friend class polynomial;
 	
 	friend std::ostream & operator<<(std::ostream &, const monomial &);
@@ -320,6 +321,12 @@ class monomial{
 			
 			this->_coeficient *= m._coeficient;
 			return *this;
+		}
+		
+		monomial operator-() const {
+			monomial res(*this);
+			res._coeficient.flip_sign();
+			return res;
 		}
 
 
