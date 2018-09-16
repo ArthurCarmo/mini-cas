@@ -2,6 +2,6 @@
 
 Projeto de TCC.
 
-Para o exemplo utilizando a biblioteca gmp:
+Biblioteca para matemática simbólica em C++11
 
-  Mudar a variavel GMPPATH no Makefile para a pasta onde a GMP foi instalada
+${CXX} -std=c++11 -I${MINICAS_DIR}/include -L${MINICAS_DIR}/lib -lminicas
