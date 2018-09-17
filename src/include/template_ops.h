@@ -31,7 +31,7 @@ T g_pow(const T &a, const num_z &N){
 	if(N == 1) return a;
 	div_tuple q = N / 2;
 	res = g_pow(a, q.q);
-	if(N._num[0] & 1) return a * res * res;
+	if(q.r == 1) return a * res * res;
 	return res * res;
 }
 
