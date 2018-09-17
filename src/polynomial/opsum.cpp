@@ -11,7 +11,7 @@ polynomial polynomial::operator+(const polynomial &p){
 	
 	res = *most_terms;
 	std::set<monomial, monomial_comp_class>::const_iterator it = least_terms->_terms.begin();
-	std::set<monomial, monomial_comp_class>::const_iterator it_res = most_terms->_terms.begin();
+	std::set<monomial, monomial_comp_class>::iterator it_res = res._terms.begin();
 	
 	while(it != least_terms->_terms.end()){
 		it_res = res._terms.find(*it);

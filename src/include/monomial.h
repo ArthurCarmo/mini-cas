@@ -272,7 +272,76 @@ class monomial{
 			monomial res(*this);
 			return res.__derive_with_respect_to(v, args...);
 		}
+
+		//avalia x ou primeira variável do monômio
+		monomial eval(const num_q &val) const {
+			monomial res(*this);
+			std::map<std::string, num_z>::const_iterator it;
 			
+			if(val == 0) return monomial();
+			if(this->_var_counter == 0) return res;
+			
+			if((it = this->_literals.find("x")) != this->_literals.end()){
+				res._coeficient *= val.pow(it->second);
+				res._literals.erase(it);
+				return res;
+			}
+			
+			it = this->_literals.begin();
+			res._coeficient *= val.pow(it->second);
+			res._literals.erase(it);
+			return res;
+		}
+		
+		//avalia o monômio para o valor especificado de uma variável
+		monomial eval(const std::string &var, const num_q &val) const {
+			monomial res(*this);
+			std::map<std::string, num_z>::const_iterator it;
+			
+			if(val == 0) return monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				res._coeficient *= val.pow(it->second);
+				res._literals.erase(it);
+			}
+			return res;
+		}
+		
+		//avalia o monômio para os valores especificados de suas variáveis
+		template<class... Args>
+		monomial eval(const std::string &var, const num_q &val, Args... args) const {
+			monomial res(*this);
+			std::map<std::string, num_z>::const_iterator it;
+			
+			if(val == 0) return monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				res._coeficient *= val.pow(it->second);
+				res._literals.erase(it);
+			}
+			res.ref_eval(args...);
+			return res;
+		}
+		
+		//avalia e modifica o valor do monômio
+		monomial & ref_eval(const std::string &var, const num_q &val){
+			std::map<std::string, num_z>::const_iterator it;	
+			if(val == 0) return *this = monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				this->_coeficient *= val.pow(it->second);
+				this->_literals.erase(it);
+			}
+			return *this;
+		}
+		
+		template<class... Args>
+		monomial & ref_eval(const std::string &var, const num_q &val, Args... args){
+			std::map<std::string, num_z>::const_iterator it;	
+			if(val == 0) return *this = monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				this->_coeficient *= val.pow(it->second);
+				this->_literals.erase(it);
+			}
+			return this->ref_eval(args...);
+		}	
 		
 		//produto de dois monômios é um monômio
 		monomial operator*(const monomial &m) const {
