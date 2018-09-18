@@ -21,30 +21,52 @@ class monomial{
 	private:
 		num_q _coeficient;
 		std::map<std::string, num_z> _literals;
-		int _var_counter;
+		num_z _degree;
 		
 		//auxiliar para construtor
 		void __construct_monomial(const std::string &v, const num_z &exp){
-			this->_var_counter++;
-			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
+			this->_degree += exp;
+			std::map<std::string, num_z>::iterator it;
+			if((it = this->_literals.find(v)) != this->_literals.end()){
+				it->second += exp;
+			}else{
+				this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
+			}
 		}
 
 		template<class... Args>
 		void __construct_monomial(const std::string &v, const num_z &exp, Args... args){
-			this->_var_counter++;
-			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
+			this->_degree += exp;
+			std::map<std::string, num_z>::iterator it;
+			if((it = this->_literals.find(v)) != this->_literals.end()){
+				it->second += exp;
+			}else{
+				this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
+			}
 			this->__construct_monomial(args...);
 		}
 		
 		void __construct_monomial(const char &v, const num_z &exp){
-			this->_var_counter++;
-			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
+			std::string var(std::string(1, v));
+			this->_degree += exp;
+			std::map<std::string, num_z>::iterator it;
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				it->second += exp;
+			}else{
+				this->_literals.insert( std::pair<std::string, num_z> (var, exp) );
+			}
 		}
 
 		template<class... Args>
 		void __construct_monomial(const char &v, const num_z &exp, Args... args){
-			this->_var_counter++;
-			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
+			std::string var(std::string(1, v));
+			this->_degree += exp;
+			std::map<std::string, num_z>::iterator it;
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				it->second += exp;
+			}else{
+				this->_literals.insert( std::pair<std::string, num_z> (var, exp) );
+			}
 			this->__construct_monomial(args...);
 		}
 		
@@ -53,9 +75,9 @@ class monomial{
 			if(this->_literals.find(v) != this->_literals.end()){
 				this->_coeficient *= this->_literals[v];
 				this->_literals[v] -= 1;
+				--this->_degree;
 				if(this->_literals[v] == 0){
 					this->_literals.erase(v);
-					--this->_var_counter;
 				}
 				return *this;
 			}
@@ -67,9 +89,9 @@ class monomial{
 			if(this->_literals.find(v) != this->_literals.end()){
 				this->_coeficient *= this->_literals[v];
 				this->_literals[v] -= 1;
+				--this->_degree;
 				if(this->_literals[v] == 0){
 					this->_literals.erase(v);
-					--this->_var_counter;
 				}
 				return this->__derive_with_respect_to(args...);
 			}			
@@ -81,9 +103,9 @@ class monomial{
 			if(this->_literals.find(v) != this->_literals.end()){
 				this->_coeficient *= this->_literals[v];
 				this->_literals[v] -= 1;
+				--this->_degree;
 				if(this->_literals[v] == 0){
 					this->_literals.erase(v);
-					--this->_var_counter;
 				}
 				return *this;
 			}
@@ -96,9 +118,9 @@ class monomial{
 			if(this->_literals.find(v) != this->_literals.end()){
 				this->_coeficient *= this->_literals[v];
 				this->_literals[v] -= 1;
+				--this->_degree;
 				if(this->_literals[v] == 0){
 					this->_literals.erase(v);
-					--this->_var_counter;
 				}
 				return this->__derive_with_respect_to(args...);
 			}			
@@ -110,7 +132,7 @@ class monomial{
 			this->_coeficient += m._coeficient;
 			if(this->_coeficient == 0){
 				this->_literals.clear();
-				this->_var_counter = 0;
+				this->_degree = 0;
 			}
 			return *this;
 		}
@@ -119,46 +141,46 @@ class monomial{
 		
 		//monômio nulo
 		monomial(){
-			this->_var_counter = 0;
+			this->_degree = 0;
 		}
 		
 		//construtor de cópia
 		monomial(const monomial &m){
 			this->_coeficient = m._coeficient;
-			this->_var_counter = m._var_counter;
+			this->_degree = m._degree;
 			this->_literals = m._literals;
 		}
 		
 		//monômio constante
 		monomial(const Number &coef){
 			this->_coeficient = coef.q_value();
-			this->_var_counter = 0;
+			this->_degree = 0;
 		}
 		
 		//monômio unitário com uma variável
 		monomial(const std::string &v, const num_z &exp = 1){
 			this->_coeficient = 1;
 			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
-			this->_var_counter = 1;
+			this->_degree = 1;
 		}
 		
 		monomial(const char &v, const num_z &exp = 1){
 			this->_coeficient = 1;
 			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
-			this->_var_counter = 1;
+			this->_degree = exp;
 		}
 		
 		//monômio com uma variável
 		monomial(const Number &coef, const std::string &v, const num_z &exp = 1){
 			this->_coeficient = coef.q_value();
 			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
-			this->_var_counter = 1;
+			this->_degree = exp;
 		}
 		
 		monomial(const Number &coef, const char &v, const num_z &exp = 1){
 			this->_coeficient = coef.q_value();
 			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
-			this->_var_counter = 1;
+			this->_degree = exp;
 		}
 		
 	/* 
@@ -169,7 +191,7 @@ class monomial{
 		template<class... Args>
 		monomial(const Number &coef, Args... args) {
 			this->_coeficient = coef.q_value();
-			this->_var_counter = 0;
+			this->_degree = 0;
 			if(this->_coeficient != 0)
 				this->__construct_monomial(args...);
 		}
@@ -177,7 +199,7 @@ class monomial{
 		//atribuição
 		monomial & operator=(const monomial &m){
 			this->_coeficient = m._coeficient;
-			this->_var_counter = m._var_counter;
+			this->_degree = m._degree;
 			this->_literals = m._literals;
 			return *this;
 		}
@@ -201,6 +223,11 @@ class monomial{
 		//coeficiente do monômio
 		num_q coeficient() const {
 			return this->_coeficient;
+		}
+		
+		//grau do monômio
+		num_z degree() const {
+			return this->_degree;
 		}
 		
 		//funções de manipulação de sinal
@@ -233,30 +260,16 @@ class monomial{
 		
 		//monômios são similares se possuem as variáveis com os mesmo coeficientes
 		bool is_similar(const monomial &m) const {
-			const monomial * maior = this, * menor = &m;
-			if(this->_var_counter < m._var_counter){
-				maior = &m;
-				menor = this;
-			}
-			std::map<std::string, num_z>::const_iterator it_maior;
-			std::map<std::string, num_z>::const_iterator it_menor;
-			
-			for(it_menor = menor->_literals.begin(); it_menor != menor->_literals.end(); ++it_menor){
-				it_maior = maior->_literals.find(it_menor->first);
-				if(it_maior == maior->_literals.end() || it_maior->second != it_menor->second)
-					return false;
-			}
-			return true;
-		
+			return this->_degree == m._degree && this->_literals == m._literals;
 		} 
 		
 		//primeira derivada parcial em relação a x ou à primeira variável por ordem alfabética
 		monomial derive() const {
 			monomial res(*this);
+			if(this->_degree == 0)
+				return monomial();
 			if(this->_literals.find("x") != this->_literals.end())
 				return res.__derive_with_respect_to("x");
-			if(this->_var_counter == 0)
-				return monomial();
 			return res.__derive_with_respect_to(this->_literals.begin()->first);
 		}
 		
@@ -279,16 +292,18 @@ class monomial{
 			std::map<std::string, num_z>::const_iterator it;
 			
 			if(val == 0) return monomial();
-			if(this->_var_counter == 0) return res;
+			if(this->_degree == 0) return res;
 			
 			if((it = this->_literals.find("x")) != this->_literals.end()){
 				res._coeficient *= val.pow(it->second);
+				res._degree -= it->second;
 				res._literals.erase(it);
 				return res;
 			}
 			
 			it = this->_literals.begin();
 			res._coeficient *= val.pow(it->second);
+			res._degree -= it->second;
 			res._literals.erase(it);
 			return res;
 		}
@@ -301,6 +316,7 @@ class monomial{
 			if(val == 0) return monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
 				res._coeficient *= val.pow(it->second);
+				res._degree -= it->second;
 				res._literals.erase(it);
 			}
 			return res;
@@ -315,6 +331,7 @@ class monomial{
 			if(val == 0) return monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
 				res._coeficient *= val.pow(it->second);
+				res._degree -= it->second;
 				res._literals.erase(it);
 			}
 			res.ref_eval(args...);
@@ -327,6 +344,7 @@ class monomial{
 			if(val == 0) return *this = monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
 				this->_coeficient *= val.pow(it->second);
+				this->_degree -= it->second;
 				this->_literals.erase(it);
 			}
 			return *this;
@@ -338,6 +356,7 @@ class monomial{
 			if(val == 0) return *this = monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
 				this->_coeficient *= val.pow(it->second);
+				this->_degree -= it->second;
 				this->_literals.erase(it);
 			}
 			return this->ref_eval(args...);
@@ -348,7 +367,7 @@ class monomial{
 			if(this->_coeficient == 0 || m._coeficient == 0) return monomial();
 			const monomial * maior = this, * menor = &m;
 			
-			if(this->_var_counter < m._var_counter){
+			if(this->_literals.size() < m._literals.size()){
 				maior = &m;
 				menor = this;
 			}
@@ -362,13 +381,13 @@ class monomial{
 				it_maior = maior->_literals.find(it_menor->first);
 				if(it_maior == maior->_literals.end()){
 					res._literals.insert( std::pair<std::string, num_z> (it_menor->first, it_menor->second) );
-					++res._var_counter;
 				}else{
 					res._literals[it_menor->first] += it_menor->second;
 				}
 			}
 			
 			res._coeficient *= menor->_coeficient;
+			res._degree = this->_degree + m._degree;
 			return res;
 		}
 		
@@ -382,13 +401,13 @@ class monomial{
 				it_this = this->_literals.find(it_m->first);
 				if(it_this == this->_literals.end()){
 					this->_literals.insert( std::pair<std::string, num_z> (it_m->first, it_m->second) );
-					++this->_var_counter;
 				}else{
 					this->_literals[it_m->first] += it_m->second;
 				}
 			}	
 			
 			this->_coeficient *= m._coeficient;
+			this->_degree += m._degree;
 			return *this;
 		}
 		
@@ -400,11 +419,11 @@ class monomial{
 
 
 		bool operator==(const monomial &m){
-			return this->_var_counter == m._var_counter && this->_coeficient == m._coeficient && this->_literals == m._literals;
+			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
 		}
 		
 		bool operator!=(const monomial &m){
-			return this->_var_counter != m._var_counter || this->_coeficient != m._coeficient || this->_literals != m._literals;
+			return this->_degree != m._degree || this->_coeficient != m._coeficient || this->_literals != m._literals;
 		}
 		
 };

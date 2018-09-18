@@ -2,8 +2,8 @@
 #include "../include/polynomial.h"
 
 std::ostream & operator<<(std::ostream &o, const monomial &m){
-	int used_variables = 0;
-	if(m._var_counter == 0)
+	unsigned long long used_variables = 0;
+	if(m._degree == 0)
 		o << m._coeficient;
 	else if(m._coeficient != 1)
 		o << m._coeficient << " * ";
@@ -13,7 +13,7 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 		++used_variables;
 		if(it->second != 1)
 			o << "^" << it->second;
-		if(used_variables < m._var_counter)
+		if(used_variables < m._literals.size())
 			o << " * ";
 	}
 	return o;
@@ -22,7 +22,7 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 std::ostream & operator<<(std::ostream &o, const polynomial &p){
 	std::set<monomial, monomial_comp_class>::const_iterator it = p._terms.begin();
 
-	if(p._n_terms == 0){
+	if(p._terms.size() == 0){
 		o << 0;
 		return o;
 	}

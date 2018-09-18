@@ -4,7 +4,7 @@ polynomial polynomial::operator+(const polynomial &p){
 	polynomial res;
 	const polynomial *most_terms = this, *least_terms = &p;
 	
-	if(this->_n_terms < p._n_terms){
+	if(this->_terms.size() < p._terms.size()){
 		most_terms = &p;
 		least_terms = this;	
 	}
@@ -19,11 +19,9 @@ polynomial polynomial::operator+(const polynomial &p){
 			const_cast<num_q &>(it_res->_coeficient) += it->_coeficient;
 			if(it_res->_coeficient == 0){
 				res._terms.erase(it_res);
-				--res._n_terms;
 			}
 		}else{
 			res._terms.insert(*it);
-			++res._n_terms;
 		}
 		
 		++it;
@@ -42,11 +40,9 @@ polynomial & polynomial::operator+=(const polynomial &p){
 			const_cast<num_q &>(it_this->_coeficient) += it->_coeficient;
 			if(it_this->_coeficient == 0){
 				this->_terms.erase(it_this);
-				--this->_n_terms;
 			}
 		}else{
 			this->_terms.insert(*it);
-			++this->_n_terms;
 		}
 		++it;
 	}

@@ -1,7 +1,7 @@
 #include "../include/num_q.h"
 
 std::ostream& operator << (std::ostream &o, const num_q &a){
-	if(a._sign) printf("-");
+	if(a._sign) o << "-";
 	o << a._numerator;
 	if(a._denominator != 1)
 		o << "/" << a._denominator;
