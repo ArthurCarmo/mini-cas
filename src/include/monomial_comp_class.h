@@ -16,7 +16,8 @@ class monomial_comp_class{
 				if(it_l == l._literals.end()) return true;
 				if(it_l->first < it_r->first) return true;
 				if(it_l->first > it_r->first) return false;
-
+				if(it_l->second > it_r->second) return true;
+				if(it_l->second < it_r->second) return false;
 				++it_l;
 				++it_r;
 			}while(true);
