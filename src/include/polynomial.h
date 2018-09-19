@@ -66,14 +66,17 @@ class polynomial{
 		polynomial & operator*=(const polynomial &);
 		polynomial & operator/=(const polynomial &);
 		
-		polynomial operator+(const polynomial &); 
-		polynomial operator-(const polynomial &);
-		polynomial operator*(const polynomial &); 
-		polynomial operator/(const polynomial &);
+		polynomial operator+(const polynomial &) const; 
+		polynomial operator-(const polynomial &) const;
+		polynomial operator*(const polynomial &) const; 
+		polynomial operator/(const polynomial &) const;
 		
-		bool operator==(const polynomial &);
-		bool operator!=(const polynomial &);
-				
+		bool operator==(const polynomial &) const;
+		bool operator!=(const polynomial &) const;
+		
+		bool is_null() const { return this->_terms.empty(); }
+		num_z degree() const { return this->_terms.begin()->_degree; }
+		
 };
 
 #endif 

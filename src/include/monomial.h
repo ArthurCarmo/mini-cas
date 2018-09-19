@@ -411,6 +411,39 @@ class monomial{
 			return *this;
 		}
 		
+		monomial pow(const num_z &N) const {
+			monomial res(*this);
+			if(N == 0) return monomial();
+			res._coeficient = this->_coeficient.pow(N);
+			res._degree *= N;
+			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
+				it->second *= N;
+			
+			return res;
+		}
+		
+		monomial operator^(const num_z &N) const {
+			monomial res(*this);
+			if(N == 0) return monomial();
+			res._coeficient = this->_coeficient.pow(N);
+			res._degree *= N;
+			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
+				it->second *= N;
+			
+			return res;
+		}
+		
+		monomial & operator^=(const num_z &N){
+			if(N == 0) return *this = monomial();
+			this->_coeficient = this->_coeficient.pow(N);
+			this->_degree *= N;
+			for(std::map<std::string, num_z>::iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)
+				it->second *= N;
+			
+			return *this;
+		}
+		
+		
 		monomial operator-() const {
 			monomial res(*this);
 			res._coeficient.flip_sign();
@@ -418,12 +451,16 @@ class monomial{
 		}
 
 
-		bool operator==(const monomial &m){
+		bool operator==(const monomial &m) const {
 			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
 		}
 		
-		bool operator!=(const monomial &m){
+		bool operator!=(const monomial &m) const {
 			return this->_degree != m._degree || this->_coeficient != m._coeficient || this->_literals != m._literals;
+		}
+		
+		bool is_null() const {
+			return this->_coeficient == 0;
 		}
 		
 };

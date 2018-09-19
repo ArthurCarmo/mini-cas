@@ -1,6 +1,6 @@
 #include "../include/polynomial.h"
 
-polynomial polynomial::operator-(const polynomial &p){
+polynomial polynomial::operator-(const polynomial &p) const {
 	polynomial res;
 	const polynomial *most_terms = this, *least_terms = &p;
 	

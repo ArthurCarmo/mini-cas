@@ -5,7 +5,7 @@
 
 class monomial_comp_class{
 	public:
-		bool operator()(const monomial &l, const monomial &r) { 
+		bool operator()(const monomial &l, const monomial &r) const { 
 			std::map<std::string, num_z>::const_iterator it_l = l._literals.begin();
 			std::map<std::string, num_z>::const_iterator it_r = r._literals.begin();
 			if(l._degree > r._degree) return true;

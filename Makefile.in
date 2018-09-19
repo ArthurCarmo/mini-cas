@@ -90,7 +90,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 check_PROGRAMS = t_basic$(EXEEXT) t_monomials$(EXEEXT) \
-	t_polynomials$(EXEEXT)
+	t_monomial_pow$(EXEEXT) t_polynomials$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -161,6 +161,10 @@ am__v_lt_1 =
 am_t_basic_OBJECTS = script/basic/t_basic-t_basic.$(OBJEXT)
 t_basic_OBJECTS = $(am_t_basic_OBJECTS)
 t_basic_DEPENDENCIES = libminicas.la
+am_t_monomial_pow_OBJECTS =  \
+	script/polynomials/t_monomial_pow-t_monomial_pow.$(OBJEXT)
+t_monomial_pow_OBJECTS = $(am_t_monomial_pow_OBJECTS)
+t_monomial_pow_DEPENDENCIES = libminicas.la
 am_t_monomials_OBJECTS =  \
 	script/polynomials/t_monomials-t_monomials.$(OBJEXT)
 t_monomials_OBJECTS = $(am_t_monomials_OBJECTS)
@@ -204,9 +208,11 @@ am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
 SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
-	$(t_monomials_SOURCES) $(t_polynomials_SOURCES)
+	$(t_monomial_pow_SOURCES) $(t_monomials_SOURCES) \
+	$(t_polynomials_SOURCES)
 DIST_SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
-	$(t_monomials_SOURCES) $(t_polynomials_SOURCES)
+	$(t_monomial_pow_SOURCES) $(t_monomials_SOURCES) \
+	$(t_polynomials_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -613,6 +619,9 @@ t_basic_LDADD = libminicas.la
 t_monomials_CPPFLAGS = -I./src/include
 t_monomials_SOURCES = script/polynomials/t_monomials.cpp
 t_monomials_LDADD = libminicas.la
+t_monomial_pow_CPPFLAGS = -I./src/include
+t_monomial_pow_SOURCES = script/polynomials/t_monomial_pow.cpp
+t_monomial_pow_LDADD = libminicas.la
 t_polynomials_CPPFLAGS = -I./src/include
 t_polynomials_SOURCES = script/polynomials/t_polynomials.cpp
 t_polynomials_LDADD = libminicas.la
@@ -630,6 +639,7 @@ TESTS = script/basic/tst/basic_ops1.sh \
 	script/basic/tst/basic_ops12.sh \
 	script/basic/tst/basic_ops13.sh \
 	./t_monomials \
+	./t_monomial_pow \
 	./t_polynomials
 
 EXTRA_DIST = $(TESTS) script/basic/in/inp1 script/basic/in/inp2 script/basic/in/inp3 script/basic/in/inp4 script/basic/in/inp5 script/basic/in/inp6 script/basic/in/inp7 script/basic/in/inp8 script/basic/in/inp9 script/basic/in/inp10 script/basic/in/inp11 script/basic/in/inp12 script/basic/in/inp13 script/basic/out/outg1 script/basic/out/outg2 script/basic/out/outg3 script/basic/out/outg4 script/basic/out/outg5 script/basic/out/outg6 script/basic/out/outg7 script/basic/out/outg8 script/basic/out/outg9 script/basic/out/outg10 script/basic/out/outg11 script/basic/out/outg12 script/basic/out/outg13
@@ -845,6 +855,13 @@ script/polynomials/$(am__dirstamp):
 script/polynomials/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) script/polynomials/$(DEPDIR)
 	@: > script/polynomials/$(DEPDIR)/$(am__dirstamp)
+script/polynomials/t_monomial_pow-t_monomial_pow.$(OBJEXT):  \
+	script/polynomials/$(am__dirstamp) \
+	script/polynomials/$(DEPDIR)/$(am__dirstamp)
+
+t_monomial_pow$(EXEEXT): $(t_monomial_pow_OBJECTS) $(t_monomial_pow_DEPENDENCIES) $(EXTRA_t_monomial_pow_DEPENDENCIES) 
+	@rm -f t_monomial_pow$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(t_monomial_pow_OBJECTS) $(t_monomial_pow_LDADD) $(LIBS)
 script/polynomials/t_monomials-t_monomials.$(OBJEXT):  \
 	script/polynomials/$(am__dirstamp) \
 	script/polynomials/$(DEPDIR)/$(am__dirstamp)
@@ -875,6 +892,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@script/basic/$(DEPDIR)/t_basic-t_basic.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@script/polynomials/$(DEPDIR)/t_monomials-t_monomials.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@script/polynomials/$(DEPDIR)/t_polynomials-t_polynomials.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/attrib.Plo@am__quote@
@@ -953,6 +971,20 @@ script/basic/t_basic-t_basic.obj: script/basic/t_basic.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='script/basic/t_basic.cpp' object='script/basic/t_basic-t_basic.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_basic_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/basic/t_basic-t_basic.obj `if test -f 'script/basic/t_basic.cpp'; then $(CYGPATH_W) 'script/basic/t_basic.cpp'; else $(CYGPATH_W) '$(srcdir)/script/basic/t_basic.cpp'; fi`
+
+script/polynomials/t_monomial_pow-t_monomial_pow.o: script/polynomials/t_monomial_pow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomial_pow_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_monomial_pow-t_monomial_pow.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Tpo -c -o script/polynomials/t_monomial_pow-t_monomial_pow.o `test -f 'script/polynomials/t_monomial_pow.cpp' || echo '$(srcdir)/'`script/polynomials/t_monomial_pow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Tpo script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='script/polynomials/t_monomial_pow.cpp' object='script/polynomials/t_monomial_pow-t_monomial_pow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomial_pow_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_monomial_pow-t_monomial_pow.o `test -f 'script/polynomials/t_monomial_pow.cpp' || echo '$(srcdir)/'`script/polynomials/t_monomial_pow.cpp
+
+script/polynomials/t_monomial_pow-t_monomial_pow.obj: script/polynomials/t_monomial_pow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomial_pow_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_monomial_pow-t_monomial_pow.obj -MD -MP -MF script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Tpo -c -o script/polynomials/t_monomial_pow-t_monomial_pow.obj `if test -f 'script/polynomials/t_monomial_pow.cpp'; then $(CYGPATH_W) 'script/polynomials/t_monomial_pow.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_monomial_pow.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Tpo script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='script/polynomials/t_monomial_pow.cpp' object='script/polynomials/t_monomial_pow-t_monomial_pow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomial_pow_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_monomial_pow-t_monomial_pow.obj `if test -f 'script/polynomials/t_monomial_pow.cpp'; then $(CYGPATH_W) 'script/polynomials/t_monomial_pow.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_monomial_pow.cpp'; fi`
 
 script/polynomials/t_monomials-t_monomials.o: script/polynomials/t_monomials.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomials_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_monomials-t_monomials.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_monomials-t_monomials.Tpo -c -o script/polynomials/t_monomials-t_monomials.o `test -f 'script/polynomials/t_monomials.cpp' || echo '$(srcdir)/'`script/polynomials/t_monomials.cpp
@@ -1309,6 +1341,13 @@ script/basic/tst/basic_ops13.sh.log: script/basic/tst/basic_ops13.sh
 ./t_monomials.log: ./t_monomials
 	@p='./t_monomials'; \
 	b='./t_monomials'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+./t_monomial_pow.log: ./t_monomial_pow
+	@p='./t_monomial_pow'; \
+	b='./t_monomial_pow'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

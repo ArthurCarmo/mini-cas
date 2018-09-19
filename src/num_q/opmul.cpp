@@ -36,14 +36,16 @@ num_q num_q::operator*(const int64_t &a) const {
 
 num_q num_q::pow(const num_z &N) const {
 	num_q p(*this);
-	num_z aux(this->_numerator);
+	num_z aux(N.abs());
 	
-	p._numerator.pow(N);
-	p._denominator.pow(N);
+	p._numerator = p._numerator.pow(aux);
+	p._denominator = p._denominator.pow(aux);
 	
 	if(N < 0){
+		aux = p._numerator;
 		p._numerator = p._denominator;
 		p._denominator = aux;
 	}
+	
 	return p;
 }
