@@ -109,8 +109,6 @@ src/polynomial/opsub.lo: src/polynomial/opsub.cpp \
  /usr/include/c++/5/bits/stl_set.h /usr/include/c++/5/bits/stl_multiset.h \
  src/polynomial/../include/num_q.h src/polynomial/../include/signatures.h \
  src/polynomial/../include/number.h src/polynomial/../include/num_z.h \
- /usr/include/c++/5/cstring /usr/include/string.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h \
  /usr/include/c++/5/algorithm /usr/include/c++/5/utility \
  /usr/include/c++/5/bits/stl_relops.h /usr/include/c++/5/bits/stl_algo.h \
  /usr/include/c++/5/bits/algorithmfwd.h \
@@ -491,12 +489,6 @@ src/polynomial/../include/signatures.h:
 src/polynomial/../include/number.h:
 
 src/polynomial/../include/num_z.h:
-
-/usr/include/c++/5/cstring:
-
-/usr/include/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/string3.h:
 
 /usr/include/c++/5/algorithm:
 

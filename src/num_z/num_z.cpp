@@ -1,6 +1,8 @@
 #include "../include/num_z.h"
 #include "../include/num_q.h"
 
+#include <cstring>
+
 num_z::num_z(){
 	this->_n_blocks = _INIT_SIZE_;
 	

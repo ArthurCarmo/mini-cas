@@ -8,7 +8,7 @@
 #include "number.h"
 #include "num_z.h"
 
-	class num_q  : public Number{
+	class num_q : public Number{
 		
 		friend class monomial;
 
