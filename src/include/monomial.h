@@ -237,6 +237,12 @@ class monomial{
 			return res;
 		}
 		
+		monomial operator-() const {
+			monomial res(*this);
+			res._coeficient.flip_sign();
+			return res;
+		}
+		
 		monomial negative() const { 
 			monomial res(*this); 
 			res._coeficient._sign = 1;
@@ -411,6 +417,7 @@ class monomial{
 			return *this;
 		}
 		
+		//potência de um monômio por um número inteiro maior ou igual a zero
 		monomial pow(const num_z &N) const {
 			monomial res(*this);
 			if(N == 0) return monomial();
@@ -422,6 +429,7 @@ class monomial{
 			return res;
 		}
 		
+		//operador sobrecarregado para representar a exponenciação (para facilitar a notação)
 		monomial operator^(const num_z &N) const {
 			monomial res(*this);
 			if(N == 0) return monomial();
@@ -443,14 +451,6 @@ class monomial{
 			return *this;
 		}
 		
-		
-		monomial operator-() const {
-			monomial res(*this);
-			res._coeficient.flip_sign();
-			return res;
-		}
-
-
 		bool operator==(const monomial &m) const {
 			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
 		}
