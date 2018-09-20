@@ -81,12 +81,14 @@ void num_z::__right_shift(uint32_t n){
 		*this = 0;
 		return;
 	}
+	this->_blocks -= mv;
 	
 	if(mv > 0){
-	//	std::memmove(this->_num, this->_num + mv, sizeof(uint32_t) * this->_blocks);
-		std::copy(this->_num + mv, this->_num + mv + this->_blocks, this->_num);
-		std::memset(this->_num + this->_blocks, 0, mv * sizeof(uint32_t));	
-		this->_blocks -= mv;
+		for(uint32_t i = 0; i < this->_blocks; i++)
+			this->_num[i] = this->_num[i + mv];
+
+		for(; i < this->_n_blocks; i++)
+			this->_num[i] = 0;
 	}
 	
 	if(n){
@@ -110,7 +112,9 @@ void num_z::__resize(uint32_t n){
 	this->_num = (uint32_t *)std::realloc(this->_num, sizeof(uint32_t) * n);
 	
 	if(this->_blocks < n)
-		std::memset(this->_num + this->_blocks, 0, (n - this->_blocks) * sizeof(uint32_t));
+		std::fill(this->_num + this->_blocks, this->_num + n, 0);
+	else
+		this->_blocks = n;
 	
 	this->_n_blocks = n;
 }
