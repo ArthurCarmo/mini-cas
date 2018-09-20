@@ -42,13 +42,13 @@ void num_z::__left_shift(uint32_t n){
 		if(this->_n_blocks <= this->_blocks + mv){
 			this->__resize(this->_blocks + mv + 1);
 		}
-		i = this->_blocks;
 		
-//		std::memmove(this->_num + mv, this->_num, mv * sizeof(uint32_t));
-
-		std::copy_backward(this->_num, this->_num + mv, this->_num + mv);
+		for(uint32_t i = this->_blocks + mv - 1; i >= mv; i--)
+			this->_num[i] = this->_num[i - mv];
 		
-		std::memset(this->_num, 0, this->_blocks * sizeof(uint32_t));		
+		for(uint32_t i = 0; i < mv; i++)
+			this->_num[i] = 0;
+				
 		this->_blocks += mv;	
 	}
 	
@@ -81,12 +81,12 @@ void num_z::__right_shift(uint32_t n){
 		*this = 0;
 		return;
 	}
-	this->_blocks -= mv;
 	
 	if(mv > 0){
 	//	std::memmove(this->_num, this->_num + mv, sizeof(uint32_t) * this->_blocks);
 		std::copy(this->_num + mv, this->_num + mv + this->_blocks, this->_num);
-		std::memset(this->_num + this->_blocks, 0, mv);	
+		std::memset(this->_num + this->_blocks, 0, mv * sizeof(uint32_t));	
+		this->_blocks -= mv;
 	}
 	
 	if(n){

@@ -188,12 +188,19 @@ script/basic/t_basic-t_basic.o: script/basic/t_basic.cpp \
  script/basic/../../src/include/num_z.h \
  script/basic/../../src/include/num_zm.h \
  script/basic/../../src/include/num_q.h \
- script/basic/../../src/include/monomial.h \
+ script/basic/../../src/include/monomial.h /usr/include/c++/5/set \
+ /usr/include/c++/5/bits/stl_tree.h \
+ /usr/include/c++/5/ext/aligned_buffer.h \
+ /usr/include/c++/5/bits/stl_set.h /usr/include/c++/5/bits/stl_multiset.h \
+ /usr/include/c++/5/map /usr/include/c++/5/bits/stl_map.h \
+ /usr/include/c++/5/tuple /usr/include/c++/5/array \
+ /usr/include/c++/5/bits/uses_allocator.h \
+ /usr/include/c++/5/bits/stl_multimap.h \
  script/basic/../../src/include/polynomial.h \
+ script/basic/../../src/include/monomial_comp_class.h \
  script/basic/../../src/include/term.h \
  script/basic/../../src/include/symbol.h \
- script/basic/../../src/include/adder.h \
- script/basic/../../src/include/multiplier.h
+ script/basic/../../src/include/template_ops.h
 
 /usr/include/stdc-predef.h:
 
@@ -665,12 +672,34 @@ script/basic/../../src/include/num_q.h:
 
 script/basic/../../src/include/monomial.h:
 
+/usr/include/c++/5/set:
+
+/usr/include/c++/5/bits/stl_tree.h:
+
+/usr/include/c++/5/ext/aligned_buffer.h:
+
+/usr/include/c++/5/bits/stl_set.h:
+
+/usr/include/c++/5/bits/stl_multiset.h:
+
+/usr/include/c++/5/map:
+
+/usr/include/c++/5/bits/stl_map.h:
+
+/usr/include/c++/5/tuple:
+
+/usr/include/c++/5/array:
+
+/usr/include/c++/5/bits/uses_allocator.h:
+
+/usr/include/c++/5/bits/stl_multimap.h:
+
 script/basic/../../src/include/polynomial.h:
+
+script/basic/../../src/include/monomial_comp_class.h:
 
 script/basic/../../src/include/term.h:
 
 script/basic/../../src/include/symbol.h:
 
-script/basic/../../src/include/adder.h:
-
-script/basic/../../src/include/multiplier.h:
+script/basic/../../src/include/template_ops.h:

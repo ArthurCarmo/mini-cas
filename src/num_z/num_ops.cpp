@@ -129,8 +129,8 @@ num_z num_z::pow(uint64_t N) const {
 	
 	if(N == 0) return num_z(1);
 	if(N == 1) return *this;
-	p = this->pow(N / 2);
-	if(N % 2) return *this * p * p;
+	p = this->pow(N >> 1);
+	if(N & 1) return *this * p * p;
 	return p * p;
 }
 
