@@ -90,7 +90,8 @@ POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
 check_PROGRAMS = t_basic$(EXEEXT) t_monomials$(EXEEXT) \
-	t_monomial_pow$(EXEEXT) t_polynomials$(EXEEXT)
+	t_monomial_pow$(EXEEXT) t_grades$(EXEEXT) \
+	t_polynomials$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -161,6 +162,9 @@ am__v_lt_1 =
 am_t_basic_OBJECTS = script/basic/t_basic-t_basic.$(OBJEXT)
 t_basic_OBJECTS = $(am_t_basic_OBJECTS)
 t_basic_DEPENDENCIES = libminicas.la
+am_t_grades_OBJECTS = script/polynomials/t_grades-t_grade.$(OBJEXT)
+t_grades_OBJECTS = $(am_t_grades_OBJECTS)
+t_grades_DEPENDENCIES = libminicas.la
 am_t_monomial_pow_OBJECTS =  \
 	script/polynomials/t_monomial_pow-t_monomial_pow.$(OBJEXT)
 t_monomial_pow_OBJECTS = $(am_t_monomial_pow_OBJECTS)
@@ -208,11 +212,11 @@ am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
 SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
-	$(t_monomial_pow_SOURCES) $(t_monomials_SOURCES) \
-	$(t_polynomials_SOURCES)
+	$(t_grades_SOURCES) $(t_monomial_pow_SOURCES) \
+	$(t_monomials_SOURCES) $(t_polynomials_SOURCES)
 DIST_SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
-	$(t_monomial_pow_SOURCES) $(t_monomials_SOURCES) \
-	$(t_polynomials_SOURCES)
+	$(t_grades_SOURCES) $(t_monomial_pow_SOURCES) \
+	$(t_monomials_SOURCES) $(t_polynomials_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -622,6 +626,9 @@ t_monomials_LDADD = libminicas.la
 t_monomial_pow_CPPFLAGS = -I./src/include
 t_monomial_pow_SOURCES = script/polynomials/t_monomial_pow.cpp
 t_monomial_pow_LDADD = libminicas.la
+t_grades_CPPFLAGS = -I./src/include
+t_grades_SOURCES = script/polynomials/t_grade.cpp
+t_grades_LDADD = libminicas.la
 t_polynomials_CPPFLAGS = -I./src/include
 t_polynomials_SOURCES = script/polynomials/t_polynomials.cpp
 t_polynomials_LDADD = libminicas.la
@@ -640,6 +647,7 @@ TESTS = script/basic/tst/basic_ops1.sh \
 	script/basic/tst/basic_ops13.sh \
 	./t_monomials \
 	./t_monomial_pow \
+	./t_grades \
 	./t_polynomials
 
 EXTRA_DIST = $(TESTS) script/basic/in/inp1 script/basic/in/inp2 script/basic/in/inp3 script/basic/in/inp4 script/basic/in/inp5 script/basic/in/inp6 script/basic/in/inp7 script/basic/in/inp8 script/basic/in/inp9 script/basic/in/inp10 script/basic/in/inp11 script/basic/in/inp12 script/basic/in/inp13 script/basic/out/outg1 script/basic/out/outg2 script/basic/out/outg3 script/basic/out/outg4 script/basic/out/outg5 script/basic/out/outg6 script/basic/out/outg7 script/basic/out/outg8 script/basic/out/outg9 script/basic/out/outg10 script/basic/out/outg11 script/basic/out/outg12 script/basic/out/outg13
@@ -855,6 +863,13 @@ script/polynomials/$(am__dirstamp):
 script/polynomials/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) script/polynomials/$(DEPDIR)
 	@: > script/polynomials/$(DEPDIR)/$(am__dirstamp)
+script/polynomials/t_grades-t_grade.$(OBJEXT):  \
+	script/polynomials/$(am__dirstamp) \
+	script/polynomials/$(DEPDIR)/$(am__dirstamp)
+
+t_grades$(EXEEXT): $(t_grades_OBJECTS) $(t_grades_DEPENDENCIES) $(EXTRA_t_grades_DEPENDENCIES) 
+	@rm -f t_grades$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(t_grades_OBJECTS) $(t_grades_LDADD) $(LIBS)
 script/polynomials/t_monomial_pow-t_monomial_pow.$(OBJEXT):  \
 	script/polynomials/$(am__dirstamp) \
 	script/polynomials/$(DEPDIR)/$(am__dirstamp)
@@ -892,6 +907,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include script/basic/$(DEPDIR)/t_basic-t_basic.Po
+include script/polynomials/$(DEPDIR)/t_grades-t_grade.Po
 include script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Po
 include script/polynomials/$(DEPDIR)/t_monomials-t_monomials.Po
 include script/polynomials/$(DEPDIR)/t_polynomials-t_polynomials.Po
@@ -971,6 +987,20 @@ script/basic/t_basic-t_basic.obj: script/basic/t_basic.cpp
 #	$(AM_V_CXX)source='script/basic/t_basic.cpp' object='script/basic/t_basic-t_basic.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_basic_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/basic/t_basic-t_basic.obj `if test -f 'script/basic/t_basic.cpp'; then $(CYGPATH_W) 'script/basic/t_basic.cpp'; else $(CYGPATH_W) '$(srcdir)/script/basic/t_basic.cpp'; fi`
+
+script/polynomials/t_grades-t_grade.o: script/polynomials/t_grade.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_grades_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_grades-t_grade.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_grades-t_grade.Tpo -c -o script/polynomials/t_grades-t_grade.o `test -f 'script/polynomials/t_grade.cpp' || echo '$(srcdir)/'`script/polynomials/t_grade.cpp
+	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_grades-t_grade.Tpo script/polynomials/$(DEPDIR)/t_grades-t_grade.Po
+#	$(AM_V_CXX)source='script/polynomials/t_grade.cpp' object='script/polynomials/t_grades-t_grade.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_grades_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_grades-t_grade.o `test -f 'script/polynomials/t_grade.cpp' || echo '$(srcdir)/'`script/polynomials/t_grade.cpp
+
+script/polynomials/t_grades-t_grade.obj: script/polynomials/t_grade.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_grades_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_grades-t_grade.obj -MD -MP -MF script/polynomials/$(DEPDIR)/t_grades-t_grade.Tpo -c -o script/polynomials/t_grades-t_grade.obj `if test -f 'script/polynomials/t_grade.cpp'; then $(CYGPATH_W) 'script/polynomials/t_grade.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_grade.cpp'; fi`
+	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_grades-t_grade.Tpo script/polynomials/$(DEPDIR)/t_grades-t_grade.Po
+#	$(AM_V_CXX)source='script/polynomials/t_grade.cpp' object='script/polynomials/t_grades-t_grade.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_grades_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_grades-t_grade.obj `if test -f 'script/polynomials/t_grade.cpp'; then $(CYGPATH_W) 'script/polynomials/t_grade.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_grade.cpp'; fi`
 
 script/polynomials/t_monomial_pow-t_monomial_pow.o: script/polynomials/t_monomial_pow.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_monomial_pow_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_monomial_pow-t_monomial_pow.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Tpo -c -o script/polynomials/t_monomial_pow-t_monomial_pow.o `test -f 'script/polynomials/t_monomial_pow.cpp' || echo '$(srcdir)/'`script/polynomials/t_monomial_pow.cpp
@@ -1348,6 +1378,13 @@ script/basic/tst/basic_ops13.sh.log: script/basic/tst/basic_ops13.sh
 ./t_monomial_pow.log: ./t_monomial_pow
 	@p='./t_monomial_pow'; \
 	b='./t_monomial_pow'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+./t_grades.log: ./t_grades
+	@p='./t_grades'; \
+	b='./t_grades'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

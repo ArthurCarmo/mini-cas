@@ -56,7 +56,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/opsub.cpp \
 			src/polynomial/opsum.cpp 
 
-check_PROGRAMS = t_basic t_monomials t_monomial_pow t_polynomials
+check_PROGRAMS = t_basic t_monomials t_monomial_pow t_grades t_polynomials
 
 t_basic_CPPFLAGS = -I./src/include
 t_basic_SOURCES = script/basic/t_basic.cpp
@@ -69,6 +69,10 @@ t_monomials_LDADD = libminicas.la
 t_monomial_pow_CPPFLAGS = -I./src/include
 t_monomial_pow_SOURCES = script/polynomials/t_monomial_pow.cpp
 t_monomial_pow_LDADD = libminicas.la
+
+t_grades_CPPFLAGS = -I./src/include
+t_grades_SOURCES = script/polynomials/t_grade.cpp
+t_grades_LDADD = libminicas.la
 
 t_polynomials_CPPFLAGS = -I./src/include
 t_polynomials_SOURCES = script/polynomials/t_polynomials.cpp
@@ -89,6 +93,7 @@ TESTS = script/basic/tst/basic_ops1.sh \
 	script/basic/tst/basic_ops13.sh \
 	./t_monomials \
 	./t_monomial_pow \
+	./t_grades \
 	./t_polynomials
 	
 EXTRA_DIST = $(TESTS) script/basic/in/inp1 script/basic/in/inp2 script/basic/in/inp3 script/basic/in/inp4 script/basic/in/inp5 script/basic/in/inp6 script/basic/in/inp7 script/basic/in/inp8 script/basic/in/inp9 script/basic/in/inp10 script/basic/in/inp11 script/basic/in/inp12 script/basic/in/inp13 script/basic/out/outg1 script/basic/out/outg2 script/basic/out/outg3 script/basic/out/outg4 script/basic/out/outg5 script/basic/out/outg6 script/basic/out/outg7 script/basic/out/outg8 script/basic/out/outg9 script/basic/out/outg10 script/basic/out/outg11 script/basic/out/outg12 script/basic/out/outg13
