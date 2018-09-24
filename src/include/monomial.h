@@ -314,14 +314,14 @@ class monomial{
 			if(val == 0) return monomial();
 			if(this->_degree == 0) return res;
 			
-			if((it = this->_literals.find("x")) != this->_literals.end()){
+			if((it = res._literals.find("x")) != res._literals.end()){
 				res._coeficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);
 				return res;
 			}
 			
-			it = this->_literals.begin();
+			it = res._literals.begin();
 			res._coeficient *= val.pow(it->second);
 			res._degree -= it->second;
 			res._literals.erase(it);
@@ -334,7 +334,7 @@ class monomial{
 			std::map<std::string, num_z>::const_iterator it;
 			
 			if(val == 0) return monomial();
-			if((it = this->_literals.find(var)) != this->_literals.end()){
+			if((it = res._literals.find(var)) != res._literals.end()){
 				res._coeficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);
@@ -349,7 +349,7 @@ class monomial{
 			std::map<std::string, num_z>::const_iterator it;
 			
 			if(val == 0) return monomial();
-			if((it = this->_literals.find(var)) != this->_literals.end()){
+			if((it = res._literals.find(var)) != res._literals.end()){
 				res._coeficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);

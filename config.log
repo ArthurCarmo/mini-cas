@@ -793,7 +793,7 @@ configure:17020: gcc -o conftest -g -O2   conftest.c  >&5
 conftest.c:52:6: warning: conflicting types for built-in function 'floor'
  char floor ();
       ^
-/tmp/ccUojDu2.o: In function `main':
+/tmp/cc7lNGsb.o: In function `main':
 /home/arthur/Documents/mini-cas/conftest.c:63: undefined reference to `floor'
 collect2: error: ld returned 1 exit status
 configure:17020: $? = 1
@@ -870,7 +870,7 @@ configure:17020: gcc -o conftest -g -O2   conftest.c  >&5
 conftest.c:52:6: warning: conflicting types for built-in function 'pow'
  char pow ();
       ^
-/tmp/ccqKma88.o: In function `main':
+/tmp/ccqZ3ODg.o: In function `main':
 /home/arthur/Documents/mini-cas/conftest.c:63: undefined reference to `pow'
 collect2: error: ld returned 1 exit status
 configure:17020: $? = 1
