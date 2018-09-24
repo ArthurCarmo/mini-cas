@@ -125,11 +125,11 @@ class polynomial{
 			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
 			
 			while(it != this->_terms.end()){
-				res += polynomial(it->eval(var, val));
+				res += polynomial(it->eval(var, val, args...));
 				++it;
 			}	
 			
-			return res.eval(args...);
+			return res;
 		}	
 		
 		//derivada parcial do polinômio em relação a x ou à primeira variável do monômio líder
