@@ -15,7 +15,7 @@ int main(){
 	out << poly2 << "\n";
 	out << poly3 << "\n";
 
-	if(out.str() != "x^2 + x * y + y^2 + x * z + y * z + z^2\nx^3 + x^2 * y + x * y^2 + y^3 + x^2 + x * y + y^2 + x + y + 1\nx * y^2 * z + x^2 * z^2 + x^3 + z^2\n")
+	if(out.str() != "x^2 + x*y + y^2 + x*z + y*z + z^2\nx^3 + x^2*y + x*y^2 + y^3 + x^2 + x*y + y^2 + x + y + 1\nx*y^2*z + x^2*z^2 + x^3 + z^2\n")
 		exit(EXIT_FAILURE);
 	
 	return 0;

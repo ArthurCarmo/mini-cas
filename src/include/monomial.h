@@ -6,7 +6,7 @@
 #include "num_z.h"
 #include "num_q.h"
 
-#include <ostream>
+#include <iosfwd>
 #include <string>
 #include <set>
 #include <map>
@@ -204,12 +204,26 @@ class monomial{
 			return *this;
 		}
 		
-		//string contendo as variáveis com expoente não zero no polinômio
+		//set contendo as variáveis com expoente não zero no polinômio
 		std::set<std::string> variables() const {
 			std::set<std::string> vars;
 			for(std::map<std::string, num_z>::const_iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)
 					vars.insert(it->first);
 			return vars;
+		}
+		
+		//retorna true se monômio possui a variável var com grau maior que zero
+		bool has_var(const std::string &var){
+			return this->_literals.find(var) != this->_literals.end();
+		}
+		
+		bool has_var(const char &var){
+			return this->_literals.find(std::string(1, var)) != this->_literals.end();
+		}
+		
+		//primeira variável do monômio em ordem lexicográfica
+		std::string first_lex_var(){
+			return this->_literals.begin()->first;
 		}
 		
 		//expoente da variável var
@@ -464,4 +478,7 @@ class monomial{
 		}
 		
 };
+
+extern monomial operator*(const Number &, const monomial &);
+extern monomial operator*(int, const monomial &);
 #endif

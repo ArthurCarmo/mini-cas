@@ -1,5 +1,5 @@
 #include "../include/num_z.h"
-
+#include <iostream>
 
 std::ostream& operator << (std::ostream &o, const num_z &a){
 	if(a._base_repr == DECIMAL){

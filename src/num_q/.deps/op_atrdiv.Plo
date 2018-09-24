@@ -1,6 +1,6 @@
 src/num_q/op_atrdiv.lo: src/num_q/op_atrdiv.cpp \
  /usr/include/stdc-predef.h src/num_q/../include/num_q.h \
- /usr/include/c++/5/iostream \
+ /usr/include/c++/5/iosfwd \
  /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -8,14 +8,18 @@ src/num_q/op_atrdiv.lo: src/num_q/op_atrdiv.cpp \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h \
- /usr/include/c++/5/ostream /usr/include/c++/5/ios \
- /usr/include/c++/5/iosfwd /usr/include/c++/5/bits/stringfwd.h \
- /usr/include/c++/5/bits/memoryfwd.h /usr/include/c++/5/bits/postypes.h \
- /usr/include/c++/5/cwchar /usr/include/wchar.h /usr/include/stdio.h \
+ /usr/include/c++/5/bits/stringfwd.h /usr/include/c++/5/bits/memoryfwd.h \
+ /usr/include/c++/5/bits/postypes.h /usr/include/c++/5/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h /usr/include/xlocale.h \
- /usr/include/x86_64-linux-gnu/bits/wchar2.h /usr/include/c++/5/exception \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+ src/num_q/../include/signatures.h /usr/include/c++/5/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ src/num_q/../include/number.h /usr/include/c++/5/iostream \
+ /usr/include/c++/5/ostream /usr/include/c++/5/ios \
+ /usr/include/c++/5/exception \
  /usr/include/c++/5/bits/atomic_lockfree_defines.h \
  /usr/include/c++/5/bits/exception_ptr.h \
  /usr/include/c++/5/bits/exception_defines.h \
@@ -32,8 +36,7 @@ src/num_q/op_atrdiv.lo: src/num_q/op_atrdiv.cpp \
  /usr/include/c++/5/bits/stl_iterator_base_funcs.h \
  /usr/include/c++/5/debug/debug.h /usr/include/c++/5/bits/stl_iterator.h \
  /usr/include/c++/5/bits/ptr_traits.h \
- /usr/include/c++/5/bits/predefined_ops.h /usr/include/c++/5/cstdint \
- /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ /usr/include/c++/5/bits/predefined_ops.h \
  /usr/include/c++/5/bits/localefwd.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/c++locale.h \
  /usr/include/c++/5/clocale /usr/include/locale.h \
@@ -103,8 +106,7 @@ src/num_q/op_atrdiv.lo: src/num_q/op_atrdiv.cpp \
  /usr/include/c++/5/bits/locale_facets.tcc \
  /usr/include/c++/5/bits/basic_ios.tcc \
  /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
- /usr/include/c++/5/bits/istream.tcc src/num_q/../include/signatures.h \
- src/num_q/../include/number.h src/num_q/../include/num_z.h \
+ /usr/include/c++/5/bits/istream.tcc src/num_q/../include/num_z.h \
  /usr/include/c++/5/algorithm /usr/include/c++/5/utility \
  /usr/include/c++/5/bits/stl_relops.h /usr/include/c++/5/bits/stl_algo.h \
  /usr/include/c++/5/bits/algorithmfwd.h \
@@ -187,7 +189,7 @@ src/num_q/op_atrdiv.lo: src/num_q/op_atrdiv.cpp \
 
 src/num_q/../include/num_q.h:
 
-/usr/include/c++/5/iostream:
+/usr/include/c++/5/iosfwd:
 
 /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h:
 
@@ -204,12 +206,6 @@ src/num_q/../include/num_q.h:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h:
-
-/usr/include/c++/5/ostream:
-
-/usr/include/c++/5/ios:
-
-/usr/include/c++/5/iosfwd:
 
 /usr/include/c++/5/bits/stringfwd.h:
 
@@ -232,6 +228,22 @@ src/num_q/../include/num_q.h:
 /usr/include/xlocale.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+src/num_q/../include/signatures.h:
+
+/usr/include/c++/5/cstdint:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
+
+/usr/include/stdint.h:
+
+src/num_q/../include/number.h:
+
+/usr/include/c++/5/iostream:
+
+/usr/include/c++/5/ostream:
+
+/usr/include/c++/5/ios:
 
 /usr/include/c++/5/exception:
 
@@ -274,12 +286,6 @@ src/num_q/../include/num_q.h:
 /usr/include/c++/5/bits/ptr_traits.h:
 
 /usr/include/c++/5/bits/predefined_ops.h:
-
-/usr/include/c++/5/cstdint:
-
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
-
-/usr/include/stdint.h:
 
 /usr/include/c++/5/bits/localefwd.h:
 
@@ -462,10 +468,6 @@ src/num_q/../include/num_q.h:
 /usr/include/c++/5/istream:
 
 /usr/include/c++/5/bits/istream.tcc:
-
-src/num_q/../include/signatures.h:
-
-src/num_q/../include/number.h:
 
 src/num_q/../include/num_z.h:
 

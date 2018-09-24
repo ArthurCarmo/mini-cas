@@ -21,7 +21,8 @@ polynomial polynomial::operator+(const polynomial &p) const {
 				res._terms.erase(it_res);
 			}
 		}else{
-			res._terms.insert(*it);
+			if(!it->is_null())
+				res._terms.insert(*it);
 		}
 		
 		++it;
@@ -42,7 +43,8 @@ polynomial & polynomial::operator+=(const polynomial &p){
 				this->_terms.erase(it_this);
 			}
 		}else{
-			this->_terms.insert(*it);
+			if(!it->is_null())
+				this->_terms.insert(*it);
 		}
 		++it;
 	}

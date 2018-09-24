@@ -1,12 +1,13 @@
 #include "../include/monomial.h"
 #include "../include/polynomial.h"
+#include <iostream>
 
 std::ostream & operator<<(std::ostream &o, const monomial &m){
 	unsigned long long used_variables = 0;
 	if(m._degree == 0)
 		o << m._coeficient;
 	else if(m._coeficient != 1)
-		o << m._coeficient << " * ";
+		o << m._coeficient << "*";
 		
 	for(std::map<std::string, num_z>::const_iterator it = m._literals.begin(); it != m._literals.end(); ++it){
 		o << it->first;
@@ -14,7 +15,7 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 		if(it->second != 1)
 			o << "^" << it->second;
 		if(used_variables < m._literals.size())
-			o << " * ";
+			o << "*";
 	}
 	return o;
 }

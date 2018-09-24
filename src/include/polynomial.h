@@ -76,7 +76,111 @@ class polynomial{
 		
 		bool is_null() const { return this->_terms.empty(); }
 		num_z degree() const { return this->_terms.begin()->_degree; }
+		unsigned long long size() const { return this->_terms.size(); }
+		monomial leading_term() const { return *this->_terms.begin(); }
 		
+		//funções para avaliação do polinômio
+		//avalia x ou primeira variável do monômio líder
+		polynomial eval(const num_q &val) const {
+			polynomial res;
+			std::string eval_var;
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			std::map<std::string, num_z>::const_iterator it_literals;
+			
+			if((it_literals = it->_literals.find("x")) != it->_literals.end()){
+				eval_var = "x";
+			}else{
+				it_literals = it->_literals.begin();
+				if(it_literals == it->_literals.end()) return *this;
+				eval_var = it_literals->second;
+			}
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->eval(eval_var, val));
+				++it;
+			}	
+			
+			return res;
+		}
+		
+		//avalia o polinômio para o valor especificado de uma variável
+		polynomial eval(const std::string &var, const num_q &val) const {
+			polynomial res;
+			
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->eval(var, val));
+				++it;
+			}	
+			
+			return res;
+		}
+		
+		//avalia o polinômio para os valores especificados das variáveis
+		template<class... Args>
+		polynomial eval(const std::string &var, const num_q &val, Args... args) const {
+			polynomial res;
+			
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->eval(var, val));
+				++it;
+			}	
+			
+			return res.eval(args...);
+		}	
+		
+		//derivada parcial do polinômio em relação a x ou à primeira variável do monômio líder
+		polynomial derive() const {
+			polynomial res;
+			std::string eval_var;
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			std::map<std::string, num_z>::const_iterator it_literals;
+			
+			if((it_literals = it->_literals.find("x")) != it->_literals.end()){
+				eval_var = "x";
+			}else{
+				it_literals = it->_literals.begin();
+				if(it_literals == it->_literals.end()) return *this;
+				eval_var = it_literals->second;
+			}
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->derive(eval_var));
+				++it;
+			}	
+			
+			return res;
+		}
+		
+		polynomial derive(const std::string &var) const {
+			polynomial res;
+			
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->derive(var));
+				++it;
+			}	
+			
+			return res;
+		}
+		
+		template<class... Args>
+		polynomial derive(const std::string &var, Args... args){
+			polynomial res;
+			
+			std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+			
+			while(it != this->_terms.end()){
+				res += polynomial(it->derive(var, args...));
+				++it;
+			}	
+			
+			return res;
+		}
 };
 
 #endif 

@@ -53,3 +53,15 @@ polynomial & polynomial::operator*=(const polynomial &p){
 	}
 	return *this = res;
 }
+
+monomial operator*(const Number &k, const monomial &m){
+	monomial res(m);
+	res *= monomial(k);
+	return res;
+}
+
+monomial operator*(int k, const monomial &m){
+	monomial res(m);
+	res *= monomial(num_q(k));
+	return res;
+}

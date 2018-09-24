@@ -1,7 +1,7 @@
 #ifndef __NUM_Q_H
 #define __NUM_Q_H
 
-#include <iostream>
+#include <iosfwd>
 
 #include "signatures.h"
 

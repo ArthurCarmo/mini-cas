@@ -1,4 +1,5 @@
 #include "../include/num_q.h"
+#include <iostream>
 
 std::ostream& operator << (std::ostream &o, const num_q &a){
 	if(a._sign) o << "-";

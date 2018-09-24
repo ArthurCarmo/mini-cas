@@ -11,12 +11,12 @@ int main(){
 	monomial x('x');
 	
 	out << mono;
-	if(out.str() != "53/461 * x * y^2 * z^3")
+	if(out.str() != "53/461*x*y^2*z^3")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());	
 	out << unity;
-	if(out.str() != "x^2 * y^4")
+	if(out.str() != "x^2*y^4")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());
@@ -26,29 +26,29 @@ int main(){
 	
 	out.str(string());
 	out << x * mono;
-	if(out.str() != "53/461 * x^2 * y^2 * z^3")
+	if(out.str() != "53/461*x^2*y^2*z^3")
 		exit(EXIT_FAILURE);
 	
 	unity *= mono;
 	
 	out.str(string());	
 	out << unity * num_q(461, 53);
-	if(out.str() != "x^3 * y^6 * z^3")
+	if(out.str() != "x^3*y^6*z^3")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());
 	out << mono.derive();
-	if(out.str() != "53/461 * y^2 * z^3")
+	if(out.str() != "53/461*y^2*z^3")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());	
 	out << mono;
-	if(out.str() != "53/461 * x * y^2 * z^3")
+	if(out.str() != "53/461*x*y^2*z^3")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());	
 	out << mono.derive("y", 'z');
-	if(out.str() != "318/461 * x * y * z^2")
+	if(out.str() != "318/461*x*y*z^2")
 		exit(EXIT_FAILURE);
 	
 	out.str(string());	
