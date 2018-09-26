@@ -465,6 +465,8 @@ class monomial{
 			return *this;
 		}
 		
+		polynomial operator+(const monomial &) const;
+		
 		bool operator==(const monomial &m) const {
 			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
 		}
@@ -474,7 +476,7 @@ class monomial{
 		}
 		
 		bool is_null() const {
-			return this->_coeficient == 0;
+			return this->_coeficient._numerator == 0;
 		}
 		
 };

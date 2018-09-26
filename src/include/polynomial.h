@@ -19,7 +19,8 @@ class polynomial{
 		void __construct_from_monomials(const monomial &m){
 			std::set<monomial, monomial_comp_class>::iterator it = this->_terms.find(m);
 			if(it == this->_terms.end()){
-				this->_terms.insert(m);
+				if(!m.is_null())
+					this->_terms.insert(m);
 			}else{
 				const_cast<num_q &>(it->_coeficient) += m._coeficient;
 				if(it->_coeficient == 0){
@@ -32,7 +33,8 @@ class polynomial{
 		void __construct_from_monomials(const monomial &m, Args... args){
 			std::set<monomial, monomial_comp_class>::iterator it = this->_terms.find(m);
 			if(it == this->_terms.end()){
-				this->_terms.insert(m);
+				if(!m.is_null())
+					this->_terms.insert(m);
 			}else{
 				const_cast<num_q &>(it->_coeficient) += m._coeficient;
 				if(it->_coeficient == 0){

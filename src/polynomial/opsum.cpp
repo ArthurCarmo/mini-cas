@@ -1,5 +1,10 @@
 #include "../include/polynomial.h"
 
+
+polynomial monomial::operator+(const monomial &m) const {
+	return polynomial(*this, m);
+}
+
 polynomial polynomial::operator+(const polynomial &p) const {
 	polynomial res;
 	const polynomial *most_terms = this, *least_terms = &p;
@@ -11,11 +16,11 @@ polynomial polynomial::operator+(const polynomial &p) const {
 	
 	res = *most_terms;
 	std::set<monomial, monomial_comp_class>::const_iterator it = least_terms->_terms.begin();
-	std::set<monomial, monomial_comp_class>::iterator it_res = res._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it_res = res._terms.begin();
 	
 	while(it != least_terms->_terms.end()){
 		it_res = res._terms.find(*it);
-		if(it_res != most_terms->_terms.end()){
+		if(it_res != res._terms.end()){
 			const_cast<num_q &>(it_res->_coeficient) += it->_coeficient;
 			if(it_res->_coeficient == 0){
 				res._terms.erase(it_res);

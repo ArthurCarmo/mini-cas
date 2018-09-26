@@ -51,6 +51,16 @@ int main(){
 	out << poly3 * poly3;
 	if(out.str() != "4*x^8 + 4*x^7 + 5*x^6 + 6*x^5 + 3*x^4 + 2*x^3 + x^2")
 		exit(EXIT_FAILURE);
+		
+	out.str(string());
+	out << poly3 + x;
+	if(out.str() != "2*x^4 + x^3 + x^2 + 2*x")
+		exit(EXIT_FAILURE);
+	
+	out.str(string());
+	out << x + unity;
+	if(out.str() != "x^2*y^4 + x")
+		exit(EXIT_FAILURE);
 	
 	return 0;
 }
