@@ -1,5 +1,9 @@
 #include "../include/polynomial.h"
 
+polynomial monomial::operator-(const monomial &m) const {
+	return polynomial(*this, -m);
+}
+
 polynomial polynomial::operator-(const polynomial &p) const {
 	polynomial res;
 	const polynomial *most_terms = this, *least_terms = &p;
