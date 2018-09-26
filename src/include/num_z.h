@@ -266,6 +266,12 @@
 	struct div_tuple{
 		num_z q;
 		num_z r;
+		div_tuple() { }
+		div_tuple(const div_tuple &d){
+			this->q = d.q;
+			this->r = d.r;
+		}
+		
 		friend std::ostream& operator << (std::ostream &, const div_tuple &);
 		operator num_z(){ return this->q; }
 		div_tuple & operator=(const div_tuple &d){
@@ -278,6 +284,12 @@
 	struct mod_tuple{
 		num_z q;
 		num_z r;
+		mod_tuple() { }
+		mod_tuple(const mod_tuple &m) {
+			this->q = m.q;
+			this->r = m.r;
+		}
+		
 		friend std::ostream& operator << (std::ostream &, const mod_tuple &);
 		operator num_z(){ return this->r; }
 		mod_tuple & operator=(const mod_tuple &m){

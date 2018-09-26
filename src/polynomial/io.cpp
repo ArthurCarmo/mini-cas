@@ -43,3 +43,8 @@ std::ostream & operator<<(std::ostream &o, const polynomial &p){
 	
 	return o;
 }
+
+std::ostream & operator<<(std::ostream &o, const polynomial_tuple &pt){
+	o << pt.q;
+	return o;
+}

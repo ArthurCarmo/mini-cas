@@ -71,15 +71,15 @@ class polynomial{
 		polynomial operator+(const polynomial &) const; 
 		polynomial operator-(const polynomial &) const;
 		polynomial operator*(const polynomial &) const; 
-		polynomial operator/(const polynomial &) const;
+		polynomial_tuple operator/(const polynomial &) const;
 		
 		bool operator==(const polynomial &) const;
 		bool operator!=(const polynomial &) const;
 		
 		bool is_null() const { return this->_terms.empty(); }
-		num_z degree() const { return this->_terms.begin()->_degree; }
+		num_z degree() const { if(this->_terms.size()) return this->_terms.begin()->_degree; return num_z(0); }
 		unsigned long long size() const { return this->_terms.size(); }
-		monomial leading_term() const { return *this->_terms.begin(); }
+		monomial leading_term() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		
 		//funções para avaliação do polinômio
 		//avalia x ou primeira variável do monômio líder
@@ -183,6 +183,23 @@ class polynomial{
 			
 			return res;
 		}
+};
+
+struct polynomial_tuple {
+	polynomial q;
+	polynomial r;
+	polynomial_tuple() { }
+	polynomial_tuple(const polynomial_tuple &pt) {
+		this->q = pt.q;
+		this->r = pt.r;
+	}
+	operator polynomial(){ return this->q; }
+	friend std::ostream & operator<<(std::ostream &, const polynomial_tuple &);
+	polynomial_tuple & operator=(const polynomial_tuple &pt){
+		this->q = pt.q;
+		this->r = pt.r;
+		return *this;
+	}
 };
 
 #endif 

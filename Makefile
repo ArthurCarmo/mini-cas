@@ -92,7 +92,7 @@ host_triplet = x86_64-pc-linux-gnu
 check_PROGRAMS = t_basic$(EXEEXT) t_monomials$(EXEEXT) \
 	t_monomial_pow$(EXEEXT) t_grades$(EXEEXT) \
 	t_polynomials$(EXEEXT) t_polynomial_derive$(EXEEXT) \
-	t_polynomial_eval$(EXEEXT)
+	t_polynomial_eval$(EXEEXT) t_polynomial_div$(EXEEXT)
 TESTS = script/basic/tst/basic_ops1.sh script/basic/tst/basic_ops2.sh \
 	script/basic/tst/basic_ops3.sh script/basic/tst/basic_ops4.sh \
 	script/basic/tst/basic_ops5.sh script/basic/tst/basic_ops6.sh \
@@ -103,7 +103,7 @@ TESTS = script/basic/tst/basic_ops1.sh script/basic/tst/basic_ops2.sh \
 	script/basic/tst/basic_ops13.sh t_monomials$(EXEEXT) \
 	t_monomial_pow$(EXEEXT) t_grades$(EXEEXT) \
 	t_polynomials$(EXEEXT) t_polynomial_derive$(EXEEXT) \
-	t_polynomial_eval$(EXEEXT)
+	t_polynomial_eval$(EXEEXT) t_polynomial_div$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -188,6 +188,9 @@ t_monomials_DEPENDENCIES = libminicas.la
 am_t_polynomial_derive_OBJECTS = script/polynomials/t_polynomial_derive-t_polynomial_derivative.$(OBJEXT)
 t_polynomial_derive_OBJECTS = $(am_t_polynomial_derive_OBJECTS)
 t_polynomial_derive_DEPENDENCIES = libminicas.la
+am_t_polynomial_div_OBJECTS = script/polynomials/t_polynomial_div-t_polynomial_div.$(OBJEXT)
+t_polynomial_div_OBJECTS = $(am_t_polynomial_div_OBJECTS)
+t_polynomial_div_DEPENDENCIES = libminicas.la
 am_t_polynomial_eval_OBJECTS = script/polynomials/t_polynomial_eval-t_polynomial_eval.$(OBJEXT)
 t_polynomial_eval_OBJECTS = $(am_t_polynomial_eval_OBJECTS)
 t_polynomial_eval_DEPENDENCIES = libminicas.la
@@ -232,11 +235,13 @@ am__v_CXXLD_1 =
 SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
 	$(t_grades_SOURCES) $(t_monomial_pow_SOURCES) \
 	$(t_monomials_SOURCES) $(t_polynomial_derive_SOURCES) \
-	$(t_polynomial_eval_SOURCES) $(t_polynomials_SOURCES)
+	$(t_polynomial_div_SOURCES) $(t_polynomial_eval_SOURCES) \
+	$(t_polynomials_SOURCES)
 DIST_SOURCES = $(libminicas_la_SOURCES) $(t_basic_SOURCES) \
 	$(t_grades_SOURCES) $(t_monomial_pow_SOURCES) \
 	$(t_monomials_SOURCES) $(t_polynomial_derive_SOURCES) \
-	$(t_polynomial_eval_SOURCES) $(t_polynomials_SOURCES)
+	$(t_polynomial_div_SOURCES) $(t_polynomial_eval_SOURCES) \
+	$(t_polynomials_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -658,6 +663,9 @@ t_polynomial_derive_LDADD = libminicas.la
 t_polynomial_eval_CPPFLAGS = -I./src/include
 t_polynomial_eval_SOURCES = script/polynomials/t_polynomial_eval.cpp
 t_polynomial_eval_LDADD = libminicas.la
+t_polynomial_div_CPPFLAGS = -I./src/include
+t_polynomial_div_SOURCES = script/polynomials/t_polynomial_div.cpp
+t_polynomial_div_LDADD = libminicas.la
 EXTRA_DIST = $(TESTS) script/basic/in/inp1 script/basic/in/inp2 script/basic/in/inp3 script/basic/in/inp4 script/basic/in/inp5 script/basic/in/inp6 script/basic/in/inp7 script/basic/in/inp8 script/basic/in/inp9 script/basic/in/inp10 script/basic/in/inp11 script/basic/in/inp12 script/basic/in/inp13 script/basic/out/outg1 script/basic/out/outg2 script/basic/out/outg3 script/basic/out/outg4 script/basic/out/outg5 script/basic/out/outg6 script/basic/out/outg7 script/basic/out/outg8 script/basic/out/outg9 script/basic/out/outg10 script/basic/out/outg11 script/basic/out/outg12 script/basic/out/outg13
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -899,6 +907,13 @@ script/polynomials/t_polynomial_derive-t_polynomial_derivative.$(OBJEXT):  \
 t_polynomial_derive$(EXEEXT): $(t_polynomial_derive_OBJECTS) $(t_polynomial_derive_DEPENDENCIES) $(EXTRA_t_polynomial_derive_DEPENDENCIES) 
 	@rm -f t_polynomial_derive$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(t_polynomial_derive_OBJECTS) $(t_polynomial_derive_LDADD) $(LIBS)
+script/polynomials/t_polynomial_div-t_polynomial_div.$(OBJEXT):  \
+	script/polynomials/$(am__dirstamp) \
+	script/polynomials/$(DEPDIR)/$(am__dirstamp)
+
+t_polynomial_div$(EXEEXT): $(t_polynomial_div_OBJECTS) $(t_polynomial_div_DEPENDENCIES) $(EXTRA_t_polynomial_div_DEPENDENCIES) 
+	@rm -f t_polynomial_div$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(t_polynomial_div_OBJECTS) $(t_polynomial_div_LDADD) $(LIBS)
 script/polynomials/t_polynomial_eval-t_polynomial_eval.$(OBJEXT):  \
 	script/polynomials/$(am__dirstamp) \
 	script/polynomials/$(DEPDIR)/$(am__dirstamp)
@@ -933,6 +948,7 @@ include script/polynomials/$(DEPDIR)/t_grades-t_grade.Po
 include script/polynomials/$(DEPDIR)/t_monomial_pow-t_monomial_pow.Po
 include script/polynomials/$(DEPDIR)/t_monomials-t_monomials.Po
 include script/polynomials/$(DEPDIR)/t_polynomial_derive-t_polynomial_derivative.Po
+include script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Po
 include script/polynomials/$(DEPDIR)/t_polynomial_eval-t_polynomial_eval.Po
 include script/polynomials/$(DEPDIR)/t_polynomials-t_polynomials.Po
 include src/num_q/$(DEPDIR)/attrib.Plo
@@ -1067,6 +1083,20 @@ script/polynomials/t_polynomial_derive-t_polynomial_derivative.obj: script/polyn
 #	$(AM_V_CXX)source='script/polynomials/t_polynomial_derivative.cpp' object='script/polynomials/t_polynomial_derive-t_polynomial_derivative.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_derive_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_polynomial_derive-t_polynomial_derivative.obj `if test -f 'script/polynomials/t_polynomial_derivative.cpp'; then $(CYGPATH_W) 'script/polynomials/t_polynomial_derivative.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_polynomial_derivative.cpp'; fi`
+
+script/polynomials/t_polynomial_div-t_polynomial_div.o: script/polynomials/t_polynomial_div.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_div_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_polynomial_div-t_polynomial_div.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Tpo -c -o script/polynomials/t_polynomial_div-t_polynomial_div.o `test -f 'script/polynomials/t_polynomial_div.cpp' || echo '$(srcdir)/'`script/polynomials/t_polynomial_div.cpp
+	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Tpo script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Po
+#	$(AM_V_CXX)source='script/polynomials/t_polynomial_div.cpp' object='script/polynomials/t_polynomial_div-t_polynomial_div.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_div_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_polynomial_div-t_polynomial_div.o `test -f 'script/polynomials/t_polynomial_div.cpp' || echo '$(srcdir)/'`script/polynomials/t_polynomial_div.cpp
+
+script/polynomials/t_polynomial_div-t_polynomial_div.obj: script/polynomials/t_polynomial_div.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_div_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_polynomial_div-t_polynomial_div.obj -MD -MP -MF script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Tpo -c -o script/polynomials/t_polynomial_div-t_polynomial_div.obj `if test -f 'script/polynomials/t_polynomial_div.cpp'; then $(CYGPATH_W) 'script/polynomials/t_polynomial_div.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_polynomial_div.cpp'; fi`
+	$(AM_V_at)$(am__mv) script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Tpo script/polynomials/$(DEPDIR)/t_polynomial_div-t_polynomial_div.Po
+#	$(AM_V_CXX)source='script/polynomials/t_polynomial_div.cpp' object='script/polynomials/t_polynomial_div-t_polynomial_div.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_div_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o script/polynomials/t_polynomial_div-t_polynomial_div.obj `if test -f 'script/polynomials/t_polynomial_div.cpp'; then $(CYGPATH_W) 'script/polynomials/t_polynomial_div.cpp'; else $(CYGPATH_W) '$(srcdir)/script/polynomials/t_polynomial_div.cpp'; fi`
 
 script/polynomials/t_polynomial_eval-t_polynomial_eval.o: script/polynomials/t_polynomial_eval.cpp
 	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(t_polynomial_eval_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT script/polynomials/t_polynomial_eval-t_polynomial_eval.o -MD -MP -MF script/polynomials/$(DEPDIR)/t_polynomial_eval-t_polynomial_eval.Tpo -c -o script/polynomials/t_polynomial_eval-t_polynomial_eval.o `test -f 'script/polynomials/t_polynomial_eval.cpp' || echo '$(srcdir)/'`script/polynomials/t_polynomial_eval.cpp
@@ -1458,6 +1488,13 @@ t_polynomial_derive.log: t_polynomial_derive$(EXEEXT)
 t_polynomial_eval.log: t_polynomial_eval$(EXEEXT)
 	@p='t_polynomial_eval$(EXEEXT)'; \
 	b='t_polynomial_eval'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+t_polynomial_div.log: t_polynomial_div$(EXEEXT)
+	@p='t_polynomial_div$(EXEEXT)'; \
+	b='t_polynomial_div'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

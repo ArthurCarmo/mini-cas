@@ -467,6 +467,7 @@ class monomial{
 		
 		polynomial operator+(const monomial &) const;
 		polynomial operator-(const monomial &) const;
+		monomial operator/(const monomial &) const;
 		
 		bool operator==(const monomial &m) const {
 			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
@@ -474,6 +475,31 @@ class monomial{
 		
 		bool operator!=(const monomial &m) const {
 			return this->_degree != m._degree || this->_coeficient != m._coeficient || this->_literals != m._literals;
+		}
+		
+		bool is_divisible_by(const monomial &m) const {
+			std::map<std::string, num_z>::const_iterator it = m._literals.begin();
+			std::map<std::string, num_z>::const_iterator it_t;
+			
+			if(m._degree > this->_degree) return false;
+			while(it != m._literals.end()){
+				if((it_t = this->_literals.find(it->first)) == this->_literals.end() || it_t->second < it->second) 
+					return false;
+				++it;
+			}
+			return true;
+		}
+		
+		bool divides(const monomial &m) const { 
+			std::map<std::string, num_z>::const_iterator it;
+			std::map<std::string, num_z>::const_iterator it_t = m._literals.begin();
+			if(this->_degree > m._degree) return false;
+			while(it_t != this->_literals.end()){
+				if((it = m._literals.find(it_t->first)) != m._literals.end() || it->second < it_t->second) 
+					return false;
+				++it_t;
+			}
+			return true;
 		}
 		
 		bool is_null() const {
