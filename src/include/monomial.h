@@ -157,7 +157,7 @@ class monomial{
 		monomial(int coef){
 			this->_coeficient._numerator = coef;
 			this->_coeficient._sign = coef < 0;
-			this->_coeficient._numerator.make_abs() = 0;
+			this->_coeficient._numerator.make_abs();
 		}
 		
 		//monômio unitário com uma variável
