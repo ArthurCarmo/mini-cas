@@ -1,8 +1,11 @@
 #include "../include/polynomial.h"
 
-
 polynomial monomial::operator+(const monomial &m) const {
 	return polynomial(*this, m);
+}
+
+polynomial operator+(int n, const monomial &m){
+	return polynomial(monomial(n), m);
 }
 
 polynomial polynomial::operator+(const polynomial &p) const {
