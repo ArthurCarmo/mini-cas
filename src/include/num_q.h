@@ -31,6 +31,8 @@
 			num_q(const num_z &, const int64_t &);
 			num_q(const int64_t &, const num_z &);
 			num_q(const int64_t &, const int64_t &);
+			num_q(int);
+			num_q(int, int);
 			
 			num_q & value() { return *this; };
 			num_z z_value() const { return num_z(*this); };

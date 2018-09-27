@@ -55,6 +55,10 @@ class polynomial{
 			this->_terms.insert(monomial(n));
 		}
 		
+		polynomial(int n){
+			this->_terms.insert(monomial(n));
+		}
+		
 		//polinômio como soma de monômios
 		template<class... Args>
 		polynomial(const monomial &m, Args... args){

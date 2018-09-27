@@ -140,9 +140,7 @@ class monomial{
 	public:
 		
 		//monômio nulo
-		monomial(){
-			this->_degree = 0;
-		}
+		monomial(){ }
 		
 		//construtor de cópia
 		monomial(const monomial &m){
@@ -154,7 +152,12 @@ class monomial{
 		//monômio constante
 		monomial(const Number &coef){
 			this->_coeficient = coef.q_value();
-			this->_degree = 0;
+		}
+		
+		monomial(int coef){
+			this->_coeficient._numerator = coef;
+			this->_coeficient._sign = coef < 0;
+			this->_coeficient._numerator.make_abs() = 0;
 		}
 		
 		//monômio unitário com uma variável
@@ -191,7 +194,6 @@ class monomial{
 		template<class... Args>
 		monomial(const Number &coef, Args... args) {
 			this->_coeficient = coef.q_value();
-			this->_degree = 0;
 			if(this->_coeficient != 0)
 				this->__construct_monomial(args...);
 		}

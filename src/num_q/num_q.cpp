@@ -66,3 +66,20 @@ num_q::num_q(const int64_t &a, const int64_t &b){
 	this->_simplify();
 	this->_type = _CAS_TYPE_Q_;
 }
+
+num_q::num_q(int a){
+	this->_numerator = a;
+	this->_denominator = 1;
+	this->_sign = (a < 0);
+	this->_numerator._sign = 0;
+	this->_type = _CAS_TYPE_Q_;
+}
+num_q::num_q(int a, int b){
+	this->_numerator = a;
+	this->_denominator = b;
+	this->_sign = (a < 0) ^ (b < 0);
+	this->_numerator._sign = 0;
+	this->_denominator._sign = 0;
+	this->_simplify();
+	this->_type = _CAS_TYPE_Q_;
+}

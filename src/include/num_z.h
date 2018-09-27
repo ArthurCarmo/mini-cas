@@ -253,6 +253,8 @@
 			bool operator!=(const char *) const;
 
 			bool sign() const { return this->_sign; };			
+			bool odd() const { return this->_num[0] % 2; };
+			bool even() const { return  1 - this->_num[0] % 2; };
 
 			bool abs_neq(const num_z &) const;
 			bool abs_eq(const num_z &) const;
