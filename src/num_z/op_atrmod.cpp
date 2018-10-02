@@ -3,10 +3,10 @@
 num_z & num_z::operator%=(const num_z &a){
 	mod_tuple res;	
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
-	int64_t j;
+	long long j;
 	uint32_t n_size;	//Offset dos dígitos para a divisão
-	uint64_t q_guess;	//Chute do quociente
-	uint64_t d; 		//Offset para reduzir o erro do chute para o quociente
+	unsigned long long q_guess;	//Chute do quociente
+	unsigned long long d; 		//Offset para reduzir o erro do chute para o quociente
 	
 	m._sign = 0;
 	n._sign = 0;
@@ -98,12 +98,12 @@ num_z & num_z::operator%=(const mod_tuple &a){
 	return *this %= a.r;
 }
 
-num_z & num_z::operator%=(const int64_t &a){
+num_z & num_z::operator%=(const long long &a){
 	num_z res(a);
 	return *this %= res;
 }
 
-num_z & num_z::operator%=(const uint64_t &a){
+num_z & num_z::operator%=(const unsigned long long &a){
 	num_z res(a);
 	return *this %= res;
 }

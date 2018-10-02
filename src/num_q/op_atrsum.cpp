@@ -38,7 +38,7 @@ num_q & num_q::operator+=(const num_z &a){
 	return *this;
 }
 
-num_q & num_q::operator+=(const int64_t &a){
+num_q & num_q::operator+=(const long long &a){
 	num_z b(a);
 	this->_numerator._sign = this->_sign;
 	b *= this->_denominator;

@@ -11,7 +11,7 @@ num_z & num_z::operator+=(const num_z &a){
 		return *this;	
 	}
 	
-	uint64_t w = 0;
+	unsigned long long w = 0;
 	uint32_t i = 0;
 	uint32_t maior =  1 + ((this->_blocks>a._blocks)?this->_blocks:a._blocks);
 	int vai_um = 0;
@@ -42,12 +42,12 @@ num_z & num_z::operator+=(const num_q &a){
 	return *this = (res += *this);
 }
 
-num_z & num_z::operator+=(const uint64_t &a){ //EXPANDIR
+num_z & num_z::operator+=(const unsigned long long &a){ //EXPANDIR
 	num_z res(a);
 	return *this += res;
 }
 
-num_z & num_z::operator+=(const int64_t &a){ //EXPANDIR
+num_z & num_z::operator+=(const long long &a){ //EXPANDIR
 	num_z res(a);
 	return *this += res;
 }

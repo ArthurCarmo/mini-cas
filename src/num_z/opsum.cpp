@@ -36,11 +36,11 @@ num_z num_z::operator+(const uint32_t &a) const {
 	return res+=*this;
 }
 
-num_z num_z::operator+(const int64_t &a) const {
+num_z num_z::operator+(const long long &a) const {
 	num_z res(a);
 	return res+=*this;
 }
-num_z num_z::operator+(const uint64_t &a) const {
+num_z num_z::operator+(const unsigned long long &a) const {
 	num_z res(a);
 	return res+=*this;
 }

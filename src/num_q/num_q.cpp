@@ -37,7 +37,7 @@ num_q::num_q(const num_z &a, const num_z &b){
 	this->_type = _CAS_TYPE_Q_;
 }
 
-num_q::num_q(const num_z &a, const int64_t &b){
+num_q::num_q(const num_z &a, const long long &b){
 	this->_numerator = a;
 	this->_denominator = b;
 	this->_sign = a._sign ^ (b < 0);
@@ -47,7 +47,7 @@ num_q::num_q(const num_z &a, const int64_t &b){
 	this->_type = _CAS_TYPE_Q_;
 }
 
-num_q::num_q(const int64_t &a, const num_z &b){
+num_q::num_q(const long long &a, const num_z &b){
 	this->_numerator = a;
 	this->_denominator = b;
 	this->_sign = b._sign ^ (a < 0);
@@ -57,7 +57,7 @@ num_q::num_q(const int64_t &a, const num_z &b){
 	this->_type = _CAS_TYPE_Q_;
 }
 
-num_q::num_q(const int64_t &a, const int64_t &b){
+num_q::num_q(const long long &a, const long long &b){
 	this->_numerator = a;
 	this->_denominator = b;
 	this->_sign = (a < 0) ^ (b < 0);

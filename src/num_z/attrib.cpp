@@ -9,7 +9,7 @@ num_z & num_z::operator=(const num_z &a){
 	
 	std::copy(a._num, a._num + a._blocks, this->_num);
 	
-	for(int64_t i = this->_blocks; i < this->_n_blocks; i++)
+	for(long long i = this->_blocks; i < this->_n_blocks; i++)
 		this->_num[i] = 0;
 	
 	this->_sign = a._sign;
@@ -69,8 +69,8 @@ num_z & num_z::operator=(const uint32_t &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const int64_t &b){
-	int64_t a = b;
+num_z & num_z::operator=(const long long &b){
+	long long a = b;
 	uint32_t i;
 	this->_sign = 0;
 	if(a < 0){
@@ -90,8 +90,8 @@ num_z & num_z::operator=(const int64_t &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const uint64_t &b){
-	uint64_t a = b;
+num_z & num_z::operator=(const unsigned long long &b){
+	unsigned long long a = b;
 	this->_sign = 0;
 	this->_blocks = 0;
 	
@@ -113,7 +113,7 @@ num_z & num_z::operator=(const char *a){
 
 num_z & num_z::operator=(const std::string &a){
 	uint32_t i, j, blocks, parcial, offset;
-	uint64_t l = a.length();
+	unsigned long long l = a.length();
 	this->_base_repr = DECIMAL;
 	this->_sign = 0;
 	

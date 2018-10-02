@@ -29,9 +29,9 @@
 			num_q(const num_q &);
 			num_q(const num_z &);
 			num_q(const num_z &, const num_z &);
-			num_q(const num_z &, const int64_t &);
-			num_q(const int64_t &, const num_z &);
-			num_q(const int64_t &, const int64_t &);
+			num_q(const num_z &, const long long &);
+			num_q(const long long &, const num_z &);
+			num_q(const long long &, const long long &);
 			num_q(int);
 			num_q(int, int);
 			
@@ -56,31 +56,31 @@
 			
 			num_q & operator=(const num_q &);
 			num_q & operator=(const num_z &);
-			num_q & operator=(const int64_t &);
+			num_q & operator=(const long long &);
 			num_q & operator+=(const num_q &);
 			num_q & operator+=(const num_z &);
-			num_q & operator+=(const int64_t &);
+			num_q & operator+=(const long long &);
 			num_q & operator-=(const num_q &);
 			num_q & operator-=(const num_z &);
-			num_q & operator-=(const int64_t &);
+			num_q & operator-=(const long long &);
 			num_q & operator*=(const num_q &);
 			num_q & operator*=(const num_z &);
-			num_q & operator*=(const int64_t &);
+			num_q & operator*=(const long long &);
 			num_q & operator/=(const num_q &);
 			num_q & operator/=(const num_z &);
-			num_q & operator/=(const int64_t &);
+			num_q & operator/=(const long long &);
 			num_q operator+(const num_q &) const;
 			num_q operator+(const num_z &) const;
-			num_q operator+(const int64_t &) const;
+			num_q operator+(const long long &) const;
 			num_q operator-(const num_q &) const;
 			num_q operator-(const num_z &) const;
-			num_q operator-(const int64_t &) const;
+			num_q operator-(const long long &) const;
 			num_q operator*(const num_q &) const;
 			num_q operator*(const num_z &) const;
-			num_q operator*(const int64_t &) const;
+			num_q operator*(const long long &) const;
 			num_q operator/(const num_q &) const;
 			num_q operator/(const num_z &) const;
-			num_q operator/(const int64_t &) const;
+			num_q operator/(const long long &) const;
 			num_q inverse() const { return num_q(this->_denominator, this->_numerator); };
 			num_q pow(const num_z &) const;
 
@@ -88,22 +88,22 @@
 
 			bool operator==(const num_q &) const;
 			bool operator==(const num_z &) const;
-			bool operator==(const int64_t &) const;
+			bool operator==(const long long &) const;
 			bool operator>=(const num_q &) const;
 			bool operator>=(const num_z &) const;
-			bool operator>=(const int64_t &) const;
+			bool operator>=(const long long &) const;
 			bool operator<=(const num_q &) const;
 			bool operator<=(const num_z &) const;
-			bool operator<=(const int64_t &) const;
+			bool operator<=(const long long &) const;
 			bool operator!=(const num_q &) const;
 			bool operator!=(const num_z &) const;
-			bool operator!=(const int64_t &) const;
+			bool operator!=(const long long &) const;
 			bool operator>(const num_q &) const;
 			bool operator>(const num_z &) const;
-			bool operator>(const int64_t &) const;
+			bool operator>(const long long &) const;
 			bool operator<(const num_q &) const;
 			bool operator<(const num_z &) const;
-			bool operator<(const int64_t &) const;
+			bool operator<(const long long &) const;
 	
 	};
 

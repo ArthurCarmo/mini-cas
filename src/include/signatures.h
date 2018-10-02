@@ -21,7 +21,7 @@ struct div_tuple;
 struct mod_tuple;
 struct polynomial_tuple;
 
-template<int64_t N> 
+template<long long N> 
 class num_zm;
 
 #endif

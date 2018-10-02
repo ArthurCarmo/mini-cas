@@ -4,7 +4,7 @@
 std::ostream& operator << (std::ostream &o, const num_z &a){
 	if(a._base_repr == DECIMAL){
 		char *output = (char *)malloc(_DIGITS_PER_BLOCK_*a._blocks + a._sign + 1);
-		uint64_t n_chars = a._sign;
+		unsigned long long n_chars = a._sign;
 		uint32_t i = a._blocks-1;
 
 		if(a._sign) sprintf(output, "-");

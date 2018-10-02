@@ -24,11 +24,11 @@ bool num_z::operator==(const uint32_t &a) const {
 	return *this == num_z(a);
 }
 
-bool num_z::operator==(const int64_t &a) const {
+bool num_z::operator==(const long long &a) const {
 	return *this == num_z(a);
 }
 
-bool num_z::operator==(const uint64_t &a) const {
+bool num_z::operator==(const unsigned long long &a) const {
 	return *this == num_z(a);
 }
 
@@ -75,11 +75,11 @@ bool num_z::operator>(const uint32_t &a) const {
 	return *this > num_z(a);
 }
 
-bool num_z::operator>(const int64_t &a) const {
+bool num_z::operator>(const long long &a) const {
 	return *this > num_z(a);
 }
 
-bool num_z::operator>(const uint64_t &a) const {
+bool num_z::operator>(const unsigned long long &a) const {
 	return *this > num_z(a);
 }
 
@@ -131,11 +131,11 @@ bool num_z::operator<(const uint32_t &a) const {
 	return *this < num_z(a);
 }
 
-bool num_z::operator<(const int64_t &a) const {
+bool num_z::operator<(const long long &a) const {
 	return *this < num_z(a);
 }
 
-bool num_z::operator<(const uint64_t &a) const {
+bool num_z::operator<(const unsigned long long &a) const {
 	return *this < num_z(a);
 }
 
@@ -163,11 +163,11 @@ bool num_z::operator>=(const uint32_t &a) const {
 	return !(*this < a);
 }
 
-bool num_z::operator>=(const int64_t &a) const {
+bool num_z::operator>=(const long long &a) const {
 	return !(*this < a);
 }
 
-bool num_z::operator>=(const uint64_t &a) const {
+bool num_z::operator>=(const unsigned long long &a) const {
 	return !(*this < a);
 }
 
@@ -196,11 +196,11 @@ bool num_z::operator<=(const uint32_t &a) const {
 	return !(*this > (num_z)a);
 }
 
-bool num_z::operator<=(const int64_t &a) const {
+bool num_z::operator<=(const long long &a) const {
 	return !(*this > (num_z)a);
 }
 
-bool num_z::operator<=(const uint64_t &a) const {
+bool num_z::operator<=(const unsigned long long &a) const {
 	return !(*this > (num_z)a);
 }
 
@@ -209,7 +209,7 @@ bool num_z::operator<=(const char *a) const {
 }
 
 bool num_z::operator!=(const num_z &a) const {
-	uint64_t i;
+	unsigned long long i;
 	if(this->_sign ^ a._sign) return true;
 	if(this->_blocks ^ a._blocks) return true;
 	for(i = 0; i < a._blocks; i++)
@@ -235,12 +235,12 @@ bool num_z::operator!=(const uint32_t &a) const {
 	return *this != res;
 }
 
-bool num_z::operator!=(const int64_t &a) const {
+bool num_z::operator!=(const long long &a) const {
 	num_z res(a);
 	return *this != res;
 }
 
-bool num_z::operator!=(const uint64_t &a) const {
+bool num_z::operator!=(const unsigned long long &a) const {
 	num_z res(a);
 	return *this != res;
 }

@@ -15,7 +15,7 @@ num_z bin(const num_z &a){
 
 std::string hex_f(const num_z &a){
 	uint32_t max32 = 0x80000000;
-	uint64_t base_32;
+	unsigned long long base_32;
 	char *output;
 	int n_chars = a._sign;
 	num_z aux(0);
@@ -32,7 +32,7 @@ std::string hex_f(const num_z &a){
 	aux.__resize(a._blocks + 1);
 	
 	
-	base_32 = uint64_t(max32) << 1;
+	base_32 = (unsigned long long)max32 << 1;
 	max32 = 0;
 	
 	while(aux2.q != 0){ 
@@ -57,8 +57,8 @@ std::string hex_f(const num_z &a){
 
 std::string bin_f(const num_z &a){
 	uint32_t max32 = 0x80000000;
-	int64_t blocks;
-	uint64_t base_32;
+	long long blocks;
+	unsigned long long base_32;
 	num_z aux(0);
 	mod_tuple aux2;
 	std::string out("");
@@ -72,7 +72,7 @@ std::string bin_f(const num_z &a){
 	
 	aux.__resize(a._blocks + 1);
 	
-	base_32 = uint64_t(max32) << 1;
+	base_32 = (unsigned long long)max32 << 1;
 	max32 = 0;
 	while(aux2.q != 0){ 
 		aux2 = aux2.q % base_32;

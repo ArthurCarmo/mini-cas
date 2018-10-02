@@ -12,8 +12,8 @@ num_z num_z::operator*(const num_z &a) const {
 */	
 	int sign = this->_sign ^ a._sign;
 	uint32_t i, j, m, n;
-	uint64_t k;
-	uint64_t t;
+	unsigned long long k;
+	unsigned long long t;
 	
 	m = a._blocks;
 	n = this->_blocks;
@@ -26,7 +26,7 @@ num_z num_z::operator*(const num_z &a) const {
 	for(j = 0; j < m; ++j){
 		k = 0;
 		for(i = 0; i < n; ++i){
-			t = ((uint64_t)this->_num[i] * (uint64_t)a._num[j]) + res._num[i+j] + k;
+			t = ((unsigned long long)this->_num[i] * (unsigned long long)a._num[j]) + res._num[i+j] + k;
 			res._num[i + j] = t % _BASE_;
 			k = t / _BASE_;
 		}
@@ -61,12 +61,12 @@ num_z num_z::operator*(const uint32_t &a) const {
 	return *this*res;
 }
 
-num_z num_z::operator*(const int64_t &a) const {
+num_z num_z::operator*(const long long &a) const {
 	num_z res(a);
 	return *this*res;
 }
 
-num_z num_z::operator*(const uint64_t &a) const {
+num_z num_z::operator*(const unsigned long long &a) const {
 	num_z res(a);
 	return *this*res;
 }

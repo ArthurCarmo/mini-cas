@@ -37,7 +37,7 @@ num_q num_q::operator+(const num_z &a) const {
 	return res;
 }
 
-num_q num_q::operator+(const int64_t &a) const {
+num_q num_q::operator+(const long long &a) const {
 	num_q res(*this);
 	num_z aux;
 	

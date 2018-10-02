@@ -63,7 +63,7 @@ num_z __num_z_gcd_single(num_z &a, uint32_t b){
 
 //GCD LEHMER
 num_z __num_z_gcd(num_z &a, num_z &b){
-	int64_t q, q2, u, v, A, B, C, D, T;
+	long long q, q2, u, v, A, B, C, D, T;
 	num_z w, z;
 	div_tuple t;
 	
@@ -104,11 +104,11 @@ num_z __num_z_gcd(num_z &a, num_z &b){
 	return __num_z_gcd_single(a, b._num[0]); //GCD para precisão simples
 }
 
-num_z z_gcd(const num_z &a, uint64_t &b){
+num_z z_gcd(const num_z &a, unsigned long long &b){
 	return z_gcd(a, num_z(b));
 }
 
-num_z z_gcd(const uint64_t &a, const num_z &b){
+num_z z_gcd(const unsigned long long &a, const num_z &b){
 	return z_gcd(b, num_z(a));
 }
 
@@ -124,7 +124,7 @@ num_z num_z::pow(const num_z &N) const {
 	return p * p;
 }
 
-num_z num_z::pow(uint64_t N) const {
+num_z num_z::pow(unsigned long long N) const {
 	num_z p(*this);
 	
 	if(N == 0) return num_z(1);
@@ -166,10 +166,10 @@ num_z z_lcm(const num_z &a, const num_z &b){
 }
 
 //INLINE FUNCTIONS
-uint32_t __guess_quotient(const uint64_t &n, const uint64_t &m0, const uint64_t &m1){
+uint32_t __guess_quotient(const unsigned long long &n, const unsigned long long &m0, const unsigned long long &m1){
 	return ( m0 == n )?_MAX_DIGIT_BASE_:( (m0*_BASE_ + m1) / n );
 }
 
-bool __overstep_quotient(const uint64_t &q_guess, const uint64_t &n2, const uint64_t &n1, const uint64_t &m0, const uint64_t &m1, const uint64_t &m2){
+bool __overstep_quotient(const unsigned long long &q_guess, const unsigned long long &n2, const unsigned long long &n1, const unsigned long long &m0, const unsigned long long &m1, const unsigned long long &m2){
 	return n2 * q_guess > ( m0 * _BASE_ - n1 * q_guess + m1 ) * _BASE_ + m2;
 }

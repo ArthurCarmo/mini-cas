@@ -16,8 +16,8 @@ void num_z::__left_shift(){
 
 void num_z::__left_shift(uint32_t n){
 	uint32_t i = this->_blocks;
-	int64_t powten = 1;
-	uint64_t prune_digits;
+	long long powten = 1;
+	unsigned long long prune_digits;
 	uint32_t mv = n/_DIGITS_PER_BLOCK_;
 	n %= _DIGITS_PER_BLOCK_;
 
@@ -72,8 +72,8 @@ void num_z::__right_shift(){
 void num_z::__right_shift(uint32_t n){
 	uint32_t i = 0;
 	uint32_t j = this->_blocks - 1;
-	int64_t powten = 1;
-	uint64_t prune_digits;
+	long long powten = 1;
+	unsigned long long prune_digits;
 	uint32_t mv = n/_DIGITS_PER_BLOCK_;
 	n %= _DIGITS_PER_BLOCK_;
 	

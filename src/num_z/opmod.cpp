@@ -3,11 +3,11 @@
 mod_tuple num_z::operator%(const num_z &a) const {
 	mod_tuple res;	
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);
-	int64_t j;
+	long long j;
 	uint32_t n_size;	//Offset dos dígitos para a divisão
 	uint32_t size_q;	//Número de dígitos do quociente
-	uint64_t q_guess;	//Chute do quociente
-	uint64_t d; 		//Offset para reduzir o erro do chute para o quociente
+	unsigned long long q_guess;	//Chute do quociente
+	unsigned long long d; 		//Offset para reduzir o erro do chute para o quociente
 	
 	m._sign = 0;
 	n._sign = 0;
@@ -106,7 +106,7 @@ mod_tuple num_z::operator%(const num_z &a) const {
 		}
 	}
 	
-	for(int64_t i = res.r._blocks; i < res.r._n_blocks ; i++){
+	for(long long i = res.r._blocks; i < res.r._n_blocks ; i++){
 		res.r._num[i] = 0;
 	}
 	
@@ -128,9 +128,9 @@ mod_tuple num_z::operator%(const int &a) const {
 
 mod_tuple num_z::operator%(const uint32_t &a) const {
 	mod_tuple res;
-	int64_t j;
-	uint64_t r = 0;
-	uint64_t w;
+	long long j;
+	unsigned long long r = 0;
+	unsigned long long w;
 	
 	if(this->_blocks > _INIT_SIZE_)
 		res.q.__resize(this->_blocks);
@@ -139,7 +139,7 @@ mod_tuple num_z::operator%(const uint32_t &a) const {
 	
 	for(j = res.q._blocks - 1; j >= 0; --j){
 		
-		w = ((uint64_t)r * (uint64_t)_BASE_ + this->_num[j]);
+		w = ((unsigned long long)r * (unsigned long long)_BASE_ + this->_num[j]);
 		res.q._num[j] = w / a;
 		r = w % a;
 	}
@@ -155,12 +155,12 @@ mod_tuple num_z::operator%(const uint32_t &a) const {
 	return res;
 }
 
-mod_tuple num_z::operator%(const int64_t &a) const {
+mod_tuple num_z::operator%(const long long &a) const {
 	num_z r(a);
 	return *this%r;
 }
 
-mod_tuple num_z::operator%(const uint64_t &a) const {
+mod_tuple num_z::operator%(const unsigned long long &a) const {
 	num_z r(a);
 	return *this%r;
 }

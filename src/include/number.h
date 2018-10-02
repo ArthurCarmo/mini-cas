@@ -28,38 +28,38 @@ class Number{
 
 		virtual Number & operator=(const num_z &) = 0;
 		virtual Number & operator=(const num_q &) = 0;
-		virtual Number & operator=(const int64_t &) = 0;
+		virtual Number & operator=(const long long &) = 0;
 		virtual Number & operator+=(const num_z &) = 0;
 		virtual Number & operator+=(const num_q &) = 0;
-		virtual Number & operator+=(const int64_t &) = 0;
+		virtual Number & operator+=(const long long &) = 0;
 		virtual Number & operator-=(const num_z &) = 0;
 		virtual Number & operator-=(const num_q &) = 0;
-		virtual Number & operator-=(const int64_t &) = 0;
+		virtual Number & operator-=(const long long &) = 0;
 		virtual Number & operator*=(const num_z &) = 0;
 		virtual Number & operator*=(const num_q &) = 0;
-		virtual Number & operator*=(const int64_t &) = 0;
+		virtual Number & operator*=(const long long &) = 0;
 		virtual Number & operator/=(const num_z &) = 0;
 		virtual Number & operator/=(const num_q &) = 0;
-		virtual Number & operator/=(const int64_t &) = 0;
+		virtual Number & operator/=(const long long &) = 0;
 		
 		virtual bool operator==(const num_q &) const = 0;
 		virtual bool operator==(const num_z &) const = 0;
-		virtual bool operator==(const int64_t &) const = 0;
+		virtual bool operator==(const long long &) const = 0;
 		virtual bool operator>=(const num_q &) const = 0;
 		virtual bool operator>=(const num_z &) const = 0;
-		virtual bool operator>=(const int64_t &) const = 0;
+		virtual bool operator>=(const long long &) const = 0;
 		virtual bool operator<=(const num_q &) const = 0;
 		virtual bool operator<=(const num_z &) const = 0;
-		virtual bool operator<=(const int64_t &) const = 0;
+		virtual bool operator<=(const long long &) const = 0;
 		virtual bool operator!=(const num_q &) const = 0;
 		virtual bool operator!=(const num_z &) const = 0;
-		virtual bool operator!=(const int64_t &) const = 0;
+		virtual bool operator!=(const long long &) const = 0;
 		virtual bool operator>(const num_q &) const = 0;
 		virtual bool operator>(const num_z &) const = 0;
-		virtual bool operator>(const int64_t &) const = 0;
+		virtual bool operator>(const long long &) const = 0;
 		virtual bool operator<(const num_q &) const = 0;
 		virtual bool operator<(const num_z &) const = 0;
-		virtual bool operator<(const int64_t &) const = 0;
+		virtual bool operator<(const long long &) const = 0;
 		
 };
 
