@@ -18,5 +18,13 @@ int main(){
 	
 	cout << poly1 << endl;
 	
+	cout << endl;
+	
+	cout << g_min(num_q(3, 7), num_q(20, 44)) << endl;
+	cout << g_max(num_q(3, 7), num_q(20, 44)) << endl;
+	
+	cout << m_gcd(x, unity) << endl;
+	cout << m_gcd(x, monomial('y')) << endl;
+	
 	return 0;
 }

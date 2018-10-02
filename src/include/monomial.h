@@ -515,4 +515,5 @@ extern monomial operator*(const Number &, const monomial &);
 extern monomial operator*(int, const monomial &);
 extern polynomial operator+(int, const monomial &);
 extern polynomial operator-(int, const monomial &);
+
 #endif
