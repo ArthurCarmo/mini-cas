@@ -8,7 +8,7 @@ Biblioteca para matemática simbólica em C++11
 
 * num_z      : números inteiros de precisão arbitrária
 * num_q      : números racionais de precisão arbitrária
-* num_zm<N>  : números inteiros módulo N
+* num_zm\<N\>  : números inteiros módulo N
 * monomial   : monômios de variáveis arbitrárias e coeficiente racional
 * polynomial : polinômios de variáveis arbitrárias e coeficientes racionais
 
