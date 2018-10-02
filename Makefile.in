@@ -159,13 +159,15 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_z/opdiv.lo src/num_z/opmod.lo src/num_z/opmul.lo \
 	src/num_z/opsub.lo src/num_z/opsum.lo src/num_z/private_ops.lo \
 	src/num_z/unary_ops.lo src/num_q/num_q.lo src/num_q/attrib.lo \
-	src/num_q/bool.lo src/num_q/io.lo src/num_q/op_atrdiv.lo \
-	src/num_q/op_atrmul.lo src/num_q/op_atrsub.lo \
-	src/num_q/op_atrsum.lo src/num_q/opdiv.lo src/num_q/opmul.lo \
-	src/num_q/opsub.lo src/num_q/opsum.lo src/polynomial/attrib.lo \
+	src/num_q/bool.lo src/num_q/io.lo src/num_q/num_ops.lo \
+	src/num_q/op_atrdiv.lo src/num_q/op_atrmul.lo \
+	src/num_q/op_atrsub.lo src/num_q/op_atrsum.lo \
+	src/num_q/opdiv.lo src/num_q/opmul.lo src/num_q/opsub.lo \
+	src/num_q/opsum.lo src/polynomial/attrib.lo \
 	src/polynomial/bool.lo src/polynomial/io.lo \
-	src/polynomial/opdiv.lo src/polynomial/opmul.lo \
-	src/polynomial/opsub.lo src/polynomial/opsum.lo
+	src/polynomial/num_ops.lo src/polynomial/opdiv.lo \
+	src/polynomial/opmul.lo src/polynomial/opsub.lo \
+	src/polynomial/opsum.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -626,6 +628,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/attrib.cpp \
 			src/num_q/bool.cpp \
 			src/num_q/io.cpp \
+			src/num_q/num_ops.cpp \
 			src/num_q/op_atrdiv.cpp \
 			src/num_q/op_atrmul.cpp \
 			src/num_q/op_atrsub.cpp \
@@ -637,6 +640,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
 			src/polynomial/io.cpp \
+			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
 			src/polynomial/opsub.cpp \
@@ -813,6 +817,8 @@ src/num_q/bool.lo: src/num_q/$(am__dirstamp) \
 	src/num_q/$(DEPDIR)/$(am__dirstamp)
 src/num_q/io.lo: src/num_q/$(am__dirstamp) \
 	src/num_q/$(DEPDIR)/$(am__dirstamp)
+src/num_q/num_ops.lo: src/num_q/$(am__dirstamp) \
+	src/num_q/$(DEPDIR)/$(am__dirstamp)
 src/num_q/op_atrdiv.lo: src/num_q/$(am__dirstamp) \
 	src/num_q/$(DEPDIR)/$(am__dirstamp)
 src/num_q/op_atrmul.lo: src/num_q/$(am__dirstamp) \
@@ -840,6 +846,8 @@ src/polynomial/attrib.lo: src/polynomial/$(am__dirstamp) \
 src/polynomial/bool.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/io.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/num_ops.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opdiv.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
@@ -954,6 +962,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/attrib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/bool.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/io.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/num_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/num_q.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/op_atrdiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_q/$(DEPDIR)/op_atrmul.Plo@am__quote@
@@ -985,6 +994,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/attrib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/bool.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/io.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/num_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opdiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opsub.Plo@am__quote@

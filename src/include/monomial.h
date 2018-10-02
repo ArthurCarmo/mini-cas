@@ -17,6 +17,7 @@ class monomial{
 	friend class polynomial;
 	
 	friend std::ostream & operator<<(std::ostream &, const monomial &);
+	friend monomial m_gcd(const monomial &, const monomial &);
 	
 	private:
 		num_q _coeficient;

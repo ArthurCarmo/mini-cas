@@ -14,6 +14,7 @@
 
 		friend std::ostream& operator << (std::ostream &, const num_q &);
 		friend std::istream& operator >> (std::istream &, num_q &);
+		friend num_q q_gcd(const num_q &, const num_q &);
 		
 		private:
 			num_z _numerator;

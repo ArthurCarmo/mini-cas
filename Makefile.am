@@ -40,6 +40,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/attrib.cpp \
 			src/num_q/bool.cpp \
 			src/num_q/io.cpp \
+			src/num_q/num_ops.cpp \
 			src/num_q/op_atrdiv.cpp \
 			src/num_q/op_atrmul.cpp \
 			src/num_q/op_atrsub.cpp \
@@ -51,6 +52,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
 			src/polynomial/io.cpp \
+			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
 			src/polynomial/opsub.cpp \

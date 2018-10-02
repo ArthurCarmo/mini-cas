@@ -35,4 +35,14 @@ T g_pow(const T &a, const num_z &N){
 	return res * res;
 }
 
+template<class T>
+T g_min(const T &a, const T &b){
+	return a<b?a:b;
+}
+
+template<class T>
+T g_max(const T &a, const T &b){
+	return a>b?a:b;
+}
+
 #endif
