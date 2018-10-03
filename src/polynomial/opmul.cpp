@@ -54,6 +54,15 @@ polynomial & polynomial::operator*=(const polynomial &p){
 	return *this = res;
 }
 
+polynomial & polynomial::unsafe_atrmul(const monomial &m) {
+	std::set<monomial, monomial_comp_class>::const_iterator it_this;
+	
+	for(it_this = this->_terms.begin(); it_this != this->_terms.end(); ++it_this)
+		const_cast<monomial &>(*it_this) *= m;
+	
+	return *this;
+}
+
 monomial operator*(const Number &k, const monomial &m){
 	monomial res(m);
 	res *= monomial(k);

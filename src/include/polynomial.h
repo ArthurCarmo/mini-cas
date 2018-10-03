@@ -12,6 +12,7 @@
 class polynomial{
 
 	friend std::ostream & operator<<(std::ostream &, const polynomial &);
+	friend polynomial_tuple monomial_based_div(const polynomial &, const polynomial &);
 	
 	private:
 		std::set<monomial, monomial_comp_class> _terms;
@@ -44,6 +45,16 @@ class polynomial{
 			this->__construct_from_monomials(args...);
 		}
 		
+		
+		//Funções que auxiliam na divisão baseada em monômios
+		//Na divisão de um polinômio u por um monômio v
+		//G(u, v) é o somatório da divisão por v de todos os termos de u divisíveis por v
+		//R(u, v) é o somatório de todos os termos de u não divisíveis por v
+		polynomial_tuple G_and_R(const monomial &) const ;
+		
+		//A divisão por um monômio não deve alterar a ordenação dos termos
+		polynomial & unsafe_atrmul(const monomial &);
+	
 	public:
 	
 		//polinômio nulo
@@ -76,6 +87,7 @@ class polynomial{
 		polynomial operator-(const polynomial &) const;
 		polynomial operator*(const polynomial &) const; 
 		polynomial_tuple operator/(const polynomial &) const;
+		polynomial_tuple monomial_based_div(const polynomial &) const;
 		
 		bool operator==(const polynomial &) const;
 		bool operator!=(const polynomial &) const;

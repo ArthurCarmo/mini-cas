@@ -48,3 +48,62 @@ polynomial & polynomial::operator/=(const polynomial &p){
 	
 	return *this = quotient;
 }
+
+polynomial_tuple polynomial::G_and_R(const monomial &v) const {
+	polynomial_tuple res;
+	monomial next_coef;
+	std::set<monomial, monomial_comp_class>::const_iterator it;
+	
+	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
+		if( ( next_coef = *it / v ) != monomial() )
+			res.q._terms.insert(next_coef);
+		else
+			res.r._terms.insert(*it);
+	return res;
+}
+
+polynomial_tuple polynomial::monomial_based_div(const polynomial &v) const {
+	polynomial_tuple res;
+	polynomial f;
+	
+	res.r = *this;
+	std::set<monomial, monomial_comp_class>::const_iterator v_it = v._terms.begin();
+	
+	do{
+		f = res.r.G_and_R(*v_it);
+		
+		if(f.is_null())
+			break;
+		
+		res.q += f;
+		f.unsafe_atrmul(*v_it);
+		res.r -= f;
+		
+		++v_it;
+	} while(v_it != v._terms.end());
+	
+	return res;
+}
+
+polynomial_tuple monomial_based_div(const polynomial &u, const polynomial &v){
+	polynomial_tuple res;
+	polynomial f;
+	
+	res.r = u;
+	std::set<monomial, monomial_comp_class>::const_iterator v_it = v._terms.begin();
+	
+	do{
+		f = res.r.G_and_R(*v_it);
+		
+		if(f.is_null())
+			break;
+		
+		res.q += f;
+		f.unsafe_atrmul(*v_it);
+		res.r -= f;
+		
+		++v_it;
+	} while(v_it != v._terms.end());
+	
+	return res;
+}
