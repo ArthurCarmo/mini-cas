@@ -3,10 +3,9 @@
 
 #include "monomial.h"
 
-class monomial_comp_class{
-	private:
-	
-		bool glex(const monomial &l, const monomial &r) const { 
+class glex { 
+	public:
+		bool operator()(const monomial &l, const monomial &r) const { 
 			std::map<std::string, num_z>::const_iterator it_l = l._literals.begin();
 			std::map<std::string, num_z>::const_iterator it_r = r._literals.begin();
 			if(l._degree > r._degree) return true;
@@ -24,8 +23,11 @@ class monomial_comp_class{
 				++it_r;
 			}while(true);
 		}
-		
-		bool grevlex(const monomial &l, const monomial &r) const { 
+};
+
+class grevlex { 
+	public:
+		bool operator()(const monomial &l, const monomial &r) const { 
 			std::map<std::string, num_z>::const_reverse_iterator it_l = l._literals.rbegin();
 			std::map<std::string, num_z>::const_reverse_iterator it_r = r._literals.rbegin();
 			if(l._degree > r._degree) return true;
@@ -43,8 +45,11 @@ class monomial_comp_class{
 				++it_r;
 			}while(true);
 		}
+};
 
-		bool plex(const monomial &l, const monomial &r) const { 
+class lex { 
+	public:
+		bool operator()(const monomial &l, const monomial &r) const { 
 			std::map<std::string, num_z>::const_iterator it_l = l._literals.begin();
 			std::map<std::string, num_z>::const_iterator it_r = r._literals.begin();
 	
@@ -60,17 +65,12 @@ class monomial_comp_class{
 				++it_r;
 			}while(true);
 		}
+};
 
-		bool lexdeg(const monomial &l, const monomial &r) const {
-			/*
-				TO DO
-			*/
-			return true;
-		}
-
+class monomial_comp_class {
 	public:
-		bool operator()(const monomial &l, const monomial &r) const { 
-			return grevlex(l, r);
+		bool operator()(const monomial &l, const monomial &r) const {
+			return grevlex()(l, r);
 		}
 };
 

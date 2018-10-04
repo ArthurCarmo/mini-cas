@@ -13,6 +13,9 @@
 
 class monomial{
 	
+	friend class lex;
+	friend class glex;
+	friend class grevlex;
 	friend class monomial_comp_class;
 	friend class polynomial;
 	

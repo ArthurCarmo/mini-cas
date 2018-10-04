@@ -21,32 +21,46 @@ monomial monomial::operator/(const monomial &m) const {
 	return res;
 }
 
-polynomial_tuple polynomial::operator/(const polynomial &p) const {
+polynomial_tuple polynomial::operator/(const polynomial &v) const {
 	polynomial_tuple res;
-	polynomial subtractor;
-	monomial next_coef;
-	res.r = *this;
+	polynomial f;
 	
-	while( ( p.degree() <= res.r.degree() ) && (( next_coef = res.r.leading_term() / p.leading_term() ) != monomial() ) ) {
-		res.q += next_coef;
-		subtractor = p * next_coef;
-		res.r -= subtractor;
-	}
+	res.r = *this;
+	std::set<monomial, monomial_comp_class>::const_iterator v_it = v._terms.begin();
+	
+	do{
+		f = res.r.G_and_R(*v_it);
+		if(f.is_null())
+			break;
+	
+		res.q += f;
+		f *= v;
+		res.r -= f;
+		
+	} while(v_it != v._terms.end());
+	
 	return res;
 }
 
-polynomial & polynomial::operator/=(const polynomial &p){ 
-	polynomial quotient;
-	polynomial subtractor;
-	monomial next_coef;
+polynomial & polynomial::operator/=(const polynomial &v){ 
+	polynomial r = *this;
+	polynomial f;
 	
-	while( ( p.degree() <= this->degree() ) && (( next_coef = this->leading_term() / p.leading_term() ) != monomial() ) ) {
-		quotient += next_coef;
-		subtractor = p * next_coef;
-		*this -= subtractor;
-	}
+	this->_terms = std::set<monomial, monomial_comp_class>();
+	std::set<monomial, monomial_comp_class>::const_iterator v_it = v._terms.begin();
 	
-	return *this = quotient;
+	do{
+		f = r.G_and_R(*v_it);
+		if(f.is_null())
+			break;
+	
+		*this += f;
+		f *= v;
+		r -= f;
+		
+	} while(v_it != v._terms.end());
+	
+	return *this;
 }
 
 polynomial_tuple polynomial::G_and_R(const monomial &v) const {
@@ -94,16 +108,28 @@ polynomial_tuple monomial_based_div(const polynomial &u, const polynomial &v){
 	
 	do{
 		f = res.r.G_and_R(*v_it);
-		
 		if(f.is_null())
 			break;
-		
+	
 		res.q += f;
-		f.unsafe_atrmul(*v_it);
+		f *= v;
 		res.r -= f;
 		
-		++v_it;
 	} while(v_it != v._terms.end());
 	
+	return res;
+}
+
+polynomial_tuple lc_based_div(const polynomial &u, const polynomial &v){
+	polynomial_tuple res;
+	polynomial subtractor;
+	monomial next_coef;
+	res.r = u;
+	
+	while( ( v.degree() <= res.r.degree() ) && (( next_coef = res.r.leading_term() / v.leading_term() ) != monomial() ) ) {
+		res.q += next_coef;
+		subtractor = v * next_coef;
+		res.r -= subtractor;
+	}
 	return res;
 }

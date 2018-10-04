@@ -12,7 +12,10 @@
 class polynomial{
 
 	friend std::ostream & operator<<(std::ostream &, const polynomial &);
+	
+	
 	friend polynomial_tuple monomial_based_div(const polynomial &, const polynomial &);
+	friend polynomial_tuple lc_based_div(const polynomial &, const polynomial &);
 	
 	private:
 		std::set<monomial, monomial_comp_class> _terms;
