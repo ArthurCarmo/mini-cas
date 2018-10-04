@@ -250,6 +250,14 @@ class monomial{
 			return this->_degree;
 		}
 		
+		//grau da variável var no monômio
+		num_z var_degree(const std::string &var){
+			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
+			if(it != this->_literals.end())
+				return it->second;
+			return num_z(0);
+		}
+		
 		//funções de manipulação de sinal
 		monomial abs() const {
 			monomial res(*this);
