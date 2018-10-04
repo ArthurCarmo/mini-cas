@@ -16,7 +16,6 @@
 *.so
 *.dylib
 *.dll
-t_*
 
 # Fortran module files
 *.mod
@@ -33,3 +32,4 @@ t_*
 *.out
 *.app
 *teste_gmp
+t_*
