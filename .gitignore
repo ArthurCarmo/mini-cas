@@ -27,6 +27,11 @@
 *.a
 *.lib
 .libs*
+*.log
+*.Plo
+*.Po
+*.trs
+
 
 # Executables
 *.exe
