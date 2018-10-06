@@ -349,6 +349,10 @@ class monomial{
 		//substitui a variável var pelo polinômio p
 		polynomial subs(const std::string &, const polynomial &) const;
 		
+		//wrappers para avaliação de variáveis como outros polinômios
+		monomial eval(const std::string &, const monomial &) const;
+		polynomial eval(const std::string &, const polynomial &) const;
+		
 		//avalia o monômio para o valor especificado de uma variável
 		monomial eval(const std::string &var, const num_q &val) const {
 			monomial res(*this);

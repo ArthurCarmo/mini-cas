@@ -16,6 +16,7 @@ class polynomial{
 	
 	friend polynomial_tuple monomial_based_div(const polynomial &, const polynomial &);
 	friend polynomial_tuple lc_based_div(const polynomial &, const polynomial &);
+	friend polynomial subs(polynomial &, const std::string &, const polynomial &);
 	
 	private:
 		std::set<monomial, monomial_comp_class> _terms;
@@ -151,8 +152,11 @@ class polynomial{
 			}	
 			
 			return res;
-		}	
+		}
 		
+		//substitui a variável var pelo polinômio p
+		polynomial subs(const std::string &, const polynomial &) const;
+		polynomial eval(const std::string &, const polynomial &) const;
 		//derivada parcial do polinômio em relação a x ou à primeira variável do monômio líder
 		polynomial derive() const {
 			polynomial res;
