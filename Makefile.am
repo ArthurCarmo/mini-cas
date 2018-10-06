@@ -56,7 +56,8 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
 			src/polynomial/opsub.cpp \
-			src/polynomial/opsum.cpp 
+			src/polynomial/opsum.cpp \
+			src/polynomial/subs.cpp 
 
 check_PROGRAMS = t_basic t_monomials t_monomial_pow t_grades t_polynomials t_polynomial_derive t_polynomial_eval t_polynomial_div
 

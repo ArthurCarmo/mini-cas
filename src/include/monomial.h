@@ -21,6 +21,7 @@ class monomial{
 	
 	friend std::ostream & operator<<(std::ostream &, const monomial &);
 	friend monomial m_gcd(const monomial &, const monomial &);
+	friend monomial subs(monomial &, const std::string &, const monomial &);
 	
 	private:
 		num_q _coeficient;
@@ -341,6 +342,12 @@ class monomial{
 			res._literals.erase(it);
 			return res;
 		}
+	
+		//substitui a variável var pelo monômio m
+		monomial subs(const std::string &, const monomial &) const;
+		
+		//substitui a variável var pelo polinômio p
+		polynomial subs(const std::string &, const polynomial &) const;
 		
 		//avalia o monômio para o valor especificado de uma variável
 		monomial eval(const std::string &var, const num_q &val) const {
