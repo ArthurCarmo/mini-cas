@@ -3,6 +3,7 @@
 
 # Compiled Object files
 *.Plo
+*.Po
 *.slo
 *.lo
 *.o
