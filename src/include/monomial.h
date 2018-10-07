@@ -352,6 +352,7 @@ class monomial{
 		//wrappers para avaliação de variáveis como outros polinômios
 		monomial eval(const std::string &, const monomial &) const;
 		
+		//função de múltiplos argumentos de avaliação por monômios
 		template<class... Args>
 		monomial eval(const std::string &var, const monomial &m, Args... args) const {
 			monomial res(*this);
@@ -366,6 +367,7 @@ class monomial{
 			return res.ref_eval(args...);
 		}
 		
+		//Declarações das funções de avaliação por polinômios
 		polynomial eval(const std::string &, const polynomial &) const;
 	
 		template<class... Args>
