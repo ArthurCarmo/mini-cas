@@ -8,6 +8,7 @@
 #include "num_q.h"
 #include "monomial.h"
 #include "monomial_comp_class.h"
+#include "template_ops.h"
 
 class polynomial{
 
@@ -157,6 +158,38 @@ class polynomial{
 		//substitui a variável var pelo polinômio p
 		polynomial subs(const std::string &, const polynomial &) const;
 		polynomial eval(const std::string &, const polynomial &) const;
+
+		template<class... Args>
+		polynomial eval(const std::string &var, const polynomial &p, Args... args) const {
+			polynomial res;
+			std::set<monomial, monomial_comp_class>::iterator it;
+			for(it = this->_terms.begin(); it != this->_terms.end(); it++)
+				res += it->subs(var, p);
+			
+			return res.ref_eval(args...);
+		}
+		
+		polynomial & ref_eval(const std::string &var, const polynomial &p) {
+			polynomial res(*this);
+			this->_terms.clear();
+			std::set<monomial, monomial_comp_class>::iterator it;
+			for(it = res._terms.begin(); it != res._terms.end(); it++)
+				*this += it->subs(var, p);
+			
+			return *this;
+		}
+		
+		template<class... Args>
+		polynomial & ref_eval(const std::string &var, const polynomial &p, Args... args) {
+			polynomial res(*this);
+			this->_terms.clear();
+			std::set<monomial, monomial_comp_class>::iterator it;
+			for(it = res._terms.begin(); it != res._terms.end(); it++)
+				*this += it->subs(var, p);
+			
+			return this->ref_eval(args...);
+		}
+		
 		//derivada parcial do polinômio em relação a x ou à primeira variável do monômio líder
 		polynomial derive() const {
 			polynomial res;
@@ -224,5 +257,41 @@ struct polynomial_tuple {
 		return *this;
 	}
 };
+
+//avaliação de monômios por polinômios
+
+template<class... Args>
+polynomial monomial::eval(const std::string &var, const polynomial &p, Args... args) const {
+	monomial aux_this(*this);
+	polynomial res;
+	std::map<std::string, num_z>::iterator it;
+	
+	if(p == polynomial()) return p;
+	if((it = aux_this._literals.find(var)) != aux_this._literals.end()){
+		num_z exp(it->second);
+		aux_this._degree -= exp;
+		aux_this._literals.erase(it);
+		res = g_pow(p, exp) * aux_this;
+	}
+
+	return res.ref_eval(args...);
+}
+
+template<class... Args>
+polynomial monomial::ref_eval(const std::string &var, const polynomial &p, Args... args) const {
+	monomial aux_this(*this);
+	polynomial res;
+	std::map<std::string, num_z>::iterator it;
+	
+	if(p == polynomial()) return p;
+	if((it = aux_this._literals.find(var)) != aux_this._literals.end()){
+		num_z exp(it->second);
+		aux_this._degree -= exp;
+		aux_this._literals.erase(it);
+		res = g_pow(p, exp) * aux_this;
+	}
+
+	return res.ref_eval(args...);
+}
 
 #endif 

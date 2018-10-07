@@ -161,10 +161,10 @@ script/polynomials/t_polynomials-t_polynomials.o: \
  /usr/include/c++/7/bits/invoke.h /usr/include/c++/7/bits/stl_multimap.h \
  script/polynomials/../../src/include/polynomial.h \
  script/polynomials/../../src/include/monomial_comp_class.h \
- script/polynomials/../../src/include/term.h \
- script/polynomials/../../src/include/symbol.h \
  script/polynomials/../../src/include/template_ops.h \
- /usr/include/c++/7/sstream /usr/include/c++/7/bits/sstream.tcc
+ script/polynomials/../../src/include/term.h \
+ script/polynomials/../../src/include/symbol.h /usr/include/c++/7/sstream \
+ /usr/include/c++/7/bits/sstream.tcc
 
 /usr/include/stdc-predef.h:
 
@@ -578,11 +578,11 @@ script/polynomials/../../src/include/polynomial.h:
 
 script/polynomials/../../src/include/monomial_comp_class.h:
 
+script/polynomials/../../src/include/template_ops.h:
+
 script/polynomials/../../src/include/term.h:
 
 script/polynomials/../../src/include/symbol.h:
-
-script/polynomials/../../src/include/template_ops.h:
 
 /usr/include/c++/7/sstream:
 

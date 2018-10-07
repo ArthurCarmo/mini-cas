@@ -31,6 +31,26 @@ polynomial monomial::subs(const std::string &var, const polynomial &p) const {
 }
 
 
+//monômio ref_eval
+
+polynomial monomial::ref_eval(const std::string &var, const polynomial &p) const {
+	monomial aux_this(*this);
+	polynomial res;
+	std::map<std::string, num_z>::iterator it;
+	
+	if(p == polynomial()) return p;
+	if((it = aux_this._literals.find(var)) != aux_this._literals.end()){
+		num_z exp(it->second);
+		aux_this._degree -= exp;
+		aux_this._literals.erase(it);
+		res = g_pow(p, exp) * aux_this;
+	}
+
+	return res;
+}
+
+
+//substituição em polinômios
 polynomial polynomial::subs(const std::string &var, const polynomial &p) const {
 	polynomial res;
 	std::set<monomial, monomial_comp_class>::const_iterator it;

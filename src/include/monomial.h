@@ -351,7 +351,30 @@ class monomial{
 		
 		//wrappers para avaliação de variáveis como outros polinômios
 		monomial eval(const std::string &, const monomial &) const;
+		
+		template<class... Args>
+		monomial eval(const std::string &var, const monomial &m, Args... args) const {
+			monomial res(*this);
+			std::map<std::string, num_z>::iterator it;
+			if(m.is_null()) return m;
+			if((it = res._literals.find(var)) != res._literals.end()){
+				num_z exp(it->second);
+				res._degree -= exp;
+				res._literals.erase(it);
+				res *= m.pow(exp);
+			}
+			return res.ref_eval(args...);
+		}
+		
 		polynomial eval(const std::string &, const polynomial &) const;
+	
+		template<class... Args>
+		polynomial eval(const std::string &, const polynomial &, Args... args) const;
+		
+		polynomial ref_eval(const std::string &, const polynomial &) const;
+		
+		template<class... Args>
+		polynomial ref_eval(const std::string &, const polynomial &, Args... args) const;
 		
 		//avalia o monômio para o valor especificado de uma variável
 		monomial eval(const std::string &var, const num_q &val) const {
@@ -406,6 +429,31 @@ class monomial{
 			}
 			return this->ref_eval(args...);
 		}	
+		
+		monomial & ref_eval(const std::string &var, const monomial &m){
+			std::map<std::string, num_z>::iterator it;
+			if(m.is_null()) return *this = monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				num_z exp(it->second);
+				this->_degree -= exp;
+				this->_literals.erase(it);
+				*this *= m.pow(exp);	
+			}
+			return *this;
+		}
+		
+		template<class... Args>
+		monomial & ref_eval(const std::string &var, const monomial &m, Args... args){
+			std::map<std::string, num_z>::iterator it;
+			if(m.is_null()) return *this = monomial();
+			if((it = this->_literals.find(var)) != this->_literals.end()){
+				num_z exp(it->second);
+				this->_degree -= exp;
+				this->_literals.erase(it);
+				*this *= m.pow(exp);	
+			}
+			return this->ref_eval(args...);
+		}
 		
 		//produto de dois monômios é um monômio
 		monomial operator*(const monomial &m) const {

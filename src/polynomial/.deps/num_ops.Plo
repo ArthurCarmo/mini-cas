@@ -152,6 +152,7 @@ src/polynomial/num_ops.lo: src/polynomial/num_ops.cpp \
  /usr/include/c++/7/array /usr/include/c++/7/bits/uses_allocator.h \
  /usr/include/c++/7/bits/invoke.h /usr/include/c++/7/bits/stl_multimap.h \
  src/polynomial/../include/monomial_comp_class.h \
+ src/polynomial/../include/template_ops.h \
  src/polynomial/../include/template_ops.h
 
 /usr/include/stdc-predef.h:
@@ -551,5 +552,7 @@ src/polynomial/../include/monomial.h:
 /usr/include/c++/7/bits/stl_multimap.h:
 
 src/polynomial/../include/monomial_comp_class.h:
+
+src/polynomial/../include/template_ops.h:
 
 src/polynomial/../include/template_ops.h:
