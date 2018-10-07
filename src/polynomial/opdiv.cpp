@@ -2,7 +2,7 @@
 
 monomial monomial::operator/(const monomial &m) const {
 	monomial res(*this);
-	res._coeficient /= m._coeficient;
+	res._coefficient /= m._coefficient;
 		
 	std::map<std::string, num_z>::const_iterator it = m._literals.begin();
 	std::map<std::string, num_z>::iterator it_res;

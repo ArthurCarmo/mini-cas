@@ -24,8 +24,8 @@ polynomial polynomial::operator+(const polynomial &p) const {
 	while(it != least_terms->_terms.end()){
 		it_res = res._terms.find(*it);
 		if(it_res != res._terms.end()){
-			const_cast<num_q &>(it_res->_coeficient) += it->_coeficient;
-			if(it_res->_coeficient == 0){
+			const_cast<num_q &>(it_res->_coefficient) += it->_coefficient;
+			if(it_res->_coefficient == 0){
 				res._terms.erase(it_res);
 			}
 		}else{
@@ -46,8 +46,8 @@ polynomial & polynomial::operator+=(const polynomial &p){
 	while(it != p._terms.end()){
 		it_this = this->_terms.find(*it);
 		if(it_this != this->_terms.end()){
-			const_cast<num_q &>(it_this->_coeficient) += it->_coeficient;
-			if(it_this->_coeficient == 0){
+			const_cast<num_q &>(it_this->_coefficient) += it->_coefficient;
+			if(it_this->_coefficient == 0){
 				this->_terms.erase(it_this);
 			}
 		}else{

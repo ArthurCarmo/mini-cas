@@ -2,7 +2,7 @@
 #include "../include/template_ops.h"
 
 monomial m_gcd(const monomial &a, const monomial &b){
-	monomial res(q_gcd(a._coeficient, b._coeficient));
+	monomial res(q_gcd(a._coefficient, b._coefficient));
 	std::map<std::string, num_z>::const_iterator it_a = a._literals.begin();
 	std::map<std::string, num_z>::const_iterator it_b;
 	

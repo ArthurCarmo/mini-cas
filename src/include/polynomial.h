@@ -22,14 +22,15 @@ class polynomial{
 	private:
 		std::set<monomial, monomial_comp_class> _terms;
 		
+		//Função base da construção do polinômio a partir de monômios
 		void __construct_from_monomials(const monomial &m){
 			std::set<monomial, monomial_comp_class>::iterator it = this->_terms.find(m);
 			if(it == this->_terms.end()){
 				if(!m.is_null())
 					this->_terms.insert(m);
 			}else{
-				const_cast<num_q &>(it->_coeficient) += m._coeficient;
-				if(it->_coeficient == 0){
+				const_cast<num_q &>(it->_coefficient) += m._coefficient;
+				if(it->_coefficient == 0){
 					this->_terms.erase(it);
 				}
 			}
@@ -42,8 +43,8 @@ class polynomial{
 				if(!m.is_null())
 					this->_terms.insert(m);
 			}else{
-				const_cast<num_q &>(it->_coeficient) += m._coeficient;
-				if(it->_coeficient == 0){
+				const_cast<num_q &>(it->_coefficient) += m._coefficient;
+				if(it->_coefficient == 0){
 					this->_terms.erase(it);
 				}
 			}
@@ -57,7 +58,7 @@ class polynomial{
 		//R(u, v) é o somatório de todos os termos de u não divisíveis por v
 		polynomial_tuple G_and_R(const monomial &) const ;
 		
-		//A divisão por um monômio não deve alterar a ordenação dos termos
+		//A multiplicação por um monômio não deve alterar a ordenação dos termos
 		polynomial & unsafe_atrmul(const monomial &);
 	
 	public:
@@ -81,6 +82,7 @@ class polynomial{
 			this->__construct_from_monomials(m, args...);
 		}
 		
+		//Sobrecargas de operadores aritméticos
 		polynomial & operator=(const polynomial &);
 
 		polynomial & operator+=(const polynomial &);
@@ -156,6 +158,8 @@ class polynomial{
 		}
 		
 		//substitui a variável var pelo polinômio p
+		//subs somente para polinômios
+		//eval para números ou polinômios
 		polynomial subs(const std::string &, const polynomial &) const;
 		polynomial eval(const std::string &, const polynomial &) const;
 
@@ -241,6 +245,7 @@ class polynomial{
 		}
 };
 
+//tupla para armazenar o quociente e resto das divisões de polinômios
 struct polynomial_tuple {
 	polynomial q;
 	polynomial r;
@@ -258,8 +263,13 @@ struct polynomial_tuple {
 	}
 };
 
-//avaliação de monômios por polinômios
+/*
 
+FUNÇÕES DA CLASSE MONOMIAL QUE PRECISAM DA IMPLEMENTAÇÃO DA CLASSE POLYNOMIAL
+
+*/
+
+//avaliação de monômios por polinômios
 template<class... Args>
 polynomial monomial::eval(const std::string &var, const polynomial &p, Args... args) const {
 	monomial aux_this(*this);

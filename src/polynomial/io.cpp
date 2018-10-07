@@ -5,9 +5,9 @@
 std::ostream & operator<<(std::ostream &o, const monomial &m){
 	unsigned long long used_variables = 0;
 	if(m._degree == 0)
-		o << m._coeficient;
-	else if(m._coeficient != 1)
-		o << m._coeficient << "*";
+		o << m._coefficient;
+	else if(m._coefficient != 1)
+		o << m._coefficient << "*";
 		
 	for(std::map<std::string, num_z>::const_iterator it = m._literals.begin(); it != m._literals.end(); ++it){
 		o << it->first;

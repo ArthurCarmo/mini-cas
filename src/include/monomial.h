@@ -24,7 +24,7 @@ class monomial{
 	friend monomial subs(monomial &, const std::string &, const monomial &);
 	
 	private:
-		num_q _coeficient;
+		num_q _coefficient;
 		std::map<std::string, num_z> _literals;
 		num_z _degree;
 		
@@ -78,7 +78,7 @@ class monomial{
 		//auxiliar para derivada
 		monomial & __derive_with_respect_to(const std::string &v){
 			if(this->_literals.find(v) != this->_literals.end()){
-				this->_coeficient *= this->_literals[v];
+				this->_coefficient *= this->_literals[v];
 				this->_literals[v] -= 1;
 				--this->_degree;
 				if(this->_literals[v] == 0){
@@ -92,7 +92,7 @@ class monomial{
 		template<class... Args>
 		monomial & __derive_with_respect_to(const std::string &v, Args... args){
 			if(this->_literals.find(v) != this->_literals.end()){
-				this->_coeficient *= this->_literals[v];
+				this->_coefficient *= this->_literals[v];
 				this->_literals[v] -= 1;
 				--this->_degree;
 				if(this->_literals[v] == 0){
@@ -106,7 +106,7 @@ class monomial{
 		monomial & __derive_with_respect_to(const char &var){
 			std::string v(1, var);
 			if(this->_literals.find(v) != this->_literals.end()){
-				this->_coeficient *= this->_literals[v];
+				this->_coefficient *= this->_literals[v];
 				this->_literals[v] -= 1;
 				--this->_degree;
 				if(this->_literals[v] == 0){
@@ -121,7 +121,7 @@ class monomial{
 		monomial & __derive_with_respect_to(const char &var, Args... args){
 			std::string v(1, var);
 			if(this->_literals.find(v) != this->_literals.end()){
-				this->_coeficient *= this->_literals[v];
+				this->_coefficient *= this->_literals[v];
 				this->_literals[v] -= 1;
 				--this->_degree;
 				if(this->_literals[v] == 0){
@@ -134,8 +134,8 @@ class monomial{
 		
 		//soma monômios semelhantes
 		monomial & _similar_atrsum(const monomial &m){
-			this->_coeficient += m._coeficient;
-			if(this->_coeficient == 0){
+			this->_coefficient += m._coefficient;
+			if(this->_coefficient == 0){
 				this->_literals.clear();
 				this->_degree = 0;
 			}
@@ -149,44 +149,44 @@ class monomial{
 		
 		//construtor de cópia
 		monomial(const monomial &m){
-			this->_coeficient = m._coeficient;
+			this->_coefficient = m._coefficient;
 			this->_degree = m._degree;
 			this->_literals = m._literals;
 		}
 		
 		//monômio constante
 		monomial(const Number &coef){
-			this->_coeficient = coef.q_value();
+			this->_coefficient = coef.q_value();
 		}
 		
 		monomial(int coef){
-			this->_coeficient._numerator = coef;
-			this->_coeficient._sign = coef < 0;
-			this->_coeficient._numerator.make_abs();
+			this->_coefficient._numerator = coef;
+			this->_coefficient._sign = coef < 0;
+			this->_coefficient._numerator.make_abs();
 		}
 		
 		//monômio unitário com uma variável
 		monomial(const std::string &v, const num_z &exp = 1){
-			this->_coeficient = 1;
+			this->_coefficient = 1;
 			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
 			this->_degree = 1;
 		}
 		
 		monomial(const char &v, const num_z &exp = 1){
-			this->_coeficient = 1;
+			this->_coefficient = 1;
 			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
 			this->_degree = exp;
 		}
 		
 		//monômio com uma variável
 		monomial(const Number &coef, const std::string &v, const num_z &exp = 1){
-			this->_coeficient = coef.q_value();
+			this->_coefficient = coef.q_value();
 			this->_literals.insert( std::pair<std::string, num_z> (v, exp) );
 			this->_degree = exp;
 		}
 		
 		monomial(const Number &coef, const char &v, const num_z &exp = 1){
-			this->_coeficient = coef.q_value();
+			this->_coefficient = coef.q_value();
 			this->_literals.insert( std::pair<std::string, num_z> (std::string(1, v), exp) );
 			this->_degree = exp;
 		}
@@ -198,14 +198,14 @@ class monomial{
 	*/
 		template<class... Args>
 		monomial(const Number &coef, Args... args) {
-			this->_coeficient = coef.q_value();
-			if(this->_coeficient != 0)
+			this->_coefficient = coef.q_value();
+			if(this->_coefficient != 0)
 				this->__construct_monomial(args...);
 		}
 		
 		//atribuição
 		monomial & operator=(const monomial &m){
-			this->_coeficient = m._coeficient;
+			this->_coefficient = m._coefficient;
 			this->_degree = m._degree;
 			this->_literals = m._literals;
 			return *this;
@@ -243,7 +243,7 @@ class monomial{
 		
 		//coeficiente do monômio
 		num_q coeficient() const {
-			return this->_coeficient;
+			return this->_coefficient;
 		}
 		
 		//grau do monômio
@@ -262,34 +262,34 @@ class monomial{
 		//funções de manipulação de sinal
 		monomial abs() const {
 			monomial res(*this);
-			res._coeficient._sign = 0;
+			res._coefficient._sign = 0;
 			return res;
 		}
 		
 		monomial operator-() const {
 			monomial res(*this);
-			res._coeficient.flip_sign();
+			res._coefficient.flip_sign();
 			return res;
 		}
 		
 		monomial negative() const { 
 			monomial res(*this); 
-			res._coeficient._sign = 1;
+			res._coefficient._sign = 1;
 			return res;
 		};
 		
 		monomial & make_abs(){
-			this->_coeficient._sign = 0;
+			this->_coefficient._sign = 0;
 			return *this;
 		};
 		
 		monomial & flip_sign(){
-			this->_coeficient._sign = 1 - this->_coeficient._sign;
+			this->_coefficient._sign = 1 - this->_coefficient._sign;
 			return *this;
 		};
 		
 		monomial & make_negative(){
-			this->_coeficient._sign = 1;
+			this->_coefficient._sign = 1;
 			return *this;
 		};
 		
@@ -330,14 +330,14 @@ class monomial{
 			if(this->_degree == 0) return res;
 			
 			if((it = res._literals.find("x")) != res._literals.end()){
-				res._coeficient *= val.pow(it->second);
+				res._coefficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);
 				return res;
 			}
 			
 			it = res._literals.begin();
-			res._coeficient *= val.pow(it->second);
+			res._coefficient *= val.pow(it->second);
 			res._degree -= it->second;
 			res._literals.erase(it);
 			return res;
@@ -385,7 +385,7 @@ class monomial{
 			
 			if(val == 0) return monomial();
 			if((it = res._literals.find(var)) != res._literals.end()){
-				res._coeficient *= val.pow(it->second);
+				res._coefficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);
 			}
@@ -400,7 +400,7 @@ class monomial{
 			
 			if(val == 0) return monomial();
 			if((it = res._literals.find(var)) != res._literals.end()){
-				res._coeficient *= val.pow(it->second);
+				res._coefficient *= val.pow(it->second);
 				res._degree -= it->second;
 				res._literals.erase(it);
 			}
@@ -413,7 +413,7 @@ class monomial{
 			std::map<std::string, num_z>::const_iterator it;	
 			if(val == 0) return *this = monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
-				this->_coeficient *= val.pow(it->second);
+				this->_coefficient *= val.pow(it->second);
 				this->_degree -= it->second;
 				this->_literals.erase(it);
 			}
@@ -425,7 +425,7 @@ class monomial{
 			std::map<std::string, num_z>::const_iterator it;	
 			if(val == 0) return *this = monomial();
 			if((it = this->_literals.find(var)) != this->_literals.end()){
-				this->_coeficient *= val.pow(it->second);
+				this->_coefficient *= val.pow(it->second);
 				this->_degree -= it->second;
 				this->_literals.erase(it);
 			}
@@ -459,7 +459,7 @@ class monomial{
 		
 		//produto de dois monômios é um monômio
 		monomial operator*(const monomial &m) const {
-			if(this->_coeficient == 0 || m._coeficient == 0) return monomial();
+			if(this->_coefficient == 0 || m._coefficient == 0) return monomial();
 			const monomial * maior = this, * menor = &m;
 			
 			if(this->_literals.size() < m._literals.size()){
@@ -481,13 +481,13 @@ class monomial{
 				}
 			}
 			
-			res._coeficient *= menor->_coeficient;
+			res._coefficient *= menor->_coefficient;
 			res._degree = this->_degree + m._degree;
 			return res;
 		}
 		
 		monomial & operator*=(const monomial &m){
-			if(this->_coeficient == 0 || m._coeficient == 0) return *this = monomial();			
+			if(this->_coefficient == 0 || m._coefficient == 0) return *this = monomial();			
 			
 			std::map<std::string, num_z>::iterator it_this;
 			std::map<std::string, num_z>::const_iterator it_m;
@@ -501,7 +501,7 @@ class monomial{
 				}
 			}	
 			
-			this->_coeficient *= m._coeficient;
+			this->_coefficient *= m._coefficient;
 			this->_degree += m._degree;
 			return *this;
 		}
@@ -510,7 +510,7 @@ class monomial{
 		monomial pow(const num_z &N) const {
 			monomial res(*this);
 			if(N == 0) return monomial();
-			res._coeficient = this->_coeficient.pow(N);
+			res._coefficient = this->_coefficient.pow(N);
 			res._degree *= N;
 			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
 				it->second *= N;
@@ -522,7 +522,7 @@ class monomial{
 		monomial operator^(const num_z &N) const {
 			monomial res(*this);
 			if(N == 0) return monomial();
-			res._coeficient = this->_coeficient.pow(N);
+			res._coefficient = this->_coefficient.pow(N);
 			res._degree *= N;
 			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
 				it->second *= N;
@@ -532,7 +532,7 @@ class monomial{
 		
 		monomial & operator^=(const num_z &N){
 			if(N == 0) return *this = monomial();
-			this->_coeficient = this->_coeficient.pow(N);
+			this->_coefficient = this->_coefficient.pow(N);
 			this->_degree *= N;
 			for(std::map<std::string, num_z>::iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)
 				it->second *= N;
@@ -545,11 +545,11 @@ class monomial{
 		monomial operator/(const monomial &) const;
 		
 		bool operator==(const monomial &m) const {
-			return this->_degree == m._degree && this->_coeficient == m._coeficient && this->_literals == m._literals;
+			return this->_degree == m._degree && this->_coefficient == m._coefficient && this->_literals == m._literals;
 		}
 		
 		bool operator!=(const monomial &m) const {
-			return this->_degree != m._degree || this->_coeficient != m._coeficient || this->_literals != m._literals;
+			return this->_degree != m._degree || this->_coefficient != m._coefficient || this->_literals != m._literals;
 		}
 		
 		bool is_divisible_by(const monomial &m) const {
@@ -578,7 +578,7 @@ class monomial{
 		}
 		
 		bool is_null() const {
-			return this->_coeficient._numerator == 0;
+			return this->_coefficient._numerator == 0;
 		}
 		
 };

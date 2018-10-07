@@ -15,8 +15,8 @@ polynomial polynomial::operator*(const polynomial &p) const {
 		for(factor_2 = p._terms.begin(); factor_2 != p._terms.end(); ++factor_2){
 			aux = *factor_1 * *factor_2;
 			if((find_me = res._terms.find(aux)) != res._terms.end()){
-				const_cast<num_q &>(find_me->_coeficient) += aux._coeficient;
-				if(find_me->_coeficient == 0){
+				const_cast<num_q &>(find_me->_coefficient) += aux._coefficient;
+				if(find_me->_coefficient == 0){
 					res._terms.erase(find_me);
 				}
 			}else{
@@ -42,8 +42,8 @@ polynomial & polynomial::operator*=(const polynomial &p){
 		for(factor_2 = p._terms.begin(); factor_2 != p._terms.end(); ++factor_2){
 			aux = *factor_1 * *factor_2;
 			if((find_me = res._terms.find(aux)) != res._terms.end()){
-				const_cast<num_q &>(find_me->_coeficient) += aux._coeficient;
-				if(find_me->_coeficient == 0){
+				const_cast<num_q &>(find_me->_coefficient) += aux._coefficient;
+				if(find_me->_coefficient == 0){
 					res._terms.erase(find_me);
 				}
 			}else{
