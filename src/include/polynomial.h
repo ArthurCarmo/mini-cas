@@ -18,7 +18,15 @@ class polynomial{
 	friend polynomial_tuple monomial_based_div(const polynomial &, const polynomial &);
 	friend polynomial_tuple lc_based_div(const polynomial &, const polynomial &);
 	friend polynomial subs(polynomial &, const std::string &, const polynomial &);
+	friend polynomial p_gcd(const polynomial &, const polynomial &);
 	
+	friend polynomial p_content(const polynomial &);
+	friend polynomial p_content(const polynomial &, const std::string &);
+	friend polynomial deg_based_max(const polynomial &, const polynomial &);
+	friend polynomial deg_based_min(const polynomial &, const polynomial &);
+	friend polynomial single_var_gcd(const polynomial &, const polynomial &);
+	friend polynomial p_gcd(const polynomial &, const polynomial &);
+
 	private:
 		std::set<monomial, monomial_comp_class> _terms;
 		
@@ -100,9 +108,21 @@ class polynomial{
 		bool operator!=(const polynomial &) const;
 		
 		bool is_null() const { return this->_terms.empty(); }
+		bool multi_variable() const;
+		bool single_variable() const;
+		
 		num_z degree() const { if(this->_terms.size()) return this->_terms.begin()->_degree; return num_z(0); }
 		unsigned long long size() const { return this->_terms.size(); }
 		monomial leading_term() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
+
+		polynomial operator-() const {
+			polynomial res;
+			std::set<monomial, monomial_comp_class>::const_iterator it;
+			for(it = this->_terms.begin(); it != this->_terms.end(); it++)
+				res -= *it;
+			return res;
+		}
+		
 		
 		//funções para avaliação do polinômio
 		//avalia x ou primeira variável do monômio líder
@@ -243,6 +263,21 @@ class polynomial{
 			
 			return res;
 		}
+		
+		//sobre o campo dos números racionais, o conteúdo de um polinômio
+		//em relação a uma variável x é o monômio unitário sem a variável x
+		//que divide o polinômio
+		polynomial content(const std::string &) const;
+
+		//conteúdo do polinômio em relação à variável x ou à primeira variável
+		//do termo líder do polinômio
+		polynomial content() const;
+		
+		//polinômio primitivo é um polinômio cujo conteúdo é 1
+		//a parte primitiva de um polinômio u é o polinômio primitivo v
+		//tal que u = c*v e c é uma unidade normal na variável líder de u
+		polynomial primitive_part() const;
+		polynomial primitive_part(const std::string &) const;
 };
 
 //tupla para armazenar o quociente e resto das divisões de polinômios

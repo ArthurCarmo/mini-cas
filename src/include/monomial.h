@@ -23,6 +23,11 @@ class monomial{
 	friend monomial m_gcd(const monomial &, const monomial &);
 	friend monomial subs(monomial &, const std::string &, const monomial &);
 	
+	friend monomial deg_based_max(const monomial &, const monomial &);
+	friend monomial deg_based_min(const monomial &, const monomial &);
+	friend polynomial p_gcd(const polynomial &, const polynomial &);
+	friend polynomial single_var_gcd(const polynomial &, const polynomial &);
+	
 	private:
 		num_q _coefficient;
 		std::map<std::string, num_z> _literals;
@@ -220,16 +225,16 @@ class monomial{
 		}
 		
 		//retorna true se monômio possui a variável var com grau maior que zero
-		bool has_var(const std::string &var){
+		bool has_var(const std::string &var) const {
 			return this->_literals.find(var) != this->_literals.end();
 		}
 		
-		bool has_var(const char &var){
+		bool has_var(const char &var) const {
 			return this->_literals.find(std::string(1, var)) != this->_literals.end();
 		}
 		
 		//primeira variável do monômio em ordem lexicográfica
-		std::string first_lex_var(){
+		std::string first_lex_var() const {
 			return this->_literals.begin()->first;
 		}
 		
@@ -242,7 +247,7 @@ class monomial{
 		}
 		
 		//coeficiente do monômio
-		num_q coeficient() const {
+		num_q coefficient() const {
 			return this->_coefficient;
 		}
 		
@@ -252,7 +257,7 @@ class monomial{
 		}
 		
 		//grau da variável var no monômio
-		num_z var_degree(const std::string &var){
+		num_z var_degree(const std::string &var) const {
 			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
 			if(it != this->_literals.end())
 				return it->second;
@@ -292,6 +297,10 @@ class monomial{
 			this->_coefficient._sign = 1;
 			return *this;
 		};
+		
+		bool sign() const {
+			return this->_coefficient._sign == 1;
+		}
 		
 		//monômios são similares se possuem as variáveis com os mesmo coeficientes
 		bool is_similar(const monomial &m) const {
@@ -552,6 +561,8 @@ class monomial{
 			return this->_degree != m._degree || this->_coefficient != m._coefficient || this->_literals != m._literals;
 		}
 		
+		//um monômio u é divisível pelo monômio v se
+		//cada variável de u tem grau maior ou igual àquela variável em v;
 		bool is_divisible_by(const monomial &m) const {
 			std::map<std::string, num_z>::const_iterator it = m._literals.begin();
 			std::map<std::string, num_z>::const_iterator it_t;
@@ -565,6 +576,8 @@ class monomial{
 			return true;
 		}
 		
+		//um monômio u é divide o monômio v se
+		//cada variável de u tem grau menor ou igual àquela variável em v;
 		bool divides(const monomial &m) const { 
 			std::map<std::string, num_z>::const_iterator it;
 			std::map<std::string, num_z>::const_iterator it_t = m._literals.begin();
@@ -581,6 +594,60 @@ class monomial{
 			return this->_coefficient._numerator == 0;
 		}
 		
+		bool multi_variable() const {
+			return this->_literals.size() > 1;
+		}
+		
+		bool single_variable() const {
+			return this->_literals.size () < 2;
+		}
+		
+		//remove a variável var do monômio
+		monomial remove(const std::string &var) const {
+			monomial res(*this);
+			std::map<std::string, num_z>::iterator it = res._literals.find(var);
+			if(it != res._literals.end()){
+				res._degree -= it->second;
+				res._literals.erase(it);
+			}
+			return res;
+		}
+		
+		monomial atr_remove(const std::string &var) {
+			std::map<std::string, num_z>::iterator it = this->_literals.find(var);
+			if(it != this->_literals.end()){
+				this->_degree -= it->second;
+				this->_literals.erase(it);
+			}
+			return *this;
+		}
+		
+		monomial content() const {
+			monomial cont(*this);
+			std::string var;
+			std::map<std::string, num_z>::iterator it;
+			
+			if(cont.is_null()) return cont;
+			cont._coefficient = 1;
+			if((it = cont._literals.find("x")) != cont._literals.end()){
+				var = "x";
+			}else{
+				var = cont._literals.begin()->first;
+			}
+			cont.atr_remove(var);
+			return cont;
+		}
+		
+		monomial content(std::string &var) const {
+			monomial cont(*this);
+			std::map<std::string, num_z>::iterator it;
+			
+			if(cont.is_null()) return cont;
+			cont._coefficient = 1;
+			cont.atr_remove(var);
+			
+			return cont;
+		}
 };
 
 extern monomial operator*(const Number &, const monomial &);

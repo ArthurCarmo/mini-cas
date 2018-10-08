@@ -67,7 +67,7 @@ num_z __num_z_gcd(num_z &a, num_z &b){
 	num_z w, z;
 	div_tuple t;
 	
-	while(b._blocks ^ 1){
+	while(b._blocks != 1){
 		A = D = 1;
 		B = C = 0;
 		u = a._num[a._blocks - 1];

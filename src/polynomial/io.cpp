@@ -6,13 +6,13 @@ std::ostream & operator<<(std::ostream &o, const monomial &m){
 	unsigned long long used_variables = 0;
 	if(m._degree == 0)
 		o << m._coefficient;
-	else if(m._coefficient != 1)
+	else if(m._coefficient != 1 && m._coefficient != -1)
 		o << m._coefficient << "*";
 		
 	for(std::map<std::string, num_z>::const_iterator it = m._literals.begin(); it != m._literals.end(); ++it){
 		o << it->first;
 		++used_variables;
-		if(it->second != 1)
+		if(it->second != 1 && it->second != -1)
 			o << "^" << it->second;
 		if(used_variables < m._literals.size())
 			o << "*";
@@ -32,7 +32,7 @@ std::ostream & operator<<(std::ostream &o, const polynomial &p){
 	++it;
 	
 	while(it != p._terms.end()){
-		if(it->coeficient().sign()){
+		if(it->sign()){
 			o << " - ";
 			o << it->abs();
 		}else{
