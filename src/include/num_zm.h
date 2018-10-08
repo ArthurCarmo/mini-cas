@@ -160,6 +160,8 @@ class num_zm : public Number {
 		bool operator<(const num_q &) const;
 		bool operator<(const num_z &) const;
 		bool operator<(const long long &) const;
+		bool is_zero() const { return this->_num.is_zero(); }
+		bool is_null() const { return this->_num.is_null(); }
 		
 };
 

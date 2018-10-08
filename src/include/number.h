@@ -61,6 +61,9 @@ class Number{
 		virtual bool operator<(const num_z &) const = 0;
 		virtual bool operator<(const long long &) const = 0;
 		
+		virtual bool is_zero() const = 0;
+		virtual bool is_null() const = 0;
+		
 };
 
 #endif

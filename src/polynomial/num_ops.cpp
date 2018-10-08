@@ -24,8 +24,8 @@ monomial m_gcd(const monomial &a, const monomial &b){
 polynomial single_var_gcd(const polynomial &a, const polynomial &b){
 	polynomial_tuple res;
 	polynomial aux;
-	if(a.is_null()) return b._terms.begin()->_coefficient.sign()?-b:b;
-	if(b.is_null()) return a._terms.begin()->_coefficient.sign()?-a:a;
+	if(a.is_null()) return b.unit();
+	if(b.is_null()) return a.unit();
 	
 	res.r = b;
 	res.q = a;
@@ -35,24 +35,61 @@ polynomial single_var_gcd(const polynomial &a, const polynomial &b){
 		res.q = aux;
 	}
 	
-	return res.q._terms.begin()->_coefficient.sign()?-res.q:res.q;
+	return res.q.unit();
 }
 
 polynomial p_gcd(const polynomial &a, const polynomial &b){
 	polynomial res;
 	polynomial Sg(deg_based_max(a, b)), Sl(deg_based_min(a, b));
-	polynomial g = m_gcd(*a._terms.begin(), *b._terms.begin());
+	
+	if(a.is_null()) return b.unit();
+	if(b.is_null()) return a.unit();
+	
+	if(a.single_variable() && b.single_variable()){
+		
+		if(a._terms.begin()->_literals.begin()->first == b._terms.begin()->_literals.begin()->first){
+			return single_var_gcd(a, b);
+		}else{
+			return polynomial(1);
+		}
+	}
+	
+	if(a._terms.size() < 2 && b._terms.size() < 2){
+		return m_gcd(a.leading_term(), b.leading_term());
+	}
+	
 	return res;
 }
 
+polynomial polynomial::unit() const {
+	polynomial res(*this);
+	res /= this->_terms.begin()->_coefficient;
+	return res;
+}
+
+polynomial polynomial::polynomial_coefficient(const std::string &var, const num_z &deg) const {
+	polynomial res;
+	std::set<monomial, monomial_comp_class>::const_iterator it;
+	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
+		if(it->has_var_deg(var, deg))
+			res += *it;
+	
+	return res;
+}
 
 polynomial polynomial::content() const {
-	monomial aux_mono;
-	monomial acc_gcd;
+	polynomial aux_p;
+	polynomial acc_gcd;
+	polynomial res(*this);
+	polynomial independent_terms;
 	std::string var;
+	num_z deg;
 	bool found_x = false;
 	
 	std::set<monomial, monomial_comp_class>::const_iterator it;
+	std::set<monomial, monomial_comp_class>::const_iterator it_t;
+	std::map<std::string, num_z>::const_iterator it_l;
+	
 
 	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
 		if(it->has_var("x")){
@@ -69,33 +106,75 @@ polynomial polynomial::content() const {
 			return acc_gcd;
 		}
 	}
+
+	if(this->is_null()) return acc_gcd;
 	
-	while(it != this->_terms.end()) {
-		aux_mono = *it;
-		aux_mono.atr_remove(var);
-		acc_gcd = m_gcd(acc_gcd, aux_mono);
-		++it;
+	it = res._terms.begin();
+	while(it != res._terms.end()) {
+		aux_p = polynomial();
+		it_l = it->_literals.find(var);
+		
+		if(it_l != it->_literals.end()){
+			deg = it_l->second;
+			for(it_t = res._terms.begin(); it_t != res._terms.end();){
+				if(it_t->has_var_deg(var, deg)){
+					aux_p += it_t->remove(var);
+					res._terms.erase(it_t++);
+				}else{
+					++it_t;
+				}
+			}
+			acc_gcd = p_gcd(acc_gcd, aux_p);
+		}else{
+			independent_terms += *it;
+			res._terms.erase(it);
+		}
+		it = res._terms.begin();		
 	}
 	
-	acc_gcd._coefficient = 1;
+	acc_gcd = p_gcd(acc_gcd, independent_terms);
+
+	
 	return acc_gcd;	
 }
 
 polynomial polynomial::content(const std::string &var) const {
-	monomial aux_mono;
-	monomial acc_gcd;
-	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
-
+	polynomial aux_p;
+	polynomial acc_gcd;
+	polynomial res(*this);
+	polynomial independent_terms;
+	num_z deg;
+	
+	std::set<monomial, monomial_comp_class>::const_iterator it = res._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it_t = res._terms.begin();
+	std::map<std::string, num_z>::const_iterator it_l;
+	
 	if(this->is_null()) return acc_gcd;
 
-	while(it != this->_terms.end()) {
-		aux_mono = *it;
-		aux_mono.atr_remove(var);
-		acc_gcd = m_gcd(acc_gcd, aux_mono);
-		++it;
+	while(it != res._terms.end()) {
+		aux_p = polynomial();
+		it_l = it->_literals.find(var);
+		
+		if(it_l != it->_literals.end()){
+			deg = it_l->second;
+			for(it_t = res._terms.begin(); it_t != res._terms.end();){
+				if(it_t->has_var_deg(var, deg)){
+					aux_p += it_t->remove(var);
+					res._terms.erase(it_t++);
+				}else{
+					++it_t;
+				}
+			}
+			acc_gcd = p_gcd(acc_gcd, aux_p);
+		}else{
+			independent_terms += *it;
+			res._terms.erase(it);
+		}
+		it = res._terms.begin();		
 	}
 	
-	acc_gcd._coefficient = 1;
+	acc_gcd = p_gcd(acc_gcd, independent_terms);
+	
 	return acc_gcd;	
 }
 
@@ -134,13 +213,14 @@ bool polynomial::multi_variable() const {
 bool polynomial::single_variable() const {
 	std::set<monomial, monomial_comp_class>::const_iterator it;
 	std::map<std::string, num_z>::const_iterator it_t;
-	std::string prev = "\0";
+	std::string prev = "";
 	std::string var;
 	
 	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
 		if(it->_literals.size() > 1) return false;
+		if(it->_literals.size() == 0) continue;
 		var = it->_literals.begin()->first;
-		if(prev != "\0" && var != "\0" && var != prev)
+		if(prev != "" && var != "" && var != prev)
 			return false;
 		prev = var;
 	}

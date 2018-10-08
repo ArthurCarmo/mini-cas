@@ -10,13 +10,11 @@ int main(){
 	cout << p1.content() << endl;
 	cout << p2.content() << endl;
 	cout << p3.content() << endl;
-	
+
 	polynomial u = (y.pow(2) + 2*y + 1)*x.pow(2) + (2*y.pow(2) - 2)*x + (3*y + 3);
+	
 	cout << u.content("x") << endl;	
-	
-	cout << (p2 / p3).r << endl;
-	
-	cout << single_var_gcd(p2, p3) << endl;
+	cout << u.primitive_part("x") << endl;	
 	
 	return 0;
 }

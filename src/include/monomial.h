@@ -233,6 +233,21 @@ class monomial{
 			return this->_literals.find(std::string(1, var)) != this->_literals.end();
 		}
 		
+		//retorna true se monômio possui a variável var com grau especificado
+		bool has_var_deg(const std::string &var, const num_z &deg) const {
+			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
+			if(it == this->_literals.end())
+				return deg == 0;
+			return it->second == deg;
+		}
+		
+		bool has_var_deg(const char &var, const num_z &deg) const {
+			std::map<std::string, num_z>::const_iterator it = this->_literals.find(std::string(1, var));
+			if(it == this->_literals.end())
+				return deg == 0;
+			return it->second == deg;
+		}
+		
 		//primeira variável do monômio em ordem lexicográfica
 		std::string first_lex_var() const {
 			return this->_literals.begin()->first;
@@ -621,6 +636,9 @@ class monomial{
 			}
 			return *this;
 		}
+
+		//monômio unitário semelhante
+		monomial unit() const {	monomial res(*this); res._coefficient = 1; return res; }
 		
 		monomial content() const {
 			monomial cont(*this);

@@ -114,7 +114,10 @@ class polynomial{
 		num_z degree() const { if(this->_terms.size()) return this->_terms.begin()->_degree; return num_z(0); }
 		unsigned long long size() const { return this->_terms.size(); }
 		monomial leading_term() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
-
+		monomial leading_coefficient() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
+		monomial lc() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
+		polynomial unit() const;
+		
 		polynomial operator-() const {
 			polynomial res;
 			std::set<monomial, monomial_comp_class>::const_iterator it;
@@ -263,6 +266,9 @@ class polynomial{
 			
 			return res;
 		}
+		
+		//termos que multiplicam uma variável com determinado grau
+		polynomial polynomial_coefficient(const std::string &, const num_z &) const;
 		
 		//sobre o campo dos números racionais, o conteúdo de um polinômio
 		//em relação a uma variável x é o monômio unitário sem a variável x

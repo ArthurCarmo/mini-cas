@@ -104,7 +104,8 @@
 			bool operator<(const num_q &) const;
 			bool operator<(const num_z &) const;
 			bool operator<(const long long &) const;
-	
+			bool is_zero() const { return this->_numerator.is_zero(); }
+			bool is_null() const { return this->_numerator.is_null(); }
 	};
 
 #endif

@@ -255,6 +255,8 @@
 			bool sign() const { return this->_sign; };			
 			bool odd() const { return this->_num[0] % 2; };
 			bool even() const { return  1 - this->_num[0] % 2; };
+			bool is_zero() const { return this->_blocks == 1 && this->_num[0] == 0; }
+			bool is_null() const { return this->_blocks == 1 && this->_num[0] == 0; }
 
 			bool abs_neq(const num_z &) const;
 			bool abs_eq(const num_z &) const;
