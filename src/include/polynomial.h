@@ -111,14 +111,24 @@ class polynomial{
 		bool multi_variable() const;
 		bool single_variable() const;
 		
+		//grau do polinômio
 		num_z degree() const { if(this->_terms.size()) return this->_terms.begin()->_degree; return num_z(0); }
 		num_z degree(char) const;
 		num_z degree(const std::string &) const ;
+		
+		//maior grau da variável no polinômio
 		num_z var_degree(const std::string &) const ;
+		
 		unsigned long long size() const { return this->_terms.size(); }
+		
+		//termo líder do monômio de acordo com a função
+		//de comparação definida em monomial_comp_class
 		monomial leading_term() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		monomial leading_coefficient() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		monomial lc() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
+		
+		//polynômio dividido pelo coeficiente racional do monômio líder
+		//definido pela monomial_comp_class
 		polynomial unit() const;
 		
 		polynomial operator-() const {
@@ -279,10 +289,18 @@ class polynomial{
 		
 		//termos líder contendo a variável com determinado grau
 		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
-		//u.leading_coefficient(x, 2) = y²x²
-		//u.leading_coefficient(x, 0) = 3
-		//u.leading_coefficient(y, 0) = 2x²
+		//u.lc(x, 2) = x²y²
+		//u.lc(x, 0) = 3
+		//u.lc(y, 0) = 2x²
 		monomial leading_coefficient(const std::string &, const num_z &) const;
+		monomial lc(const std::string &, const num_z &) const;
+		
+		//termo líder contendo a variável var com maior grau no polinômio
+		//ex: para u = (2y + 2)x² + (y² - 2)x + 3
+		//u.lc(x) = 2x²y
+		//u.lc(y) = xy²
+		monomial leading_coefficient(const std::string &) const;
+		monomial lc(const std::string &) const;
 		
 		//sobre o campo dos números racionais, o conteúdo de um polinômio
 		//em relação a uma variável x é o monômio unitário sem a variável x

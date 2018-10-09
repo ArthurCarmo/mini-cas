@@ -72,7 +72,7 @@ polynomial polynomial::polynomial_coefficient(const std::string &var, const num_
 	std::set<monomial, monomial_comp_class>::const_iterator it;
 	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
 		if(it->has_var_deg(var, deg))
-			res += *it;
+			res += it->remove(var);
 	
 	return res;
 }
@@ -86,6 +86,28 @@ monomial polynomial::leading_coefficient(const std::string &var, const num_z &de
 	}
 	return monomial();
 }
+
+monomial polynomial::leading_coefficient(const std::string &var) const {
+	monomial res;
+	num_z curr_deg;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		if(it->var_degree(var) > curr_deg){
+			res = *it;
+			curr_deg = it->var_degree(var);
+		}
+		++it;
+	}
+	return res;
+}
+
+monomial polynomial::lc(const std::string &var, const num_z &deg) const {
+	return leading_coefficient(var, deg);	
+}
+
+monomial polynomial::lc(const std::string &var) const {
+	return leading_coefficient(var);
+}		
 
 polynomial polynomial::content() const {
 	polynomial aux_p;
