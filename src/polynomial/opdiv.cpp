@@ -1,5 +1,5 @@
 #include "../include/polynomial.h"
-
+#include "../include/template_ops.h"
 monomial monomial::operator/(const monomial &m) const {
 	monomial res(*this);
 	res._coefficient /= m._coefficient;
@@ -131,5 +131,19 @@ polynomial_tuple lc_based_div(const polynomial &u, const polynomial &v){
 		subtractor = v * next_coef;
 		res.r -= subtractor;
 	}
+	return res;
+}
+
+polynomial_tuple polynomial::pseudo_division(const polynomial &v) const {
+	polynomial_tuple res;
+/*	num_z delta(g_max(this->degree(), v.degree(), num_z(0));
+	polynomial p;
+	polynomial s(*this);
+	while(s.degree() >= v.degree()){
+		p *= v.lc();
+		p += s.lc() * 
+	
+	}
+*/
 	return res;
 }

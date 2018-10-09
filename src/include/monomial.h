@@ -272,6 +272,13 @@ class monomial{
 		}
 		
 		//grau da variável var no monômio
+		num_z degree(const std::string &var) const {
+			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
+			if(it != this->_literals.end())
+				return it->second;
+			return num_z(0);
+		}
+		
 		num_z var_degree(const std::string &var) const {
 			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
 			if(it != this->_literals.end())

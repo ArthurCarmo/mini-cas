@@ -77,6 +77,16 @@ polynomial polynomial::polynomial_coefficient(const std::string &var, const num_
 	return res;
 }
 
+monomial polynomial::leading_coefficient(const std::string &var, const num_z &deg) const {
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		if(it->has_var_deg(var, deg))
+			return *it;
+		++it;
+	}
+	return monomial();
+}
+
 polynomial polynomial::content() const {
 	polynomial aux_p;
 	polynomial acc_gcd;
@@ -230,6 +240,30 @@ bool polynomial::single_variable() const {
 
 polynomial p_content(const polynomial &u, const std::string &var){
 	return u.content(var);
+}
+
+num_z polynomial::degree(char v) const {
+	return degree(std::string(1, v));
+}
+
+num_z polynomial::degree(const std::string &var) const {
+	num_z m;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		m = g_max(m, it->var_degree(var));
+		++it;
+	}
+	return m;
+}
+
+num_z polynomial::var_degree(const std::string &var) const {
+	num_z m;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		m = g_max(m, it->var_degree(var));
+		++it;
+	}
+	return m;
 }
 
 monomial deg_based_max(const monomial &a, const monomial &b){
