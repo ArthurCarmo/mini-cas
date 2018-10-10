@@ -449,7 +449,10 @@ class monomial{
 		
 		//remove a variável var do monômio
 		monomial remove(const std::string &) const;
-		monomial atr_remove(const std::string &);
+		monomial & atr_remove(const std::string &);
+		
+		monomial remove(const monomial &) const;
+		monomial & atr_remove(const monomial &);
 
 		//monômio unitário semelhante
 		monomial unit() const;

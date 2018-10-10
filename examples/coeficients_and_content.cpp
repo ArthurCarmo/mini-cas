@@ -29,12 +29,23 @@ int main(){
 	cout << "\nt:\n";
 
 	cout << t.lc("x") << endl;
-	cout << t.lc("y") << endl;
+	cout << t.lc("y") << endl << endl;
 	cout << t.polynomial_coefficient("x", 2) << endl;
 	cout << t.polynomial_coefficient("x", 0) << endl;
 	cout << t.polynomial_coefficient("y", 0) << endl;
+	cout << t.polynomial_coefficient(x*y, 0) << endl;
+	cout << t.polynomial_coefficient(x*y, 1) << endl;
+	cout << t.polynomial_coefficient(x*y, 2) << endl;
+	
+	
+//	cout << "\nT:\n" << t.
+	
+	cout << "\nIsolar coef\n";
+	
+	cout << t.polynomial_coefficient(x) << endl;
+	cout << t.polynomial_coefficient(y) << endl;
 	cout << t.polynomial_coefficient(x*y) << endl;
-
+	
 	cout << "\nMonomial deg\nv:\n" << v.lc(x*y.pow(2)) << "\nt:\n" << t.lc(x*y) << endl;
 
 	monomial m(x.pow(3)*y.pow(2));

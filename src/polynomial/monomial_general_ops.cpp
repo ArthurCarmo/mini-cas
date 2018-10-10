@@ -53,12 +53,16 @@ num_z monomial::degree(const monomial &v) const {
 	div_tuple next;
 	std::map<std::string, num_z>::const_iterator it_v = v._literals.begin();
 	std::map<std::string, num_z>::const_iterator it = this->_literals.find(it_v->first);	
+	
+	if(it_v == v._literals.end() || it == this->_literals.end()) return num_z();
+	
 	deg = it->second / it_v->second;
 	
 	if(!deg.r.is_zero() || deg.q.is_zero()) return num_z();
 	++it_v;
 	while(it_v != v._literals.end()){
 		it = this->_literals.find(it_v->first);
+		if(it == this->_literals.end()) return num_z();
 		if(deg.q != (next = it->second / it_v->second).q || !next.r.is_null())
 			return num_z();
 		++it_v;	
@@ -72,6 +76,7 @@ num_z monomial::var_degree(const monomial &v) const {
 	div_tuple next;
 	std::map<std::string, num_z>::const_iterator it_v = v._literals.begin();
 	std::map<std::string, num_z>::const_iterator it = this->_literals.find(it_v->first);
+	
 	if(it_v == v._literals.end() || it == this->_literals.end()) return num_z();
 	
 	deg = it->second / it_v->second;
@@ -80,6 +85,7 @@ num_z monomial::var_degree(const monomial &v) const {
 	++it_v;
 	while(it_v != v._literals.end()){
 		it = this->_literals.find(it_v->first);
+		if(it == this->_literals.end()) return num_z();
 		if(deg.q != (next = it->second / it_v->second).q || !next.r.is_null())
 			return num_z();
 		++it_v;	
@@ -99,11 +105,31 @@ monomial monomial::remove(const std::string &var) const {
 	return res;
 }
 
-monomial monomial::atr_remove(const std::string &var) {
+monomial & monomial::atr_remove(const std::string &var) {
 	std::map<std::string, num_z>::iterator it = this->_literals.find(var);
 	if(it != this->_literals.end()){
 		this->_degree -= it->second;
 		this->_literals.erase(it);
+	}
+	return *this;
+}
+
+
+monomial monomial::remove(const monomial &m) const {
+	monomial res(*this);
+	return res.atr_remove(m);
+}
+monomial & monomial::atr_remove(const monomial &m) {
+	std::map<std::string, num_z>::const_iterator it_m = m._literals.begin();
+	std::map<std::string, num_z>::iterator it;
+	if(!this->has_var(m)) return *this;
+	while(it_m != m._literals.end()){
+		it = this->_literals.find(it_m->first);
+		if(it != this->_literals.end()){
+			this->_degree -= it->second;
+			this->_literals.erase(it);
+		}
+		++it_m;
 	}
 	return *this;
 }

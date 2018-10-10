@@ -285,9 +285,21 @@ class polynomial{
 		//u.polynomial_coefficient(x, 2) = y² + 2y + 2
 		//u.polynomial_coefficient(x, 0) = 3
 		//u.polynomial_coefficient(y, 0) = 2x² - 2x + 3
-		//u.polynomial_coefficient(xy) = xy + 2x + y
+		//u.polynomial_coefficient(xy,0) = (2y + 2)x² + (y² - 2)x + 3
+		//u.polynomial_coefficient(xy,1) = 0
+		//u.polynomial_coefficient(xy,2) = 1
 		polynomial polynomial_coefficient(const std::string &, const num_z &) const;
+		polynomial polynomial_coefficient(const monomial &, const num_z &) const;
+		
+		//termos que são divisíveis pela variável, de forma que 
+		// u = u.polynomial_coefficient(X) * X + r
+		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
+		//u.polynomial_coefficient(x) = (y² + 2y + 2)x + y² - 2
+		//u.polynomial_coefficient(y) = (x² + x)y + 2x²
+		//u.polynomial_coefficient(xy) = xy + 2x + y
+		polynomial polynomial_coefficient(const std::string &) const;
 		polynomial polynomial_coefficient(const monomial &) const;
+				
 		
 		//termos líder contendo a variável com determinado grau
 		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
