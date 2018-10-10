@@ -299,30 +299,45 @@ class polynomial{
 		//u.polynomial_coefficient(xy) = xy + 2x + y
 		polynomial polynomial_coefficient(const std::string &) const;
 		polynomial polynomial_coefficient(const monomial &) const;
-				
 		
-		//termos líder contendo a variável com determinado grau
+		//monômio líder que contém a variável var com grau exatamente deg
+		monomial leading_monomial(const std::string &, const num_z &) const;
+		monomial leading_monomial(const monomial &, const num_z &) const;
+		monomial lm(const std::string &, const num_z &) const;
+		monomial lm(const monomial &, const num_z &) const;
+		
+		//monômio líder que contém a variável var com maior grau
+		monomial leading_monomial(const std::string &) const;
+		monomial leading_monomial(const monomial &) const;
+		monomial lm(const std::string &) const;
+		monomial lm(const monomial &) const;
+		
+		//coeficiente da variável var com grau exatamente deg
 		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
-		//u.lc(x, 2) = x²y²
+		//u.lc(x, 2) = (y² + 2y + 2)
 		//u.lc(x, 0) = 3
-		//u.lc(y, 0) = 2x²
-		monomial leading_coefficient(const std::string &, const num_z &) const;
-		monomial lc(const std::string &, const num_z &) const;
+		//u.lc(y, 0) = 2x² - 2x + 3
+		polynomial leading_coefficient(const std::string &, const num_z &) const;
+		polynomial lc(const std::string &, const num_z &) const;
 		
-		//termo líder contendo a variável var com maior grau no polinômio
+		//coeficiente da variável var com maior grau no polinômio
 		//ex: para u = (2y + 2)x² + (y² - 2)x + 3
-		//u.lc(x) = 2x²y
-		//u.lc(y) = xy²
-		monomial leading_coefficient(const std::string &) const;
-		monomial lc(const std::string &) const;
+		//u.lc(x) = 2y + 2
+		//u.lc(y) = x
+		polynomial leading_coefficient(const std::string &) const;
+		polynomial lc(const std::string &) const;
 		
 		//termo líder que divide o monômio
-		monomial leading_coefficient(const monomial &) const;
-		monomial lc(const monomial &) const;
+		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
+		//u.polynomial_coefficient(x) = y² + 2y + 2
+		//u.polynomial_coefficient(y) = x
+		//u.polynomial_coefficient(xy) = 1
+		polynomial leading_coefficient(const monomial &) const;
+		polynomial lc(const monomial &) const;
 		
-		//termo líder que contém exatamente o monômio com determinado grau
-		monomial leading_coefficient(const monomial &, const num_z &) const;
-		monomial lc(const monomial &, const num_z &) const;
+		//coeficiente do monômio com determinado grau
+		polynomial leading_coefficient(const monomial &, const num_z &) const;
+		polynomial lc(const monomial &, const num_z &) const;
 		
 		//sobre o campo dos números racionais, o conteúdo de um polinômio
 		//em relação a uma variável x é o monômio unitário sem a variável x
