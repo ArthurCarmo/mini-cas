@@ -114,11 +114,12 @@ class polynomial{
 		//grau do polinômio
 		num_z degree() const { if(this->_terms.size()) return this->_terms.begin()->_degree; return num_z(0); }
 		num_z degree(char) const;
-		num_z degree(const std::string &) const ;
+		num_z degree(const std::string &) const;
+		num_z degree(const monomial &) const;
 		
 		//maior grau da variável no polinômio
-		num_z var_degree(const std::string &) const ;
-		
+		num_z var_degree(const std::string &) const;
+		num_z var_degree(const monomial &) const;
 		unsigned long long size() const { return this->_terms.size(); }
 		
 		//termo líder do monômio de acordo com a função
@@ -339,10 +340,11 @@ class polynomial{
 		polynomial leading_coefficient(const monomial &, const num_z &) const;
 		polynomial lc(const monomial &, const num_z &) const;
 		
-		//sobre o campo dos números racionais, o conteúdo de um polinômio
-		//em relação a uma variável x é o monômio unitário sem a variável x
-		//que divide o polinômio
+		//o conteúdo de um polinômio em relação a uma variável X é
+		//o maior divisor comum de cada um dos coeficientes da variável X no polinômios
+		//include coeficientes que sejam outros polinômios
 		polynomial content(const std::string &) const;
+		polynomial content(const monomial &) const;
 
 		//conteúdo do polinômio em relação à variável x ou à primeira variável
 		//do termo líder do polinômio
@@ -353,6 +355,7 @@ class polynomial{
 		//tal que u = c*v e c é uma unidade normal na variável líder de u
 		polynomial primitive_part() const;
 		polynomial primitive_part(const std::string &) const;
+		polynomial primitive_part(const monomial &) const;
 		
 		//algoritmo auxilia o gcd de polinômios com mais de uma variável
 		//o pseudo-quociente s e o pseudo-resto r da divisão de p por q são de forma que

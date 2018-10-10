@@ -13,8 +13,14 @@ int main(){
 
 	polynomial u = (y.pow(2) + 2*y + 1)*x.pow(2) + (2*y.pow(2) - 2)*x + (3*y + 3);
 	
+	cout << "\nu:\n";
+	
 	cout << u.content("x") << endl;	
 	cout << u.primitive_part("x") << endl;	
+	cout << u.content(x) << endl;	
+	cout << u.content(y) << endl;
+	cout << u.lc(x*y) << endl;
+	cout << u.polynomial_coefficient(x*y) << endl;
 	
 	polynomial v = (2*y + 2)*x.pow(2) + (y.pow(2) - 2)*x + 3;
 	

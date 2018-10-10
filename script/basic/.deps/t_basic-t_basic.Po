@@ -161,9 +161,9 @@ script/basic/t_basic-t_basic.o: script/basic/t_basic.cpp \
  /usr/include/c++/7/bits/invoke.h /usr/include/c++/7/bits/stl_multimap.h \
  script/basic/../../src/include/polynomial.h \
  script/basic/../../src/include/monomial_comp_class.h \
+ script/basic/../../src/include/template_ops.h \
  script/basic/../../src/include/term.h \
- script/basic/../../src/include/symbol.h \
- script/basic/../../src/include/template_ops.h
+ script/basic/../../src/include/symbol.h
 
 /usr/include/stdc-predef.h:
 
@@ -577,8 +577,8 @@ script/basic/../../src/include/polynomial.h:
 
 script/basic/../../src/include/monomial_comp_class.h:
 
+script/basic/../../src/include/template_ops.h:
+
 script/basic/../../src/include/term.h:
 
 script/basic/../../src/include/symbol.h:
-
-script/basic/../../src/include/template_ops.h:

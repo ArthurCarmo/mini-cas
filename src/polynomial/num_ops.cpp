@@ -168,6 +168,42 @@ polynomial polynomial::content(const std::string &var) const {
 	return acc_gcd;	
 }
 
+polynomial polynomial::content(const monomial &var) const {
+	polynomial aux_p;
+	polynomial acc_gcd;
+	polynomial res(*this);
+	polynomial independent_terms;
+	num_z deg;
+	
+	std::set<monomial, monomial_comp_class>::const_iterator it = res._terms.begin();
+	std::set<monomial, monomial_comp_class>::const_iterator it_t = res._terms.begin();
+	
+	if(this->is_null()) return acc_gcd;
+
+	while(it != res._terms.end()) {
+		aux_p = polynomial();
+		if(!(deg = it->var_degree(var)).is_zero()){
+			for(it_t = res._terms.begin(); it_t != res._terms.end();){
+				if(it_t->has_var_deg(var, deg)){
+					aux_p += it_t->remove(var);
+					res._terms.erase(it_t++);
+				}else{
+					++it_t;
+				}
+			}
+			acc_gcd = p_gcd(acc_gcd, aux_p);
+		}else{
+			independent_terms += *it;
+			res._terms.erase(it);
+		}
+		it = res._terms.begin();		
+	}
+	
+	acc_gcd = p_gcd(acc_gcd, independent_terms);
+	
+	return acc_gcd;	
+}
+
 polynomial polynomial::primitive_part() const {
 	if(this->is_null()) return polynomial();
 	return (*this / this->content());
@@ -178,10 +214,22 @@ polynomial polynomial::primitive_part(const std::string &var) const {
 	return (*this / this->content(var));
 }
 
+polynomial polynomial::primitive_part(const monomial &var) const {
+	if(this->is_null()) return polynomial();
+	return (*this / this->content(var));
+}
+
 polynomial p_content(const polynomial &u){
 	return u.content();
 }
 
+polynomial p_content(const polynomial &u, const std::string &var){
+	return u.content(var);
+}
+
+polynomial p_content(const polynomial &u, const monomial &var){
+	return u.content(var);
+}
 
 bool polynomial::multi_variable() const {
 	std::set<monomial, monomial_comp_class>::const_iterator it;
@@ -218,10 +266,6 @@ bool polynomial::single_variable() const {
 	return true;
 }
 
-polynomial p_content(const polynomial &u, const std::string &var){
-	return u.content(var);
-}
-
 num_z polynomial::degree(char v) const {
 	return degree(std::string(1, v));
 }
@@ -237,6 +281,26 @@ num_z polynomial::degree(const std::string &var) const {
 }
 
 num_z polynomial::var_degree(const std::string &var) const {
+	num_z m;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		m = g_max(m, it->var_degree(var));
+		++it;
+	}
+	return m;
+}
+
+num_z polynomial::degree(const monomial &var) const {
+	num_z m;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	while(it != this->_terms.end()){
+		m = g_max(m, it->var_degree(var));
+		++it;
+	}
+	return m;
+}
+
+num_z polynomial::var_degree(const monomial &var) const {
 	num_z m;
 	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
 	while(it != this->_terms.end()){
