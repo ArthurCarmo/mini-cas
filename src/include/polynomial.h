@@ -300,13 +300,13 @@ class polynomial{
 		polynomial polynomial_coefficient(const std::string &) const;
 		polynomial polynomial_coefficient(const monomial &) const;
 		
-		//monômio líder que contém a variável var com grau exatamente deg
+		//monômio com maior grau que contém a variável var com grau exatamente deg
 		monomial leading_monomial(const std::string &, const num_z &) const;
 		monomial leading_monomial(const monomial &, const num_z &) const;
 		monomial lm(const std::string &, const num_z &) const;
 		monomial lm(const monomial &, const num_z &) const;
 		
-		//monômio líder que contém a variável var com maior grau
+		//monômio que contém a variável var com maior grau
 		monomial leading_monomial(const std::string &) const;
 		monomial leading_monomial(const monomial &) const;
 		monomial lm(const std::string &) const;
