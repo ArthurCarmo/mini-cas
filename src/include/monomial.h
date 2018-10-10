@@ -209,125 +209,54 @@ class monomial{
 		}
 		
 		//atribuição
-		monomial & operator=(const monomial &m){
-			this->_coefficient = m._coefficient;
-			this->_degree = m._degree;
-			this->_literals = m._literals;
-			return *this;
-		}
+		monomial & operator=(const monomial &);
 		
 		//set contendo as variáveis com expoente não zero no polinômio
-		std::set<std::string> variables() const {
-			std::set<std::string> vars;
-			for(std::map<std::string, num_z>::const_iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)
-					vars.insert(it->first);
-			return vars;
-		}
+		std::set<std::string> variables() const;
 		
 		//retorna true se monômio possui a variável var com grau maior que zero
-		bool has_var(const std::string &var) const {
-			return this->_literals.find(var) != this->_literals.end();
-		}
-		
-		bool has_var(const char &var) const {
-			return this->_literals.find(std::string(1, var)) != this->_literals.end();
-		}
+		bool has_var(const std::string &) const;
+		bool has_var(const char &) const;
+		bool has_var(const monomial &) const;
 		
 		//retorna true se monômio possui a variável var com grau especificado
-		bool has_var_deg(const std::string &var, const num_z &deg) const {
-			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
-			if(it == this->_literals.end())
-				return deg == 0;
-			return it->second == deg;
-		}
-		
-		bool has_var_deg(const char &var, const num_z &deg) const {
-			std::map<std::string, num_z>::const_iterator it = this->_literals.find(std::string(1, var));
-			if(it == this->_literals.end())
-				return deg == 0;
-			return it->second == deg;
-		}
+		bool has_var_deg(const std::string &, const num_z &) const;
+		bool has_var_deg(const char &, const num_z &) const;
+		bool has_var_deg(const monomial &, const num_z &) const;
 		
 		//primeira variável do monômio em ordem lexicográfica
-		std::string first_lex_var() const {
-			return this->_literals.begin()->first;
-		}
+		std::string first_lex_var() const;
 		
 		//expoente da variável var
-		num_z exponent(const std::string &var) const {
-			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
-			if(it == this->_literals.end())
-				return num_z(0);
-			return it->second;
-		}
+		num_z exponent(const std::string &) const;
 		
 		//coeficiente do monômio
-		num_q coefficient() const {
-			return this->_coefficient;
-		}
+		num_q coefficient() const;
 		
 		//grau do monômio
-		num_z degree() const {
-			return this->_degree;
-		}
+		num_z degree() const;
 		
 		//grau da variável var no monômio
-		num_z degree(const std::string &var) const {
-			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
-			if(it != this->_literals.end())
-				return it->second;
-			return num_z(0);
-		}
+		num_z degree(const std::string &) const;
+		num_z var_degree(const std::string &) const;
 		
-		num_z var_degree(const std::string &var) const {
-			std::map<std::string, num_z>::const_iterator it = this->_literals.find(var);
-			if(it != this->_literals.end())
-				return it->second;
-			return num_z(0);
-		}
+		//grau do monômio v no monômio
+		num_z degree(const monomial &) const;
+		num_z var_degree(const monomial &) const;
 		
 		//funções de manipulação de sinal
-		monomial abs() const {
-			monomial res(*this);
-			res._coefficient._sign = 0;
-			return res;
-		}
+		monomial abs() const;
+		monomial operator-() const;
+		monomial negative() const;
 		
-		monomial operator-() const {
-			monomial res(*this);
-			res._coefficient.flip_sign();
-			return res;
-		}
+		monomial & make_abs();
+		monomial & flip_sign();
+		monomial & make_negative();
 		
-		monomial negative() const { 
-			monomial res(*this); 
-			res._coefficient._sign = 1;
-			return res;
-		};
-		
-		monomial & make_abs(){
-			this->_coefficient._sign = 0;
-			return *this;
-		};
-		
-		monomial & flip_sign(){
-			this->_coefficient._sign = 1 - this->_coefficient._sign;
-			return *this;
-		};
-		
-		monomial & make_negative(){
-			this->_coefficient._sign = 1;
-			return *this;
-		};
-		
-		bool sign() const {
-			return this->_coefficient._sign == 1;
-		}
+		bool sign() const;
 		
 		//monômios são similares se possuem as variáveis com os mesmo coeficientes
-		bool is_similar(const monomial &m) const {
-			return this->_degree == m._degree && this->_literals == m._literals;
-		} 
+		bool is_similar(const monomial &) const;
 		
 		//primeira derivada parcial em relação a x ou à primeira variável por ordem alfabética
 		monomial derive() const {
@@ -489,190 +418,45 @@ class monomial{
 		}
 		
 		//produto de dois monômios é um monômio
-		monomial operator*(const monomial &m) const {
-			if(this->_coefficient == 0 || m._coefficient == 0) return monomial();
-			const monomial * maior = this, * menor = &m;
-			
-			if(this->_literals.size() < m._literals.size()){
-				maior = &m;
-				menor = this;
-			}
-			
-			monomial res(*maior);
-			
-			std::map<std::string, num_z>::const_iterator it_maior;
-			std::map<std::string, num_z>::const_iterator it_menor;
-			
-			for(it_menor = menor->_literals.begin(); it_menor != menor->_literals.end(); ++it_menor){
-				it_maior = maior->_literals.find(it_menor->first);
-				if(it_maior == maior->_literals.end()){
-					res._literals.insert( std::pair<std::string, num_z> (it_menor->first, it_menor->second) );
-				}else{
-					res._literals[it_menor->first] += it_menor->second;
-				}
-			}
-			
-			res._coefficient *= menor->_coefficient;
-			res._degree = this->_degree + m._degree;
-			return res;
-		}
-		
-		monomial & operator*=(const monomial &m){
-			if(this->_coefficient == 0 || m._coefficient == 0) return *this = monomial();			
-			
-			std::map<std::string, num_z>::iterator it_this;
-			std::map<std::string, num_z>::const_iterator it_m;
-			
-			for(it_m = m._literals.begin(); it_m != m._literals.end(); ++it_m){
-				it_this = this->_literals.find(it_m->first);
-				if(it_this == this->_literals.end()){
-					this->_literals.insert( std::pair<std::string, num_z> (it_m->first, it_m->second) );
-				}else{
-					this->_literals[it_m->first] += it_m->second;
-				}
-			}	
-			
-			this->_coefficient *= m._coefficient;
-			this->_degree += m._degree;
-			return *this;
-		}
+		monomial operator*(const monomial &) const;
+		monomial & operator*=(const monomial &);
 		
 		//potência de um monômio por um número inteiro maior ou igual a zero
-		monomial pow(const num_z &N) const {
-			monomial res(*this);
-			if(N == 0) return monomial();
-			res._coefficient = this->_coefficient.pow(N);
-			res._degree *= N;
-			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
-				it->second *= N;
-			
-			return res;
-		}
+		monomial pow(const num_z &) const;
 		
 		//operador sobrecarregado para representar a exponenciação (para facilitar a notação)
-		monomial operator^(const num_z &N) const {
-			monomial res(*this);
-			if(N == 0) return monomial();
-			res._coefficient = this->_coefficient.pow(N);
-			res._degree *= N;
-			for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
-				it->second *= N;
-			
-			return res;
-		}
-		
-		monomial & operator^=(const num_z &N){
-			if(N == 0) return *this = monomial();
-			this->_coefficient = this->_coefficient.pow(N);
-			this->_degree *= N;
-			for(std::map<std::string, num_z>::iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)
-				it->second *= N;
-			
-			return *this;
-		}
+		monomial operator^(const num_z &) const;
+		monomial & operator^=(const num_z &);
 		
 		polynomial operator+(const monomial &) const;
 		polynomial operator-(const monomial &) const;
 		monomial operator/(const monomial &) const;
 		
-		bool operator==(const monomial &m) const {
-			return this->_degree == m._degree && this->_coefficient == m._coefficient && this->_literals == m._literals;
-		}
-		
-		bool operator!=(const monomial &m) const {
-			return this->_degree != m._degree || this->_coefficient != m._coefficient || this->_literals != m._literals;
-		}
+		bool operator==(const monomial &m) const;
+		bool operator!=(const monomial &) const;
 		
 		//um monômio u é divisível pelo monômio v se
 		//cada variável de u tem grau maior ou igual àquela variável em v;
-		bool is_divisible_by(const monomial &m) const {
-			std::map<std::string, num_z>::const_iterator it = m._literals.begin();
-			std::map<std::string, num_z>::const_iterator it_t;
-			
-			if(m._degree > this->_degree) return false;
-			while(it != m._literals.end()){
-				if((it_t = this->_literals.find(it->first)) == this->_literals.end() || it_t->second < it->second) 
-					return false;
-				++it;
-			}
-			return true;
-		}
+		bool is_divisible_by(const monomial &) const;
 		
 		//um monômio u é divide o monômio v se
 		//cada variável de u tem grau menor ou igual àquela variável em v;
-		bool divides(const monomial &m) const { 
-			std::map<std::string, num_z>::const_iterator it;
-			std::map<std::string, num_z>::const_iterator it_t = m._literals.begin();
-			if(this->_degree > m._degree) return false;
-			while(it_t != this->_literals.end()){
-				if((it = m._literals.find(it_t->first)) != m._literals.end() || it->second < it_t->second) 
-					return false;
-				++it_t;
-			}
-			return true;
-		}
+		bool divides(const monomial &) const;
 		
-		bool is_null() const {
-			return this->_coefficient._numerator == 0;
-		}
-		
-		bool multi_variable() const {
-			return this->_literals.size() > 1;
-		}
-		
-		bool single_variable() const {
-			return this->_literals.size () < 2;
-		}
+		bool is_null() const;
+		bool multi_variable() const;
+		bool single_variable() const;
 		
 		//remove a variável var do monômio
-		monomial remove(const std::string &var) const {
-			monomial res(*this);
-			std::map<std::string, num_z>::iterator it = res._literals.find(var);
-			if(it != res._literals.end()){
-				res._degree -= it->second;
-				res._literals.erase(it);
-			}
-			return res;
-		}
-		
-		monomial atr_remove(const std::string &var) {
-			std::map<std::string, num_z>::iterator it = this->_literals.find(var);
-			if(it != this->_literals.end()){
-				this->_degree -= it->second;
-				this->_literals.erase(it);
-			}
-			return *this;
-		}
+		monomial remove(const std::string &) const;
+		monomial atr_remove(const std::string &);
 
 		//monômio unitário semelhante
-		monomial unit() const {	monomial res(*this); res._coefficient = 1; return res; }
+		monomial unit() const;
 		
-		monomial content() const {
-			monomial cont(*this);
-			std::string var;
-			std::map<std::string, num_z>::iterator it;
-			
-			if(cont.is_null()) return cont;
-			cont._coefficient = 1;
-			if((it = cont._literals.find("x")) != cont._literals.end()){
-				var = "x";
-			}else{
-				var = cont._literals.begin()->first;
-			}
-			cont.atr_remove(var);
-			return cont;
-		}
+		monomial content() const;
 		
-		monomial content(std::string &var) const {
-			monomial cont(*this);
-			std::map<std::string, num_z>::iterator it;
-			
-			if(cont.is_null()) return cont;
-			cont._coefficient = 1;
-			cont.atr_remove(var);
-			
-			return cont;
-		}
+		monomial content(std::string &) const;
 };
 
 extern monomial operator*(const Number &, const monomial &);

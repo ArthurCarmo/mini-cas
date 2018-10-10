@@ -33,7 +33,23 @@ int main(){
 	cout << t.polynomial_coefficient("x", 2) << endl;
 	cout << t.polynomial_coefficient("x", 0) << endl;
 	cout << t.polynomial_coefficient("y", 0) << endl;
+	cout << t.polynomial_coefficient(x*y) << endl;
 
+	cout << "\nMonomial deg\nv:\n" << v.lc(x*y.pow(2)) << "\nt:\n" << t.lc(x*y) << endl;
+
+	monomial m(x.pow(3)*y.pow(2));
+	monomial n(x.pow(4)*y.pow(16));
+	
+	cout << endl;
+	
+	cout << m.has_var(x*y) << endl;	//NO
+	cout << m.has_var(x.pow(3)*y) << endl; //NO
+	cout << n.has_var(x*y) << endl;	//NO
+	cout << n.has_var(x.pow(2)*y.pow(8)) << endl; //YES
+	cout << n.has_var_deg(x.pow(2)*y.pow(8), 1) << endl; //NO
+	cout << n.has_var_deg(x.pow(2)*y.pow(8), 2) << endl; //YES
+	
+	
 
 	return 0;
 }

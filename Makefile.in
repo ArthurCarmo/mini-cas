@@ -164,7 +164,10 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_q/op_atrsub.lo src/num_q/op_atrsum.lo \
 	src/num_q/opdiv.lo src/num_q/opmul.lo src/num_q/opsub.lo \
 	src/num_q/opsum.lo src/polynomial/attrib.lo \
-	src/polynomial/bool.lo src/polynomial/io.lo \
+	src/polynomial/bool.lo src/polynomial/coefficient_ops.lo \
+	src/polynomial/io.lo src/polynomial/monomial_arithmetic_ops.lo \
+	src/polynomial/monomial_bool_ops.lo \
+	src/polynomial/monomial_general_ops.lo \
 	src/polynomial/num_ops.lo src/polynomial/opdiv.lo \
 	src/polynomial/opmul.lo src/polynomial/opsub.lo \
 	src/polynomial/opsum.lo src/polynomial/subs.lo
@@ -639,7 +642,11 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/opsum.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
+			src/polynomial/coefficient_ops.cpp \
 			src/polynomial/io.cpp \
+			src/polynomial/monomial_arithmetic_ops.cpp \
+			src/polynomial/monomial_bool_ops.cpp \
+			src/polynomial/monomial_general_ops.cpp \
 			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
@@ -846,7 +853,17 @@ src/polynomial/attrib.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/bool.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/coefficient_ops.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/io.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/monomial_arithmetic_ops.lo:  \
+	src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/monomial_bool_ops.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/monomial_general_ops.lo:  \
+	src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/num_ops.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
@@ -996,7 +1013,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/num_z/$(DEPDIR)/unary_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/attrib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/bool.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/coefficient_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/io.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_arithmetic_ops.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_bool_ops.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_general_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/num_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opdiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opmul.Plo@am__quote@

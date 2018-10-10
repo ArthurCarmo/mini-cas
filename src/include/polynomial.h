@@ -285,7 +285,9 @@ class polynomial{
 		//u.polynomial_coefficient(x, 2) = y² + 2y + 2
 		//u.polynomial_coefficient(x, 0) = 3
 		//u.polynomial_coefficient(y, 0) = 2x² - 2x + 3
+		//u.polynomial_coefficient(xy) = xy + 2x + y
 		polynomial polynomial_coefficient(const std::string &, const num_z &) const;
+		polynomial polynomial_coefficient(const monomial &) const;
 		
 		//termos líder contendo a variável com determinado grau
 		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
@@ -301,6 +303,14 @@ class polynomial{
 		//u.lc(y) = xy²
 		monomial leading_coefficient(const std::string &) const;
 		monomial lc(const std::string &) const;
+		
+		//termo líder que divide o monômio
+		monomial leading_coefficient(const monomial &) const;
+		monomial lc(const monomial &) const;
+		
+		//termo líder que contém exatamente o monômio com determinado grau
+		monomial leading_coefficient(const monomial &, const num_z &) const;
+		monomial lc(const monomial &, const num_z &) const;
 		
 		//sobre o campo dos números racionais, o conteúdo de um polinômio
 		//em relação a uma variável x é o monômio unitário sem a variável x
@@ -318,7 +328,7 @@ class polynomial{
 		polynomial primitive_part(const std::string &) const;
 		
 		//algoritmo auxilia o gcd de polinômios com mais de uma variável
-		//pseudo-quociente s e pseudo-resto da divisão de p por q são de forma que
+		//o pseudo-quociente s e o pseudo-resto r da divisão de p por q são de forma que
 		//p*u = s*v + r
 		polynomial_tuple pseudo_division(const polynomial &) const;
 };

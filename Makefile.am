@@ -51,7 +51,11 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_q/opsum.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
+			src/polynomial/coefficient_ops.cpp \
 			src/polynomial/io.cpp \
+			src/polynomial/monomial_arithmetic_ops.cpp \
+			src/polynomial/monomial_bool_ops.cpp \
+			src/polynomial/monomial_general_ops.cpp \
 			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
