@@ -48,7 +48,13 @@ polynomial p_gcd(const polynomial &a, const polynomial &b){
 	std::string X = a._terms.begin()->first_lex_var();
 	if(X.empty()) return polynomial(1);
 	
-	polynomial Sg(deg_based_max(a, b, X)), Sl(deg_based_min(a, b, X)), Saux;
+	/*
+	 Para não perder o registro
+	 a definição estava
+	 polynomial Sl = deg_based_max(a, b),
+	            Sg = deg_based_min(a, b);
+	*/
+	polynomial Sl = a, Sg = b, Saux;
 	polynomial beta;
 	polynomial psi;
 	polynomial d, g;
@@ -67,11 +73,16 @@ polynomial p_gcd(const polynomial &a, const polynomial &b){
 		return m_gcd(a.leading_term(), b.leading_term());
 	}
 	
+	if(a.degree(X) < b.degree(X)){
+		Sl = b;
+		Sg = a;
+	}
+	
 	d = p_gcd(Sg.content(X), Sl.content(X));
 	g = p_gcd(Sg.lc(X), Sl.lc(X));
 	
-	Sl = a.primitive_part(X);
-	Sg = b.primitive_part(X);
+	Sl = Sl.primitive_part(X);
+	Sg = Sg.primitive_part(X);
 	
 	delta = Sl.degree(X) - Sg.degree(X) + 1;
 	beta = delta.odd()?polynomial(1):polynomial(-1);
