@@ -165,12 +165,14 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_q/opdiv.lo src/num_q/opmul.lo src/num_q/opsub.lo \
 	src/num_q/opsum.lo src/polynomial/attrib.lo \
 	src/polynomial/bool.lo src/polynomial/coefficient_ops.lo \
+	src/polynomial/degree_ops.lo \
+	src/polynomial/content_and_primitive_part.lo \
 	src/polynomial/io.lo src/polynomial/monomial_arithmetic_ops.lo \
 	src/polynomial/monomial_bool_ops.lo \
-	src/polynomial/monomial_general_ops.lo \
-	src/polynomial/num_ops.lo src/polynomial/opdiv.lo \
+	src/polynomial/monomial_general_ops.lo src/polynomial/opdiv.lo \
 	src/polynomial/opmul.lo src/polynomial/opsub.lo \
-	src/polynomial/opsum.lo src/polynomial/subs.lo
+	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
+	src/polynomial/subs.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -643,15 +645,17 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
 			src/polynomial/coefficient_ops.cpp \
+			src/polynomial/degree_ops.cpp \
+			src/polynomial/content_and_primitive_part.cpp \
 			src/polynomial/io.cpp \
 			src/polynomial/monomial_arithmetic_ops.cpp \
 			src/polynomial/monomial_bool_ops.cpp \
 			src/polynomial/monomial_general_ops.cpp \
-			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
 			src/polynomial/opsub.cpp \
 			src/polynomial/opsum.cpp \
+			src/polynomial/p_gcd.cpp \
 			src/polynomial/subs.cpp 
 
 t_basic_CPPFLAGS = -I./src/include
@@ -855,6 +859,11 @@ src/polynomial/bool.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/coefficient_ops.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/degree_ops.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/content_and_primitive_part.lo:  \
+	src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/io.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/monomial_arithmetic_ops.lo:  \
@@ -865,8 +874,6 @@ src/polynomial/monomial_bool_ops.lo: src/polynomial/$(am__dirstamp) \
 src/polynomial/monomial_general_ops.lo:  \
 	src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
-src/polynomial/num_ops.lo: src/polynomial/$(am__dirstamp) \
-	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opdiv.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opmul.lo: src/polynomial/$(am__dirstamp) \
@@ -874,6 +881,8 @@ src/polynomial/opmul.lo: src/polynomial/$(am__dirstamp) \
 src/polynomial/opsub.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opsum.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/p_gcd.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/subs.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
@@ -1014,15 +1023,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/attrib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/bool.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/coefficient_ops.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/content_and_primitive_part.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/degree_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/io.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_arithmetic_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_bool_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/monomial_general_ops.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/num_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opdiv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opsub.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/opsum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/p_gcd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/polynomial/$(DEPDIR)/subs.Plo@am__quote@
 
 .cpp.o:

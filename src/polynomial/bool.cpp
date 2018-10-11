@@ -21,3 +21,38 @@ bool polynomial::operator!=(const polynomial &p) const {
 	}
 	return false;
 }
+
+bool polynomial::multi_variable() const {
+	std::set<monomial, monomial_comp_class>::const_iterator it;
+	std::map<std::string, num_z>::const_iterator it_t;
+	std::string prev;
+	std::string var;
+	
+	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
+		if(it->_literals.size() > 1) return true;
+		var = it->_literals.begin()->first;
+		if(!prev.empty() && var != prev)
+			return true;
+		prev = var;
+	}
+	
+	return false;
+}
+
+bool polynomial::single_variable() const {
+	std::set<monomial, monomial_comp_class>::const_iterator it;
+	std::map<std::string, num_z>::const_iterator it_t;
+	std::string prev;
+	std::string var;
+	
+	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
+		if(it->_literals.size() > 1) return false;
+		if(it->_literals.size() == 0) continue;
+		var = it->_literals.begin()->first;
+		if(!prev.empty() && var != prev)
+			return false;
+		prev = var;
+	}
+	
+	return true;
+}

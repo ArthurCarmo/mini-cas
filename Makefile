@@ -165,12 +165,14 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_q/opdiv.lo src/num_q/opmul.lo src/num_q/opsub.lo \
 	src/num_q/opsum.lo src/polynomial/attrib.lo \
 	src/polynomial/bool.lo src/polynomial/coefficient_ops.lo \
+	src/polynomial/degree_ops.lo \
+	src/polynomial/content_and_primitive_part.lo \
 	src/polynomial/io.lo src/polynomial/monomial_arithmetic_ops.lo \
 	src/polynomial/monomial_bool_ops.lo \
-	src/polynomial/monomial_general_ops.lo \
-	src/polynomial/num_ops.lo src/polynomial/opdiv.lo \
+	src/polynomial/monomial_general_ops.lo src/polynomial/opdiv.lo \
 	src/polynomial/opmul.lo src/polynomial/opsub.lo \
-	src/polynomial/opsum.lo src/polynomial/subs.lo
+	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
+	src/polynomial/subs.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -643,15 +645,17 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/attrib.cpp \
 			src/polynomial/bool.cpp \
 			src/polynomial/coefficient_ops.cpp \
+			src/polynomial/degree_ops.cpp \
+			src/polynomial/content_and_primitive_part.cpp \
 			src/polynomial/io.cpp \
 			src/polynomial/monomial_arithmetic_ops.cpp \
 			src/polynomial/monomial_bool_ops.cpp \
 			src/polynomial/monomial_general_ops.cpp \
-			src/polynomial/num_ops.cpp \
 			src/polynomial/opdiv.cpp \
 			src/polynomial/opmul.cpp \
 			src/polynomial/opsub.cpp \
 			src/polynomial/opsum.cpp \
+			src/polynomial/p_gcd.cpp \
 			src/polynomial/subs.cpp 
 
 t_basic_CPPFLAGS = -I./src/include
@@ -855,6 +859,11 @@ src/polynomial/bool.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/coefficient_ops.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/degree_ops.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/content_and_primitive_part.lo:  \
+	src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/io.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/monomial_arithmetic_ops.lo:  \
@@ -865,8 +874,6 @@ src/polynomial/monomial_bool_ops.lo: src/polynomial/$(am__dirstamp) \
 src/polynomial/monomial_general_ops.lo:  \
 	src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
-src/polynomial/num_ops.lo: src/polynomial/$(am__dirstamp) \
-	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opdiv.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opmul.lo: src/polynomial/$(am__dirstamp) \
@@ -874,6 +881,8 @@ src/polynomial/opmul.lo: src/polynomial/$(am__dirstamp) \
 src/polynomial/opsub.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/opsum.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/p_gcd.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/subs.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
@@ -1014,15 +1023,17 @@ include src/num_z/$(DEPDIR)/unary_ops.Plo
 include src/polynomial/$(DEPDIR)/attrib.Plo
 include src/polynomial/$(DEPDIR)/bool.Plo
 include src/polynomial/$(DEPDIR)/coefficient_ops.Plo
+include src/polynomial/$(DEPDIR)/content_and_primitive_part.Plo
+include src/polynomial/$(DEPDIR)/degree_ops.Plo
 include src/polynomial/$(DEPDIR)/io.Plo
 include src/polynomial/$(DEPDIR)/monomial_arithmetic_ops.Plo
 include src/polynomial/$(DEPDIR)/monomial_bool_ops.Plo
 include src/polynomial/$(DEPDIR)/monomial_general_ops.Plo
-include src/polynomial/$(DEPDIR)/num_ops.Plo
 include src/polynomial/$(DEPDIR)/opdiv.Plo
 include src/polynomial/$(DEPDIR)/opmul.Plo
 include src/polynomial/$(DEPDIR)/opsub.Plo
 include src/polynomial/$(DEPDIR)/opsum.Plo
+include src/polynomial/$(DEPDIR)/p_gcd.Plo
 include src/polynomial/$(DEPDIR)/subs.Plo
 
 .cpp.o:

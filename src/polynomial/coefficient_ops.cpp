@@ -1,5 +1,16 @@
 #include "../include/polynomial.h"
 
+polynomial polynomial::unit() const {
+	polynomial res(*this);
+	res /= this->_terms.begin()->_coefficient;
+	return res;
+}
+
+polynomial & polynomial::make_unit() {
+	*this /= this->_terms.begin()->_coefficient;
+	return *this;
+}
+
 polynomial polynomial::polynomial_coefficient(const std::string &var, const num_z &deg) const {
 	polynomial res;
 	std::set<monomial, monomial_comp_class>::const_iterator it;
