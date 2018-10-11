@@ -3,7 +3,9 @@
 
 //primeira variável do monômio em ordem lexicográfica
 std::string monomial::first_lex_var() const {
-	return this->_literals.begin()->first;
+	std::map<std::string, num_z>::const_iterator it = this->_literals.begin();
+	if(it == this->_literals.end()) return std::string();
+	return it->first;
 }
 		
 //expoente da variável var
@@ -136,6 +138,7 @@ monomial & monomial::atr_remove(const monomial &m) {
 
 //monômio unitário semelhante
 monomial monomial::unit() const { monomial res(*this); res._coefficient = 1; return res; }
+monomial & monomial::make_unit() { this->_coefficient = 1; return *this; }
 		
 monomial monomial::content() const {
 	monomial cont(*this);

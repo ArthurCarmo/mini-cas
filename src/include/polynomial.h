@@ -24,6 +24,8 @@ class polynomial{
 	friend polynomial p_content(const polynomial &, const std::string &);
 	friend polynomial deg_based_max(const polynomial &, const polynomial &);
 	friend polynomial deg_based_min(const polynomial &, const polynomial &);
+	friend polynomial deg_based_max(const polynomial &, const polynomial &, const monomial &);
+	friend polynomial deg_based_min(const polynomial &, const polynomial &, const monomial &);
 	friend polynomial single_var_gcd(const polynomial &, const polynomial &);
 	friend polynomial p_gcd(const polynomial &, const polynomial &);
 
@@ -132,6 +134,7 @@ class polynomial{
 		//polynômio dividido pelo coeficiente racional do monômio líder
 		//definido pela monomial_comp_class
 		polynomial unit() const;
+		polynomial & make_unit();
 		
 		polynomial operator-() const {
 			polynomial res;

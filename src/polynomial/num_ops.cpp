@@ -35,15 +35,24 @@ polynomial single_var_gcd(const polynomial &a, const polynomial &b){
 		res.q = aux;
 	}
 	
-	return res.q.unit();
+	res.q.make_unit();
+	return res.q;
 }
 
 polynomial p_gcd(const polynomial &a, const polynomial &b){
 	polynomial res;
-	polynomial Sg(deg_based_max(a, b)), Sl(deg_based_min(a, b));
 	
 	if(a.is_null()) return b.unit();
 	if(b.is_null()) return a.unit();
+	
+	std::string X = a._terms.begin()->first_lex_var();
+	if(X.empty()) return polynomial(1);
+	
+	polynomial Sg(deg_based_max(a, b, X)), Sl(deg_based_min(a, b, X)), Saux;
+	polynomial beta;
+	polynomial psi;
+	polynomial d, g;
+	num_z delta;
 	
 	if(a.single_variable() && b.single_variable()){
 		
@@ -58,13 +67,37 @@ polynomial p_gcd(const polynomial &a, const polynomial &b){
 		return m_gcd(a.leading_term(), b.leading_term());
 	}
 	
-	return res;
+	d = p_gcd(Sg.content(X), Sl.content(X));
+	g = p_gcd(Sg.lc(X), Sl.lc(X));
+	
+	Sl = a.primitive_part(X);
+	Sg = b.primitive_part(X);
+	
+	delta = Sl.degree(X) - Sg.degree(X) + 1;
+	beta = delta.odd()?polynomial(1):polynomial(-1);
+	psi = polynomial(-1);
+	
+	while(!Sg.is_null()){
+		Saux = Sg;	
+		Sg = Sl.pseudo_division(Sg, X).r / beta;
+		psi = g_pow(Sl.lc(X), delta - 1) / g_pow(psi, delta-2);
+		delta = Saux.degree(X) - Sg.degree(X) + 1;
+		beta = -Sl.lc(X) * g_pow(psi, delta-1);
+		Sl = Saux;
+	}
+	
+	return (d * (Sl * g / Sl.lc(X)).q.primitive_part(X)).make_unit();
 }
 
 polynomial polynomial::unit() const {
 	polynomial res(*this);
 	res /= this->_terms.begin()->_coefficient;
 	return res;
+}
+
+polynomial & polynomial::make_unit() {
+	*this /= this->_terms.begin()->_coefficient;
+	return *this;
 }
 
 polynomial polynomial::content() const {
@@ -234,13 +267,13 @@ polynomial p_content(const polynomial &u, const monomial &var){
 bool polynomial::multi_variable() const {
 	std::set<monomial, monomial_comp_class>::const_iterator it;
 	std::map<std::string, num_z>::const_iterator it_t;
-	std::string prev = "\0";
+	std::string prev;
 	std::string var;
 	
 	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
 		if(it->_literals.size() > 1) return true;
 		var = it->_literals.begin()->first;
-		if(prev != "\0" && var != "\0" && var != prev)
+		if(!prev.empty() && var != prev)
 			return true;
 		prev = var;
 	}
@@ -251,14 +284,14 @@ bool polynomial::multi_variable() const {
 bool polynomial::single_variable() const {
 	std::set<monomial, monomial_comp_class>::const_iterator it;
 	std::map<std::string, num_z>::const_iterator it_t;
-	std::string prev = "";
+	std::string prev;
 	std::string var;
 	
 	for(it = this->_terms.begin(); it != this->_terms.end(); it++){
 		if(it->_literals.size() > 1) return false;
 		if(it->_literals.size() == 0) continue;
 		var = it->_literals.begin()->first;
-		if(prev != "" && var != "" && var != prev)
+		if(!prev.empty() && var != prev)
 			return false;
 		prev = var;
 	}
@@ -318,11 +351,27 @@ monomial deg_based_min(const monomial &a, const monomial &b){
 	return a.degree() < b.degree()?a:b;
 }
 
+monomial deg_based_max(const monomial &a, const monomial &b, const monomial &v){
+	return a.degree(v) > b.degree(v)?a:b;
+}
+
+monomial deg_based_min(const monomial &a, const monomial &b, const monomial &v){
+	return a.degree(v) < b.degree(v)?a:b;
+}
+
 polynomial deg_based_max(const polynomial &a, const polynomial &b){
 	return a.degree() > b.degree()?a:b;
 }
 
 polynomial deg_based_min(const polynomial &a, const polynomial &b){
 	return a.degree() < b.degree()?a:b;
+}
+
+polynomial deg_based_max(const polynomial &a, const polynomial &b, const monomial &v){
+	return a.degree(v) > b.degree(v)?a:b;
+}
+
+polynomial deg_based_min(const polynomial &a, const polynomial &b, const monomial &v){
+	return a.degree(v) < b.degree(v)?a:b;
 }
 

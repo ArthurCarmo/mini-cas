@@ -456,6 +456,7 @@ class monomial{
 
 		//monômio unitário semelhante
 		monomial unit() const;
+		monomial & make_unit();
 		
 		monomial content() const;
 		
