@@ -94,7 +94,7 @@ monomial & monomial::operator*=(const monomial &m){
 //potência de um monômio por um número inteiro maior ou igual a zero
 monomial monomial::pow(const num_z &N) const {
 	monomial res(*this);
-	if(N == 0) return monomial();
+	if(N == 0) return monomial(1);
 	res._coefficient = this->_coefficient.pow(N);
 	res._degree *= N;
 	for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
@@ -106,7 +106,7 @@ monomial monomial::pow(const num_z &N) const {
 //operador sobrecarregado para representar a exponenciação (para facilitar a notação)
 monomial monomial::operator^(const num_z &N) const {
 	monomial res(*this);
-	if(N == 0) return monomial();
+	if(N == 0) return monomial(1);
 	res._coefficient = this->_coefficient.pow(N);
 	res._degree *= N;
 	for(std::map<std::string, num_z>::iterator it = res._literals.begin(); it != res._literals.end(); ++it)
@@ -116,7 +116,7 @@ monomial monomial::operator^(const num_z &N) const {
 }
 		
 monomial & monomial::operator^=(const num_z &N){
-	if(N == 0) return *this = monomial();
+	if(N == 0) return *this = monomial(1);
 	this->_coefficient = this->_coefficient.pow(N);
 	this->_degree *= N;
 	for(std::map<std::string, num_z>::iterator it = this->_literals.begin(); it != this->_literals.end(); ++it)

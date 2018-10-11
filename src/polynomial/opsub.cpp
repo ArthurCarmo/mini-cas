@@ -23,9 +23,9 @@ polynomial polynomial::operator-(const polynomial &p) const {
 	
 	while(it != least_terms->_terms.end()){
 		it_res = res._terms.find(*it);
-		if(it_res != most_terms->_terms.end()){
+		if(it_res != res._terms.end()){
 			const_cast<num_q &>(it_res->_coefficient) -= it->_coefficient;
-			if(it_res->_coefficient == 0){
+			if(it_res->_coefficient.is_zero()){
 				res._terms.erase(it_res);
 			}
 		}else{

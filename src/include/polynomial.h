@@ -68,6 +68,7 @@ class polynomial{
 		
 		//A multiplicação por um monômio não deve alterar a ordenação dos termos
 		polynomial & unsafe_atrmul(const monomial &);
+		polynomial & unsafe_atrdiv(const monomial &);
 	
 	public:
 	
@@ -315,7 +316,7 @@ class polynomial{
 		
 		//coeficiente da variável var com grau exatamente deg
 		//ex: para u = (y² + 2y + 2)x² + (y² - 2)x + 3
-		//u.lc(x, 2) = (y² + 2y + 2)
+		//u.lc(x, 2) = y² + 2y + 2
 		//u.lc(x, 0) = 3
 		//u.lc(y, 0) = 2x² - 2x + 3
 		polynomial leading_coefficient(const std::string &, const num_z &) const;
@@ -360,7 +361,7 @@ class polynomial{
 		//algoritmo auxilia o gcd de polinômios com mais de uma variável
 		//o pseudo-quociente s e o pseudo-resto r da divisão de p por q são de forma que
 		//p*u = s*v + r
-		polynomial_tuple pseudo_division(const polynomial &) const;
+		polynomial_tuple pseudo_division(const polynomial &, const monomial &) const;
 };
 
 //tupla para armazenar o quociente e resto das divisões de polinômios

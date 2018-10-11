@@ -134,16 +134,37 @@ polynomial_tuple lc_based_div(const polynomial &u, const polynomial &v){
 	return res;
 }
 
-polynomial_tuple polynomial::pseudo_division(const polynomial &v) const {
+polynomial_tuple polynomial::pseudo_division(const polynomial &v, const monomial &X) const {
 	polynomial_tuple res;
-/*	num_z delta(g_max(this->degree(), v.degree(), num_z(0));
 	polynomial p;
 	polynomial s(*this);
-	while(s.degree() >= v.degree()){
-		p *= v.lc();
-		p += s.lc() * 
+	polynomial v_coef = v.lc(X);
+	polynomial s_coef;
+
+	num_z v_var_deg = v.var_degree(X);
+	num_z s_deg;
+	num_z curr_exp;
+	num_z delta(this->var_degree(X) - v_var_deg);
+	num_z alpha;
 	
+	if(delta.sign()) delta = num_z();
+	while((s_deg = s.var_degree(X)) >= v_var_deg){
+		s_coef = s.lc(X);
+		curr_exp = s_deg - v_var_deg;
+		s_coef.unsafe_atrmul(X.pow(curr_exp));
+		
+		p = p * v_coef + s_coef;
+		s_coef *= v;
+		s = s * v_coef - s_coef;
+
+		++alpha;
+		if(alpha > 5) return res;
 	}
-*/
+	
+	delta -= alpha;
+	v_coef = g_pow(v.lc(X), delta);
+	res.q =  v_coef * p;
+	res.r =  v_coef * s;
+
 	return res;
 }

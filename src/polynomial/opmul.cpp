@@ -63,6 +63,21 @@ polynomial & polynomial::unsafe_atrmul(const monomial &m) {
 	return *this;
 }
 
+polynomial & polynomial::unsafe_atrdiv(const monomial &m) {
+	std::set<monomial, monomial_comp_class>::const_iterator it_this;
+	
+	for(it_this = this->_terms.begin(); it_this != this->_terms.end();){
+		const_cast<monomial &>(*it_this) = *it_this / m;
+		if(it_this->is_null()) {
+			this->_terms.erase(it_this++);
+		}else{
+			 ++it_this;
+		}
+	}
+	
+	return *this;
+}
+
 monomial operator*(const Number &k, const monomial &m){
 	monomial res(m);
 	res *= monomial(k);
