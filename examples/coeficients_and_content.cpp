@@ -34,24 +34,24 @@ int main(){
 	
 	cout << "\nt:\n";
 
-	cout << t.lc("x") << endl;
-	cout << t.lc("y") << endl << endl;
-	cout << t.polynomial_coefficient("x", 2) << endl;	
-	cout << t.polynomial_coefficient("x", 0) << endl;
-	cout << t.polynomial_coefficient("y", 0) << endl;
-	cout << t.polynomial_coefficient(x*y, 0) << endl;
-	cout << t.polynomial_coefficient(x*y, 1) << endl;
-	cout << t.polynomial_coefficient(x*y, 2) << endl;
-	
-//	cout << "\nT:\n" << t.
+	cout << t.lc("x") << endl; //y^2 + 2y + 2
+	cout << t.lc("y") << endl << endl; //x^2 + x
+	cout << t.polynomial_coefficient("x", 2) << endl; // y^2 + 2y + 2
+	cout << t.polynomial_coefficient("x", 0) << endl; // 3
+	cout << t.polynomial_coefficient("y", 0) << endl; // 2x^2 + 2x^2 + xy
+	cout << t.polynomial_coefficient(x*y, 0) << endl; // 2x^2y + xy^2 + 2x^2 - 2x + 3
+	cout << t.polynomial_coefficient(x*y, 1) << endl; // 1
+	cout << t.polynomial_coefficient(x*y, 2) << endl; // 0
 	
 	cout << "\nIsolar coef\n";
 	
-	cout << t.polynomial_coefficient(x) << endl;
-	cout << t.polynomial_coefficient(y) << endl;
-	cout << t.polynomial_coefficient(x*y) << endl;
+	cout << t.polynomial_coefficient(x) << endl; // xy^2 + 2xy + y^2 + 2x - 2
+	cout << t.polynomial_coefficient(y) << endl; // x^2y + 2x^2 + xy
+	cout << t.polynomial_coefficient(x*y) << endl; // x*y + 2x + y
 	
-	cout << "\nMonomial deg\nv:\n" << v.lc(x.pow(2)*y) << "\nt:\n" << t.lc(x*y) << endl;
+	cout << "\nMonomial deg\nv:\n";
+	cout << v.lc(x.pow(2)*y) << endl; //2
+	cout << "t:\n" << t.lc(x*y) << endl; //1
 
 	monomial m(x.pow(3)*y.pow(2));
 	monomial n(x.pow(4)*y.pow(16));
