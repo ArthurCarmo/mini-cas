@@ -1,6 +1,9 @@
 #ifndef __MONONOMIAL_H
 #define __MONONOMIAL_H
 
+#define UNIT_NORMAL         true
+#define NOT_UNIT    false
+
 #include "signatures.h"
 #include "number.h"
 #include "num_z.h"
@@ -20,13 +23,13 @@ class monomial{
 	friend class polynomial;
 	
 	friend std::ostream & operator<<(std::ostream &, const monomial &);
-	friend monomial m_gcd(const monomial &, const monomial &);
+	friend monomial m_gcd(const monomial &, const monomial &, bool);
 	friend monomial subs(monomial &, const std::string &, const monomial &);
 	
 	friend monomial deg_based_max(const monomial &, const monomial &);
 	friend monomial deg_based_min(const monomial &, const monomial &);
-	friend polynomial p_gcd(const polynomial &, const polynomial &);
-	friend polynomial single_var_gcd(const polynomial &, const polynomial &);
+	friend polynomial p_gcd(const polynomial &, const polynomial &, bool);
+	friend polynomial single_var_gcd(const polynomial &, const polynomial &, bool);
 	
 	private:
 		num_q _coefficient;
@@ -467,5 +470,10 @@ extern monomial operator*(const Number &, const monomial &);
 extern monomial operator*(int, const monomial &);
 extern polynomial operator+(int, const monomial &);
 extern polynomial operator-(int, const monomial &);
+
+//forward das funções com argumentos default
+polynomial p_gcd(const polynomial &, const polynomial &, bool = UNIT_NORMAL);
+polynomial single_var_gcd(const polynomial &, const polynomial &, bool = UNIT_NORMAL);
+monomial m_gcd(const monomial &, const monomial &, bool = UNIT_NORMAL);
 
 #endif
