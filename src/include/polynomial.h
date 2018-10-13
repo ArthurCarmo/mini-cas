@@ -19,8 +19,6 @@ class polynomial{
 	friend polynomial_tuple lc_based_div(const polynomial &, const polynomial &);
 	friend polynomial subs(polynomial &, const std::string &, const polynomial &);
 		
-	friend polynomial p_content(const polynomial &);
-	friend polynomial p_content(const polynomial &, const std::string &);
 	friend polynomial deg_based_max(const polynomial &, const polynomial &);
 	friend polynomial deg_based_min(const polynomial &, const polynomial &);
 	friend polynomial deg_based_max(const polynomial &, const polynomial &, const monomial &);
@@ -131,6 +129,7 @@ class polynomial{
 		monomial leading_term() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		monomial leading_coefficient() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		monomial lc() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
+		monomial lm() const { if(this->_terms.size()) return *this->_terms.begin(); return monomial(); }
 		
 		//polynômio dividido pelo coeficiente racional do monômio líder
 		//definido pela monomial_comp_class

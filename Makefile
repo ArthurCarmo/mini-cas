@@ -172,7 +172,7 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/polynomial/monomial_general_ops.lo src/polynomial/opdiv.lo \
 	src/polynomial/opmul.lo src/polynomial/opsub.lo \
 	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
-	src/polynomial/subs.lo
+	src/polynomial/subs.lo src/polynomial/wrappers.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -656,7 +656,8 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/opsub.cpp \
 			src/polynomial/opsum.cpp \
 			src/polynomial/p_gcd.cpp \
-			src/polynomial/subs.cpp 
+			src/polynomial/subs.cpp \
+			src/polynomial/wrappers.cpp
 
 t_basic_CPPFLAGS = -I./src/include
 t_basic_SOURCES = script/basic/t_basic.cpp
@@ -886,6 +887,8 @@ src/polynomial/p_gcd.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 src/polynomial/subs.lo: src/polynomial/$(am__dirstamp) \
 	src/polynomial/$(DEPDIR)/$(am__dirstamp)
+src/polynomial/wrappers.lo: src/polynomial/$(am__dirstamp) \
+	src/polynomial/$(DEPDIR)/$(am__dirstamp)
 
 libminicas.la: $(libminicas_la_OBJECTS) $(libminicas_la_DEPENDENCIES) $(EXTRA_libminicas_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libminicas_la_OBJECTS) $(libminicas_la_LIBADD) $(LIBS)
@@ -1035,6 +1038,7 @@ include src/polynomial/$(DEPDIR)/opsub.Plo
 include src/polynomial/$(DEPDIR)/opsum.Plo
 include src/polynomial/$(DEPDIR)/p_gcd.Plo
 include src/polynomial/$(DEPDIR)/subs.Plo
+include src/polynomial/$(DEPDIR)/wrappers.Plo
 
 .cpp.o:
 	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

@@ -151,15 +151,3 @@ polynomial polynomial::primitive_part(const monomial &var) const {
 	if(this->is_null()) return polynomial();
 	return (*this / this->content(var));
 }
-
-polynomial p_content(const polynomial &u){
-	return u.content();
-}
-
-polynomial p_content(const polynomial &u, const std::string &var){
-	return u.content(var);
-}
-
-polynomial p_content(const polynomial &u, const monomial &var){
-	return u.content(var);
-}
