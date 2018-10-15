@@ -5,7 +5,7 @@ int main(){
 	monomial x('x'), y('y');
 	polynomial p(x^2, -(y^2));
 
-	cout << p << endl;	
+	cout << p << endl;
 	cout << p.eval("x", x.pow(2) + y.pow(0)) << endl;
 	
 	cout << x.eval("x", x.pow(2) + 2*x + y.pow(2), "y", x.pow(2) + 4*x + y) << endl;
