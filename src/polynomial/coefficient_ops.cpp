@@ -11,39 +11,6 @@ polynomial & polynomial::make_unit() {
 	return *this;
 }
 
-polynomial polynomial::polynomial_coefficient(const std::string &var, const num_z &deg) const {
-	polynomial res;
-	std::set<monomial, monomial_comp_class>::const_iterator it;
-	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
-		if(it->has_var_deg(var, deg))
-			res += it->remove(var);
-	
-	return res;
-}
-
-polynomial polynomial::polynomial_coefficient(const monomial &v, const num_z &deg) const {
-	polynomial res;
-	std::set<monomial, monomial_comp_class>::const_iterator it;
-	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
-		if(it->has_var_deg(v, deg))
-			res += it->remove(v);
-	return res;
-}
-
-polynomial polynomial::polynomial_coefficient(const monomial &v) const {
-	polynomial res;
-	monomial next;
-	std::set<monomial, monomial_comp_class>::const_iterator it;
-	for(it = this->_terms.begin(); it != this->_terms.end(); it++)
-		if(!(next = *it / v).is_null())
-			res += next;
-	return res;
-}
-
-polynomial polynomial::polynomial_coefficient(const std::string &var) const {
-	return this->polynomial_coefficient(monomial(var));
-}
-
 polynomial polynomial::leading_coefficient(const std::string &var, const num_z &deg) const {
 	polynomial res;
 	std::set<monomial, monomial_comp_class>::const_iterator it;

@@ -84,12 +84,12 @@ polynomial p_gcd(const polynomial &a, const polynomial &b, bool normalize){
 				return polynomial(1);
 			
 			while(it_a != a._terms.end()){
-				monomial_gcd = m_gcd(*it_a, monomial_gcd, NOT_UNIT);
+				monomial_gcd = m_gcd(*it_a, monomial_gcd, NO_UNIT);
 				++it_a;
 			}
 			
 			while(it_b != b._terms.end()){
-				monomial_gcd = m_gcd(*it_b, monomial_gcd, NOT_UNIT);
+				monomial_gcd = m_gcd(*it_b, monomial_gcd, NO_UNIT);
 				++it_b;
 			}
 			return monomial_gcd;

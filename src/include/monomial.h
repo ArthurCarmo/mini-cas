@@ -2,7 +2,7 @@
 #define __MONONOMIAL_H
 
 #define UNIT_NORMAL         true
-#define NOT_UNIT    false
+#define NO_UNIT            false
 
 #include "signatures.h"
 #include "number.h"

@@ -20,7 +20,6 @@ int main(){
 	cout << u.content(x) << endl;	
 	cout << u.content(y) << endl;
 	cout << u.lc(x*y) << endl;
-	cout << u.polynomial_coefficient(x*y) << endl;
 	
 	polynomial v = (2*y + 2)*x.pow(2) + (y.pow(2) - 2)*x + 3;
 	
@@ -28,7 +27,6 @@ int main(){
 	
 	cout << v.lc("x") << endl;
 	cout << v.lc("y") << endl;
-	cout << v.polynomial_coefficient("x", 2) << endl;
 	
 	polynomial t = (y.pow(2) + 2*y + 2)*x.pow(2) + (y.pow(2) - 2)*x + 3;
 	
@@ -36,19 +34,7 @@ int main(){
 
 	cout << t.lc("x") << endl; //y^2 + 2y + 2
 	cout << t.lc("y") << endl << endl; //x^2 + x
-	cout << t.polynomial_coefficient("x", 2) << endl; // y^2 + 2y + 2
-	cout << t.polynomial_coefficient("x", 0) << endl; // 3
-	cout << t.polynomial_coefficient("y", 0) << endl; // 2x^2 + 2x^2 + xy
-	cout << t.polynomial_coefficient(x*y, 0) << endl; // 2x^2y + xy^2 + 2x^2 - 2x + 3
-	cout << t.polynomial_coefficient(x*y, 1) << endl; // 1
-	cout << t.polynomial_coefficient(x*y, 2) << endl; // 0
-	
-	cout << "\nIsolar coef\n";
-	
-	cout << t.polynomial_coefficient(x) << endl; // xy^2 + 2xy + y^2 + 2x - 2
-	cout << t.polynomial_coefficient(y) << endl; // x^2y + 2x^2 + xy
-	cout << t.polynomial_coefficient(x*y) << endl; // x*y + 2x + y
-	
+
 	cout << "\nMonomial deg\nv:\n";
 	cout << v.lc(x.pow(2)*y) << endl; //2
 	cout << "t:\n" << t.lc(x*y) << endl; //1
