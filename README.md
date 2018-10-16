@@ -29,7 +29,7 @@ E executar o configure e make para instalação (make pode precisar de acesso de
 ./configure --prefix=${MINICAS_DIR}
 make check install
 ```
-## Compilação 
+## Uso
 O cabeçalho a ser incluído no programa é
 ```
 #include <mini-cas>
