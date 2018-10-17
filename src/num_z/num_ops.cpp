@@ -1,3 +1,24 @@
+/*
+ * Integer class general operations
+ * square root
+ * greatest common divisor
+ * least common multiple
+ * power by another integer
+ * functions to aid division operator overload's file readability
+ *
+ * Greatest common divisor algorithm is Lehmer's gcd algorithm
+ * guess_quotient and overstep_quotient functions are from
+ * Donald Knuth's integer divison algorithm from
+ * The Art of Computer Programming, vol. 2: Seminumerical Algorithms
+ *
+ * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; version 3
+ * of the License.
+ */
+ 
 #include "../include/num_z.h"
 
 //SQRT
