@@ -1,4 +1,4 @@
-#include "../src/include/mini-cas"
+#include <mini-cas>
 using namespace std;
 
 int main(){
