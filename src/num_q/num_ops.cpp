@@ -16,6 +16,7 @@ num_q num_q::pow(const num_z &N) const {
 	num_q p(*this);
 	num_z aux(N.abs());
 	
+	p._sign = p._sign && N.odd();
 	p._numerator = p._numerator.pow(aux);
 	p._denominator = p._denominator.pow(aux);
 	
