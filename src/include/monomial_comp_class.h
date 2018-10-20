@@ -2,6 +2,9 @@
  * Possible compare functions to determine the ordering of monomials 
  * in the polynomial class
  *
+ * All the compare functions are described here:
+ * https://en.wikipedia.org/wiki/Monomial_order
+ *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
