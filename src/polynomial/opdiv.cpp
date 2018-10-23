@@ -162,7 +162,7 @@ polynomial_tuple polynomial::pseudo_division(const polynomial &v, const monomial
 	num_z s_deg;
 	num_z curr_exp;
 	num_z delta(this->var_degree(X) - v_var_deg);
-	num_z alpha;
+	num_z sigma;
 	
 	if(delta.sign()) delta = num_z();
 	while((s_deg = s.var_degree(X)) >= v_var_deg){
@@ -174,11 +174,11 @@ polynomial_tuple polynomial::pseudo_division(const polynomial &v, const monomial
 		s_coef *= v;
 		s = s * v_coef - s_coef;
 
-		++alpha;
-		if(alpha > 5) return res;
+		++sigma;
+		if(sigma > 5) return res;
 	}
 	
-	delta -= alpha;
+	delta -= sigma;
 	v_coef = g_pow(v.lc(X), delta);
 	res.q =  v_coef * p;
 	res.r =  v_coef * s;
