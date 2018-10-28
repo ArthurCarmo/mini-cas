@@ -26,7 +26,7 @@ num_z & num_z::operator*=(const num_z &a){
 	uint32_t i, j, m, n;
 	unsigned long long k;
 	unsigned long long t;
-	num_z res(uint32_t(0));
+	num_z res;
 	
 	m = a._blocks;
 	n = this->_blocks;
