@@ -36,6 +36,15 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/opsum.cpp \
 			src/num_z/private_ops.cpp \
 			src/num_z/unary_ops.cpp \
+			src/num_zm/num_zm.cpp \
+			src/num_zm/attrib.cpp \
+			src/num_zm/bool.cpp \
+			src/num_zm/io.cpp \
+			src/num_zm/num_ops.cpp \
+			src/num_zm/opdiv.cpp \
+			src/num_zm/opmul.cpp \
+			src/num_zm/opsub.cpp \
+			src/num_zm/opsum.cpp \
 			src/num_q/num_q.cpp \
 			src/num_q/attrib.cpp \
 			src/num_q/bool.cpp \

@@ -18,6 +18,7 @@
 
 #include "number.h"
 #include "num_z.h"
+#include "num_zm.h"
 
 	class num_q : public Number{
 		
@@ -48,6 +49,7 @@
 			
 			num_q & value() { return *this; };
 			num_z z_value() const { return num_z(*this); };
+			num_zm zm_value(const num_z &a) const { return num_zm(a, this->_numerator / this->_denominator); };
 			num_q q_value() const { return *this; };
 
 

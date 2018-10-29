@@ -158,12 +158,15 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/num_z/op_atrsub.lo src/num_z/op_atrsum.lo \
 	src/num_z/opdiv.lo src/num_z/opmod.lo src/num_z/opmul.lo \
 	src/num_z/opsub.lo src/num_z/opsum.lo src/num_z/private_ops.lo \
-	src/num_z/unary_ops.lo src/num_q/num_q.lo src/num_q/attrib.lo \
-	src/num_q/bool.lo src/num_q/io.lo src/num_q/num_ops.lo \
-	src/num_q/op_atrdiv.lo src/num_q/op_atrmul.lo \
-	src/num_q/op_atrsub.lo src/num_q/op_atrsum.lo \
-	src/num_q/opdiv.lo src/num_q/opmul.lo src/num_q/opsub.lo \
-	src/num_q/opsum.lo src/polynomial/attrib.lo \
+	src/num_z/unary_ops.lo src/num_zm/num_zm.lo \
+	src/num_zm/attrib.lo src/num_zm/bool.lo src/num_zm/io.lo \
+	src/num_zm/num_ops.lo src/num_zm/opdiv.lo src/num_zm/opmul.lo \
+	src/num_zm/opsub.lo src/num_zm/opsum.lo src/num_q/num_q.lo \
+	src/num_q/attrib.lo src/num_q/bool.lo src/num_q/io.lo \
+	src/num_q/num_ops.lo src/num_q/op_atrdiv.lo \
+	src/num_q/op_atrmul.lo src/num_q/op_atrsub.lo \
+	src/num_q/op_atrsum.lo src/num_q/opdiv.lo src/num_q/opmul.lo \
+	src/num_q/opsub.lo src/num_q/opsum.lo src/polynomial/attrib.lo \
 	src/polynomial/bool.lo src/polynomial/coefficient_ops.lo \
 	src/polynomial/degree_ops.lo \
 	src/polynomial/content_and_primitive_part.lo \
@@ -629,6 +632,15 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/opsum.cpp \
 			src/num_z/private_ops.cpp \
 			src/num_z/unary_ops.cpp \
+			src/num_zm/num_zm.cpp \
+			src/num_zm/attrib.cpp \
+			src/num_zm/bool.cpp \
+			src/num_zm/io.cpp \
+			src/num_zm/num_ops.cpp \
+			src/num_zm/opdiv.cpp \
+			src/num_zm/opmul.cpp \
+			src/num_zm/opsub.cpp \
+			src/num_zm/opsum.cpp \
 			src/num_q/num_q.cpp \
 			src/num_q/attrib.cpp \
 			src/num_q/bool.cpp \
@@ -816,6 +828,30 @@ src/num_z/private_ops.lo: src/num_z/$(am__dirstamp) \
 	src/num_z/$(DEPDIR)/$(am__dirstamp)
 src/num_z/unary_ops.lo: src/num_z/$(am__dirstamp) \
 	src/num_z/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/$(am__dirstamp):
+	@$(MKDIR_P) src/num_zm
+	@: > src/num_zm/$(am__dirstamp)
+src/num_zm/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/num_zm/$(DEPDIR)
+	@: > src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/num_zm.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/attrib.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/bool.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/io.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/num_ops.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/opdiv.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/opmul.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/opsub.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
+src/num_zm/opsum.lo: src/num_zm/$(am__dirstamp) \
+	src/num_zm/$(DEPDIR)/$(am__dirstamp)
 src/num_q/$(am__dirstamp):
 	@$(MKDIR_P) src/num_q
 	@: > src/num_q/$(am__dirstamp)
@@ -977,6 +1013,8 @@ mostlyclean-compile:
 	-rm -f src/num_q/*.lo
 	-rm -f src/num_z/*.$(OBJEXT)
 	-rm -f src/num_z/*.lo
+	-rm -f src/num_zm/*.$(OBJEXT)
+	-rm -f src/num_zm/*.lo
 	-rm -f src/polynomial/*.$(OBJEXT)
 	-rm -f src/polynomial/*.lo
 
@@ -1023,6 +1061,15 @@ include src/num_z/$(DEPDIR)/opsub.Plo
 include src/num_z/$(DEPDIR)/opsum.Plo
 include src/num_z/$(DEPDIR)/private_ops.Plo
 include src/num_z/$(DEPDIR)/unary_ops.Plo
+include src/num_zm/$(DEPDIR)/attrib.Plo
+include src/num_zm/$(DEPDIR)/bool.Plo
+include src/num_zm/$(DEPDIR)/io.Plo
+include src/num_zm/$(DEPDIR)/num_ops.Plo
+include src/num_zm/$(DEPDIR)/num_zm.Plo
+include src/num_zm/$(DEPDIR)/opdiv.Plo
+include src/num_zm/$(DEPDIR)/opmul.Plo
+include src/num_zm/$(DEPDIR)/opsub.Plo
+include src/num_zm/$(DEPDIR)/opsum.Plo
 include src/polynomial/$(DEPDIR)/attrib.Plo
 include src/polynomial/$(DEPDIR)/bool.Plo
 include src/polynomial/$(DEPDIR)/coefficient_ops.Plo
@@ -1183,6 +1230,7 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf src/num_q/.libs src/num_q/_libs
 	-rm -rf src/num_z/.libs src/num_z/_libs
+	-rm -rf src/num_zm/.libs src/num_zm/_libs
 	-rm -rf src/polynomial/.libs src/polynomial/_libs
 
 distclean-libtool:
@@ -1773,6 +1821,8 @@ distclean-generic:
 	-rm -f src/num_q/$(am__dirstamp)
 	-rm -f src/num_z/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/num_z/$(am__dirstamp)
+	-rm -f src/num_zm/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/num_zm/$(am__dirstamp)
 	-rm -f src/polynomial/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/polynomial/$(am__dirstamp)
 
@@ -1786,7 +1836,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libLTLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/polynomial/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -1834,7 +1884,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/polynomial/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

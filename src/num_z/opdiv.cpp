@@ -14,6 +14,7 @@
 
 #include "../include/num_z.h"
 #include "../include/num_q.h"
+#include <algorithm>
 
 div_tuple num_z::operator/(const num_z &a) const { 
 	div_tuple res;	

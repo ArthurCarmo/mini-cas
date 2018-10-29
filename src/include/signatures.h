@@ -14,6 +14,7 @@
 
 class Number;
 class num_z;
+class num_zm;
 class num_q;
 
 class q_vector;	   //	Vão ser implementadas ...
@@ -32,9 +33,6 @@ class symbol;
 struct div_tuple;
 struct mod_tuple;
 struct polynomial_tuple;
-
-template<long long N> 
-class num_zm;
 
 #endif
 

@@ -167,7 +167,7 @@ num_z z_pow(const num_z &a, const num_z &N){
 }
 
 //BITSHIFT
-void num_z::__bit_lshift(){
+void num_z::__bit_rshift(){
 	uint32_t i, n = this->_blocks - 1;
 	for(i = 0; i < n; i++){
 		this->_num[i] >>= 1;

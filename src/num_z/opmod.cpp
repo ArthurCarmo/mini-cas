@@ -13,6 +13,7 @@
  */
 
 #include "../include/num_z.h"
+#include <algorithm>
 
 mod_tuple num_z::operator%(const num_z &a) const {
 	mod_tuple res;	

@@ -3,14 +3,14 @@
 int main(){
 	num_z a, b;
 	num_q qa, qb;
-	num_zm<7> c(25);
-	num_zm<-9> d("22");
+	num_zm c(7, 25);
+	num_zm d(-9, "22");
 	
 	num_z e("0xff");
 	num_z f("0b1110");
 
-	num_zm<-11> g(-23);
-	num_zm<23> h("99");
+	num_zm g(-11, -23);
+	num_zm h(23, "99");
 	
 //	std::cout << e << " " << f << " " << (num_z(255) == num_z("0b11111111")) << "\n\n";
 

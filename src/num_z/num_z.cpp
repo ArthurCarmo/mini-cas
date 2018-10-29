@@ -11,8 +11,10 @@
 
 
 #include "../include/num_z.h"
+#include "../include/num_zm.h"
 #include "../include/num_q.h"
 
+#include <cstdlib>
 #include <cstring>
 
 num_z::num_z(){
@@ -28,7 +30,8 @@ num_z::num_z(){
 
 //------ CONVERTER -------------
 
-num_q num_z::q_value() const { return num_q(*this); };
+num_zm num_z::zm_value(const num_z &a) const { return num_zm(a, *this); }
+num_q num_z::q_value() const { return num_q(*this); }
 
 //----COPY CONSTRUCTORS---------
 

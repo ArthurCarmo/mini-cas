@@ -6,7 +6,7 @@ int main(){
 	Number **my_vector = new Number * [3];
 
 	my_vector[0] = new num_z("18446744073709551616");
-	my_vector[1] = new num_zm<7>(24);
+	my_vector[1] = new num_zm(7, 24);
 	my_vector[2] = new num_q(2, 6);
 
 	for(int i = 0; i < 3; i++)

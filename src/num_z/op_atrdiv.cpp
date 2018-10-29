@@ -14,6 +14,7 @@
  
 #include "../include/num_z.h"
 #include "../include/num_q.h"
+#include <algorithm>
 
 num_z & num_z::operator/=(const num_z &a){
 	num_z m(*this, this->_blocks + 1), n(a), parc_m(0, this->_blocks + 1), parc_n(0, a._blocks);

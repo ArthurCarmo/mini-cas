@@ -22,18 +22,13 @@
 #define HEX 1
 #define BIN 2
 
-#include <cstdio>
-#include <cstdlib>
-
 #include <iosfwd>
 #include <string>
-#include <algorithm>
 
 #include "number.h"
 	
 	class num_z : public Number{
 
-		template <long long N>
 		friend class num_zm;
 		friend class num_q;
 
@@ -62,7 +57,7 @@
 			void __left_shift(uint32_t);
 			void __right_shift();
 			void __right_shift(uint32_t);
-			void __bit_lshift();
+			void __bit_rshift();
 			
 			std::ostream & display() const { return std::cout << *this; };
 			
@@ -87,6 +82,7 @@
 
 			num_z & value() { return *this; };
 			num_z z_value() const { return *this; };
+			num_zm zm_value(const num_z &) const;
 			num_q q_value() const;
 
 			num_z abs() const;

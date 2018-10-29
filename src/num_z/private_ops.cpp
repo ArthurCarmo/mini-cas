@@ -11,6 +11,7 @@
 
 
 #include "../include/num_z.h"
+#include <cstdlib>
 
 void num_z::__left_shift(){
 	if(this->_num[this->_blocks - 1] > _MAX_NO_CARRY_ON_SHIFT_ ){ 
