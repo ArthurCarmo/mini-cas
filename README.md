@@ -53,3 +53,4 @@ ou
 ```
 LD_LIBRARY_PATH=${MINICAS_DIR}/lib:$LD_LIBRARY_PATH ./exemplo
 ```
+
