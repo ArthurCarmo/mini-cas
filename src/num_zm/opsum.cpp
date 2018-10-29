@@ -69,10 +69,10 @@ num_zm & num_zm::operator+=(const num_zm &a){
 	if(this->_base == a._base){
 		this->_num += a._num;
 		if(this->_base._sign){
-			if(this->_num <= this->_base){
+			if(!this->_num.is_zero() && this->_num <= this->_base){
 				this->_num -= this->_base;
 			}
-		}else if(this->_num >= this->_base){
+		}else if(!this->_num.is_zero() && this->_num >= this->_base){
 			this->_num -= this->_base;
 		}
 		this->_valid &= a._valid;
