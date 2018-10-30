@@ -28,6 +28,10 @@ num_z & num_z::operator/=(const num_z &a){
 	n._sign = 0;
 	size_q = this->_blocks - a._blocks + 1;
 	
+	if(this->is_zero()){
+		return *this;
+	}
+	
 	//Dividendo > divisor
 	if(this->abs_lt(a)){
 		return (*this = 0);

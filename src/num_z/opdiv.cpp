@@ -29,6 +29,10 @@ div_tuple num_z::operator/(const num_z &a) const {
 	n._sign = 0;
 	size_q = this->_blocks - a._blocks + 1;
 	
+	if(this->is_zero()){
+		return res;
+	}
+	
 	//Dividendo > divisor
 	if(this->abs_lt(a)){
 		res.r = *this;

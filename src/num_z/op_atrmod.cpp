@@ -26,6 +26,10 @@ num_z & num_z::operator%=(const num_z &a){
 	m._sign = 0;
 	n._sign = 0;
 	
+	if(this->is_zero()){
+		return *this;
+	}
+	
 	//Dividendo -1, 0 ou 1
 	if(a == (uint32_t)0) { int k = 0; printf("%d", 1 / k); }
 	if(a == (uint32_t)1){
