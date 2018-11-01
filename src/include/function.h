@@ -1,5 +1,6 @@
 /*
- * Main include file	
+ * Header for the Function abstract class
+ * All other function classes inherit from this one
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -9,26 +10,18 @@
  * of the License.
  */
 
-#ifndef __MINI_CAS_H__
-#define __MINI_CAS_H__
+#ifndef __FUNCTION_H_
+#define __FUNCTION_H_
 
-#include "number.h"
-#include "num_z.h"
-#include "num_zm.h"
-#include "num_q.h"
+#include <iosfwd>
 
-#include "monomial.h"
-#include "polynomial.h"
-
+#include "signatures.h"
 #include "term.h"
-#include "function.h"
-#include "sqrt.h"
-#include "sin.h"
-#include "cos.h"
-#include "tg.h"
-#include "exp.h"
 #include "Expr.h"
 
-#include "template_ops.h"
+class function {
+	private:
+		Expr * _arguments;
+};
 
 #endif

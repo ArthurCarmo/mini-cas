@@ -155,7 +155,13 @@ script/polynomials/t_polynomial_div-t_polynomial_div.o: \
  script/polynomials/../../src/include/monomial_comp_class.h \
  script/polynomials/../../src/include/template_ops.h \
  script/polynomials/../../src/include/term.h \
- script/polynomials/../../src/include/symbol.h /usr/include/c++/7/sstream \
+ script/polynomials/../../src/include/function.h \
+ script/polynomials/../../src/include/Expr.h \
+ script/polynomials/../../src/include/sqrt.h \
+ script/polynomials/../../src/include/sin.h \
+ script/polynomials/../../src/include/cos.h \
+ script/polynomials/../../src/include/tg.h \
+ script/polynomials/../../src/include/exp.h /usr/include/c++/7/sstream \
  /usr/include/c++/7/bits/sstream.tcc
 
 /usr/include/stdc-predef.h:
@@ -548,7 +554,19 @@ script/polynomials/../../src/include/template_ops.h:
 
 script/polynomials/../../src/include/term.h:
 
-script/polynomials/../../src/include/symbol.h:
+script/polynomials/../../src/include/function.h:
+
+script/polynomials/../../src/include/Expr.h:
+
+script/polynomials/../../src/include/sqrt.h:
+
+script/polynomials/../../src/include/sin.h:
+
+script/polynomials/../../src/include/cos.h:
+
+script/polynomials/../../src/include/tg.h:
+
+script/polynomials/../../src/include/exp.h:
 
 /usr/include/c++/7/sstream:
 

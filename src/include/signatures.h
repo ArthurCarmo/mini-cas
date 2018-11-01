@@ -27,8 +27,13 @@ class grevlex;
 class monomial_comp_class;
 
 class polynomial;
-class term;  
-class symbol;
+class term;
+class function;
+class sqrt;
+class sin;
+class cos;
+class exp;
+class Expr;
 
 struct div_tuple;
 struct mod_tuple;

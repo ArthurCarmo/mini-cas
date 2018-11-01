@@ -1,5 +1,5 @@
 /*
- * Header for the main symbolic class
+ * Header for the tanget function class
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -9,11 +9,22 @@
  * of the License.
  */
 
-#ifndef __SYMBOL_H_
-#define __SYMBOL_H_
+#ifndef __TANGENT_H_
+#define __TANGENT_H_
 
-class symbol {
+#include <iosfwd>
 
+#include "signatures.h"
+#include "function.h"
+
+class tg : function {
+	private:
+	
+	public:
+		tg();
+		tg(const tg &);
+		tg(const Expr &);
+		~tg();
 };
 
 #endif

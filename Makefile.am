@@ -13,7 +13,13 @@ include_HEADERS = src/include/mini-cas \
 		src/include/monomial_comp_class.h \
 		src/include/polynomial.h \
 		src/include/term.h \
-		src/include/symbol.h \
+		src/include/function.h \
+		src/include/sqrt.h \
+		src/include/sin.h \
+		src/include/cos.h \
+		src/include/tg.h \
+		src/include/exp.h \
+		src/include/Expr.h \
 		src/include/template_ops.h \
 		src/include/signatures.h
 
