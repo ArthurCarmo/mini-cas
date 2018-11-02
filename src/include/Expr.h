@@ -17,10 +17,12 @@
 #include "signatures.h"
 #include "term.h"
 
+#define _CAS_BASIC_  0
 #define _CAS_OP_SUM_ 1
 #define _CAS_OP_SUB_ 2
 #define _CAS_OP_MUL_ 3
 #define _CAS_OP_DIV_ 4
+#define _CAS_OP_POW_ 5
 
 class Expr {
 	
@@ -35,8 +37,10 @@ class Expr {
 		Expr (const Number &);
 		Expr (const monomial &);
 		Expr (const polynomial &);
+		Expr (const function &);
 		Expr (const term &);
 		Expr (const Expr &);
+		~Expr ();
 };
 
 #endif

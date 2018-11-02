@@ -20,8 +20,13 @@
 #include "Expr.h"
 
 class function {
-	private:
+	friend class term;
+
+	protected:
 		Expr * _arguments;
+		virtual function * __copy_construct() const = 0;
+	public:
+		virtual ~function () { };
 };
 
 #endif

@@ -19,10 +19,15 @@
 
 class exp : function {
 	private:
-	
+		function * __copy_construct() const;
 	public:
-		exp();
-		exp(const Expr &);
+		exp (int);
+		exp (const Number &);
+		exp (const monomial &);
+		exp (const polynomial &);
+		exp (const function &);
+		exp (const term &);
+		exp (const Expr &);
 		~exp();
 };
 

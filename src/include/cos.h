@@ -19,11 +19,15 @@
 
 class cos : function {
 	private:
-	
+		function * __copy_construct() const;
 	public:
-		cos();
-		cos(const cos &);
-		cos(const Expr &);
+		cos (int);
+		cos (const Number &);
+		cos (const monomial &);
+		cos (const polynomial &);
+		cos (const function &);
+		cos (const term &);
+		cos (const Expr &);
 		~cos();
 };
 

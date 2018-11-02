@@ -16,6 +16,7 @@
 #include <iosfwd>
 
 #include "signatures.h"
+#include "polynomial.h"
 #include "function.h"
 #include "Expr.h"
 
@@ -32,6 +33,7 @@ class term {
 		term (const polynomial &);
 		term (const function &);
 		term (const term &);
+		~term ();
 };
 
 #endif

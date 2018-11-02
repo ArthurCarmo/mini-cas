@@ -19,11 +19,15 @@
 
 class sin : function {
 	private:
-	
+		function * __copy_construct() const;
 	public:
-		sin();
-		sin(const sin &);
-		sin(const Expr &);
+		sin (int);
+		sin (const Number &);
+		sin (const monomial &);
+		sin (const polynomial &);
+		sin (const function &);
+		sin (const term &);
+		sin (const Expr &);
 		~sin();
 };
 

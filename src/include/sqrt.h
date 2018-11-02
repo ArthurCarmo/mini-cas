@@ -19,11 +19,15 @@
 
 class sqrt : function {
 	private:
-	
+		function * __copy_construct() const;
 	public:
-		sqrt();
-		sqrt(const sqrt &);
-		sqrt(const Expr &);
+		sqrt (int);
+		sqrt (const Number &);
+		sqrt (const monomial &);
+		sqrt (const polynomial &);
+		sqrt (const function &);
+		sqrt (const term &);
+		sqrt (const Expr &);
 		~sqrt();
 };
 

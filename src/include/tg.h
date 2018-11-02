@@ -19,11 +19,15 @@
 
 class tg : function {
 	private:
-	
+		function * __copy_construct() const;
 	public:
-		tg();
-		tg(const tg &);
-		tg(const Expr &);
+		tg (int);
+		tg (const Number &);
+		tg (const monomial &);
+		tg (const polynomial &);
+		tg (const function &);
+		tg (const term &);
+		tg (const Expr &);
 		~tg();
 };
 

@@ -79,7 +79,14 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/opsum.cpp \
 			src/polynomial/p_gcd.cpp \
 			src/polynomial/subs.cpp \
-			src/polynomial/wrappers.cpp
+			src/polynomial/wrappers.cpp \
+			src/symbolic/Expr/Expr.cpp \
+			src/symbolic/term/term.cpp \
+			src/symbolic/functions/tg/tg.cpp \
+			src/symbolic/functions/cos/cos.cpp \
+			src/symbolic/functions/sin/sin.cpp \
+			src/symbolic/functions/exp/exp.cpp \
+			src/symbolic/functions/sqrt/sqrt.cpp
 
 check_PROGRAMS = t_basic t_monomials t_monomial_pow t_grades t_polynomials t_polynomial_derive t_polynomial_eval t_polynomial_div
 
