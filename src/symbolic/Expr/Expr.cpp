@@ -78,6 +78,11 @@ Expr::Expr (const Expr &E) {
 
 Expr::~Expr () {
 	if(this->_left_side != NULL)   delete this->_left_side;
+	this->_left_side = NULL;
 	if(this->_right_side != NULL)  delete this->_right_side;
+	this->_right_side = NULL;
 	if(this->_basic_value != NULL) delete this->_basic_value;
+	this->_basic_value = NULL;
 }
+
+bool Expr::is_number() const { return this->_op_id == _CAS_BASIC_ && this->_basic_value->is_number(); }

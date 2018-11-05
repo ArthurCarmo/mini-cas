@@ -22,6 +22,8 @@
 
 class term {
 	
+	friend std::ostream & operator<<(std::ostream &, const term &);
+	
 	private:
 		polynomial _basic_term;
 		function * _function;
@@ -34,6 +36,8 @@ class term {
 		term (const function &);
 		term (const term &);
 		~term ();
+		
+		bool is_number() const { return this->_function == NULL && this->_basic_term.is_constant(); }
 };
 
 #endif

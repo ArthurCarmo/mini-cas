@@ -40,16 +40,17 @@ term::term (const polynomial &p) {
 
 term::term (const function &F) {
 	this->_basic_term = 1;
-	this->_function = F.__copy_construct ();
+	this->_function = new function(F);
 }
 
 term::term (const term &T) {
 	this->_basic_term = T._basic_term;
 	if(T._function == NULL) this->_function = NULL;
-	else this->_function = T._function->__copy_construct();
+	else this->_function = new function(*T._function);
 }
 
 term::~term () {
 	if(this->_function != NULL) delete this->_function;
+	this->_function = NULL;
 }
 

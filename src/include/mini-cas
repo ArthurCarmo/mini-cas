@@ -22,13 +22,9 @@
 
 #include "term.h"
 #include "function.h"
-#include "sqrt.h"
-#include "sin.h"
-#include "cos.h"
-#include "tg.h"
-#include "exp.h"
 #include "Expr.h"
 
 #include "template_ops.h"
+#include "extern_declarations.h"
 
 #endif

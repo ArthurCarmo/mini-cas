@@ -156,12 +156,8 @@ script/polynomials/t_grades-t_grade.o: script/polynomials/t_grade.cpp \
  script/polynomials/../../src/include/term.h \
  script/polynomials/../../src/include/function.h \
  script/polynomials/../../src/include/Expr.h \
- script/polynomials/../../src/include/sqrt.h \
- script/polynomials/../../src/include/sin.h \
- script/polynomials/../../src/include/cos.h \
- script/polynomials/../../src/include/tg.h \
- script/polynomials/../../src/include/exp.h /usr/include/c++/7/sstream \
- /usr/include/c++/7/bits/sstream.tcc
+ script/polynomials/../../src/include/extern_declarations.h \
+ /usr/include/c++/7/sstream /usr/include/c++/7/bits/sstream.tcc
 
 /usr/include/stdc-predef.h:
 
@@ -557,15 +553,7 @@ script/polynomials/../../src/include/function.h:
 
 script/polynomials/../../src/include/Expr.h:
 
-script/polynomials/../../src/include/sqrt.h:
-
-script/polynomials/../../src/include/sin.h:
-
-script/polynomials/../../src/include/cos.h:
-
-script/polynomials/../../src/include/tg.h:
-
-script/polynomials/../../src/include/exp.h:
+script/polynomials/../../src/include/extern_declarations.h:
 
 /usr/include/c++/7/sstream:
 

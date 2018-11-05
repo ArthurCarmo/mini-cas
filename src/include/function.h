@@ -14,19 +14,26 @@
 #define __FUNCTION_H_
 
 #include <iosfwd>
+#include <string>
 
 #include "signatures.h"
 #include "term.h"
 #include "Expr.h"
 
 class function {
+	
 	friend class term;
-
+	friend std::ostream & operator<<(std::ostream &, const function &);
+	
 	protected:
+		std::string _name;
 		Expr * _arguments;
-		virtual function * __copy_construct() const = 0;
+		
 	public:
-		virtual ~function () { };
+		function ();
+		function (const function &);
+		function (const std::string &, const Expr &);
+		~function ();
 };
 
 #endif

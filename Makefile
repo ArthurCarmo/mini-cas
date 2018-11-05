@@ -176,12 +176,12 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/polynomial/opmul.lo src/polynomial/opsub.lo \
 	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
 	src/polynomial/subs.lo src/polynomial/wrappers.lo \
-	src/symbolic/Expr/Expr.lo src/symbolic/term/term.lo \
-	src/symbolic/functions/tg/tg.lo \
-	src/symbolic/functions/cos/cos.lo \
-	src/symbolic/functions/sin/sin.lo \
-	src/symbolic/functions/exp/exp.lo \
-	src/symbolic/functions/sqrt/sqrt.lo
+	src/symbolic/Expr/Expr.lo src/symbolic/Expr/io.lo \
+	src/symbolic/term/term.lo src/symbolic/term/io.lo \
+	src/symbolic/functions/function.lo \
+	src/symbolic/functions/io.lo src/symbolic/functions/tg.lo \
+	src/symbolic/functions/cos.lo src/symbolic/functions/sin.lo \
+	src/symbolic/functions/exp.lo src/symbolic/functions/sqrt.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -616,14 +616,10 @@ include_HEADERS = src/include/mini-cas \
 		src/include/polynomial.h \
 		src/include/term.h \
 		src/include/function.h \
-		src/include/sqrt.h \
-		src/include/sin.h \
-		src/include/cos.h \
-		src/include/tg.h \
-		src/include/exp.h \
 		src/include/Expr.h \
 		src/include/template_ops.h \
-		src/include/signatures.h
+		src/include/signatures.h \
+		src/include/extern_declarations.h
 
 libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/abs_bool.cpp \
@@ -683,12 +679,16 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/subs.cpp \
 			src/polynomial/wrappers.cpp \
 			src/symbolic/Expr/Expr.cpp \
+			src/symbolic/Expr/io.cpp \
 			src/symbolic/term/term.cpp \
-			src/symbolic/functions/tg/tg.cpp \
-			src/symbolic/functions/cos/cos.cpp \
-			src/symbolic/functions/sin/sin.cpp \
-			src/symbolic/functions/exp/exp.cpp \
-			src/symbolic/functions/sqrt/sqrt.cpp
+			src/symbolic/term/io.cpp \
+			src/symbolic/functions/function.cpp \
+			src/symbolic/functions/io.cpp \
+			src/symbolic/functions/tg.cpp \
+			src/symbolic/functions/cos.cpp \
+			src/symbolic/functions/sin.cpp \
+			src/symbolic/functions/exp.cpp \
+			src/symbolic/functions/sqrt.cpp
 
 t_basic_CPPFLAGS = -I./src/include
 t_basic_SOURCES = script/basic/t_basic.cpp
@@ -952,6 +952,8 @@ src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp):
 	@: > src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/Expr.lo: src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/io.lo: src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/term/$(am__dirstamp):
 	@$(MKDIR_P) src/symbolic/term
 	@: > src/symbolic/term/$(am__dirstamp)
@@ -960,51 +962,30 @@ src/symbolic/term/$(DEPDIR)/$(am__dirstamp):
 	@: > src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/term/term.lo: src/symbolic/term/$(am__dirstamp) \
 	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/tg/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/tg
-	@: > src/symbolic/functions/tg/$(am__dirstamp)
-src/symbolic/functions/tg/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/tg/$(DEPDIR)
-	@: > src/symbolic/functions/tg/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/tg/tg.lo:  \
-	src/symbolic/functions/tg/$(am__dirstamp) \
-	src/symbolic/functions/tg/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/cos/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/cos
-	@: > src/symbolic/functions/cos/$(am__dirstamp)
-src/symbolic/functions/cos/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/cos/$(DEPDIR)
-	@: > src/symbolic/functions/cos/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/cos/cos.lo:  \
-	src/symbolic/functions/cos/$(am__dirstamp) \
-	src/symbolic/functions/cos/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sin/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/sin
-	@: > src/symbolic/functions/sin/$(am__dirstamp)
-src/symbolic/functions/sin/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/sin/$(DEPDIR)
-	@: > src/symbolic/functions/sin/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sin/sin.lo:  \
-	src/symbolic/functions/sin/$(am__dirstamp) \
-	src/symbolic/functions/sin/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/exp/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/exp
-	@: > src/symbolic/functions/exp/$(am__dirstamp)
-src/symbolic/functions/exp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/exp/$(DEPDIR)
-	@: > src/symbolic/functions/exp/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/exp/exp.lo:  \
-	src/symbolic/functions/exp/$(am__dirstamp) \
-	src/symbolic/functions/exp/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sqrt/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/sqrt
-	@: > src/symbolic/functions/sqrt/$(am__dirstamp)
-src/symbolic/functions/sqrt/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/symbolic/functions/sqrt/$(DEPDIR)
-	@: > src/symbolic/functions/sqrt/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sqrt/sqrt.lo:  \
-	src/symbolic/functions/sqrt/$(am__dirstamp) \
-	src/symbolic/functions/sqrt/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/term/io.lo: src/symbolic/term/$(am__dirstamp) \
+	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/$(am__dirstamp):
+	@$(MKDIR_P) src/symbolic/functions
+	@: > src/symbolic/functions/$(am__dirstamp)
+src/symbolic/functions/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/symbolic/functions/$(DEPDIR)
+	@: > src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/function.lo:  \
+	src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/io.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/tg.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/cos.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/sin.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/exp.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/sqrt.lo:  \
+	src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 
 libminicas.la: $(libminicas_la_OBJECTS) $(libminicas_la_DEPENDENCIES) $(EXTRA_libminicas_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libminicas_la_OBJECTS) $(libminicas_la_LIBADD) $(LIBS)
@@ -1099,16 +1080,8 @@ mostlyclean-compile:
 	-rm -f src/polynomial/*.lo
 	-rm -f src/symbolic/Expr/*.$(OBJEXT)
 	-rm -f src/symbolic/Expr/*.lo
-	-rm -f src/symbolic/functions/cos/*.$(OBJEXT)
-	-rm -f src/symbolic/functions/cos/*.lo
-	-rm -f src/symbolic/functions/exp/*.$(OBJEXT)
-	-rm -f src/symbolic/functions/exp/*.lo
-	-rm -f src/symbolic/functions/sin/*.$(OBJEXT)
-	-rm -f src/symbolic/functions/sin/*.lo
-	-rm -f src/symbolic/functions/sqrt/*.$(OBJEXT)
-	-rm -f src/symbolic/functions/sqrt/*.lo
-	-rm -f src/symbolic/functions/tg/*.$(OBJEXT)
-	-rm -f src/symbolic/functions/tg/*.lo
+	-rm -f src/symbolic/functions/*.$(OBJEXT)
+	-rm -f src/symbolic/functions/*.lo
 	-rm -f src/symbolic/term/*.$(OBJEXT)
 	-rm -f src/symbolic/term/*.lo
 
@@ -1181,11 +1154,15 @@ include src/polynomial/$(DEPDIR)/p_gcd.Plo
 include src/polynomial/$(DEPDIR)/subs.Plo
 include src/polynomial/$(DEPDIR)/wrappers.Plo
 include src/symbolic/Expr/$(DEPDIR)/Expr.Plo
-include src/symbolic/functions/cos/$(DEPDIR)/cos.Plo
-include src/symbolic/functions/exp/$(DEPDIR)/exp.Plo
-include src/symbolic/functions/sin/$(DEPDIR)/sin.Plo
-include src/symbolic/functions/sqrt/$(DEPDIR)/sqrt.Plo
-include src/symbolic/functions/tg/$(DEPDIR)/tg.Plo
+include src/symbolic/Expr/$(DEPDIR)/io.Plo
+include src/symbolic/functions/$(DEPDIR)/cos.Plo
+include src/symbolic/functions/$(DEPDIR)/exp.Plo
+include src/symbolic/functions/$(DEPDIR)/function.Plo
+include src/symbolic/functions/$(DEPDIR)/io.Plo
+include src/symbolic/functions/$(DEPDIR)/sin.Plo
+include src/symbolic/functions/$(DEPDIR)/sqrt.Plo
+include src/symbolic/functions/$(DEPDIR)/tg.Plo
+include src/symbolic/term/$(DEPDIR)/io.Plo
 include src/symbolic/term/$(DEPDIR)/term.Plo
 
 .cpp.o:
@@ -1334,11 +1311,7 @@ clean-libtool:
 	-rm -rf src/num_zm/.libs src/num_zm/_libs
 	-rm -rf src/polynomial/.libs src/polynomial/_libs
 	-rm -rf src/symbolic/Expr/.libs src/symbolic/Expr/_libs
-	-rm -rf src/symbolic/functions/cos/.libs src/symbolic/functions/cos/_libs
-	-rm -rf src/symbolic/functions/exp/.libs src/symbolic/functions/exp/_libs
-	-rm -rf src/symbolic/functions/sin/.libs src/symbolic/functions/sin/_libs
-	-rm -rf src/symbolic/functions/sqrt/.libs src/symbolic/functions/sqrt/_libs
-	-rm -rf src/symbolic/functions/tg/.libs src/symbolic/functions/tg/_libs
+	-rm -rf src/symbolic/functions/.libs src/symbolic/functions/_libs
 	-rm -rf src/symbolic/term/.libs src/symbolic/term/_libs
 
 distclean-libtool:
@@ -1935,16 +1908,8 @@ distclean-generic:
 	-rm -f src/polynomial/$(am__dirstamp)
 	-rm -f src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/symbolic/Expr/$(am__dirstamp)
-	-rm -f src/symbolic/functions/cos/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/symbolic/functions/cos/$(am__dirstamp)
-	-rm -f src/symbolic/functions/exp/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/symbolic/functions/exp/$(am__dirstamp)
-	-rm -f src/symbolic/functions/sin/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/symbolic/functions/sin/$(am__dirstamp)
-	-rm -f src/symbolic/functions/sqrt/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/symbolic/functions/sqrt/$(am__dirstamp)
-	-rm -f src/symbolic/functions/tg/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/symbolic/functions/tg/$(am__dirstamp)
+	-rm -f src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/symbolic/functions/$(am__dirstamp)
 	-rm -f src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/symbolic/term/$(am__dirstamp)
 
@@ -1958,7 +1923,7 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libLTLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR) src/symbolic/Expr/$(DEPDIR) src/symbolic/functions/cos/$(DEPDIR) src/symbolic/functions/exp/$(DEPDIR) src/symbolic/functions/sin/$(DEPDIR) src/symbolic/functions/sqrt/$(DEPDIR) src/symbolic/functions/tg/$(DEPDIR) src/symbolic/term/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR) src/symbolic/Expr/$(DEPDIR) src/symbolic/functions/$(DEPDIR) src/symbolic/term/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -2006,7 +1971,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR) src/symbolic/Expr/$(DEPDIR) src/symbolic/functions/cos/$(DEPDIR) src/symbolic/functions/exp/$(DEPDIR) src/symbolic/functions/sin/$(DEPDIR) src/symbolic/functions/sqrt/$(DEPDIR) src/symbolic/functions/tg/$(DEPDIR) src/symbolic/term/$(DEPDIR)
+	-rm -rf script/basic/$(DEPDIR) script/polynomials/$(DEPDIR) src/num_q/$(DEPDIR) src/num_z/$(DEPDIR) src/num_zm/$(DEPDIR) src/polynomial/$(DEPDIR) src/symbolic/Expr/$(DEPDIR) src/symbolic/functions/$(DEPDIR) src/symbolic/term/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

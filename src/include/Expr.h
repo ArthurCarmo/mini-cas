@@ -25,6 +25,8 @@
 #define _CAS_OP_POW_ 5
 
 class Expr {
+
+	friend std::ostream & operator<<(std::ostream &, const Expr &);
 	
 	private:
 		Expr * _left_side;
@@ -41,6 +43,8 @@ class Expr {
 		Expr (const term &);
 		Expr (const Expr &);
 		~Expr ();
+		
+		bool is_number() const;
 };
 
 #endif
