@@ -85,4 +85,16 @@ Expr::~Expr () {
 	this->_basic_value = NULL;
 }
 
+void Expr::__prune_members(){
+	delete this->_left_side;
+	delete this->_right_side;
+	this->_left_side = NULL;
+	this->_right_side = NULL;
+}
+
 bool Expr::is_number() const { return this->_op_id == _CAS_BASIC_ && this->_basic_value->is_number(); }
+bool Expr::is_variable() const { return this->_op_id == _CAS_BASIC_ && this->_basic_value->is_variable(); }
+bool Expr::is_polynomial() const { return this->_op_id == _CAS_BASIC_ && this->_basic_value->is_polynomial(); }
+bool Expr::is_function() const { return this->_op_id == _CAS_BASIC_ && this->_basic_value->is_function(); }
+polynomial Expr::polynomial_value() const { return this->_basic_value->polynomial_value(); }
+function Expr::function_value() const { return this->_basic_value->function_value(); }

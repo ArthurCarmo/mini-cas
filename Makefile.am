@@ -78,6 +78,8 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/wrappers.cpp \
 			src/symbolic/Expr/Expr.cpp \
 			src/symbolic/Expr/io.cpp \
+			src/symbolic/Expr/basic_simplification.cpp \
+			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
 			src/symbolic/functions/function.cpp \

@@ -177,8 +177,9 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
 	src/polynomial/subs.lo src/polynomial/wrappers.lo \
 	src/symbolic/Expr/Expr.lo src/symbolic/Expr/io.lo \
-	src/symbolic/term/term.lo src/symbolic/term/io.lo \
-	src/symbolic/functions/function.lo \
+	src/symbolic/Expr/basic_simplification.lo \
+	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
+	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
 	src/symbolic/functions/io.lo src/symbolic/functions/tg.lo \
 	src/symbolic/functions/cos.lo src/symbolic/functions/sin.lo \
 	src/symbolic/functions/exp.lo src/symbolic/functions/sqrt.lo
@@ -680,6 +681,8 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/wrappers.cpp \
 			src/symbolic/Expr/Expr.cpp \
 			src/symbolic/Expr/io.cpp \
+			src/symbolic/Expr/basic_simplification.cpp \
+			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
 			src/symbolic/functions/function.cpp \
@@ -954,6 +957,12 @@ src/symbolic/Expr/Expr.lo: src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/io.lo: src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/basic_simplification.lo:  \
+	src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/arithmetic_ops.lo:  \
+	src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/term/$(am__dirstamp):
 	@$(MKDIR_P) src/symbolic/term
 	@: > src/symbolic/term/$(am__dirstamp)
@@ -1154,6 +1163,8 @@ include src/polynomial/$(DEPDIR)/p_gcd.Plo
 include src/polynomial/$(DEPDIR)/subs.Plo
 include src/polynomial/$(DEPDIR)/wrappers.Plo
 include src/symbolic/Expr/$(DEPDIR)/Expr.Plo
+include src/symbolic/Expr/$(DEPDIR)/arithmetic_ops.Plo
+include src/symbolic/Expr/$(DEPDIR)/basic_simplification.Plo
 include src/symbolic/Expr/$(DEPDIR)/io.Plo
 include src/symbolic/functions/$(DEPDIR)/cos.Plo
 include src/symbolic/functions/$(DEPDIR)/exp.Plo

@@ -15,16 +15,19 @@
 #include "../../include/Expr.h"
 
 function::function () {
+	this->_sign = 0;
 	this->_name = "f";
 	this->_arguments = NULL;
 }
 
 function::function(const std::string &name, const Expr &E) {
+	this->_sign = 0;
 	this->_name = name;
 	this->_arguments = new Expr(E);
 }
 
 function::function (const function &F) {
+	this->_sign = F._sign;
 	this->_name = F._name;
 	this->_arguments = new Expr(*F._arguments);
 }
@@ -33,3 +36,7 @@ function::~function () {
 	if(this->_arguments != NULL) delete this->_arguments;
 	this->_arguments = NULL;
 }
+
+
+Expr function::arguments() const { return *this->_arguments; }
+bool function::is_simplified() const { return this->_arguments->is_simplified(); }

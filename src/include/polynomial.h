@@ -122,6 +122,7 @@ class polynomial{
 		
 		bool is_null() const { return this->_terms.empty(); }
 		bool is_constant() const { return this->_terms.size() == 0 || this->_terms.begin()->degree() == 0; }
+		bool is_variable() const { return this->_terms.size() == 1 && this->_terms.begin()->is_variable(); }
 		bool multi_variable() const;
 		bool single_variable() const;
 		

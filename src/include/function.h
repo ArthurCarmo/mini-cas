@@ -1,6 +1,6 @@
 /*
- * Header for the Function abstract class
- * All other function classes inherit from this one
+ * Header for the symbolic function class
+ * Stores the function name and the expression passed as argument to it
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -23,9 +23,11 @@
 class function {
 	
 	friend class term;
+	friend class Expr;
 	friend std::ostream & operator<<(std::ostream &, const function &);
 	
 	protected:
+		int _sign;
 		std::string _name;
 		Expr * _arguments;
 		
@@ -34,6 +36,9 @@ class function {
 		function (const function &);
 		function (const std::string &, const Expr &);
 		~function ();
+		
+		Expr arguments() const;
+		bool is_simplified() const;
 };
 
 #endif

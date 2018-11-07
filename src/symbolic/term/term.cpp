@@ -54,3 +54,6 @@ term::~term () {
 	this->_function = NULL;
 }
 
+polynomial term::polynomial_value() const { return this->_basic_term; }
+function term::function_value() const { return *this->_function; }
+

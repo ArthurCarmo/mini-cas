@@ -460,6 +460,7 @@ class monomial{
 		bool is_null() const;
 		bool multi_variable() const;
 		bool single_variable() const;
+		bool is_variable() const;
 		
 		//remove a variável var do monômio
 		monomial remove(const std::string &) const;

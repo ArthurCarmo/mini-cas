@@ -13,6 +13,7 @@
 #include "../../include/function.h"
 
 std::ostream & operator<<(std::ostream &o, const function &F){
+	if(F._sign) o << "-";
 	o << F._name << "(" << *F._arguments << ")";
 	return o;
 }

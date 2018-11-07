@@ -84,6 +84,10 @@ bool monomial::divides(const monomial &m) const {
 bool monomial::is_null() const {
 	return this->_coefficient._numerator == 0;
 }
+
+bool monomial::is_variable() const {
+	return this->_coefficient._numerator == 1 && this->_degree == 1;
+}
 		
 bool monomial::multi_variable() const {
 	return this->_literals.size() > 1;

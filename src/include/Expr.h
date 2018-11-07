@@ -1,5 +1,6 @@
 /*
  * Header for the main symbolic class
+ * An expression consists of an expression
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -33,6 +34,9 @@ class Expr {
 		Expr * _right_side;
 		term * _basic_value;
 		int _op_id;
+		
+		void __auto_simplify_basic_ops();
+		void __prune_members();
 	public:
 		Expr ();
 		Expr (int);
@@ -44,7 +48,25 @@ class Expr {
 		Expr (const Expr &);
 		~Expr ();
 		
+		bool commute();
+		bool distribute();
+		
 		bool is_number() const;
+		bool is_variable() const;
+		bool is_polynomial() const;
+		bool is_function() const;
+		bool is_simplified() const;
+		
+		polynomial polynomial_value() const;
+		function function_value() const;
+		
+		Expr & operator=(const Expr &);
+		
+		Expr operator+(const Expr &) const;
+		Expr operator-(const Expr &) const;
+		Expr operator*(const Expr &) const;
+		Expr operator/(const Expr &) const;
+		Expr pow(const Expr &) const;
 };
 
 #endif
