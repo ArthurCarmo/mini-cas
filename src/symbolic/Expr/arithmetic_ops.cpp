@@ -66,3 +66,25 @@ Expr & Expr::operator=(const Expr &E){
 	
 	return *this;
 }
+
+// Operators with expressions on the right side
+Expr operator+(const term &T, const Expr &E) {
+	return E + T;
+}
+
+Expr operator-(const term &T, const Expr &E) {
+	return E - T;
+}
+
+Expr operator*(const term &T, const Expr &E) {
+	return E * T;
+}
+
+Expr operator/(const term &T, const Expr &E) {
+	return Expr(T) / E;
+}
+
+Expr pow(const term &T, const Expr &E) {
+	return Expr(T).pow(E);
+}
+

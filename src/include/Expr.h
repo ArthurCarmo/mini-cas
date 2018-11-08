@@ -38,6 +38,8 @@ class Expr {
 		int _sign;
 		
 		void __auto_simplify_basic_ops();
+		void __auto_simplify_merge();
+		void __auto_simplify_split();
 		void __prune_members();
 	public:
 		Expr ();
@@ -70,5 +72,11 @@ class Expr {
 		Expr operator/(const Expr &) const;
 		Expr pow(const Expr &) const;
 };
+
+extern Expr operator+(const term &, const Expr &);
+extern Expr operator-(const term &, const Expr &);
+extern Expr operator*(const term &, const Expr &);
+extern Expr operator/(const term &, const Expr &);
+extern Expr pow(const term &, const Expr &);
 
 #endif

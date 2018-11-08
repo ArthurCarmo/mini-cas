@@ -29,10 +29,14 @@ int main(){
 	
 	cout << p_factor1 * p_factor2 << endl;
 	
-	p_factor1 = 7;
-	p_factor2 = 21;
+	cout << p_factor1 + 1 << endl;
+	cout << 1 + (x + p_factor1) << endl;
 	
-	cout << p_factor1 * p_factor2 << endl;
+	
+	Expr rational = p_factor1 / p_factor2 * p_factor2;
+	cout << rational << endl;
+	rational.commute();
+	cout << rational << endl;
 	
 	return 0;
 }
