@@ -28,6 +28,7 @@
 class Expr {
 
 	friend std::ostream & operator<<(std::ostream &, const Expr &);
+	friend class function;
 	
 	private:
 		Expr * _left_side;

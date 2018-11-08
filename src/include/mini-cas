@@ -25,6 +25,5 @@
 #include "Expr.h"
 
 #include "template_ops.h"
-#include "extern_declarations.h"
 
 #endif

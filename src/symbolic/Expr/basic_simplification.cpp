@@ -22,7 +22,7 @@ bool Expr::is_simplified() const {
 void Expr::__auto_simplify_basic_ops(){
 	if(this->is_polynomial()) return;
 	if(this->is_function()) {
-		this->_basic_value->_function->_arguments->__auto_simplify_basic_ops();
+		this->_basic_value->_function->__auto_simplify_arguments();
 		return;
 	}
 	if(!this->_left_side->is_polynomial() || !this->_right_side->is_polynomial()) return;
@@ -43,6 +43,7 @@ void Expr::__auto_simplify_basic_ops(){
 		break;
 		
 		case _CAS_OP_MUL_:
+			if(!this->_left_side->is_number() || !this->_right_side->is_number()) return;
 			this->_basic_value = new term( this->_left_side->polynomial_value() 
 						* this->_right_side->polynomial_value() );
 			this->_op_id = _CAS_BASIC_;

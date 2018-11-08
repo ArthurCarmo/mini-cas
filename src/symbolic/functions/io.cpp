@@ -10,10 +10,24 @@
  */
 
 #include <iostream>
+#include <vector>
+
 #include "../../include/function.h"
 
 std::ostream & operator<<(std::ostream &o, const function &F){
+	std::vector<Expr>::const_iterator it = F._arguments.begin();
 	if(F._sign) o << "-";
-	o << F._name << "(" << *F._arguments << ")";
+	o << F._name << "(";
+	if(it != F._arguments.end()){
+		o << *it;
+		++it;
+	}
+	
+	while(it != F._arguments.end()){
+		o << ", " << *it;
+		++it;
+	}
+	
+	o << ")";
 	return o;
 }

@@ -16,8 +16,7 @@ include_HEADERS = src/include/mini-cas \
 		src/include/function.h \
 		src/include/Expr.h \
 		src/include/template_ops.h \
-		src/include/signatures.h \
-		src/include/extern_declarations.h
+		src/include/signatures.h
 
 libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/abs_bool.cpp \
@@ -84,11 +83,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/term/io.cpp \
 			src/symbolic/functions/function.cpp \
 			src/symbolic/functions/io.cpp \
-			src/symbolic/functions/tg.cpp \
-			src/symbolic/functions/cos.cpp \
-			src/symbolic/functions/sin.cpp \
-			src/symbolic/functions/exp.cpp \
-			src/symbolic/functions/sqrt.cpp
+			src/symbolic/functions/functors.cpp
 
 check_PROGRAMS = t_basic t_monomials t_monomial_pow t_grades t_polynomials t_polynomial_derive t_polynomial_eval t_polynomial_div
 

@@ -180,9 +180,8 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/symbolic/Expr/basic_simplification.lo \
 	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
 	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
-	src/symbolic/functions/io.lo src/symbolic/functions/tg.lo \
-	src/symbolic/functions/cos.lo src/symbolic/functions/sin.lo \
-	src/symbolic/functions/exp.lo src/symbolic/functions/sqrt.lo
+	src/symbolic/functions/io.lo \
+	src/symbolic/functions/functors.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -619,8 +618,7 @@ include_HEADERS = src/include/mini-cas \
 		src/include/function.h \
 		src/include/Expr.h \
 		src/include/template_ops.h \
-		src/include/signatures.h \
-		src/include/extern_declarations.h
+		src/include/signatures.h
 
 libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/num_z/abs_bool.cpp \
@@ -687,11 +685,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/term/io.cpp \
 			src/symbolic/functions/function.cpp \
 			src/symbolic/functions/io.cpp \
-			src/symbolic/functions/tg.cpp \
-			src/symbolic/functions/cos.cpp \
-			src/symbolic/functions/sin.cpp \
-			src/symbolic/functions/exp.cpp \
-			src/symbolic/functions/sqrt.cpp
+			src/symbolic/functions/functors.cpp
 
 t_basic_CPPFLAGS = -I./src/include
 t_basic_SOURCES = script/basic/t_basic.cpp
@@ -984,15 +978,7 @@ src/symbolic/functions/function.lo:  \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/io.lo: src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/tg.lo: src/symbolic/functions/$(am__dirstamp) \
-	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/cos.lo: src/symbolic/functions/$(am__dirstamp) \
-	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sin.lo: src/symbolic/functions/$(am__dirstamp) \
-	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/exp.lo: src/symbolic/functions/$(am__dirstamp) \
-	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
-src/symbolic/functions/sqrt.lo:  \
+src/symbolic/functions/functors.lo:  \
 	src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 
@@ -1166,13 +1152,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/arithmetic_ops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/basic_simplification.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/io.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/cos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/exp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/function.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/functors.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/io.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/sin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/sqrt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/tg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/term/$(DEPDIR)/io.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/term/$(DEPDIR)/term.Plo@am__quote@
 
