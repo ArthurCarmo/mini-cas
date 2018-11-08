@@ -35,6 +35,7 @@ class Expr {
 		Expr * _right_side;
 		term * _basic_value;
 		int _op_id;
+		int _sign;
 		
 		void __auto_simplify_basic_ops();
 		void __prune_members();
