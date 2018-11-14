@@ -38,5 +38,10 @@ int main(){
 	rational.commute();
 	cout << rational << endl;
 	
+	Expr m1(monomial('x'));
+	Expr p1 = (m1.pow(2) + 2*m1 + 4) * (m1 + 2);
+	
+	cout << p1 << endl;
+	
 	return 0;
 }

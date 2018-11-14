@@ -16,11 +16,11 @@
 #include "../include/num_z.h"
 #include "../include/num_q.h"
 
-num_z & num_z::operator+=(const num_z &a){
-	if(this->_sign ^ a._sign){
-		this->_sign = a._sign; 
+num_z & num_z::operator+=(num_z n){
+	if(this->_sign ^ n._sign){
+		this->_sign = n._sign; 
 		
-		*this-=a; 
+		*this-=n; 
 		
 		this->_sign = *this==0?0:!this->_sign;
 		return *this;	
@@ -28,10 +28,11 @@ num_z & num_z::operator+=(const num_z &a){
 	
 	unsigned long long w = 0;
 	uint32_t i = 0;
-	uint32_t maior =  1 + ((this->_blocks>a._blocks)?this->_blocks:a._blocks);
+	uint32_t maior =  1 + ((this->_blocks>n._blocks)?this->_blocks:n._blocks);
 	int vai_um = 0;
 	
-	num_z n(a, maior);
+	if(n._n_blocks < maior)
+		n.__resize(maior);
 	
 	if(this->_n_blocks < maior)
 		this->__resize(maior);
@@ -52,27 +53,27 @@ num_z & num_z::operator+=(const num_z &a){
 	return *this;
 }
 
-num_z & num_z::operator+=(const num_q &a){
-	num_q res(a);
-	return *this = (res += *this);
+num_z & num_z::operator+=(const num_q &b){
+	num_q a(b);
+	return *this = (a += *this);
 }
 
-num_z & num_z::operator+=(const unsigned long long &a){ //EXPANDIR
+num_z & num_z::operator+=(unsigned long long a){ //EXPANDIR
 	num_z res(a);
 	return *this += res;
 }
 
-num_z & num_z::operator+=(const long long &a){ //EXPANDIR
+num_z & num_z::operator+=(long long a){ //EXPANDIR
 	num_z res(a);
 	return *this += res;
 }
 
-num_z & num_z::operator+=(const int &a){ //EXPANDIR
+num_z & num_z::operator+=(int a){ //EXPANDIR
 	num_z res(a);
 	return *this += res;
 }
 
-num_z & num_z::operator+=(const uint32_t &a){
+num_z & num_z::operator+=(uint32_t a){
 	num_z res(a);
 	return *this += res;
 }

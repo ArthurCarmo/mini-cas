@@ -103,7 +103,7 @@ num_zm & num_zm::operator-=(const mod_tuple &a){
 	return *this;
 }
 
-num_zm & num_zm::operator-=(const long long &a){
+num_zm & num_zm::operator-=(long long a){
 	this->_num -= a;
 	this->_num %= this->_base;
 	return *this;

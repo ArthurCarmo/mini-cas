@@ -69,19 +69,19 @@
 			
 			num_q & operator=(const num_q &);
 			num_q & operator=(const num_z &);
-			num_q & operator=(const long long &);
+			num_q & operator=(long long);
 			num_q & operator+=(const num_q &);
-			num_q & operator+=(const num_z &);
-			num_q & operator+=(const long long &);
+			num_q & operator+=(num_z);
+			num_q & operator+=(long long);
 			num_q & operator-=(const num_q &);
 			num_q & operator-=(const num_z &);
-			num_q & operator-=(const long long &);
+			num_q & operator-=(long long);
 			num_q & operator*=(const num_q &);
 			num_q & operator*=(const num_z &);
-			num_q & operator*=(const long long &);
+			num_q & operator*=(long long);
 			num_q & operator/=(const num_q &);
 			num_q & operator/=(const num_z &);
-			num_q & operator/=(const long long &);
+			num_q & operator/=(long long);
 			num_q operator+(const num_q &) const;
 			num_q operator+(const num_z &) const;
 			num_q operator+(const long long &) const;

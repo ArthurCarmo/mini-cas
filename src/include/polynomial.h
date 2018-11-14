@@ -358,6 +358,7 @@ class polynomial{
 		//o pseudo-quociente s e o pseudo-resto r da divisão de p por q são de forma que
 		//p*u = s*v + r
 		polynomial_tuple pseudo_division(const polynomial &, const monomial &) const;
+		num_q evidence_term() const;
 };
 
 //tupla para armazenar o quociente e resto das divisões de polinômios

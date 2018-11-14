@@ -60,17 +60,17 @@ class num_zm : public Number {
 		num_zm & operator=(const num_q &);
 		num_zm & operator=(const div_tuple &);
 		num_zm & operator=(const mod_tuple &);
-		num_zm & operator=(const long long &);
+		num_zm & operator=(long long);
 		num_zm & operator=(const unsigned long long &);
 		num_zm & operator=(const int &);
 		num_zm & operator=(const uint32_t &);
 		num_zm & operator=(const char *);
 		num_zm & operator+=(const num_zm &);
-		num_zm & operator+=(const num_z &);
+		num_zm & operator+=(num_z);
 		num_zm & operator+=(const num_q &);
 		num_zm & operator+=(const div_tuple &);
 		num_zm & operator+=(const mod_tuple &);
-		num_zm & operator+=(const long long &);
+		num_zm & operator+=(long long);
 		num_zm & operator+=(const unsigned long long &);
 		num_zm & operator+=(const int &);
 		num_zm & operator+=(const uint32_t &);
@@ -80,7 +80,7 @@ class num_zm : public Number {
 		num_zm & operator-=(const num_q &);
 		num_zm & operator-=(const div_tuple &);
 		num_zm & operator-=(const mod_tuple &);
-		num_zm & operator-=(const long long &);
+		num_zm & operator-=(long long);
 		num_zm & operator-=(const unsigned long long &);
 		num_zm & operator-=(const int &);
 		num_zm & operator-=(const uint32_t &);
@@ -90,7 +90,7 @@ class num_zm : public Number {
 		num_zm & operator*=(const num_q &);
 		num_zm & operator*=(const div_tuple &);
 		num_zm & operator*=(const mod_tuple &);
-		num_zm & operator*=(const long long &);
+		num_zm & operator*=(long long);
 		num_zm & operator*=(const unsigned long long &);
 		num_zm & operator*=(const int &);
 		num_zm & operator*=(const uint32_t &);
@@ -102,7 +102,7 @@ class num_zm : public Number {
 		num_zm & operator/=(const mod_tuple &);
 		num_zm & operator/=(const int &);
 		num_zm & operator/=(const uint32_t &);
-		num_zm & operator/=(const long long &);
+		num_zm & operator/=(long long);
 		num_zm & operator/=(const unsigned long long &);
 		num_zm & operator/=(const char *);
 		

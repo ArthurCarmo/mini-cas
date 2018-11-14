@@ -40,19 +40,19 @@ class Number{
 
 		virtual Number & operator=(const num_z &) = 0;
 		virtual Number & operator=(const num_q &) = 0;
-		virtual Number & operator=(const long long &) = 0;
-		virtual Number & operator+=(const num_z &) = 0;
+		virtual Number & operator=(long long) = 0;
+		virtual Number & operator+=(num_z) = 0;
 		virtual Number & operator+=(const num_q &) = 0;
-		virtual Number & operator+=(const long long &) = 0;
+		virtual Number & operator+=(long long) = 0;
 		virtual Number & operator-=(const num_z &) = 0;
 		virtual Number & operator-=(const num_q &) = 0;
-		virtual Number & operator-=(const long long &) = 0;
+		virtual Number & operator-=(long long) = 0;
 		virtual Number & operator*=(const num_z &) = 0;
 		virtual Number & operator*=(const num_q &) = 0;
-		virtual Number & operator*=(const long long &) = 0;
+		virtual Number & operator*=(long long) = 0;
 		virtual Number & operator/=(const num_z &) = 0;
 		virtual Number & operator/=(const num_q &) = 0;
-		virtual Number & operator/=(const long long &) = 0;
+		virtual Number & operator/=(long long) = 0;
 		
 		virtual bool operator==(const num_q &) const = 0;
 		virtual bool operator==(const num_z &) const = 0;

@@ -35,6 +35,17 @@ monomial m_gcd(const monomial &a, const monomial &b, bool normalize){
 	return res;
 }
 
+num_q polynomial::evidence_term() const {
+	if(this->_terms.empty()) return 0;
+	std::set<monomial, monomial_comp_class>::const_iterator it = this->_terms.begin();
+	num_q ans = it->_coefficient;
+	
+	while(++it != this->_terms.end())
+		ans = q_gcd(ans, it->_coefficient);
+
+	return ans;
+}
+
 
 polynomial single_var_gcd(const polynomial &a, const polynomial &b, bool normalize){
 	polynomial_tuple res;

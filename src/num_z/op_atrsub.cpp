@@ -81,8 +81,8 @@ num_z & num_z::operator-=(const mod_tuple &a){
 	return *this -= a.r;
 }
 
-num_z & num_z::operator-=(const long long &a){
-	return *this -= (num_z)a;
+num_z & num_z::operator-=(long long a){
+	return *this -= num_z(a);
 }
 
 num_z & num_z::operator-=(const unsigned long long &a){

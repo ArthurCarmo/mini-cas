@@ -44,8 +44,7 @@ num_z & num_z::operator=(const mod_tuple &a){
 	return *this;
 }
 
-num_z & num_z::operator=(const int &b){
-	int32_t a = b;
+num_z & num_z::operator=(int a){
 	uint32_t i;
 	this->_sign = 0;
 	if(a < 0){
@@ -65,8 +64,7 @@ num_z & num_z::operator=(const int &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const uint32_t &b){
-	uint32_t a = b;
+num_z & num_z::operator=(uint32_t a){
 	this->_sign = 0;
 	this->_blocks = 0;
 	
@@ -81,8 +79,7 @@ num_z & num_z::operator=(const uint32_t &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const long long &b){
-	long long a = b;
+num_z & num_z::operator=(long long a){
 	uint32_t i;
 	this->_sign = 0;
 	if(a < 0){
@@ -102,8 +99,7 @@ num_z & num_z::operator=(const long long &b){
 	return *this;
 }
 
-num_z & num_z::operator=(const unsigned long long &b){
-	unsigned long long a = b;
+num_z & num_z::operator=(unsigned long long a){
 	this->_sign = 0;
 	this->_blocks = 0;
 	

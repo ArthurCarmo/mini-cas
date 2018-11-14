@@ -63,7 +63,7 @@ num_z::num_z(const num_q &a){
 	this->_type = _CAS_TYPE_Z_;
 }
 
-num_z::num_z(const num_z &a, const uint32_t &b){
+num_z::num_z(const num_z &a, uint32_t b){
 	this->_n_blocks =  b;
 	this->_blocks = a._blocks;
 	this->_num = (uint32_t *)std::calloc(b, sizeof(uint32_t));
@@ -101,8 +101,7 @@ num_z::num_z(const mod_tuple &a){
 }
 
 
-num_z::num_z(const long long &a){
-	long long b = a;
+num_z::num_z(long long b){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
@@ -122,8 +121,7 @@ num_z::num_z(const long long &a){
 	this->_type = _CAS_TYPE_Z_;
 }
 
-num_z::num_z(const unsigned long long &a){
-	unsigned long long b = a;
+num_z::num_z(unsigned long long b){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_sign = 0;
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
@@ -138,8 +136,7 @@ num_z::num_z(const unsigned long long &a){
 	this->_type = _CAS_TYPE_Z_;
 }
 
-num_z::num_z(const int &a){
-	long long b = a;
+num_z::num_z(int b){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
@@ -160,8 +157,7 @@ num_z::num_z(const int &a){
 	this->_type = _CAS_TYPE_Z_;
 }
 
-num_z::num_z(const uint32_t &a){
-	uint32_t b = a;
+num_z::num_z(uint32_t b){
 	this->_n_blocks = _INIT_SIZE_;
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;

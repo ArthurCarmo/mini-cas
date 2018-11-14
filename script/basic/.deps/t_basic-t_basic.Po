@@ -153,7 +153,11 @@ script/basic/t_basic-t_basic.o: script/basic/t_basic.cpp \
  script/basic/../../src/include/monomial_comp_class.h \
  script/basic/../../src/include/template_ops.h \
  script/basic/../../src/include/term.h \
- script/basic/../../src/include/function.h \
+ script/basic/../../src/include/function.h /usr/include/c++/7/vector \
+ /usr/include/c++/7/bits/stl_construct.h \
+ /usr/include/c++/7/bits/stl_uninitialized.h \
+ /usr/include/c++/7/bits/stl_vector.h \
+ /usr/include/c++/7/bits/stl_bvector.h /usr/include/c++/7/bits/vector.tcc \
  script/basic/../../src/include/Expr.h
 
 /usr/include/stdc-predef.h:
@@ -547,5 +551,17 @@ script/basic/../../src/include/template_ops.h:
 script/basic/../../src/include/term.h:
 
 script/basic/../../src/include/function.h:
+
+/usr/include/c++/7/vector:
+
+/usr/include/c++/7/bits/stl_construct.h:
+
+/usr/include/c++/7/bits/stl_uninitialized.h:
+
+/usr/include/c++/7/bits/stl_vector.h:
+
+/usr/include/c++/7/bits/stl_bvector.h:
+
+/usr/include/c++/7/bits/vector.tcc:
 
 script/basic/../../src/include/Expr.h:

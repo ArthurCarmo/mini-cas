@@ -44,12 +44,12 @@ std:: ostream & operator<<(std::ostream &o, const Expr &E){
 		if(!E._left_side->is_number() && !E._left_side->is_variable() && !E._left_side->is_function()){
 			l_open_brackets = '(';
 			l_close_brackets = ')';
-			r_open_brackets = '\0';
 		}
-	
+		
+		r_open_brackets = '\0';
+		if(l_close_brackets != ')') l_close_brackets = '\0';
 	
 		if(!E._right_side->is_number() && !E._right_side->is_variable() && !E._right_side->is_function()){
-			if(l_close_brackets != ')') l_close_brackets = '\0';
 			r_open_brackets = '(';
 			r_close_brackets = ')';
 		}

@@ -1,6 +1,7 @@
 /*
  * Header for the main symbolic class
- * An expression consists of an expression
+ * An expression consists either of a basic term or
+ * a binary operation with each side being an expression
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -40,6 +41,7 @@ class Expr {
 		void __auto_simplify_basic_ops();
 		void __auto_simplify_merge();
 		void __auto_simplify_split();
+		bool __immediately_equal(const Expr &) const;
 		void __prune_members();
 	public:
 		Expr ();

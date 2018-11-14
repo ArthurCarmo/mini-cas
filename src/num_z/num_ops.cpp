@@ -22,7 +22,7 @@
 #include "../include/num_z.h"
 
 //SQRT
-num_z num_z::sqrt(){
+num_z num_z::sqrt() const {
 	num_z xk(*this);
 	num_z prev;
 	if(*this == uint32_t(0)) return num_z(0);
@@ -50,7 +50,7 @@ num_z z_sqrt(const num_z &a){
 }
 
 //GCD
-num_z num_z::gcd(const num_z &b){
+num_z num_z::gcd(const num_z &b) const {
 	num_z m(*this), n(b);
 	m._sign = n._sign = 0;
 	if(m.abs_geq(n))
@@ -177,20 +177,19 @@ void num_z::__bit_rshift(){
 }
 
 //LCM
-num_z num_z::lcm(const num_z &b){
+num_z num_z::lcm(const num_z &b) const {
 	return (*this*b)/z_gcd(*this, b);
 }
 
 num_z z_lcm(const num_z &a, const num_z &b){
-	num_z res(a);
-	return (res*b)/z_gcd(a, b);
+	return (a*b)/z_gcd(a, b);
 }
 
 //INLINE FUNCTIONS
-uint32_t __guess_quotient(const unsigned long long &n, const unsigned long long &m0, const unsigned long long &m1){
+uint32_t __guess_quotient(unsigned long long n, unsigned long long m0, unsigned long long m1){
 	return ( m0 == n )?_MAX_DIGIT_BASE_:( (m0*_BASE_ + m1) / n );
 }
 
-bool __overstep_quotient(const unsigned long long &q_guess, const unsigned long long &n2, const unsigned long long &n1, const unsigned long long &m0, const unsigned long long &m1, const unsigned long long &m2){
+bool __overstep_quotient(unsigned long long q_guess, unsigned long long n2, const unsigned long long n1, unsigned long long m0, unsigned long long m1, unsigned long long m2){
 	return n2 * q_guess > ( m0 * _BASE_ - n1 * q_guess + m1 ) * _BASE_ + m2;
 }

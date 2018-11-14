@@ -65,13 +65,13 @@
 			num_z();
 			num_z(const num_z &);
 			num_z(const num_q &);
-			num_z(const num_z &, const uint32_t &);
+			num_z(const num_z &, uint32_t);
 			num_z(const div_tuple &);
 			num_z(const mod_tuple &);
-			num_z(const long long &);
-			num_z(const unsigned long long &);
-			num_z(const int &);
-			num_z(const uint32_t &);
+			num_z(long long);
+			num_z(unsigned long long);
+			num_z(int);
+			num_z(uint32_t);
 			num_z(const char *);
 			~num_z();
 
@@ -90,9 +90,9 @@
 			num_z & make_abs(){ this->_sign = 0; return *this; };
 			num_z & flip_sign(){ this->_sign = 1 - this->_sign; return *this; };
 			num_z & make_negative(){ this->_sign = 1; return *this; };
-			num_z sqrt();
-			num_z gcd(const num_z &);
-			num_z lcm(const num_z &);
+			num_z sqrt() const;
+			num_z gcd(const num_z &) const ;
+			num_z lcm(const num_z &) const ;
 
 			operator bool() const {return this->_blocks > 1 || this->_num[0] != 0;};
 			
@@ -106,26 +106,26 @@
 			num_z & operator=(const num_q &);
 			num_z & operator=(const div_tuple &);
 			num_z & operator=(const mod_tuple &);
-			num_z & operator=(const long long &);
-			num_z & operator=(const unsigned long long &);
-			num_z & operator=(const int &);
-			num_z & operator=(const uint32_t &);
+			num_z & operator=(long long);
+			num_z & operator=(unsigned long long);
+			num_z & operator=(int);
+			num_z & operator=(uint32_t);
 			num_z & operator=(const char *);
 			num_z & operator=(const std::string &);
-			num_z & operator+=(const num_z &);
+			num_z & operator+=(num_z);
 			num_z & operator+=(const num_q &);
 			num_z & operator+=(const div_tuple &);
 			num_z & operator+=(const mod_tuple &);
-			num_z & operator+=(const long long &);
-			num_z & operator+=(const unsigned long long &);
-			num_z & operator+=(const int &);
-			num_z & operator+=(const uint32_t &);
+			num_z & operator+=(long long);
+			num_z & operator+=(unsigned long long);
+			num_z & operator+=(int);
+			num_z & operator+=(uint32_t);
 			num_z & operator+=(const char *);
 			num_z & operator-=(const num_z &);
 			num_z & operator-=(const num_q &);
 			num_z & operator-=(const div_tuple &);
 			num_z & operator-=(const mod_tuple &);
-			num_z & operator-=(const long long &);
+			num_z & operator-=(long long);
 			num_z & operator-=(const unsigned long long &);
 			num_z & operator-=(const int &);
 			num_z & operator-=(const uint32_t &);
@@ -134,7 +134,7 @@
 			num_z & operator*=(const num_q &);
 			num_z & operator*=(const div_tuple &);
 			num_z & operator*=(const mod_tuple &);
-			num_z & operator*=(const long long &);
+			num_z & operator*=(long long);
 			num_z & operator*=(const unsigned long long &);
 			num_z & operator*=(const int &);
 			num_z & operator*=(const uint32_t &);
@@ -143,7 +143,7 @@
 			num_z & operator/=(const num_q &);
 			num_z & operator/=(const div_tuple &);
 			num_z & operator/=(const mod_tuple &);
-			num_z & operator/=(const long long &);
+			num_z & operator/=(long long);
 			num_z & operator/=(const unsigned long long &);
 			num_z & operator/=(const int &);
 			num_z & operator/=(const uint32_t &);
@@ -310,7 +310,8 @@
 		}
 	};
 	
-uint32_t __guess_quotient(const unsigned long long &, const unsigned long long &, const unsigned long long &);
-bool __overstep_quotient(const unsigned long long &, const unsigned long long &, const unsigned long long &, const unsigned long long &, const unsigned long long &, const unsigned long long &);
+uint32_t __guess_quotient(unsigned long long, unsigned long long, unsigned long long);
+bool __overstep_quotient(unsigned long long, unsigned long long, unsigned long long,
+			 unsigned long long, unsigned long long, unsigned long long);
 
 #endif
