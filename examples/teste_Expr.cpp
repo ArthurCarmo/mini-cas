@@ -43,5 +43,9 @@ int main(){
 	
 	cout << p1 << endl;
 	
+	function g("g");
+	cout << g(-f(x)) << endl;
+	cout << g(x, sqrt(x)) << endl;
+	
 	return 0;
 }
