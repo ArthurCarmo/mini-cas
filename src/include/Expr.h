@@ -38,7 +38,8 @@ class Expr {
 		int _op_id;
 		int _sign;
 		
-		void __auto_simplify_basic_ops();
+		void __auto_simplify();
+		void __auto_simplify_immediate();
 		void __auto_simplify_merge();
 		void __auto_simplify_split();
 		bool __immediately_equal(const Expr &) const;
@@ -54,6 +55,7 @@ class Expr {
 		Expr (const Expr &);
 		~Expr ();
 		
+		//returns false if the result changes when commuted
 		bool commute();
 		bool distribute();
 		

@@ -39,5 +39,5 @@ bool function::is_simplified() const {
 
 void function::__auto_simplify_arguments(){
 	for(std::vector<Expr>::iterator it = this->_arguments.begin(); it != this->_arguments.end(); ++it)
-		it->__auto_simplify_basic_ops();
+		it->__auto_simplify();
 }

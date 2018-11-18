@@ -19,7 +19,7 @@ bool Expr::is_simplified() const {
 
 }
 
-void Expr::__auto_simplify_basic_ops(){
+void Expr::__auto_simplify_immediate(){
 	if(this->is_polynomial()) return;
 	if(this->is_function()) {
 		this->_basic_value->_function->__auto_simplify_arguments();

@@ -17,7 +17,7 @@ Expr Expr::operator+(const Expr &E) const {
 	res._op_id = _CAS_OP_SUM_;
 	res._left_side = new Expr(*this);
 	res._right_side = new Expr(E);
-	res.__auto_simplify_basic_ops();
+	res.__auto_simplify();
 	return res;
 }
 
@@ -26,7 +26,7 @@ Expr Expr::operator-(const Expr &E) const {
 	res._op_id = _CAS_OP_SUB_;
 	res._left_side = new Expr(*this);
 	res._right_side = new Expr(E);
-	res.__auto_simplify_basic_ops();
+	res.__auto_simplify();
 	return res;
 }
 
@@ -35,7 +35,7 @@ Expr Expr::operator*(const Expr &E) const {
 	res._op_id = _CAS_OP_MUL_;
 	res._left_side = new Expr(*this);
 	res._right_side = new Expr(E);
-	res.__auto_simplify_basic_ops();
+	res.__auto_simplify();
 	return res;
 }
 
@@ -44,7 +44,7 @@ Expr Expr::operator/(const Expr &E) const {
 	res._op_id = _CAS_OP_DIV_;
 	res._left_side = new Expr(*this);
 	res._right_side = new Expr(E);
-	res.__auto_simplify_basic_ops();
+	res.__auto_simplify();
 	return res;
 }
 

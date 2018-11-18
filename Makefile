@@ -87,8 +87,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = i686-pc-linux-gnu
+host_triplet = i686-pc-linux-gnu
 check_PROGRAMS = t_basic$(EXEEXT) t_monomials$(EXEEXT) \
 	t_monomial_pow$(EXEEXT) t_grades$(EXEEXT) \
 	t_polynomials$(EXEEXT) t_polynomial_derive$(EXEEXT) \
@@ -177,7 +177,9 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/polynomial/opsum.lo src/polynomial/p_gcd.lo \
 	src/polynomial/subs.lo src/polynomial/wrappers.lo \
 	src/symbolic/Expr/Expr.lo src/symbolic/Expr/io.lo \
+	src/symbolic/Expr/simplification.lo \
 	src/symbolic/Expr/basic_simplification.lo \
+	src/symbolic/Expr/merge_and_split.lo \
 	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
 	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
 	src/symbolic/functions/io.lo \
@@ -489,7 +491,7 @@ AR = ar
 AUTOCONF = ${SHELL} /home/arthur/Documents/mini-cas/missing autoconf
 AUTOHEADER = ${SHELL} /home/arthur/Documents/mini-cas/missing autoheader
 AUTOMAKE = ${SHELL} /home/arthur/Documents/mini-cas/missing automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -517,7 +519,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
+LD = /usr/bin/ld
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
@@ -563,9 +565,9 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = i686-pc-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = i686
 build_os = linux-gnu
 build_vendor = pc
 builddir = .
@@ -574,9 +576,9 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = i686-pc-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = i686
 host_os = linux-gnu
 host_vendor = pc
 htmldir = ${docdir}
@@ -679,7 +681,9 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/polynomial/wrappers.cpp \
 			src/symbolic/Expr/Expr.cpp \
 			src/symbolic/Expr/io.cpp \
+			src/symbolic/Expr/simplification.cpp \
 			src/symbolic/Expr/basic_simplification.cpp \
+			src/symbolic/Expr/merge_and_split.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
@@ -951,7 +955,13 @@ src/symbolic/Expr/Expr.lo: src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/io.lo: src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/simplification.lo:  \
+	src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/basic_simplification.lo:  \
+	src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/merge_and_split.lo:  \
 	src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/arithmetic_ops.lo:  \
@@ -1152,6 +1162,8 @@ include src/symbolic/Expr/$(DEPDIR)/Expr.Plo
 include src/symbolic/Expr/$(DEPDIR)/arithmetic_ops.Plo
 include src/symbolic/Expr/$(DEPDIR)/basic_simplification.Plo
 include src/symbolic/Expr/$(DEPDIR)/io.Plo
+include src/symbolic/Expr/$(DEPDIR)/merge_and_split.Plo
+include src/symbolic/Expr/$(DEPDIR)/simplification.Plo
 include src/symbolic/functions/$(DEPDIR)/function.Plo
 include src/symbolic/functions/$(DEPDIR)/functors.Plo
 include src/symbolic/functions/$(DEPDIR)/io.Plo
