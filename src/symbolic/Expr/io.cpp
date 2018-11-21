@@ -40,7 +40,7 @@ std:: ostream & operator<<(std::ostream &o, const Expr &E){
 			break;
 	}
 	
-	if(E._op_id == _CAS_OP_MUL_){
+	if(E._op_id == _CAS_OP_MUL_ || E._op_id == _CAS_OP_DIV_){
 		if(	!(E._left_side->_op_id == _CAS_OP_MUL_) &&
 			!E._left_side->is_number() &&
 			!E._left_side->is_variable() &&
@@ -59,7 +59,7 @@ std:: ostream & operator<<(std::ostream &o, const Expr &E){
 			r_close_brackets = ')';
 		}
 		
-	}else if(E._op_id == _CAS_OP_DIV_ || E._op_id == _CAS_OP_POW_){
+	}else if(E._op_id == _CAS_OP_POW_){
 		if(!E._left_side->is_number() && !E._left_side->is_variable() && !E._left_side->is_function()){
 			l_open_brackets = '(';
 			l_close_brackets = ')';

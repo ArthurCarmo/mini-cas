@@ -52,7 +52,7 @@ void Expr::__auto_simplify_merge() {
 		}
 		
 		// If right side is a division
-		// the rotation is the same as above, but the op hierarchy changes
+		// rotation is the same as above, but the op "hierarchy" changes
 		if(this->_right_side->_op_id == _CAS_OP_DIV_){
 			std::swap(this->_right_side->_right_side, this->_right_side->_left_side);
 			std::swap(this->_right_side->_left_side, this->_left_side);
@@ -81,7 +81,6 @@ void Expr::__auto_simplify_merge() {
 				     a  b
 			
 		*/
-		
 		if(this->_left_side->_op_id == _CAS_OP_DIV_)
 		{
 			//change op type in object
