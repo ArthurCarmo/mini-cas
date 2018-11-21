@@ -42,6 +42,8 @@ class Expr {
 		void __auto_simplify_immediate();
 		void __auto_simplify_merge();
 		void __auto_simplify_split();
+		void __auto_simplify_find_add_inverses();
+		void __auto_simplify_find_mul_inverses();
 		bool __immediately_equal(const Expr &) const;
 		void __prune_members();
 	public:
@@ -67,6 +69,8 @@ class Expr {
 		
 		polynomial polynomial_value() const;
 		function function_value() const;
+		Expr left_side() const;
+		Expr right_side() const;
 		
 		Expr & operator=(const Expr &);
 		
