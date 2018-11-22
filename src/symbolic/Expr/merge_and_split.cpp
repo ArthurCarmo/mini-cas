@@ -1,8 +1,9 @@
 /*
  * Merge and split operations for the expression class
  * The operations associate or disassociate expressions
- * Ideally there will be no multiplications to the right
- * of another multiplication, and no consecutive divisions
+ *
+ * The idea is to leave the expressions in a normalized
+ * easy to manipulate pattern
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -18,13 +19,15 @@
 
 void Expr::__auto_simplify_merge() {
 
-	// Do nothing if not expression
+	// Do nothing if not an operation
 	if(this->_op_id == _CAS_BASIC_) return;
 
+	// for any operation, both it's operands should be merged
+	this->_left_side->__auto_simplify_merge();
+	this->_right_side->__auto_simplify_merge();
+	
 	// Multiplication merges with multiplication
 	if(this->_op_id == _CAS_OP_MUL_){
-		this->_left_side->__auto_simplify_merge();
-		this->_right_side->__auto_simplify_merge();
 		
 		/* If there is a multiplication on the right side, a rotation is made 
 		   as to leave the current multipliaction more to the right, e.g.:
@@ -83,15 +86,35 @@ void Expr::__auto_simplify_merge() {
 		*/
 		if(this->_left_side->_op_id == _CAS_OP_DIV_)
 		{
-			//change op type in object
+			// change op type in object
 			this->_left_side->_op_id = _CAS_OP_MUL_;
 			this->_op_id = _CAS_OP_DIV_;
 			
 			std::swap(this->_left_side->_right_side, this->_right_side);
 		}
 		
+	// goal is to make it so there is no division in a chain of multiplications/divisions
+	// and the division will be at the root of the multiplication chain subtree
 	}else if(this->_op_id == _CAS_OP_DIV_){
-	
+		// when left side is a division
+		// we use that (a / b) / c == b / (a * c)
+		if(this->_left_side->_op_id == _CAS_OP_DIV_){
+			std::swap(this->_left_side, this->_right_side); 				// c / (a / b)
+			std::swap(this->_right_side->_left_side, this->_right_side->_right_side);	// c / (b / a)
+			std::swap(this->_right_side->_right_side, this->_left_side);			// a / (b / c)
+			
+			//and change the op
+			this->_right_side->_op_id = _CAS_OP_MUL_;					// a / (b * c)
+		}
+		// when right side is a division
+		// we use that a / (b / c) == (a * c) / b
+		if(this->_right_side->_op_id == _CAS_OP_DIV_){
+			std::swap(this->_left_side, this->_right_side); 				// (b / c) / a
+			std::swap(this->_left_side->_left_side, this->_right_side);			// (a / c) / b
+			
+			//and change the op
+			this->_left_side->_op_id = _CAS_OP_MUL_;					// (a * c) / b
+		}
 	}
 }
 

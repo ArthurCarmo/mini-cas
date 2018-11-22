@@ -42,8 +42,8 @@ class Expr {
 		void __auto_simplify_immediate();
 		void __auto_simplify_merge();
 		void __auto_simplify_split();
-		void __auto_simplify_find_add_inverses();
-		void __auto_simplify_find_mul_inverses();
+		void __auto_simplify_add_chains();
+		void __auto_simplify_mul_chains();
 		bool __immediately_equal(const Expr &) const;
 		void __prune_members();
 	public:
