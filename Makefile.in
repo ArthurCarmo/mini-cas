@@ -179,6 +179,7 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/symbolic/Expr/Expr.lo src/symbolic/Expr/io.lo \
 	src/symbolic/Expr/simplification.lo \
 	src/symbolic/Expr/basic_simplification.lo \
+	src/symbolic/Expr/operation_chains.lo \
 	src/symbolic/Expr/merge_and_split.lo \
 	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
 	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
@@ -683,6 +684,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/Expr/io.cpp \
 			src/symbolic/Expr/simplification.cpp \
 			src/symbolic/Expr/basic_simplification.cpp \
+			src/symbolic/Expr/operation_chains.cpp \
 			src/symbolic/Expr/merge_and_split.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
@@ -961,6 +963,9 @@ src/symbolic/Expr/simplification.lo:  \
 src/symbolic/Expr/basic_simplification.lo:  \
 	src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/Expr/operation_chains.lo:  \
+	src/symbolic/Expr/$(am__dirstamp) \
+	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/Expr/merge_and_split.lo:  \
 	src/symbolic/Expr/$(am__dirstamp) \
 	src/symbolic/Expr/$(DEPDIR)/$(am__dirstamp)
@@ -1163,6 +1168,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/basic_simplification.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/io.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/merge_and_split.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/operation_chains.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/simplification.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/function.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/functors.Plo@am__quote@

@@ -79,6 +79,7 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/Expr/io.cpp \
 			src/symbolic/Expr/simplification.cpp \
 			src/symbolic/Expr/basic_simplification.cpp \
+			src/symbolic/Expr/operation_chains.cpp \
 			src/symbolic/Expr/merge_and_split.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \

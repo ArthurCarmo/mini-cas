@@ -2,8 +2,8 @@
  * Merge and split operations for the expression class
  * The operations associate or disassociate expressions
  *
- * The idea is to leave the expressions in a normalized
- * easy to manipulate pattern
+ * The idea of merging is to leave the expressions in a
+ * normalized easy to manipulate pattern
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
@@ -25,6 +25,18 @@ void Expr::__auto_simplify_merge() {
 	// for any operation, both it's operands should be merged
 	this->_left_side->__auto_simplify_merge();
 	this->_right_side->__auto_simplify_merge();
+	
+	// sums and subtractions just shift the association order to be leftmost
+	if(this->_op_id == _CAS_OP_SUM_ || this->_op_id == _CAS_OP_SUB_){
+		if(this->_right_side->_op_id == _CAS_OP_SUM_ || this->_right_side->_op_id == _CAS_OP_SUB_){
+			// a ++ (b -- c)
+			std::swap(this->_right_side->_right_side, this->_right_side->_left_side);	// a ++ ( c -- b)
+			std::swap(this->_right_side->_left_side, this->_left_side);			// c ++ ( a -- b);
+			std::swap(this->_right_side, this->_left_side);					// (a -- b) ++ c
+			std::swap(this->_left_side->_op_id, this->_op_id);				// (a ++ b) -- c
+		}
+	
+	}
 	
 	// Multiplication merges with multiplication
 	if(this->_op_id == _CAS_OP_MUL_){
