@@ -1,7 +1,5 @@
 /*
  * Main simplification function
- * Objective is to leave all sum/subtractions the more on the left
- * follow by products and then division
  *
  * Author: Arthur Gonçalves do Carmo <arthur.goncalves.carmo@gmail.com>
  *
