@@ -67,6 +67,22 @@ Expr & Expr::operator=(const Expr &E){
 	return *this;
 }
 
+bool Expr::__immediately_equal(const Expr &E) const {
+	if(this->_op_id == _CAS_BASIC_) {
+		if(this->_op_id != E._op_id) return false;
+		return this->_basic_value->__immediately_equal(*E._basic_value);
+	}
+	
+	if(this->_op_id == _CAS_OP_SUM_ || this->_op_id == _CAS_OP_SUB_){
+		if(E._op_id == _CAS_OP_MUL_ || E._op_id == _CAS_OP_DIV_) return false;
+		if(this->_op_id != E._op_id)
+			return this->_left_side->__immediately_equal(*E._left_side)
+				&& this->_right_side->__immediately_equal(-*E._right_side);
+		return this->_left_side->__immediately_equal(*E._left_side)
+			&& this->_right_side->__immediately_equal(*E._right_side);
+	}
+}
+
 // Operators with expressions on the right side
 Expr operator+(const term &T, const Expr &E) {
 	return E + T;

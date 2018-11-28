@@ -29,6 +29,8 @@ class term {
 		polynomial _basic_term;
 		function * _function;
 		
+		bool __immediately_equal(const term &);
+		
 	public:
 		term ();
 		term (int);

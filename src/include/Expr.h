@@ -46,6 +46,10 @@ class Expr {
 		void __auto_simplify_add_chains();
 		void __auto_simplify_mul_chains();
 		void __auto_simplify_mul_simpler_to_the_left();
+		
+		// Commute operations but mantaining equity
+		// e.g.: a - b = -b + a
+		void __auto_simplify_equiv_commute();
 		bool __immediately_equal(const Expr &) const;
 		void __prune_members();
 	public:
@@ -81,6 +85,9 @@ class Expr {
 		Expr operator*(const Expr &) const;
 		Expr operator/(const Expr &) const;
 		Expr pow(const Expr &) const;
+		Expr operator-() const;
+		
+		Expr & flip_sign();
 };
 
 extern Expr operator+(const term &, const Expr &);

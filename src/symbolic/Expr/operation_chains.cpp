@@ -20,6 +20,10 @@ void Expr::__auto_simplify_add_simpler_to_the_left() {
 }
 
 void Expr::__auto_simplify_add_chains() {
+	if(this->_op_id == _CAS_BASIC_) return;
+	if(this->_op_id == _CAS_OP_SUM_) {
+		
+	}
 }
 
 void Expr::__auto_simplify_mul_simpler_to_the_left() {
