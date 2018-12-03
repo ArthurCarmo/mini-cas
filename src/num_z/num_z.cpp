@@ -106,16 +106,18 @@ num_z::num_z(long long b){
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
 
-	if(b < 0){
-		this->_sign = 1;
-		b = -b;
-	}
-
 	this->_blocks = 0;	
 	do{
 		this->_num[this->_blocks++] = b%_BASE_;
 		b /= _BASE_; 
 	}while(b);	
+	
+	if(b < 0){
+		this->_sign = 1;
+		for(int i = 0; i < this->_blocks; i++){
+			this->_num[i] = -this._num[i];
+		}
+	}
 	
 	this->_base_repr = DECIMAL;
 	this->_type = _CAS_TYPE_Z_;
@@ -141,17 +143,19 @@ num_z::num_z(int b){
 	this->_num = (uint32_t *)std::calloc(_INIT_SIZE_, sizeof(uint32_t));
 	this->_sign = 0;
 
-	if(b < 0){
-		this->_sign = 1;
-		b = -b;
-	}
-
 	this->_blocks = 0;
 
 	do{
 		this->_num[this->_blocks++] = b%_BASE_;
 		b /= _BASE_; 
 	}while(b);
+	
+	if(b < 0){
+		this->_sign = 1;
+		for(int i = 0; i < this->_blocks; i++){
+			this->_num[i] = -this._num[i];
+		}
+	}
 	
 	this->_base_repr = DECIMAL;
 	this->_type = _CAS_TYPE_Z_;
