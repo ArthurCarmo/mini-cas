@@ -81,6 +81,45 @@ bool Expr::__immediately_equal(const Expr &E) const {
 		return this->_left_side->__immediately_equal(*E._left_side)
 			&& this->_right_side->__immediately_equal(*E._right_side);
 	}
+	
+	// Completar para multiplicação, divisão e potência
+	
+	return false;
+}
+
+Expr Expr::operator-() const {
+	Expr f(*this);
+	if(f._op_id == _CAS_BASIC_)
+		if(f._basic_value->is_polynomial()) 
+			f._basic_value->_basic_term = -f._basic_value->_basic_term;
+		else f._basic_value->_function->flip_sign();
+	
+	else if(f._op_id == _CAS_OP_MUL_ || f._op_id == _CAS_OP_DIV_ || f._op_id == _CAS_OP_POW_)
+		f._sign = 1 - f._sign;
+	
+	else {
+		f._left_side->flip_sign();
+		f._op_id = (f._op_id == _CAS_OP_SUM_)?_CAS_OP_SUB_:_CAS_OP_SUM_;
+	}
+	
+	return f;
+}
+
+Expr & Expr::flip_sign() {
+	if(this->_op_id == _CAS_BASIC_)
+		if(this->_basic_value->is_polynomial()) 
+			this->_basic_value->_basic_term = -this->_basic_value->_basic_term;
+		else this->_basic_value->_function->flip_sign();
+	
+	else if(this->_op_id == _CAS_OP_MUL_ || this->_op_id == _CAS_OP_DIV_ || this->_op_id == _CAS_OP_POW_)
+		this->_sign = 1 - this->_sign;
+	
+	else {
+		this->_left_side->flip_sign();
+		this->_op_id = (this->_op_id == _CAS_OP_SUM_)?_CAS_OP_SUB_:_CAS_OP_SUM_;
+	}
+
+	return *this;
 }
 
 // Operators with expressions on the right side

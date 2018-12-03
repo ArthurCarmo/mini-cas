@@ -29,7 +29,7 @@ class term {
 		polynomial _basic_term;
 		function * _function;
 		
-		bool __immediately_equal(const term &);
+		bool __immediately_equal(const term &) const;
 		
 	public:
 		term ();

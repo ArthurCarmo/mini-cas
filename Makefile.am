@@ -84,8 +84,10 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
+			src/symbolic/term/cmp.cpp \
 			src/symbolic/functions/function.cpp \
 			src/symbolic/functions/io.cpp \
+			src/symbolic/functions/cmp.cpp \
 			src/symbolic/functions/functors.cpp
 
 check_PROGRAMS = t_basic t_monomials t_monomial_pow t_grades t_polynomials t_polynomial_derive t_polynomial_eval t_polynomial_div

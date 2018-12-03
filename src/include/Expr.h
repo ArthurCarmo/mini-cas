@@ -47,7 +47,7 @@ class Expr {
 		void __auto_simplify_mul_chains();
 		void __auto_simplify_mul_simpler_to_the_left();
 		
-		// Commute operations but mantaining equity
+		// Commute operations but mantaining equality
 		// e.g.: a - b = -b + a
 		void __auto_simplify_equiv_commute();
 		bool __immediately_equal(const Expr &) const;

@@ -182,8 +182,9 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/symbolic/Expr/operation_chains.lo \
 	src/symbolic/Expr/merge_and_split.lo \
 	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
-	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
-	src/symbolic/functions/io.lo \
+	src/symbolic/term/io.lo src/symbolic/term/cmp.lo \
+	src/symbolic/functions/function.lo \
+	src/symbolic/functions/io.lo src/symbolic/functions/cmp.lo \
 	src/symbolic/functions/functors.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -689,8 +690,10 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
+			src/symbolic/term/cmp.cpp \
 			src/symbolic/functions/function.cpp \
 			src/symbolic/functions/io.cpp \
+			src/symbolic/functions/cmp.cpp \
 			src/symbolic/functions/functors.cpp
 
 t_basic_CPPFLAGS = -I./src/include
@@ -982,6 +985,8 @@ src/symbolic/term/term.lo: src/symbolic/term/$(am__dirstamp) \
 	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/term/io.lo: src/symbolic/term/$(am__dirstamp) \
 	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/term/cmp.lo: src/symbolic/term/$(am__dirstamp) \
+	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/$(am__dirstamp):
 	@$(MKDIR_P) src/symbolic/functions
 	@: > src/symbolic/functions/$(am__dirstamp)
@@ -992,6 +997,8 @@ src/symbolic/functions/function.lo:  \
 	src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/io.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/cmp.lo: src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/functors.lo:  \
 	src/symbolic/functions/$(am__dirstamp) \
@@ -1170,9 +1177,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/merge_and_split.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/operation_chains.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/Expr/$(DEPDIR)/simplification.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/function.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/functors.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/functions/$(DEPDIR)/io.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/term/$(DEPDIR)/cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/term/$(DEPDIR)/io.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/symbolic/term/$(DEPDIR)/term.Plo@am__quote@
 

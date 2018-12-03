@@ -44,6 +44,8 @@ class function {
 			this->__construct_from_arguments(args...);
 		}
 		
+		bool __immediately_equal(const function &) const;
+		
 	public:
 		function (const std::string &);
 		function (const function &);
@@ -58,6 +60,7 @@ class function {
 		std::vector<Expr> arguments() const;
 		bool is_simplified() const;
 		
+		function & flip_sign() { this->_sign = 1 - this->_sign; return *this; }
 		function operator-() const { function f(*this); f._sign = 1 - f._sign; return f; }
 		
 		

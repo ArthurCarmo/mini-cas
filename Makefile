@@ -87,8 +87,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = i686-pc-linux-gnu
+host_triplet = i686-pc-linux-gnu
 check_PROGRAMS = t_basic$(EXEEXT) t_monomials$(EXEEXT) \
 	t_monomial_pow$(EXEEXT) t_grades$(EXEEXT) \
 	t_polynomials$(EXEEXT) t_polynomial_derive$(EXEEXT) \
@@ -182,8 +182,9 @@ am_libminicas_la_OBJECTS = src/num_z/num_z.lo src/num_z/abs_bool.lo \
 	src/symbolic/Expr/operation_chains.lo \
 	src/symbolic/Expr/merge_and_split.lo \
 	src/symbolic/Expr/arithmetic_ops.lo src/symbolic/term/term.lo \
-	src/symbolic/term/io.lo src/symbolic/functions/function.lo \
-	src/symbolic/functions/io.lo \
+	src/symbolic/term/io.lo src/symbolic/term/cmp.lo \
+	src/symbolic/functions/function.lo \
+	src/symbolic/functions/io.lo src/symbolic/functions/cmp.lo \
 	src/symbolic/functions/functors.lo
 libminicas_la_OBJECTS = $(am_libminicas_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -492,7 +493,7 @@ AR = ar
 AUTOCONF = ${SHELL} /home/arthur/Documents/mini-cas/missing autoconf
 AUTOHEADER = ${SHELL} /home/arthur/Documents/mini-cas/missing autoheader
 AUTOMAKE = ${SHELL} /home/arthur/Documents/mini-cas/missing automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -520,7 +521,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
+LD = /usr/bin/ld
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
@@ -566,9 +567,9 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = i686-pc-linux-gnu
 build_alias = 
-build_cpu = x86_64
+build_cpu = i686
 build_os = linux-gnu
 build_vendor = pc
 builddir = .
@@ -577,9 +578,9 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = i686-pc-linux-gnu
 host_alias = 
-host_cpu = x86_64
+host_cpu = i686
 host_os = linux-gnu
 host_vendor = pc
 htmldir = ${docdir}
@@ -689,8 +690,10 @@ libminicas_la_SOURCES = src/num_z/num_z.cpp \
 			src/symbolic/Expr/arithmetic_ops.cpp \
 			src/symbolic/term/term.cpp \
 			src/symbolic/term/io.cpp \
+			src/symbolic/term/cmp.cpp \
 			src/symbolic/functions/function.cpp \
 			src/symbolic/functions/io.cpp \
+			src/symbolic/functions/cmp.cpp \
 			src/symbolic/functions/functors.cpp
 
 t_basic_CPPFLAGS = -I./src/include
@@ -982,6 +985,8 @@ src/symbolic/term/term.lo: src/symbolic/term/$(am__dirstamp) \
 	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/term/io.lo: src/symbolic/term/$(am__dirstamp) \
 	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/term/cmp.lo: src/symbolic/term/$(am__dirstamp) \
+	src/symbolic/term/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/$(am__dirstamp):
 	@$(MKDIR_P) src/symbolic/functions
 	@: > src/symbolic/functions/$(am__dirstamp)
@@ -992,6 +997,8 @@ src/symbolic/functions/function.lo:  \
 	src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/io.lo: src/symbolic/functions/$(am__dirstamp) \
+	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
+src/symbolic/functions/cmp.lo: src/symbolic/functions/$(am__dirstamp) \
 	src/symbolic/functions/$(DEPDIR)/$(am__dirstamp)
 src/symbolic/functions/functors.lo:  \
 	src/symbolic/functions/$(am__dirstamp) \
@@ -1170,9 +1177,11 @@ include src/symbolic/Expr/$(DEPDIR)/io.Plo
 include src/symbolic/Expr/$(DEPDIR)/merge_and_split.Plo
 include src/symbolic/Expr/$(DEPDIR)/operation_chains.Plo
 include src/symbolic/Expr/$(DEPDIR)/simplification.Plo
+include src/symbolic/functions/$(DEPDIR)/cmp.Plo
 include src/symbolic/functions/$(DEPDIR)/function.Plo
 include src/symbolic/functions/$(DEPDIR)/functors.Plo
 include src/symbolic/functions/$(DEPDIR)/io.Plo
+include src/symbolic/term/$(DEPDIR)/cmp.Plo
 include src/symbolic/term/$(DEPDIR)/io.Plo
 include src/symbolic/term/$(DEPDIR)/term.Plo
 
